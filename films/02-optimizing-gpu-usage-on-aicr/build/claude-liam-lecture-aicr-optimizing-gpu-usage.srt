@@ -1,0 +1,871 @@
+1
+00:00:00,000 --> 00:00:04,878
+Research Computing on Explorer and AICR. Optimizing GPU Usage on AICR. How to
+
+2
+00:00:04,898 --> 00:00:10,153
+request the right GPU, measure what your job actually uses, and right-size it, so
+
+3
+00:00:10,173 --> 00:00:12,790
+your work runs sooner and wastes nothing.
+
+4
+00:00:12,860 --> 00:00:17,359
+Bonjour. This is Liam, in for Bear. First, a correction. A GPU job that finished is
+
+5
+00:00:17,379 --> 00:00:22,443
+not a GPU job that used the GPU. Many jobs leave the card waiting most of the time.
+
+6
+00:00:22,463 --> 00:00:26,962
+This lecture is a set of measuring instruments: how to confirm you have the GPU, how
+
+7
+00:00:26,982 --> 00:00:31,764
+to watch it live, how to profile it, how to fix the usual bottleneck, how to read
+
+8
+00:00:31,784 --> 00:00:35,718
+memory against utilization, when to add GPUs, and the loop that ties it all
+
+9
+00:00:35,738 --> 00:00:37,130
+together. Measure first. Change second.
+
+10
+00:00:37,200 --> 00:00:42,006
+Six terms. GPU utilization: the share of the last second in which the GPU was
+
+11
+00:00:42,026 --> 00:00:47,154
+running any work at all. VRAM: the GPU's own memory, where your model and your batch
+
+12
+00:00:47,174 --> 00:00:51,980
+live. DataLoader: the part of PyTorch that reads and batches your data and hands it
+
+13
+00:00:52,000 --> 00:00:56,807
+to the GPU. Profiler: a tool that says where the time went. BF16: a sixteen-bit
+
+14
+00:00:56,827 --> 00:01:00,668
+number format that keeps the range of thirty-two-bit floats. And DDP: distributed
+
+15
+00:01:00,688 --> 00:01:02,920
+data parallel, one model copy per GPU.
+
+16
+00:01:02,990 --> 00:01:07,331
+Start where the work can quietly go wrong. If the CUDA module isn't loaded, PyTorch
+
+17
+00:01:07,351 --> 00:01:12,854
+runs on the CPU and raises no error at all. A typo in the GPU request lands you on
+
+18
+00:01:12,874 --> 00:01:17,214
+the wrong kind of node. And a leftover CUDA visible devices setting from an earlier
+
+19
+00:01:17,234 --> 00:01:19,540
+shell can hide the card you were given.
+
+20
+00:01:19,610 --> 00:01:25,384
+AICR has two GPU families and four GPU partitions. B200 devel and B200 batch, with
+
+21
+00:01:25,404 --> 00:01:30,792
+one hundred ninety-two gigabytes of memory per card. RTX devel and RTX batch, with
+
+22
+00:01:30,812 --> 00:01:35,427
+ninety-six. Devel partitions run four hours and are for interactive work and
+
+23
+00:01:35,447 --> 00:01:39,290
+profiling. Batch partitions run twenty-four hours and are for production.
+
+24
+00:01:39,360 --> 00:01:44,801
+A minimal job script. The request first: one node, one task, eight CPUs per task,
+
+25
+00:01:44,821 --> 00:01:49,170
+one GPU, thirty-two gigabytes of memory, four hours, and the log files.
+
+26
+00:01:49,240 --> 00:01:54,158
+Then the work. Make the logs folder, clear the modules, load CUDA and miniforge,
+
+27
+00:01:54,178 --> 00:01:56,980
+activate the workshop environment, and run your training.
+
+28
+00:01:57,050 --> 00:02:01,895
+Two lines deserve a pause. Mem equals thirty-two gigabytes is CPU memory, not GPU
+
+29
+00:02:01,915 --> 00:02:07,455
+memory. The GPU's own memory comes with the GPU. And CPUs per task is not a
+
+30
+00:02:07,475 --> 00:02:11,972
+formality: your data loading workers run on those cores. Eight cores means seven
+
+31
+00:02:11,992 --> 00:02:13,710
+workers and one main process.
+
+32
+00:02:13,780 --> 00:02:18,040
+Never trust that you got what you asked for. The workshop's verify script runs in
+
+33
+00:02:18,060 --> 00:02:22,035
+under five seconds and checks five things. Is CUDA reachable. How many GPUs, which
+
+34
+00:02:22,055 --> 00:02:26,601
+model, how much memory. What CUDA visible devices says. Does NVIDIA S M I agree. And
+
+35
+00:02:26,621 --> 00:02:31,452
+a tensor round trip: CPU to GPU and back. Is available only means PyTorch can see a
+
+36
+00:02:31,472 --> 00:02:34,020
+GPU. The round trip proves it can use it.
+
+37
+00:02:34,090 --> 00:02:38,746
+About that variable. Slurm sets CUDA visible devices to tell your program which GPUs
+
+38
+00:02:38,766 --> 00:02:43,756
+are yours. Zero means one GPU. Zero comma one means two. Not set means you're
+
+39
+00:02:43,776 --> 00:02:48,432
+outside Slurm, in an interactive shell, which is normal. Never override it in your
+
+40
+00:02:48,452 --> 00:02:50,770
+script unless you deliberately want a subset.
+
+41
+00:02:50,840 --> 00:02:55,297
+One AICR-specific rule. A background process watches GPU utilization, and a job that
+
+42
+00:02:55,317 --> 00:03:00,462
+holds a GPU without running anything is cancelled. So don't request a GPU and then
+
+43
+00:03:00,482 --> 00:03:05,283
+sit writing code. Run the verify script first, profile in the devel partition in
+
+44
+00:03:05,303 --> 00:03:09,760
+short sessions, and keep the batch partitions for jobs that are already tuned.
+
+45
+00:03:09,830 --> 00:03:14,803
+The fastest profiler is already on every node. NVIDIA S M I prints a snapshot; watch
+
+46
+00:03:14,823 --> 00:03:18,548
+it every second in a second terminal. Two numbers matter. GPU utilization:
+
+47
+00:03:18,568 --> 00:03:22,292
+eighty-four percent here means the GPU was running kernels for eighty-four percent
+
+48
+00:03:22,312 --> 00:03:26,037
+of the last second. Healthy. Below fifty, something is wrong. And memory:
+
+49
+00:03:26,057 --> 00:03:29,470
+twenty-four gigabytes of one hundred ninety-two in use. Twelve percent. Enormous
+
+50
+00:03:29,490 --> 00:03:31,030
+room for a bigger batch.
+
+51
+00:03:31,100 --> 00:03:34,461
+A quick quiz from the workshop. Utilization twelve percent, memory ninety-one
+
+52
+00:03:34,481 --> 00:03:38,765
+percent. What's wrong? The model is loaded, the card is full, and it's barely
+
+53
+00:03:38,785 --> 00:03:43,376
+computing. Nothing on the CPU side is feeding it. That is data starvation, the most
+
+54
+00:03:43,396 --> 00:03:46,450
+common problem of all, and it gets its own act.
+
+55
+00:03:46,520 --> 00:03:50,224
+Hold these two numbers as two axes, because people confuse them. Across:
+
+56
+00:03:50,244 --> 00:03:54,568
+utilization. Up: memory. Top left is a loaded model that isn't running: a data
+
+57
+00:03:54,588 --> 00:03:59,222
+pipeline problem. Bottom left is a GPU doing nothing at all. Bottom right is good
+
+58
+00:03:59,242 --> 00:04:03,877
+throughput with memory to spare. Top right is the target: a big model, working hard.
+
+59
+00:04:03,897 --> 00:04:07,290
+Eighty to a hundred percent utilization, seventy to ninety percent memory.
+
+60
+00:04:07,360 --> 00:04:12,559
+For a richer live view, N V I top. A dashboard that updates continuously, per
+
+61
+00:04:12,579 --> 00:04:17,431
+process: GPU use, memory trend, power and temperature. On a shared node it answers
+
+62
+00:04:17,451 --> 00:04:22,302
+the question that matters: is it my Python process using the GPU, or someone's
+
+63
+00:04:22,322 --> 00:04:22,650
+leftover.
+
+64
+00:04:22,720 --> 00:04:28,157
+NVIDIA S M I tells you that there's a problem. A profiler tells you where the time
+
+65
+00:04:28,177 --> 00:04:34,256
+goes. There are layers. System level: NVIDIA S M I and N V I top. Is the GPU busy.
+
+66
+00:04:34,276 --> 00:04:38,428
+Framework level: the PyTorch profiler. Which operator or layer eats the GPU time.
+
+67
+00:04:38,448 --> 00:04:42,601
+Timeline: N-sight Systems. Every CPU thread, kernel and memory copy in order. And
+
+68
+00:04:42,621 --> 00:04:46,132
+kernel level: N-sight Compute. Is one kernel memory-bound or compute-bound. Most
+
+69
+00:04:46,152 --> 00:04:48,700
+problems show up on the first two rungs.
+
+70
+00:04:48,770 --> 00:04:53,880
+The habit that matters most on AICR: profile in devel, run production in batch. In a
+
+71
+00:04:53,900 --> 00:04:59,010
+B200 devel session you run the verify script, run your code for fifty to a hundred
+
+72
+00:04:59,030 --> 00:05:02,858
+steps, profile, fix the bottleneck, and profile again until utilization is above
+
+73
+00:05:02,878 --> 00:05:07,667
+seventy percent. Only then does the job go to B200 batch, unattended, and you read
+
+74
+00:05:07,687 --> 00:05:08,950
+jobstats when it finishes.
+
+75
+00:05:09,020 --> 00:05:14,209
+The PyTorch profiler needs no extra install. Open a profile that records CPU and
+
+76
+00:05:14,229 --> 00:05:19,418
+CUDA activity, records the tensor shapes, and writes a trace you can open in
+
+77
+00:05:19,438 --> 00:05:19,790
+TensorBoard.
+
+78
+00:05:19,860 --> 00:05:24,148
+Then the pattern that matters: profile a short window, never the full run. Twenty
+
+79
+00:05:24,168 --> 00:05:28,455
+steps is enough. Step the profiler each iteration, and print the table sorted by
+
+80
+00:05:28,475 --> 00:05:31,840
+total CUDA time. The top row is where you look first.
+
+81
+00:05:31,910 --> 00:05:37,152
+Reading it, in order. Gaps between kernels on the timeline: the GPU is idle, the CPU
+
+82
+00:05:37,172 --> 00:05:42,086
+is too slow. Large copy entries: data shuttling between CPU and GPU. CPU total far
+
+83
+00:05:42,106 --> 00:05:47,019
+above CUDA total: the work isn't really on the GPU. And DataLoader functions at the
+
+84
+00:05:47,039 --> 00:05:49,650
+top of the CPU table: the pipeline, again.
+
+85
+00:05:49,720 --> 00:05:53,513
+When the order of events matters, CPU threads, kernels, memory copies, communication
+
+86
+00:05:53,533 --> 00:05:59,232
+between GPUs, use Nsight Systems. Trace CUDA, NVTX, the OS runtime, c u D N N and c
+
+87
+00:05:59,252 --> 00:06:04,634
+u BLAS, write the report to scratch, and copy it to your laptop for the N-sight GUI.
+
+88
+00:06:04,654 --> 00:06:09,400
+Limit the capture to fifty or a hundred steps: a full run makes gigabyte files.
+
+89
+00:06:09,470 --> 00:06:13,363
+Now the number one bottleneck. Picture a high-speed factory: the B200. It finishes a
+
+90
+00:06:13,383 --> 00:06:16,996
+batch in eight milliseconds. The supply truck, the CPU data loader, takes fifty
+
+91
+00:06:17,016 --> 00:06:20,909
+milliseconds to bring the next one. The factory stops and waits. Nothing is wrong
+
+92
+00:06:20,929 --> 00:06:25,380
+with the factory. The supply chain can't keep up. And a B200 eats batches far faster
+
+93
+00:06:25,400 --> 00:06:30,132
+than the cards you may be used to, so a loader that barely kept up elsewhere will
+
+94
+00:06:30,152 --> 00:06:30,970
+starve it here.
+
+95
+00:06:31,040 --> 00:06:35,727
+The diagnostic is two timings. First, time fifty batches through the loader alone,
+
+96
+00:06:35,747 --> 00:06:37,900
+with no GPU work at all.
+
+97
+00:06:37,970 --> 00:06:41,998
+Then time fifty forward-and-backward passes on synthetic data, bypassing the loader
+
+98
+00:06:42,018 --> 00:06:47,518
+entirely. If the loader time is larger than the compute time, you are data bound,
+
+99
+00:06:47,538 --> 00:06:50,830
+and no model optimization will help until that's fixed.
+
+100
+00:06:50,900 --> 00:06:55,628
+The workshop's quiz: loader forty-five milliseconds, compute nine. The GPU works for
+
+101
+00:06:55,648 --> 00:06:59,980
+nine and waits for thirty-six. Eighty percent of its time, wasted.
+
+102
+00:07:00,050 --> 00:07:05,326
+The fix usually lives in four DataLoader settings. Workers: CPU processes loading in
+
+103
+00:07:05,346 --> 00:07:09,807
+parallel. Pin memory: page-locked RAM for fast transfer. Persistent workers: don't
+
+104
+00:07:09,827 --> 00:07:15,103
+respawn them every epoch. And prefetch factor: how many batches each worker loads
+
+105
+00:07:15,123 --> 00:07:15,510
+ahead.
+
+106
+00:07:15,580 --> 00:07:19,666
+Typical starting values. Workers: CPUs per task minus one, never zero. Pin memory:
+
+107
+00:07:19,686 --> 00:07:24,087
+always true on a GPU node. Persistent workers: true whenever workers are above zero.
+
+108
+00:07:24,107 --> 00:07:28,824
+Prefetch: start at two. The single biggest win in the whole workshop is one line:
+
+109
+00:07:28,844 --> 00:07:33,562
+num workers from zero, the PyTorch default, to four or more. That alone often takes
+
+110
+00:07:33,582 --> 00:07:36,720
+a job from twenty percent utilization to sixty or eighty.
+
+111
+00:07:36,790 --> 00:07:40,321
+Two percentages on the same screen that mean different things. Utilization: the
+
+112
+00:07:40,341 --> 00:07:44,760
+share of the last second the GPU was running. Low means idle, from data or
+
+113
+00:07:44,780 --> 00:07:48,312
+synchronization. A hundred percent sustained is fine. Memory: the share of VRAM
+
+114
+00:07:48,332 --> 00:07:53,047
+allocated. Low means you could hold a bigger batch. High is only bad near the edge,
+
+115
+00:07:53,067 --> 00:07:55,710
+where the job runs out of memory and crashes.
+
+116
+00:07:55,780 --> 00:08:01,203
+So read them as a pair. Low and low: the GPU is doing nothing; verify CUDA, check
+
+117
+00:08:01,223 --> 00:08:05,365
+the data. Low utilization, high memory: loaded but not running; fix the pipeline.
+
+118
+00:08:05,385 --> 00:08:09,208
+High utilization, low memory: healthy, with VRAM unused; increase the batch size.
+
+119
+00:08:09,227 --> 00:08:13,370
+High and high: you're in good shape. And an out-of-memory crash: mixed precision
+
+120
+00:08:13,390 --> 00:08:13,690
+first.
+
+121
+00:08:13,760 --> 00:08:17,744
+Batch size moves both axes. Doubling it roughly doubles throughput, as long as the
+
+122
+00:08:17,764 --> 00:08:22,034
+GPU isn't already saturated and the memory is there. On a B200 with one hundred
+
+123
+00:08:22,054 --> 00:08:25,466
+ninety-two gigabytes, memory sitting at fifteen or twenty percent means room for
+
+124
+00:08:25,486 --> 00:08:30,328
+four to eight times the batch. Find the ceiling by binary search: try a size, see if
+
+125
+00:08:30,348 --> 00:08:34,046
+it fits, halve the gap, repeat. Then run production at seventy to eighty-five
+
+126
+00:08:34,066 --> 00:08:35,190
+percent of that ceiling.
+
+127
+00:08:35,260 --> 00:08:39,427
+Mixed precision is the next lever. PyTorch defaults to thirty-two-bit floats. Both
+
+128
+00:08:39,447 --> 00:08:44,312
+AICR GPU families have tensor cores built for lower precision. The change is one
+
+129
+00:08:44,332 --> 00:08:49,197
+wrapper: autocast to b float sixteen around the forward pass and the loss. Gradients
+
+130
+00:08:49,217 --> 00:08:51,640
+stay in thirty-two bit on their own.
+
+131
+00:08:51,710 --> 00:08:56,655
+Why BF16 and not FP16. A sixteen-bit number splits its bits between exponent, which
+
+132
+00:08:56,675 --> 00:09:01,266
+is range, and mantissa, which is precision. FP32 has eight exponent bits and
+
+133
+00:09:01,286 --> 00:09:05,876
+twenty-three of mantissa. BF16 keeps the same eight exponent bits and keeps only
+
+134
+00:09:05,896 --> 00:09:10,841
+seven for precision, so gradients don't underflow and you need no loss scaler. FP16
+
+135
+00:09:10,861 --> 00:09:15,806
+bets the other way: ten bits of precision, but only five of exponent, which
+
+136
+00:09:15,826 --> 00:09:20,417
+underflows. FP8 goes further still: four and three. Every step down trades numerical
+
+137
+00:09:20,437 --> 00:09:22,190
+quality for speed and memory.
+
+138
+00:09:22,260 --> 00:09:26,728
+What BF16 buys on this hardware. Activation memory roughly halves, so a much bigger
+
+139
+00:09:26,748 --> 00:09:31,537
+batch fits. Matrix operations run two to four times faster on the tensor cores. And
+
+140
+00:09:31,557 --> 00:09:36,345
+it is mixed precision, which is the safety net: the risky parts stay in thirty-two
+
+141
+00:09:36,365 --> 00:09:39,871
+bit. Master weights, the loss, softmax, normalization. Autocast handles that for
+
+142
+00:09:39,891 --> 00:09:44,359
+you. So the memory saving is partial, and the speedup is largest for matrix
+
+143
+00:09:44,379 --> 00:09:44,680
+multiplies.
+
+144
+00:09:44,750 --> 00:09:48,525
+If memory is still too tight, gradient checkpointing trades compute for memory.
+
+145
+00:09:48,545 --> 00:09:51,688
+Activations aren't stored in the forward pass; they're recomputed during
+
+146
+00:09:51,708 --> 00:09:55,167
+backpropagation. Roughly sixty to seventy percent less activation memory for about
+
+147
+00:09:55,187 --> 00:09:59,595
+thirty percent more compute. In Hugging Face it's one call. In custom modules, wrap
+
+148
+00:09:59,615 --> 00:10:04,340
+the expensive layers. Use it when the batch is forced below eight, or when you're
+
+149
+00:10:04,360 --> 00:10:06,870
+fine-tuning a very large model on one card.
+
+150
+00:10:06,940 --> 00:10:12,048
+Multi-GPU is the first thing people reach for when a job is slow, and it's often the
+
+151
+00:10:12,068 --> 00:10:16,271
+wrong move. More GPUs amplify the efficiency you already have; they don't create it.
+
+152
+00:10:16,291 --> 00:10:20,494
+The eighty percent rule: if a single GPU is already above eighty percent, you're
+
+153
+00:10:20,514 --> 00:10:24,717
+compute bound, and adding cards divides the work. If it's below sixty, fix the
+
+154
+00:10:24,737 --> 00:10:28,639
+bottleneck first, because four starved GPUs waste four times as much. And an
+
+155
+00:10:28,659 --> 00:10:32,560
+I/O-bound job gets worse, since the cards now compete for the same files.
+
+156
+00:10:32,630 --> 00:10:37,608
+Here's what data-parallel training does. Each GPU holds a full copy of the model and
+
+157
+00:10:37,628 --> 00:10:41,607
+takes a different mini-batch. After the backward pass they all-reduce: they average
+
+158
+00:10:41,627 --> 00:10:46,272
+their gradients into one, and each applies the same update. Inside one node, over
+
+159
+00:10:46,292 --> 00:10:50,604
+NVLink, that exchange is fast. Across nodes it's slower, so single-node multi-GPU is
+
+160
+00:10:50,624 --> 00:10:53,270
+usually much faster per card than spreading out.
+
+161
+00:10:53,340 --> 00:10:58,833
+Before you ask for four GPUs, confirm your code is written for DDP. A plain script
+
+162
+00:10:58,853 --> 00:11:04,001
+with gres equals gpu four gets four cards and uses one. Check that distributed is
+
+163
+00:11:04,021 --> 00:11:08,480
+available and initialized, and that PyTorch sees as many devices as you requested.
+
+164
+00:11:08,550 --> 00:11:14,222
+Then the request: one task per GPU, four GPUs, eight CPUs for each GPU's workers,
+
+165
+00:11:14,242 --> 00:11:16,120
+and run it with torchrun.
+
+166
+00:11:16,190 --> 00:11:20,928
+And measure the scaling. Throughput divided by the number of GPUs times the
+
+167
+00:11:20,948 --> 00:11:24,954
+single-GPU baseline gives efficiency. Above eighty percent, the extra cards pay.
+
+168
+00:11:24,974 --> 00:11:29,712
+Seventy to eighty is acceptable overhead. Below seventy, communication or I/O is the
+
+169
+00:11:29,732 --> 00:11:34,470
+real bottleneck, and more GPUs won't help. Go back to the single card.
+
+170
+00:11:34,540 --> 00:11:39,059
+Every section was one bottleneck. In practice they come in that order of frequency,
+
+171
+00:11:39,079 --> 00:11:42,625
+so here's the loop. Baseline: fifty steps, record throughput and utilization.
+
+172
+00:11:42,645 --> 00:11:46,192
+Profile twenty steps. Diagnose: data, memory, compute, or communication. Fix one
+
+173
+00:11:46,212 --> 00:11:50,731
+thing. Only one, or you can't tell what helped. Re-profile: did the bottleneck move?
+
+174
+00:11:50,751 --> 00:11:55,270
+Record the gain. Repeat until utilization is above eighty, or the returns run out.
+
+175
+00:11:55,340 --> 00:11:59,931
+The decision guide, as a tree. Utilization under fifty? It's the data pipeline, and
+
+176
+00:11:59,951 --> 00:12:04,541
+if workers is zero, that first. Fifty to eighty? Look at memory. Under forty
+
+177
+00:12:04,561 --> 00:12:08,823
+percent: bigger batch. Forty to eighty-five: try BF16. Over ninety: smaller batch or
+
+178
+00:12:08,843 --> 00:12:12,445
+checkpointing. Memory fine? Profile. Above eighty with healthy memory? Consider more
+
+179
+00:12:12,465 --> 00:12:17,385
+GPUs only if the single card is truly saturated. And out of memory: BF16, then
+
+180
+00:12:17,405 --> 00:12:20,020
+checkpointing, then a smaller batch. In that order.
+
+181
+00:12:20,090 --> 00:12:24,577
+After a batch job finishes, read its report card. Jobstats, from Princeton Research
+
+182
+00:12:24,597 --> 00:12:29,084
+Computing, runs on AICR. Here is a real one, from a fifty-five-minute fine-tuning
+
+183
+00:12:29,104 --> 00:12:33,591
+job on an RTX card. GPU utilization eighty percent: healthy. GPU memory seventeen
+
+184
+00:12:33,611 --> 00:12:37,752
+percent: room for a bigger batch. CPU utilization thirteen percent: eight cores
+
+185
+00:12:37,772 --> 00:12:42,952
+requested, barely one used. And a note: the job needed eleven percent of the eight
+
+186
+00:12:42,972 --> 00:12:48,153
+hours it asked for. Request less time, and the queue moves faster for everyone. Make
+
+187
+00:12:48,173 --> 00:12:52,660
+this a habit: under sixty percent GPU, fix it before the next run.
+
+188
+00:12:52,730 --> 00:12:56,537
+The pre-submission checklist, ideally run in a devel session first. The verify
+
+189
+00:12:56,557 --> 00:13:01,001
+script passes. NVIDIA S M I shows over seventy percent during a fifty-step test.
+
+190
+00:13:01,021 --> 00:13:06,103
+Workers is not zero. Pin memory is on. The batch uses at least sixty percent of
+
+191
+00:13:06,123 --> 00:13:11,206
+VRAM. BF16 autocast is on. The script names the right partition. CPUs per task is at
+
+192
+00:13:11,226 --> 00:13:15,670
+least four and matches workers plus one. The logs folder exists. And you've profiled
+
+193
+00:13:15,690 --> 00:13:20,134
+twenty steps and read the CUDA column. Then cancel the devel session: four running
+
+194
+00:13:20,154 --> 00:13:24,280
+jobs per user is the limit, and an idle one blocks you too.
+
+195
+00:13:24,350 --> 00:13:29,000
+None of this is PyTorch-only. Deep learning: every section applies, and in Hugging
+
+196
+00:13:29,020 --> 00:13:34,388
+Face most fixes are one flag. Molecular dynamics: verify the GPU type before a long
+
+197
+00:13:34,408 --> 00:13:39,417
+run, and multi-GPU scales well within a node. LLM inference: RTX cards for smaller
+
+198
+00:13:39,437 --> 00:13:43,369
+models, B200s for the seventy-billion class. Custom CUDA or Triton kernels:
+
+199
+00:13:43,389 --> 00:13:48,039
+everything applies, plus N-sight Compute for the kernel itself. And help is one
+
+200
+00:13:48,059 --> 00:13:51,990
+email away: r c help at northeastern dot e d u.
+
+201
+00:13:52,060 --> 00:13:56,561
+For Hugging Face Transformers the whole workshop is five lines of training
+
+202
+00:13:56,581 --> 00:14:01,083
+arguments: BF16 on, gradient checkpointing if you need it, eight data loader
+
+203
+00:14:01,103 --> 00:14:02,590
+workers, and pinned memory.
+
+204
+00:14:02,660 --> 00:14:06,647
+Let's recap with Claude. Verify the GPU before anything else, because idle
+
+205
+00:14:06,667 --> 00:14:10,987
+allocations on AICR get cancelled. Watch NVIDIA S M I: under fifty percent
+
+206
+00:14:11,007 --> 00:14:15,662
+utilization means something is wrong. Profile twenty steps, and the top row by CUDA
+
+207
+00:14:15,682 --> 00:14:20,670
+time is where to look. Low utilization with high memory is data starvation: fix the
+
+208
+00:14:20,690 --> 00:14:25,344
+number of workers. High utilization with low memory: raise the batch size. Out of
+
+209
+00:14:25,364 --> 00:14:30,019
+memory: BF16 first. Add GPUs only when one is already above eighty percent, measure
+
+210
+00:14:30,039 --> 00:14:32,690
+the scaling, and read jobstats after every run.
+
+211
+00:14:32,760 --> 00:14:37,287
+Your turn. Paste this into Claude: Here is my PyTorch training loop and my Slurm
+
+212
+00:14:37,307 --> 00:14:41,834
+script: [paste both]. I run it on one GPU. Walk me through the optimization loop:
+
+213
+00:14:41,854 --> 00:14:46,684
+what to measure for a 50-step baseline, how to profile 20 steps, and which of these
+
+214
+00:14:46,704 --> 00:14:50,625
+to try first and why: DataLoader num_workers and pin_memory, a larger batch, BF16
+
+215
+00:14:50,645 --> 00:14:54,565
+autocast, gradient checkpointing, or a second GPU. Give me the exact code changes
+
+216
+00:14:54,585 --> 00:14:59,416
+for your first pick only. Then check two things yourself. Did it ask you to measure
+
+217
+00:14:59,436 --> 00:15:02,750
+before it changed anything? And did it change exactly one thing?
+
+218
+00:15:02,820 --> 00:15:08,420
+Optimizing GPU Usage on AICR. At Nik Bear Brown.

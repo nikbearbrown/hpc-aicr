@@ -1,0 +1,2 @@
+# CHECKS-REPORT — Scientific Reproducibility (lecture)
+**Result.** No punts, no holds. 25 beats: 23 SHOW / 0 HOLD / 0 PUNT / 2 CARD-class bookends. Teaching arc: FRAMEWORK ✓ (B10 the three words; B30 the checklist before the tools) | WORKED EXAMPLE ✓ (B54–B55: one project from yml to commit) | FALSIFIABILITY ✓ (B52: the environment that will not rebuild; B41: the .bashrc that breaks the record) | SCAFFOLDED TASK ✓ | BOOKENDS ✓ | NO-SOURCE-NO-VERDICT ✓ (every number on a bar with its citation). Lane histogram: Manim 9 · terminal 7 · text card 4 · icons 1 · text-only 0.

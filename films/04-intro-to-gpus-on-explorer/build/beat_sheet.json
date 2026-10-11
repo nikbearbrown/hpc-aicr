@@ -1,0 +1,1446 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-intro-to-gpus",
+    "title": "Intro to GPUs on Explorer",
+    "topic": "RESEARCH COMPUTING · EXPLORER",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "Italian (Ciao)",
+    "audience": "Northeastern students and researchers using a GPU on Explorer for the first time; assumes no other film",
+    "source_doc": "hpc/Intro-to-GPUs-2026/training_main.md (Northeastern Research Computing training, presenter Arsalan Akhter; github.com/northeastern-rc-training/Intro-to-GPUs-2026), read 2026-10-06",
+    "playlist": "Explorer",
+    "chapter_number": 3,
+    "series_title": "Research Computing on Explorer and AICR",
+    "series_video_number": 4,
+    "series_video_count": 13,
+    "series_entry_video": "Video 1 · AICR Introduction",
+    "lecture_opening_description": "What a GPU is for and how to ask for one",
+    "tags": [
+      "GPU",
+      "Explorer cluster",
+      "Northeastern",
+      "Research Computing",
+      "Slurm",
+      "srun",
+      "sbatch",
+      "Open OnDemand",
+      "VS Code",
+      "PyTorch",
+      "DataLoader",
+      "gpu-logs",
+      "nvidia-smi",
+      "CUDA",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-09T12:25:19",
+      "cut": "master",
+      "filled": 26,
+      "of": 26,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Intro to GPUs on Explorer. What a GPU is for, which ones Explorer has, and how to ask for one in a job, so the right work lands on the right hardware.",
+      "estimated_duration_s": 10.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 12.05,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 12.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Ciao. This is Liam, in for Bear. First, a correction. A GPU is not a faster CPU. It's thousands of small, simple cores working at once, which is why it wins at some jobs and loses at others. This lecture is the beginner's introduction to the GPUs on Northeastern's Explorer cluster: which partitions and card types there are, what a GPU is, the three ways to get one, how to watch it work, and the two code habits that keep it busy.",
+      "estimated_duration_s": 32.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types the assumption"
+          },
+          {
+            "at": 0.3,
+            "event": "corrects 'a faster CPU' -> 'thousands of simple cores'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A GPU is just\na faster CPU",
+            "triggerWords": "a faster CPU",
+            "replacementWords": "thousands of simple cores",
+            "fontSize": 72,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-intro-to-gpus",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the newcomer's picture and corrects it.",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 22.34,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 22.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. A core: one processing unit that runs instructions on its own. A GPU: a chip with thousands of small cores for parallel work. A partition: a named group of cluster nodes with its own limits. GRES: generic resources, Slurm's name for the GPUs you ask for. s run: the command that gives you a live session on a node. And s batch: the command that submits a script to run without you.",
+      "estimated_duration_s": 29.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "core"
+          },
+          {
+            "at": 0.25,
+            "event": "GPU"
+          },
+          {
+            "at": 0.4,
+            "event": "partition"
+          },
+          {
+            "at": 0.58,
+            "event": "GRES"
+          },
+          {
+            "at": 0.72,
+            "event": "srun"
+          },
+          {
+            "at": 0.87,
+            "event": "sbatch"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "core",
+                "meaning": "one processing unit that runs instructions on its own"
+              },
+              {
+                "term": "GPU",
+                "meaning": "a chip with thousands of small cores for parallel work"
+              },
+              {
+                "term": "partition",
+                "meaning": "a named group of cluster nodes with its own limits"
+              },
+              {
+                "term": "GRES",
+                "meaning": "generic resources: Slurm's name for the GPUs you ask for"
+              },
+              {
+                "term": "srun",
+                "meaning": "a live session on a node"
+              },
+              {
+                "term": "sbatch",
+                "meaning": "submit a script to run without you"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 21.06
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 21.06,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 21.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · The GPU Partitions",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Start with where the GPUs are. Explorer groups its GPU nodes into partitions, and six are the ones you'll meet. gpu, the general one, up to eight hours. gpu-interactive, for Open OnDemand sessions, two hours. gpu-short, two hours too, but prioritised, so quick tests schedule fast. multigpu, for jobs that need several cards, twenty-four hours. courses-gpu, for classes, twenty-four hours. And sharing: GPUs that Northeastern PIs lend to everyone, one hour at a time.",
+      "estimated_duration_s": 29.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table builds row by row: partition (mono) · max time · a bar whose length is the hours (8, 2, 2, 24, 24, 1); gpu-short's row gets a small ink 'prioritised' tag; sharing's row a kraft 'lent by PIs' tag. Act title top-left.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "gpu 8 h"
+          },
+          {
+            "at": 0.35,
+            "event": "gpu-interactive 2 h"
+          },
+          {
+            "at": 0.48,
+            "event": "gpu-short, prioritised"
+          },
+          {
+            "at": 0.62,
+            "event": "multigpu 24 h"
+          },
+          {
+            "at": 0.75,
+            "event": "courses-gpu 24 h"
+          },
+          {
+            "at": 0.9,
+            "event": "sharing 1 h"
+          }
+        ],
+        "manim": {
+          "class": "B10_GpuPartitions"
+        },
+        "motion_claim": "A drawn table builds row by row: partition (mono) · max time · a bar whose length is the hours (8, 2, 2, 24, 24, 1); gpu-short's row gets a small ink 'prioritised' tag; sharing's row a kraft 'lent by PIs' tag. Act title top-left."
+      },
+      "actual_duration_s": 26.58,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 26.583333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "I · The GPU Partitions",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Which cards live in a partition? Ask sinfo for the G R E S column. On the gpu partition the answer is a mix: V100s in two flavours, T4s, A100s in two node sizes, and H200s, eight to a node. The number after the card is how many sit in each node.",
+      "estimated_duration_s": 20.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "sinfo -p gpu"
+          },
+          {
+            "at": 0.35,
+            "event": "the GRES list prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.explorer.northeastern.edu",
+            "lines": [
+              "$ sinfo -p gpu -o \"%G\"",
+              "GRES",
+              "gpu:v100-sxm2:4(S:0-1)",
+              "gpu:t4:4(S:0-1)",
+              "gpu:a100:3",
+              "gpu:a100:4",
+              "gpu:h200:8",
+              "gpu:v100-pcie:2(S:0-1)",
+              "gpu:v100-sxm2:3(S:0-1)"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "durationSeconds": 15.89
+          }
+        }
+      },
+      "motion_claim": "The real commands and the training's own output land in order.",
+      "actual_duration_s": 15.89,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 15.916666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "I · The GPU Partitions",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Before you submit, it pays to know what's free. sinfo with the node list, the GRES and the GRES in use shows that per node. And to check one node, name it. One trap: a node in the MIXED state isn't telling you about its GPUs. MIXED describes its CPUs. Only the GRES-used column says whether a card is free.",
+      "estimated_duration_s": 24.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "GRES vs GRES used"
+          },
+          {
+            "at": 0.5,
+            "event": "one node"
+          },
+          {
+            "at": 0.75,
+            "event": "MIXED means CPUs"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.explorer.northeastern.edu",
+            "lines": [
+              "$ sinfo -p gpu -O \"NodeList,Gres:30,GresUsed:30\"",
+              "# which cards each node has, and which are in use",
+              "$ sinfo -n nodename --Format=\"Gres:30,GresUsed:30\"",
+              "# MIXED is the state of the CPUs, not the GPUs"
+            ],
+            "startCue": 30,
+            "lineGap": 70,
+            "durationSeconds": 16.36
+          }
+        }
+      },
+      "motion_claim": "The real commands and the training's own output land in order.",
+      "actual_duration_s": 16.36,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 16.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "I · The GPU Partitions",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "There's also a GPU Monitor app on Open OnDemand. It colours every GPU node as idle, mixed or allocated, and lists how many GPU jobs are waiting in the queue by card type, so you can pick a card with a shorter line.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the legend: idle, mixed, allocated"
+          },
+          {
+            "at": 0.6,
+            "event": "GPU jobs pending by card type"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrowserCapture",
+          "props": {
+            "url": "ood.explorer.northeastern.edu",
+            "image": "lecture-intro-gpus/gpu-monitor2.png",
+            "imageAspect": 1.9281345565749235,
+            "caption": "The training's own screenshot of the real site",
+            "moves": [
+              {
+                "at": 0.0,
+                "x": 0.16,
+                "y": 0.1,
+                "scale": 3.2,
+                "ring": [
+                  -0.02,
+                  0.03,
+                  0.34,
+                  0.16
+                ]
+              },
+              {
+                "at": 0.6,
+                "x": 0.16,
+                "y": 0.42,
+                "scale": 3.2,
+                "ring": [
+                  -0.02,
+                  0.33,
+                  0.2,
+                  0.16
+                ]
+              }
+            ],
+            "ringColor": "#3D3929",
+            "durationSeconds": 13.01
+          }
+        }
+      },
+      "motion_claim": "The real Open OnDemand page; the camera pushes in to what the sentence names.",
+      "actual_duration_s": 13.01,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 13.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · What A GPU Is",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "So what is a GPU? Start with a core: one unit that runs instructions on its own. A CPU has a few large, complex cores. A GPU has thousands of small, simple ones. For a problem you can split into thousands of identical little pieces, the GPU is the right tool.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left: a grey CPU block opens to show four large core squares; right: a dark GPU block opens to a dense grid of hundreds of tiny squares that fill in; labels 'a few complex cores' and 'thousands of simple cores'; a problem bar splits into many slivers that land on the grid. Act title top-left.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "four large cores"
+          },
+          {
+            "at": 0.45,
+            "event": "thousands of tiny cores"
+          },
+          {
+            "at": 0.8,
+            "event": "the problem splits across them"
+          }
+        ],
+        "manim": {
+          "class": "B20_FewVsThousands"
+        },
+        "motion_claim": "Left: a grey CPU block opens to show four large core squares; right: a dark GPU block opens to a dense grid of hundreds of tiny squares that fill in; labels 'a few complex cores' and 'thousands of simple cores'; a problem bar splits into many slivers that land on the grid. Act title top-left."
+      },
+      "actual_duration_s": 16.23,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 16.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · What A GPU Is",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Two pictures from the training. Delivering thousands of pizzas across a city: a few Ferraris, or thousands of bicycles? The bicycles. Or a room of professors at whiteboards against a stadium of students with calculators. The professors win at a hard proof. But to multiply a very large matrix, a multiply and an add for every cell, the stadium wins. Machine learning, scientific simulation, data analysis: those are stadium jobs.",
+      "estimated_duration_s": 28.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Isometric: a city grid of small kraft blocks (houses); three fast dark carriers each reach one house at a time, while a swarm of small dots fan out and reach every house at once ('bicycles'); then a big grid (matrix) fills cell by cell all at once; labels 'a few fast' / 'thousands at once'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "three Ferraris, one house each"
+          },
+          {
+            "at": 0.3,
+            "event": "thousands of bicycles, every house"
+          },
+          {
+            "at": 0.65,
+            "event": "the matrix fills all at once"
+          },
+          {
+            "at": 0.9,
+            "event": "stadium jobs"
+          }
+        ],
+        "manim": {
+          "class": "B21_FerrarisAndBicycles"
+        },
+        "motion_claim": "Isometric: a city grid of small kraft blocks (houses); three fast dark carriers each reach one house at a time, while a swarm of small dots fan out and reach every house at once ('bicycles'); then a big grid (matrix) fills cell by cell all at once; labels 'a few fast' / 'thousands at once'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 21.91,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 21.916666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B21.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · Three Ways In",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Three ways to use them. Open OnDemand, a website where a GPU session is a form. An interactive session from the terminal with s run. And a batch job, a script you submit with s batch and walk away from.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "OOD"
+          },
+          {
+            "at": 0.45,
+            "event": "srun"
+          },
+          {
+            "at": 0.7,
+            "event": "sbatch"
+          }
+        ],
+        "remotion": {
+          "pattern": "LibraryIconRow",
+          "props": {
+            "title": "III · Three Ways In",
+            "items": [
+              {
+                "label": "Open OnDemand",
+                "sub": "a form in the browser",
+                "icon": "browser",
+                "cue_phrase": "Open OnDemand",
+                "at": 0.119
+              },
+              {
+                "label": "srun",
+                "sub": "a live session",
+                "icon": "terminal",
+                "mono": true,
+                "cue_phrase": "An interactive session",
+                "at": 0.396
+              },
+              {
+                "label": "sbatch",
+                "sub": "a script, submitted",
+                "icon": "file-code",
+                "mono": true,
+                "cue_phrase": "And a batch job",
+                "at": 0.658
+              }
+            ],
+            "durationSeconds": 12.12
+          }
+        }
+      },
+      "motion_claim": "Three routes, each landing as one large library icon.",
+      "actual_duration_s": 12.12,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 12.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B30.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · Three Ways In",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "One setup for all three. Log in, go to your scratch directory, and clone the training repository. Everything the demos use is in there: a Python environment script, a tiny GPU check, and the example code.",
+      "estimated_duration_s": 14.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "ssh"
+          },
+          {
+            "at": 0.35,
+            "event": "cd scratch"
+          },
+          {
+            "at": 0.55,
+            "event": "git clone"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.explorer.northeastern.edu",
+            "lines": [
+              "$ ssh username@login.explorer.northeastern.edu",
+              "$ cd /scratch/$USER",
+              "$ git clone git@github.com:northeastern-rc-training/Intro-to-GPUs-2026.git",
+              "$ cd Intro-to-GPUs-2026"
+            ],
+            "startCue": 30,
+            "lineGap": 60,
+            "durationSeconds": 12.35
+          }
+        }
+      },
+      "motion_claim": "The real commands and the training's own output land in order.",
+      "actual_duration_s": 12.35,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 12.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B31.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "IV · In The Browser",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "First way: the browser. On the Open OnDemand dashboard, open Standard Apps and pick VS Code Server.",
+      "estimated_duration_s": 6.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the dashboard"
+          },
+          {
+            "at": 0.35,
+            "event": "zoom to Standard Apps → VSCode"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrowserCapture",
+          "props": {
+            "url": "ood.explorer.northeastern.edu",
+            "image": "lecture-intro-gpus/ood_main.png",
+            "imageAspect": 1.8698884758364311,
+            "caption": "The training's own screenshot of the real site",
+            "moves": [
+              {
+                "at": 0.0,
+                "x": 0.5,
+                "y": 0.5,
+                "scale": 1.0
+              },
+              {
+                "at": 0.35,
+                "x": 0.6,
+                "y": 0.45,
+                "scale": 1.6,
+                "ring": [
+                  0.47,
+                  0.615,
+                  0.31,
+                  0.105
+                ]
+              }
+            ],
+            "ringColor": "#3D3929",
+            "durationSeconds": 6.61
+          }
+        }
+      },
+      "motion_claim": "The real Open OnDemand page; the camera pushes in to what the sentence names.",
+      "actual_duration_s": 6.61,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 6.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B40.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "IV · In The Browser",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The form asks for a simple password for the editor, a partition, sharing here, and the number of GPUs, one. Leave the rest as it is and launch.",
+      "estimated_duration_s": 11.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "password"
+          },
+          {
+            "at": 0.4,
+            "event": "partition: sharing"
+          },
+          {
+            "at": 0.7,
+            "event": "GPUs: 1"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrowserCapture",
+          "props": {
+            "url": "ood.explorer.northeastern.edu",
+            "image": "lecture-intro-gpus/vscode_on_ood.png",
+            "imageAspect": 1.1183510638297873,
+            "caption": "The training's own screenshot of the real site",
+            "moves": [
+              {
+                "at": 0.0,
+                "x": 0.5,
+                "y": 0.3,
+                "scale": 1.7,
+                "ring": [
+                  0.17,
+                  0.22,
+                  0.44,
+                  0.12
+                ]
+              },
+              {
+                "at": 0.4,
+                "x": 0.5,
+                "y": 0.62,
+                "scale": 1.7,
+                "ring": [
+                  0.17,
+                  0.56,
+                  0.44,
+                  0.12
+                ]
+              },
+              {
+                "at": 0.7,
+                "x": 0.5,
+                "y": 0.78,
+                "scale": 1.7,
+                "ring": [
+                  0.17,
+                  0.83,
+                  0.44,
+                  0.12
+                ]
+              }
+            ],
+            "ringColor": "#3D3929",
+            "durationSeconds": 8.34
+          }
+        }
+      },
+      "motion_claim": "The real Open OnDemand page; the camera pushes in to what the sentence names.",
+      "actual_duration_s": 8.34,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 8.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B41.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "IV · In The Browser",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "When the session connects, open the cloned folder in VS Code, then a terminal from the View menu. Make the environment script executable, run it, and check that which python points into the new environment. Then the smallest possible test: the script prints the CUDA visible devices variable. Zero means the scheduler gave you a GPU.",
+      "estimated_duration_s": 22.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "setup script"
+          },
+          {
+            "at": 0.55,
+            "event": "which python"
+          },
+          {
+            "at": 0.75,
+            "event": "gpu_simple.py: CUDA_VISIBLE_DEVICES = 0"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "VS Code — terminal",
+            "lines": [
+              "$ chmod +x setup_python_env.sh",
+              "$ ./setup_python_env.sh",
+              "$ which python",
+              "$ python gpu_simple.py",
+              "CUDA_VISIBLE_DEVICES = 0",
+              "GPU successfully allocated by scheduler"
+            ],
+            "startCue": 40,
+            "lineGap": 52,
+            "durationSeconds": 17.86
+          }
+        }
+      },
+      "motion_claim": "The real commands and the training's own output land in order.",
+      "actual_duration_s": 17.86,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 17.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B42.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "V · Interactive And Batch",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Second way: a live session from the terminal. s run on the sharing partition with one GPU drops you onto a GPU node. Activate the same environment and run the fuller check, which asks PyTorch for the card.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "srun with one GPU"
+          },
+          {
+            "at": 0.6,
+            "event": "run the check"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.explorer.northeastern.edu",
+            "lines": [
+              "$ srun --partition=sharing --gres=gpu:1 --pty bash",
+              "$ ./setup_python_env.sh",
+              "$ which python",
+              "$ python example1/gpu_test_torch.py"
+            ],
+            "startCue": 30,
+            "lineGap": 58,
+            "durationSeconds": 12.39
+          }
+        }
+      },
+      "motion_claim": "The real commands and the training's own output land in order.",
+      "actual_duration_s": 12.39,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 12.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B50.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "V · Interactive And Batch",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Here's that check. It prints the PyTorch version, whether CUDA is available, the GPU's name, and then puts a tiny tensor on the card and prints where it lives. Open it in v i, add an NVIDIA S M I line, and run it again to see the card itself.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the script prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "example1/gpu_test_torch.py",
+            "code": "import torch\n\nprint(\"Torch version:\", torch.__version__)\nprint(\"CUDA available:\", torch.cuda.is_available())\nprint(\"GPU name:\", torch.cuda.get_device_name(0))\n\nx = torch.tensor([1.0, 2.0, 3.0], device=\"cuda\")\nprint(\"Tensor device:\", x.device)",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Four prints and one tensor on the card.",
+            "durationSeconds": 14.06
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 14.06,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 14.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B51.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "V · Interactive And Batch",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Third way: batch. The same work as a script with S BATCH lines: the gpu partition, one GPU, four CPUs, sixteen gigabytes, one hour, and log files. It activates the environment and runs the check. Submit it with s batch; it runs when a card is free, writes its output to the logs folder, and you read it later.",
+      "estimated_duration_s": 23.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the script"
+          },
+          {
+            "at": 0.85,
+            "event": "sbatch"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.explorer.northeastern.edu",
+            "lines": [
+              "$ cat example1/submit_job.sh",
+              "#!/bin/bash",
+              "#SBATCH --job-name=gpu_job",
+              "#SBATCH --partition=gpu",
+              "#SBATCH --gres=gpu:1",
+              "#SBATCH --cpus-per-task=4",
+              "#SBATCH --mem=16G",
+              "#SBATCH --time=01:00:00",
+              "#SBATCH --output=logs/%x_%j.out",
+              "#SBATCH --error=logs/%x_%j.err",
+              "source gpu_env/bin/activate",
+              "python gpu_test_torch.py",
+              "$ sbatch example1/submit_job.sh"
+            ],
+            "startCue": 20,
+            "lineGap": 28,
+            "durationSeconds": 17.49
+          }
+        }
+      },
+      "motion_claim": "The real commands and the training's own output land in order.",
+      "actual_duration_s": 17.49,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 17.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B52.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B60",
+      "act": "VI · Watching The GPU",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Is the card actually working? Put NVIDIA S M I in your script to print its state while the job runs. And after a job finishes, gpu-logs with the job ID gives a minute-by-minute record. This real one from the training: for five minutes nothing. Then memory climbs to twenty-three percent, then seventy-eight, with utilization still zero: the model is loading. Only at the end does utilization reach fifty-six percent. Most of this job's time, the GPU was waiting.",
+      "estimated_duration_s": 31.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Mono header '$ gpu-logs 2374457'; a time axis 12:52 → 13:11; two lines draw as the clock runs: memory (grey) steps 0 → 22.56% → 77.98% → 81.1%, utilization (ink) flat at 0 until 13:07 then steps to 56%; the long flat stretch gets the label 'waiting'; a terracotta dot on the 56% step. Act title top-left.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "five minutes of nothing"
+          },
+          {
+            "at": 0.5,
+            "event": "memory climbs, utilization zero"
+          },
+          {
+            "at": 0.75,
+            "event": "56% at the end"
+          },
+          {
+            "at": 0.9,
+            "event": "waiting"
+          }
+        ],
+        "manim": {
+          "class": "B60_GpuLogs"
+        },
+        "motion_claim": "Mono header '$ gpu-logs 2374457'; a time axis 12:52 → 13:11; two lines draw as the clock runs: memory (grey) steps 0 → 22.56% → 77.98% → 81.1%, utilization (ink) flat at 0 until 13:07 then steps to 56%; the long flat stretch gets the label 'waiting'; a terracotta dot on the 56% step. Act title top-left."
+      },
+      "actual_duration_s": 25.0,
+      "audio_file": "mp3/beat-B60.mp3",
+      "render_duration_s": 25.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B60.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B70",
+      "act": "VII · Using It Well",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Two habits keep a GPU busy. First, batching. The naive version sends fifty thousand single rows to the card, one request at a time, and pays the overhead fifty thousand times.",
+      "estimated_duration_s": 12.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the loop prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "example2/naive.py",
+            "code": "model = torch.nn.Linear(2048, 2048).to(device)\ndata_size = 50000\n\nstart = time.time()\n# 50,000 separate requests to the GPU: lots of overhead\nfor _ in range(data_size):\n    data = torch.randn(1, 2048).to(device)\n    _ = model(data)\n\ntorch.cuda.synchronize()\nprint(f\"Naive Time: {time.time() - start:.4f}s\")",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Fifty thousand separate requests.",
+            "durationSeconds": 10.84
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 10.84,
+      "audio_file": "mp3/beat-B70.mp3",
+      "render_duration_s": 10.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B70.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B71",
+      "act": "VII · Using It Well",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The batched version sends all fifty thousand rows at once and runs the model once. Same arithmetic, far less overhead, and the card's thousands of cores all have work.",
+      "estimated_duration_s": 11.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the batched version prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "example2/optimized.py",
+            "code": "model = torch.nn.Linear(2048, 2048).to(device)\ndata_size = 50000\n\nstart = time.time()\n# send all the data at once\ndata = torch.randn(data_size, 2048).to(device)\n_ = model(data)\n\ntorch.cuda.synchronize()\nprint(f\"Optimized Time: {time.time() - start:.4f}s\")",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "One request, all the rows.",
+            "durationSeconds": 9.9
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 9.9,
+      "audio_file": "mp3/beat-B71.mp3",
+      "render_duration_s": 9.916666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B71.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B72",
+      "act": "VII · Using It Well",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Picture it. Fifty thousand tiny parcels through the door one at a time, the card idle between each. Or one crate, and every core busy at once.",
+      "estimated_duration_s": 10.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Isometric: a stream of tiny kraft boxes trickles one by one onto a dark GPU block whose light flickers; then a single large crate lands and the whole top face lights with a grid of terracotta sparks; labels '50,000 × 1' and '1 × 50,000'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "parcels one at a time"
+          },
+          {
+            "at": 0.6,
+            "event": "one crate, every core lit"
+          }
+        ],
+        "manim": {
+          "class": "B72_ParcelsVsCrate"
+        },
+        "motion_claim": "Isometric: a stream of tiny kraft boxes trickles one by one onto a dark GPU block whose light flickers; then a single large crate lands and the whole top face lights with a grid of terracotta sparks; labels '50,000 × 1' and '1 × 50,000'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 8.21,
+      "audio_file": "mp3/beat-B72.mp3",
+      "render_duration_s": 8.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B72.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B73",
+      "act": "VII · Using It Well",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Second, data loading. With zero workers the CPU prepares one batch at a time and the GPU waits for each. With workers, pinned memory and a non-blocking copy, the next batch is ready before the card finishes the current one. Batch your data. Give the loader workers. Keep the card working.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "naive then optimized loader"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "example2_cifar/loaders.py",
+            "code": "# naive: num_workers=0, the CPU loads one batch at a time\nloader = DataLoader(dataset, batch_size=256, num_workers=0)\nfor images, labels in loader:\n    images = images.to(\"cuda\")          # GPU sits idle waiting\n\n# optimized: workers in parallel, pinned memory, non-blocking copy\nloader = DataLoader(dataset, batch_size=256, num_workers=2,\n                    pin_memory=True)\nfor images, labels in loader:\n    images = images.to(\"cuda\", non_blocking=True)   # GPU stays busy",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Workers, pinned memory, non-blocking.",
+            "durationSeconds": 15.77
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 15.77,
+      "audio_file": "mp3/beat-B73.mp3",
+      "render_duration_s": 15.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B73.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "B80",
+      "act": "VIII · Habits",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Four habits to leave with. Choose the right partition: gpu-short for a quick job, and s batch for anything long. Request only what you need, and check a finished job with seff to see how many CPUs it really used. Use the GPU-tuned libraries, CUDA and cuDNN, rather than plain code. And profile before you optimise. Stuck? Email r c help at northeastern dot e d u, or come to office hours.",
+      "estimated_duration_s": 28.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four checkbox rows tick in order with 1–3 word labels (right partition · only what you need · GPU libraries · profile first), each with a small cast icon beside it (a partition tag, a job box sized to fit a slot, a dark library block, a magnifier); then 'rchelp@northeastern.edu' lands in mono. Act title top-left.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "right partition"
+          },
+          {
+            "at": 0.35,
+            "event": "only what you need, seff"
+          },
+          {
+            "at": 0.6,
+            "event": "GPU libraries"
+          },
+          {
+            "at": 0.75,
+            "event": "profile first"
+          },
+          {
+            "at": 0.92,
+            "event": "rchelp"
+          }
+        ],
+        "manim": {
+          "class": "B80_FourHabits"
+        },
+        "motion_claim": "Four checkbox rows tick in order with 1–3 word labels (right partition · only what you need · GPU libraries · profile first), each with a small cast icon beside it (a partition tag, a job box sized to fit a slot, a dark library block, a magnifier); then 'rchelp@northeastern.edu' lands in mono. Act title top-left."
+      },
+      "actual_duration_s": 20.89,
+      "audio_file": "mp3/beat-B80.mp3",
+      "render_duration_s": 20.916666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B80.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. Six GPU partitions; gpu-short schedules fast, and sharing is lent by PIs. sinfo with the G R E S column shows the cards, and the GRES-used column, not MIXED, says what's free. A GPU is thousands of simple cores: the stadium, not the professors. Three ways in: VS Code on Open OnDemand, s run with one GPU, or an s batch script. gpu-logs shows the card's memory and utilization minute by minute. And batch your data and give the DataLoader workers, so the card stays busy.",
+      "estimated_duration_s": 36.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Intro to GPUs on Explorer",
+            "artifactLines": [
+              "Six GPU partitions; gpu-short schedules fast, sharing is lent by PIs.",
+              "sinfo -o \"%G\" shows the cards; GresUsed, not MIXED, says what is free.",
+              "A GPU is thousands of simple cores: the stadium, not the professors.",
+              "Three ways in: OOD VS Code, srun --gres=gpu:1, or an sbatch script.",
+              "gpu-logs shows the card's minute-by-minute memory and utilization.",
+              "Batch your data and give the DataLoader workers; keep the card busy."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 29.65,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 29.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Here is a PyTorch loop I run on a GPU: [paste it]. First, tell me whether it processes samples one at a time or in batches, and rewrite it to batch if it doesn't. Second, write the DataLoader line with workers and pinned memory. Third, write me the Slurm srun command for a one-hour test on one GPU and the sbatch script for the real run. Then check two things yourself. Did it keep the arithmetic identical when it batched? And did it ask for only one GPU?",
+      "estimated_duration_s": 37.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Make Your Loop Keep The GPU Busy",
+            "command": "Here is a PyTorch loop I run on a GPU: [paste it]. First, tell me whether it processes samples one at a time or in batches, and rewrite it to batch if it doesn't. Second, write the DataLoader line with workers and pinned memory. Third, write me the Slurm srun command for a one-hour test on one GPU and the sbatch script for the real run.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did it keep the arithmetic identical when it batched?",
+              "Check: did it ask for only one GPU?"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 25.54,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 25.541666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Intro to GPUs on Explorer. At Nik Bear Brown.",
+      "estimated_duration_s": 4.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Intro to GPUs on Explorer",
+            "slug": "claude-liam-lecture-intro-to-gpus",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 4.95,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 4.958333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:25:19"
+      }
+    }
+  ]
+}

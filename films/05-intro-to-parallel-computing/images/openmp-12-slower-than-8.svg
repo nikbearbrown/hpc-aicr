@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<title>Twelve OpenMP cores were slower than eight</title>
+<desc>Two panels of the original benchmark times for a fixed Game of Life grid, showing time falling with cores but rising from 29.4 seconds at 8 cores to 33.4 seconds at 12 cores.</desc>
+<rect width="1200" height="720" fill="#F2F0E9"/>
+<text x="60" y="72" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="start" >More cores was not always faster</text>
+<text x="110" y="130" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start" >OpenMP, 1 to 20 cores</text>
+<rect x="110" y="170" width="430" height="390" rx="6" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="98" y="567.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >0</text>
+<line x1="110" y1="410.0" x2="540" y2="410.0" stroke="#E6E2D6" stroke-width="2"/>
+<text x="98" y="417.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >100</text>
+<line x1="110" y1="260.0" x2="540" y2="260.0" stroke="#E6E2D6" stroke-width="2"/>
+<text x="98" y="267.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >200</text>
+<text x="144.21" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >1</text>
+<text x="204.83999999999997" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >4</text>
+<text x="285.67999999999995" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >8</text>
+<text x="366.52" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >12</text>
+<text x="447.35999999999996" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >16</text>
+<text x="528.2" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >20</text>
+<text x="325.0" y="628" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle" >Cores</text>
+<text transform="translate(40,365.0) rotate(-90)" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929" text-anchor="middle">Time (s)</text>
+<polyline points="144.2,183.9 164.4,384.8 204.8,472.9 285.7,515.9 366.5,509.9 447.4,522.2 528.2,529.7" fill="none" stroke="#3D3929" stroke-width="3"/>
+<circle cx="144.21" cy="183.95" r="7" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="164.42" cy="384.8" r="7" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="204.83999999999997" cy="472.85" r="7" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="285.67999999999995" cy="515.9" r="7" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="366.52" cy="509.9" r="7" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="447.35999999999996" cy="522.2" r="7" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="528.2" cy="529.7" r="7" fill="#3D3929" stroke="none" stroke-width="2"/>
+<rect x="257.47" y="500.0" width="278.53" height="37.5" rx="6" fill="none" stroke="#D97757" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="690" y="130" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start" >Zoom: 8 to 20 cores</text>
+<rect x="690" y="170" width="450" height="390" rx="6" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<line x1="690" y1="482.0" x2="1140" y2="482.0" stroke="#E6E2D6" stroke-width="2"/>
+<text x="678" y="489.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >20</text>
+<line x1="690" y1="404.0" x2="1140" y2="404.0" stroke="#E6E2D6" stroke-width="2"/>
+<text x="678" y="411.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >25</text>
+<line x1="690" y1="326.0" x2="1140" y2="326.0" stroke="#E6E2D6" stroke-width="2"/>
+<text x="678" y="333.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >30</text>
+<line x1="690" y1="248.0" x2="1140" y2="248.0" stroke="#E6E2D6" stroke-width="2"/>
+<text x="678" y="255.0" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end" >35</text>
+<text x="783.75" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >8</text>
+<text x="871.25" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >12</text>
+<text x="958.75" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >16</text>
+<text x="1046.25" y="592" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >20</text>
+<text x="915.0" y="628" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle" >Cores</text>
+<polyline points="783.8,335.4 871.2,273.0 958.8,400.9 1046.2,478.9" fill="none" stroke="#3D3929" stroke-width="3"/>
+<circle cx="783.75" cy="335.36" r="9" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="871.25" cy="272.96000000000004" r="9" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="958.75" cy="400.88" r="9" fill="#3D3929" stroke="none" stroke-width="2"/>
+<circle cx="1046.25" cy="478.88" r="9" fill="#3D3929" stroke="none" stroke-width="2"/>
+<text x="783.75" y="371.36" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="middle" >8 cores: 29.4 s</text>
+<text x="871.25" y="252.96000000000004" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#D97757" text-anchor="middle" >12 cores: 33.4 s</text>
+<text x="980.75" y="386.88" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" >16: 25.2 s</text>
+<text x="1036.25" y="514.88" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="middle" >20: 20.2 s</text>
+<text x="60" y="668" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Original benchmark: 10000 x 10000 grid, 500 generations, one node. Serial run: 250.7 s.</text>
+<text x="60" y="696" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Numbers are from the original lesson; we did not reproduce them. The original gives no reason for the dip.</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 640" role="img">
+<title>Where a result's provenance lives</title>
+<desc>A job's timeline from commit to sbatch, queue wait, job start and job end, with the commit, the job log and the run tag as the three records, and the queue wait marked as the time not to edit.</desc>
+<rect width="1200" height="640" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">Where a result's provenance lives</text>
+<text x="600" y="158" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#D97757" text-anchor="middle">Do not edit while queued</text>
+<path d="M330 182V198H870V182" stroke="#D97757" stroke-width="3" fill="none"/>
+<path d="M130 250H1070" stroke="#CFC9B8" stroke-width="6" stroke-linecap="round"/>
+<path d="M330 250H870" stroke="#D97757" stroke-width="6" stroke-linecap="round"/>
+<g fill="#FAF9F5" stroke="#3D3929" stroke-width="4"><circle cx="130" cy="250" r="14"/><circle cx="330" cy="250" r="14"/><circle cx="870" cy="250" r="14"/><circle cx="1070" cy="250" r="14"/></g>
+<g font-family="EB Garamond, Georgia, serif" font-size="32" fill="#3D3929" text-anchor="middle">
+<text x="130" y="310">Commit</text><text x="330" y="310">sbatch</text><text x="600" y="310">Queued</text><text x="870" y="310">Job starts</text><text x="1070" y="310">Job ends</text></g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470" text-anchor="middle">
+<text x="130" y="340">tree clean</text><text x="330" y="340">submit</text><text x="600" y="340">can be hours</text><text x="870" y="340">guard checks</text><text x="1070" y="340">tag created</text></g>
+<g stroke="#8A8470" stroke-width="2" fill="none"><path d="M130 360L190 420"/><path d="M870 360L600 420"/><path d="M1070 360L1010 420"/></g>
+<g fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"><rect x="30" y="420" width="320" height="170" rx="14"/><rect x="440" y="420" width="320" height="170" rx="14"/><rect x="850" y="420" width="320" height="170" rx="14"/></g>
+<g font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929" text-anchor="middle"><text x="190" y="472">Commit</text><text x="600" y="472">Job log</text><text x="1010" y="472">Run tag</text></g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470" text-anchor="middle">
+<text x="190" y="522">code and result</text><text x="190" y="552">and message</text>
+<text x="600" y="522">commit: and branch:</text><text x="600" y="552">lines in the .out file</text>
+<text x="1010" y="522">run-&lt;jobid&gt;</text><text x="1010" y="552">local until pushed</text></g>
+</svg>

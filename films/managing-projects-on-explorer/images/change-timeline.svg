@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 560">
+<title>Timeline of a membership change</title>
+<desc>A membership change is viewed, made and viewed again, then takes up to two hours to reach the cluster, and the new person needs a fresh login.</desc>
+<rect width="1200" height="560" fill="#F2F0E9"/>
+<text x="60" y="78" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">After you change a group</text>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929" text-anchor="middle">
+<line x1="100" y1="260" x2="1100" y2="260" stroke="#CFC9B8" stroke-width="4"/>
+<rect x="560" y="246" width="320" height="28" rx="14" fill="#D97757"/>
+<circle cx="140" cy="260" r="16" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<circle cx="340" cy="260" r="16" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<circle cx="540" cy="260" r="16" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<circle cx="1060" cy="260" r="16" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="140" y="200" font-weight="600">1</text><text x="140" y="320">View first</text><text x="140" y="348" fill="#8A8470">member list</text>
+<text x="340" y="200" font-weight="600">2</text><text x="340" y="320">Add or remove</text><text x="340" y="348" fill="#8A8470">the person</text>
+<text x="540" y="200" font-weight="600">3</text><text x="540" y="320">View again</text><text x="540" y="348" fill="#8A8470">write down the time</text>
+<text x="720" y="214" fill="#D97757" font-weight="600" font-size="24">Wait: up to 2 hours</text>
+<text x="1060" y="200" font-weight="600" fill="#D97757">4</text><text x="1060" y="320">Fresh login</text><text x="1060" y="348" fill="#8A8470">new group applies</text>
+</g>
+<rect x="60" y="430" width="1080" height="70" rx="12" fill="#E6E2D6"/>
+<text x="84" y="472" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929">Group membership is read when you log in. The 2 hours and fresh-login note are from the announcement.</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+<title>GPU benchmark: two GPUs near linear, four barely better</title>
+<desc>Horizontal bars of original benchmark times: 11.73 seconds on one GPU, 5.48 on two, 5.08 on four, with dashed markers for the ideal time.</desc>
+<rect width="1200" height="600" fill="#F2F0E9"/>
+<text x="60" y="72" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="start" >Four GPUs barely beat two</text>
+<text x="306" y="188" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end" >1 GPU</text>
+<rect x="330" y="140" width="570.0" height="70" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="2"/>
+<text x="352" y="186" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#F2F0E9" text-anchor="start" >11.73 s</text>
+<text x="924.0" y="186" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" >speedup 1.0x</text>
+<text x="306" y="313" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end" >2 GPUs, one node</text>
+<rect x="330" y="265" width="266.2915601023018" height="70" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="2"/>
+<text x="352" y="311" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#F2F0E9" text-anchor="start" >5.48 s</text>
+<text x="639.0" y="311" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" >speedup 2.1x</text>
+<line x1="615.0" y1="253" x2="615.0" y2="347" stroke="#3D3929" stroke-width="3" stroke-dasharray="6 5"/>
+<text x="615.0" y="245" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" >ideal 5.87 s</text>
+<text x="306" y="438" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end" >4 GPUs, two nodes</text>
+<rect x="330" y="390" width="246.85421994884908" height="70" rx="8" fill="#D97757" stroke="#D97757" stroke-width="2"/>
+<text x="352" y="436" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#F2F0E9" text-anchor="start" >5.08 s</text>
+<text x="600.854219948849" y="436" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" >speedup 2.3x</text>
+<line x1="472.5" y1="378" x2="472.5" y2="472" stroke="#3D3929" stroke-width="3" stroke-dasharray="6 5"/>
+<text x="472.5" y="370" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" >ideal 2.93 s</text>
+<text x="60" y="540" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Ideal = single-GPU time divided by the number of GPUs (our arithmetic). Times: 4096 x 4096 matrix multiply, 100 repeats.</text>
+<text x="60" y="570" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Numbers are from the original lesson; we did not reproduce them. A bigger problem could scale differently.</text>
+</svg>

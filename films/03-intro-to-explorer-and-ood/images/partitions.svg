@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="726" viewBox="0 0 1200 726">
+<title>Partitions and time limits</title>
+<desc>A bar chart of Explorer partitions by time limit seen in sinfo on 2026-10-11, with short at 2 days, sharing 1 hour, gpu 8 hours, gpu-short 2 hours and gpu-interactive 2 hours, and four more partitions that need approval or a course.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3D3929"/></marker>
+<marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+</defs>
+<rect width="1200" height="726" fill="#F2F0E9"/>
+<text x="40" y="72" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">Partitions and time limits</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Longest job allowed, as seen in sinfo on 2026-10-11</text>
+<text x="40" y="138" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start">Partition</text>
+<text x="300" y="138" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start">Kind</text>
+<text x="520" y="138" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start">Time limit (linear scale, 0 to 48 hours)</text>
+<line x1="520" y1="150" x2="520" y2="414" stroke="#CFC9B8" stroke-width="2"/>
+<text x="40" y="181" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">short</text>
+<text x="300" y="181" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">CPU</text>
+<rect x="520" y="156" width="490.0" height="34" rx="6" fill="#D97757"/>
+<text x="1024.0" y="182" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start">2 days</text>
+<text x="40" y="235" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">sharing</text>
+<text x="300" y="235" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">CPU + GPU</text>
+<rect x="520" y="210" width="10.2" height="34" rx="6" fill="#3D3929"/>
+<text x="544.2083333333334" y="236" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start">1 hour</text>
+<text x="40" y="289" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">gpu</text>
+<text x="300" y="289" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<rect x="520" y="264" width="81.7" height="34" rx="6" fill="#3D3929"/>
+<text x="615.6666666666666" y="290" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start">8 hours</text>
+<text x="40" y="343" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">gpu-short</text>
+<text x="300" y="343" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<rect x="520" y="318" width="20.4" height="34" rx="6" fill="#3D3929"/>
+<text x="554.4166666666666" y="344" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start">2 hours</text>
+<text x="40" y="397" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">gpu-interactive</text>
+<text x="300" y="397" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<rect x="520" y="372" width="20.4" height="34" rx="6" fill="#3D3929"/>
+<text x="554.4166666666666" y="398" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start">2 hours</text>
+<line x1="40" y1="418" x2="1160" y2="418" stroke="#CFC9B8" stroke-width="2" stroke-dasharray="6 6"/>
+<text x="40" y="465" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">long</text>
+<text x="300" y="465" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">CPU</text>
+<text x="534" y="466" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Apply first</text>
+<text x="40" y="519" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">multigpu</text>
+<text x="300" y="519" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<text x="534" y="520" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Apply first</text>
+<text x="40" y="573" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">courses</text>
+<text x="300" y="573" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">CPU</text>
+<text x="534" y="574" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Course members only</text>
+<text x="40" y="627" font-family="Menlo, Consolas, Courier New, monospace" font-size="24" font-weight="700" fill="#3D3929" text-anchor="start">courses-gpu</text>
+<text x="300" y="627" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<text x="534" y="628" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Course members only</text>
+<text x="40" y="670" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start">Rows below the line: limit not shown in our sinfo output. Short is the default.</text>
+<text x="40" y="698" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start">Our account is a research account, not a course one.</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 620" role="img">
+<title>Pin the tag</title>
+<desc>A latest tag can point at a different image next month, so results may change, while a pinned tag keeps pointing at the same image.</desc>
+<rect width="1200" height="620" fill="#F2F0E9"/>
+<text x="40" y="70" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Pin the tag, never use latest</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">What an image name points at, over time</text>
+<defs>
+<marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8470"/></marker>
+<marker id="t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+</defs>
+<text x="300" y="168" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929">Today</text>
+<text x="900" y="168" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929">Next month</text>
+<!-- row latest -->
+<text x="40" y="236" font-family="Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#D97757">:latest</text>
+<rect x="160" y="196" width="280" height="80" rx="10" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="300" y="244" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">image A</text>
+<path d="M444 236 L756 236" stroke="#D97757" stroke-width="4" stroke-dasharray="14 8" marker-end="url(#t)"/>
+<rect x="760" y="196" width="280" height="80" rx="10" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="900" y="244" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">image B</text>
+<text x="600" y="222" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#D97757">the name moves</text>
+<!-- row pinned -->
+<text x="40" y="396" font-family="Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#3D3929">:4.5.0.0</text>
+<rect x="160" y="356" width="280" height="80" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="300" y="404" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">image A</text>
+<path d="M444 396 L756 396" stroke="#8A8470" stroke-width="3" marker-end="url(#g)"/>
+<rect x="760" y="356" width="280" height="80" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="900" y="404" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">image A</text>
+<text x="600" y="382" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">same image</text>
+<!-- footer -->
+<text x="40" y="508" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Also record the exact tag and the image digest. Check the file with sha256sum.</text>
+<text x="40" y="544" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Write the exact tag into your methods.</text>
+<text x="40" y="590" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Source: guide, Pull from a registry and Tips and habits. The tag 4.5.0.0 is the guide's gatk example.</text>
+</svg>

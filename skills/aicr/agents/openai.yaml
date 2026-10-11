@@ -1,0 +1,4 @@
+interface:
+  display_name: '/aicr'
+  short_description: 'Best-practice rules for running GPU jobs on the AICR cluster'
+  default_prompt: '$aicr: Help me get my GPU job running on AICR the right way: test it small, verify the GPU, then size the batch job.'

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 700" role="img">
+<title>Where an install lives</title>
+<desc>Four places on a cluster: home, project folder, scratch and system folders, showing what belongs in each and that scratch is purged.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<text x="60" y="68" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Install in your own space, not scratch</text>
+<g font-family="Inter, Helvetica, Arial, sans-serif">
+<!-- Home -->
+<rect x="60" y="120" width="540" height="240" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="90" y="170" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Home</text>
+<text x="570" y="168" text-anchor="end" font-size="20" fill="#8A8470">Tight quota</text>
+<line x1="90" y1="190" x2="570" y2="190" stroke="#E6E2D6" stroke-width="2"/>
+<text x="90" y="236" font-size="22" fill="#3D3929">Conda environments</text>
+<text x="90" y="278" font-size="22" fill="#3D3929">Built software</text>
+<text x="90" y="320" font-size="22" fill="#3D3929">Personal modulefiles</text>
+<!-- Project -->
+<rect x="620" y="120" width="520" height="240" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="650" y="170" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Project folder</text>
+<text x="1110" y="168" text-anchor="end" font-size="20" fill="#8A8470">When home is full</text>
+<line x1="650" y1="190" x2="1110" y2="190" stroke="#E6E2D6" stroke-width="2"/>
+<text x="650" y="236" font-size="22" fill="#3D3929">Large Conda environments</text>
+<text x="650" y="278" font-size="22" fill="#3D3929">Spack trees</text>
+<!-- Scratch -->
+<rect x="60" y="390" width="540" height="240" rx="14" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="90" y="440" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Scratch</text>
+<text x="570" y="438" text-anchor="end" font-size="20" fill="#D97757" font-weight="600">PURGED ON A SCHEDULE</text>
+<line x1="90" y1="460" x2="570" y2="460" stroke="#E6E2D6" stroke-width="2"/>
+<text x="90" y="506" font-size="22" fill="#3D3929">Conda package cache only</text>
+<text x="90" y="548" font-size="22" fill="#D97757" font-weight="600">Never an environment</text>
+<text x="90" y="590" font-size="22" fill="#8A8470">It can vanish mid-project</text>
+<!-- System -->
+<rect x="620" y="390" width="520" height="240" rx="14" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" stroke-dasharray="10 8"/>
+<text x="650" y="440" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#8A8470">System folders</text>
+<text x="1110" y="438" text-anchor="end" font-size="20" fill="#8A8470">Administrators only</text>
+<line x1="650" y1="460" x2="1110" y2="460" stroke="#CFC9B8" stroke-width="2"/>
+<text x="650" y="506" font-size="22" fill="#8A8470">No root, no sudo</text>
+<text x="650" y="548" font-size="22" fill="#8A8470">Nothing goes here</text>
+</g>
+<text x="60" y="672" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Quota sizes and purge schedule not shown: not confirmed by us. Project placement of Spack trees is our suggestion.</text>
+</svg>

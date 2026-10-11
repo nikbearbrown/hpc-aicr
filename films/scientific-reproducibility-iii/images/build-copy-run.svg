@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 620" role="img">
+<title>Build, copy, run</title>
+<desc>A container image is built on your own computer where you have root, copied to project space on Explorer, then run on a compute node as yourself.</desc>
+<rect width="1200" height="620" fill="#F2F0E9"/>
+<text x="40" y="70" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Build off the cluster, then run on it</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Explorer cannot build an image: building needs root</text>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8470"/></marker></defs>
+<!-- card 1 -->
+<rect x="25" y="150" width="245" height="330" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="45" y="198" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">1 Build</text>
+<text x="45" y="232" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Your computer</text>
+<rect x="45" y="252" width="130" height="34" rx="17" fill="#D97757"/>
+<text x="62" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="600" fill="#FAF9F5">root: yes</text>
+<rect x="45" y="312" width="205" height="42" rx="8" fill="#E6E2D6"/>
+<text x="62" y="340" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">myimage.def</text>
+<path d="M147 360 L147 388" stroke="#8A8470" stroke-width="3" marker-end="url(#a)"/>
+<text x="45" y="418" font-family="Menlo, Consolas, monospace" font-size="18" fill="#8A8470">apptainer build</text>
+<rect x="45" y="428" width="205" height="42" rx="8" fill="#E6E2D6"/>
+<text x="62" y="456" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">myimage.sif</text>
+<!-- arrow 1-2 -->
+<path d="M272 315 L310 315" stroke="#8A8470" stroke-width="3" marker-end="url(#a)"/>
+<!-- card 2 -->
+<rect x="312" y="150" width="245" height="330" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<text x="332" y="198" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">2 Copy</text>
+<text x="332" y="232" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Over the network</text>
+<rect x="332" y="268" width="205" height="42" rx="8" fill="#E6E2D6"/>
+<text x="349" y="296" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">myimage.sif</text>
+<text x="332" y="358" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">scp</text>
+<text x="332" y="396" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">or OnDemand</text>
+<text x="332" y="424" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Files app</text>
+<text x="332" y="460" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" fill="#8A8470">up to 10 GB</text>
+<path d="M559 315 L597 315" stroke="#8A8470" stroke-width="3" marker-end="url(#a)"/>
+<!-- card 3 -->
+<rect x="599" y="150" width="245" height="330" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<text x="619" y="198" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">3 Store</text>
+<text x="619" y="232" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Explorer project space</text>
+<rect x="619" y="258" width="205" height="98" rx="8" fill="#E6E2D6"/>
+<text x="634" y="287" font-family="Menlo, Consolas, monospace" font-size="19" fill="#3D3929">/projects/</text>
+<text x="634" y="312" font-family="Menlo, Consolas, monospace" font-size="19" fill="#3D3929">&lt;project&gt;/</text>
+<text x="634" y="337" font-family="Menlo, Consolas, monospace" font-size="19" fill="#3D3929">containers/</text>
+<rect x="619" y="376" width="205" height="42" rx="8" fill="#E6E2D6"/>
+<text x="636" y="400" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">myimage.sif</text>
+<rect x="619" y="426" width="205" height="42" rx="8" fill="#E6E2D6"/>
+<text x="636" y="454" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">myimage.def</text>
+<path d="M846 315 L884 315" stroke="#8A8470" stroke-width="3" marker-end="url(#a)"/>
+<!-- card 4 -->
+<rect x="886" y="150" width="245" height="330" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<text x="906" y="198" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">4 Run</text>
+<text x="906" y="232" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">A compute node</text>
+<rect x="906" y="252" width="130" height="34" rx="17" fill="#CFC9B8"/>
+<text x="923" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="600" fill="#3D3929">root: no</text>
+<text x="906" y="334" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">apptainer exec</text>
+<text x="906" y="364" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">myimage.sif</text>
+<text x="906" y="394" font-family="Menlo, Consolas, monospace" font-size="20" fill="#3D3929">&lt;command&gt;</text>
+<text x="906" y="450" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">runs as you</text>
+<!-- footer -->
+<text x="40" y="548" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Keep the .def next to the .sif. It is the record of how the image was made.</text>
+<text x="40" y="584" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Source: guide, Building a container and Getting an image onto the cluster. Explorer only.</text>
+</svg>

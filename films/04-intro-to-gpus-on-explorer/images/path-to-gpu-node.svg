@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<title>The path from your laptop to a GPU node</title>
+<desc>Flow diagram: you reach Explorer by SSH to a login node that has no GPU, or by the Open OnDemand website, then the Slurm scheduler places the job on a GPU node.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9 z" fill="#8A8470"/></marker></defs>
+<text x="600" y="64" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#3D3929" text-anchor="middle">How a GPU job actually starts</text>
+<rect x="50" y="290" width="200" height="110" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="150" y="352" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#3D3929" text-anchor="middle">Your laptop</text>
+<rect x="360" y="130" width="260" height="170" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="490" y="176" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#3D3929" text-anchor="middle">Login node</text>
+<text x="490" y="216" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#D97757" text-anchor="middle">No GPU here</text>
+<text x="490" y="250" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">srun, sbatch</text>
+<text x="490" y="278" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">submitted from here</text>
+<rect x="360" y="400" width="260" height="150" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="490" y="456" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#3D3929" text-anchor="middle">Open OnDemand</text>
+<text x="490" y="494" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">A website with</text>
+<text x="490" y="520" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">a GPU form</text>
+<rect x="720" y="290" width="200" height="110" rx="12" fill="#E6E2D6" stroke="#3D3929" stroke-width="3"/>
+<text x="820" y="342" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#3D3929" text-anchor="middle">Slurm</text>
+<text x="820" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">scheduler</text>
+<rect x="980" y="260" width="180" height="170" rx="12" fill="#D97757" stroke="#D97757" stroke-width="0"/>
+<text x="1070" y="332" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#FAF9F5" text-anchor="middle">GPU</text>
+<text x="1070" y="370" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#FAF9F5" text-anchor="middle">node</text>
+<line x1="250" y1="330" x2="355" y2="230" stroke="#8A8470" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<text x="272" y="262" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">ssh</text>
+<line x1="250" y1="362" x2="355" y2="460" stroke="#8A8470" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<text x="262" y="442" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">browser</text>
+<line x1="620" y1="230" x2="715" y2="330" stroke="#8A8470" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<line x1="620" y1="470" x2="715" y2="370" stroke="#8A8470" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<line x1="920" y1="345" x2="975" y2="345" stroke="#8A8470" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<text x="600" y="640" font-family="EB Garamond, Georgia, serif" font-size="24" font-weight="400" fill="#3D3929" text-anchor="middle">Every GPU command runs on the right-hand node, never on the login node</text>
+</svg>

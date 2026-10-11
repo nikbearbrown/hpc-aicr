@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="794" viewBox="0 0 1200 794">
+<title>Which fix first</title>
+<desc>A decision order from the utilization reading: under 50 percent fix the data pipeline, 50 to 80 percent look at memory, above 80 percent consider more GPUs, and for out of memory try BF16, then checkpointing, then a smaller batch.</desc>
+<rect width="1200" height="794" fill="#F2F0E9"/>
+<text x="60" y="76" font-size="46" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Which fix first</text>
+<text x="60" y="112" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Read the utilization number, then follow the row</text>
+<rect x="60" y="140" width="320" height="120" rx="12" fill="#FBEDE6" stroke="#D97757" stroke-width="4" />
+<text x="88" y="192.0" font-size="26" font-weight="500" fill="#D97757" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Under 50%</text>
+<text x="88" y="224.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Utilization</text>
+<path d="M394 200.0 L424 200.0" stroke="#8A8470" stroke-width="3"/><path d="M414 191.0 L426 200.0 L414 209.0" fill="none" stroke="#8A8470" stroke-width="3" stroke-linejoin="round"/>
+<rect x="440" y="140" width="700" height="120" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="470" y="194" font-size="30" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Fix the data pipeline</text>
+<text x="470" y="232" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >If num_workers is 0, fix that first</text>
+<rect x="60" y="278" width="320" height="200" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="88" y="370.0" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >50 to 80%</text>
+<text x="88" y="402.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Utilization</text>
+<path d="M394 378.0 L424 378.0" stroke="#8A8470" stroke-width="3"/><path d="M414 369.0 L426 378.0 L414 387.0" fill="none" stroke="#8A8470" stroke-width="3" stroke-linejoin="round"/>
+<rect x="440" y="278" width="700" height="200" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="470" y="324" font-size="30" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Look at memory</text>
+<rect x="464" y="346" width="156" height="112" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="542.0" y="380" font-size="18" font-weight="600" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >Under 40%</text>
+<text x="542.0" y="414" font-size="18" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >bigger batch</text>
+<rect x="630" y="346" width="156" height="112" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="708.0" y="380" font-size="18" font-weight="600" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >40 to 85%</text>
+<text x="708.0" y="414" font-size="18" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >try BF16</text>
+<rect x="796" y="346" width="156" height="112" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="874.0" y="380" font-size="18" font-weight="600" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >Over 90%</text>
+<text x="874.0" y="414" font-size="18" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >smaller batch</text>
+<text x="874.0" y="440" font-size="18" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >or checkpointing</text>
+<rect x="962" y="346" width="156" height="112" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="1040.0" y="380" font-size="18" font-weight="600" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >Memory fine</text>
+<text x="1040.0" y="414" font-size="18" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >profile</text>
+<rect x="60" y="496" width="320" height="120" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="88" y="548.0" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Above 80%</text>
+<text x="88" y="580.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Memory healthy</text>
+<path d="M394 556.0 L424 556.0" stroke="#8A8470" stroke-width="3"/><path d="M414 547.0 L426 556.0 L414 565.0" fill="none" stroke="#8A8470" stroke-width="3" stroke-linejoin="round"/>
+<rect x="440" y="496" width="700" height="120" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="470" y="550" font-size="30" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >More GPUs?</text>
+<text x="470" y="588" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Only if one card is saturated. Measure scaling.</text>
+<rect x="60" y="634" width="320" height="120" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="88" y="686.0" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Out of memory</text>
+<text x="88" y="718.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Crash</text>
+<path d="M394 694.0 L424 694.0" stroke="#8A8470" stroke-width="3"/><path d="M414 685.0 L426 694.0 L414 703.0" fill="none" stroke="#8A8470" stroke-width="3" stroke-linejoin="round"/>
+<rect x="440" y="634" width="700" height="120" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="470" y="680" font-size="24" font-weight="500" fill="#8A8470" text-anchor="start" font-family="EB Garamond, Georgia, serif" >In this order</text>
+<rect x="470" y="696" width="110" height="40" rx="20" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="525.0" y="722" font-size="18" font-weight="600" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >1  BF16</text>
+<rect x="596" y="696" width="190" height="40" rx="20" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="691.0" y="722" font-size="18" font-weight="600" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >2  Checkpointing</text>
+<rect x="802" y="696" width="190" height="40" rx="20" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2" />
+<text x="897.0" y="722" font-size="18" font-weight="600" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >3  Smaller batch</text>
+
+</svg>

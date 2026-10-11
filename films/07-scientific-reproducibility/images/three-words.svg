@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+<title>Three words: repeatability, reproducibility, replicability</title>
+<desc>A grid showing who runs the work, which data and which methods are used for each of the three words, with the parts that change from the original run highlighted.</desc>
+<rect width="1200" height="640" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start" >Three words, three changes</text>
+<text x="60" y="118" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start" >Highlighted cells are what changes from the original run</text>
+<rect x="230" y="160" width="300" height="64" rx="12" fill="#E6E2D6" stroke="#E6E2D6" stroke-width="0"/>
+<text x="380.0" y="202" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="middle" >Repeatability</text>
+<rect x="544" y="160" width="300" height="64" rx="12" fill="#E6E2D6" stroke="#E6E2D6" stroke-width="0"/>
+<text x="694.0" y="202" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="middle" >Reproducibility</text>
+<rect x="858" y="160" width="300" height="64" rx="12" fill="#E6E2D6" stroke="#E6E2D6" stroke-width="0"/>
+<text x="1008.0" y="202" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="middle" >Replicability</text>
+<text x="60" y="288" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#8A8470" text-anchor="start" >Who</text>
+<rect x="230" y="240" width="300" height="70" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="380.0" y="285" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#3D3929" text-anchor="middle" >You</text>
+<rect x="544" y="240" width="300" height="70" rx="12" fill="#D97757" stroke="#D97757" stroke-width="2"/>
+<text x="694.0" y="285" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#FFFFFF" text-anchor="middle" >Someone else</text>
+<rect x="858" y="240" width="300" height="70" rx="12" fill="#D97757" stroke="#D97757" stroke-width="2"/>
+<text x="1008.0" y="285" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#FFFFFF" text-anchor="middle" >Another team</text>
+<text x="60" y="372" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#8A8470" text-anchor="start" >Data</text>
+<rect x="230" y="324" width="300" height="70" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="380.0" y="369" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#3D3929" text-anchor="middle" >Same</text>
+<rect x="544" y="324" width="300" height="70" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="694.0" y="369" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#3D3929" text-anchor="middle" >Same</text>
+<rect x="858" y="324" width="300" height="70" rx="12" fill="#D97757" stroke="#D97757" stroke-width="2"/>
+<text x="1008.0" y="369" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#FFFFFF" text-anchor="middle" >New</text>
+<text x="60" y="456" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#8A8470" text-anchor="start" >Methods</text>
+<rect x="230" y="408" width="300" height="70" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="380.0" y="453" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#3D3929" text-anchor="middle" >Same</text>
+<rect x="544" y="408" width="300" height="70" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="694.0" y="453" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#3D3929" text-anchor="middle" >Same</text>
+<rect x="858" y="408" width="300" height="70" rx="12" fill="#D97757" stroke="#D97757" stroke-width="2"/>
+<text x="1008.0" y="453" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#FFFFFF" text-anchor="middle" >Similar</text>
+<text x="60" y="546" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#8A8470" text-anchor="start" >Question</text>
+<text x="380.0" y="546" font-family="EB Garamond, Georgia, serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle" font-style="italic">Can I redo it?</text>
+<text x="694.0" y="546" font-family="EB Garamond, Georgia, serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle" font-style="italic">Can they redo it?</text>
+<text x="1008.0" y="546" font-family="EB Garamond, Georgia, serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle" font-style="italic">Does it hold on new data?</text>
+</svg>

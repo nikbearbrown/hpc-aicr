@@ -1,0 +1,2 @@
+# CHECKS-REPORT — Intro to GPUs on Explorer (lecture)
+**Result.** No punts, no holds. 25 beats: 23 SHOW / 0 HOLD / 0 PUNT / 2 CARD-class bookends. Teaching arc: FRAMEWORK ✓ (B20 cores before any command) | WORKED EXAMPLE ✓ (B42, B50–B52: one check run three ways) | FALSIFIABILITY ✓ (B60: the real job whose GPU waited; B12: MIXED does not mean free) | SCAFFOLDED TASK ✓ | BOOKENDS ✓ | NO-SOURCE-NO-VERDICT ✓. Lane histogram: Manim 6 · capture 3 · terminal 7 · code 4 · icons 1 · text-only 0.

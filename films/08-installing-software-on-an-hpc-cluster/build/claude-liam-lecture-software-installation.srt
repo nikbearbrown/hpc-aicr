@@ -1,0 +1,739 @@
+1
+00:00:00,000 --> 00:00:04,810
+Research Computing on Explorer and AICR. Installing Software on an HPC Cluster. How
+
+2
+00:00:04,830 --> 00:00:10,010
+to get software running on a shared cluster without root: modules, Conda, Spack and
+
+3
+00:00:10,030 --> 00:00:14,468
+EasyBuild, source builds, and Apptainer containers, and which one to reach for
+
+4
+00:00:14,488 --> 00:00:14,840
+first.
+
+5
+00:00:14,910 --> 00:00:19,719
+Jambo. This is Liam, in for Bear. First, a correction. On a shared cluster you do
+
+6
+00:00:19,739 --> 00:00:24,850
+not install software the way you do on a laptop. There is no sudo, no root, no
+
+7
+00:00:24,870 --> 00:00:28,773
+system package manager you are allowed to touch. Everything you install goes into
+
+8
+00:00:28,793 --> 00:00:32,697
+your own space, built against the cluster's own libraries. This lecture walks the
+
+9
+00:00:32,717 --> 00:00:36,620
+main ways to get research software running on a shared cluster: environment modules,
+
+10
+00:00:36,640 --> 00:00:40,242
+Conda, Spack, EasyBuild, compiling from source with your own module files, and
+
+11
+00:00:40,262 --> 00:00:43,260
+App-tainer containers. And then, which one to reach for first.
+
+12
+00:00:43,330 --> 00:00:47,395
+Six terms. Root: the administrator account that can write to system directories; you
+
+13
+00:00:47,415 --> 00:00:52,109
+do not have it. A module: a package an administrator already built, loaded by name
+
+14
+00:00:52,129 --> 00:00:56,194
+and version. User space: your home, scratch or project directories, the only places
+
+15
+00:00:56,214 --> 00:01:00,594
+you can install. A build from source: compiling a program's code yourself, with your
+
+16
+00:01:00,614 --> 00:01:05,308
+own options. A module file: the small text file that tells the module command what
+
+17
+00:01:05,328 --> 00:01:09,393
+to change. And a container: an application packed with its whole operating system
+
+18
+00:01:09,413 --> 00:01:10,650
+into one image file.
+
+19
+00:01:10,720 --> 00:01:15,378
+Why it is different. Your laptop: root access, one user, a local disk with no quota,
+
+20
+00:01:15,398 --> 00:01:19,179
+and generic downloads that just work. The cluster: user space only, hundreds of
+
+21
+00:01:19,199 --> 00:01:22,979
+people sharing the login node, a network filesystem with tight quotas, and builds
+
+22
+00:01:22,999 --> 00:01:27,365
+that should link against the cluster's own compilers, M P I and math libraries. A
+
+23
+00:01:27,385 --> 00:01:32,043
+generic binary from the internet ignores all of that, so it runs slower, or will not
+
+24
+00:01:32,063 --> 00:01:32,920
+launch across nodes.
+
+25
+00:01:32,990 --> 00:01:37,383
+Two habits follow. First, do not build on the login node. Everyone who is connected
+
+26
+00:01:37,403 --> 00:01:41,796
+shares it; a long compile or a memory-hungry install there slows the system for all
+
+27
+00:01:41,816 --> 00:01:46,504
+of them. Heavy builds go into an interactive job or a batch job. Second, mind the
+
+28
+00:01:46,524 --> 00:01:51,506
+filesystem. Your home directory is a network filesystem, N F S, G P F S or Lustre,
+
+29
+00:01:51,526 --> 00:01:56,213
+shared across every node. Quotas are tight, and it is tuned for large reads, not the
+
+30
+00:01:56,233 --> 00:02:00,920
+tens of thousands of tiny files a Conda environment or a build tree creates. That is
+
+31
+00:02:00,940 --> 00:02:02,980
+a real reason job launches are slow.
+
+32
+00:02:03,050 --> 00:02:06,636
+Before installing anything, check whether it already exists. Most clusters expose
+
+33
+00:02:06,656 --> 00:02:10,569
+preinstalled software through environment modules. This cluster uses the classic T C
+
+34
+00:02:10,589 --> 00:02:15,158
+L based Environment Modules, not L mod, so a few commands differ from other
+
+35
+00:02:15,178 --> 00:02:19,747
+tutorials. Module avail lists what is there; avail with a name filters it; show
+
+36
+00:02:19,767 --> 00:02:24,663
+prints what a module would change; load adds it; list shows what is loaded; unload
+
+37
+00:02:24,683 --> 00:02:28,269
+removes one; purge clears everything. Names and versions are cluster-specific, so
+
+38
+00:02:28,289 --> 00:02:29,580
+always check avail first.
+
+39
+00:02:29,650 --> 00:02:33,424
+What module load actually does. It does not install anything. It edits your shell's
+
+40
+00:02:33,444 --> 00:02:37,217
+environment, the PATH variable and its library cousin, so the shell can find a
+
+41
+00:02:37,237 --> 00:02:41,011
+package an administrator built once and shares with everyone. Load a module and PATH
+
+42
+00:02:41,031 --> 00:02:45,076
+gains the package directory in front of user bin. Unload it and the directory is
+
+43
+00:02:45,096 --> 00:02:48,869
+gone. That is how you switch between versions cleanly, with no conflicts. And the
+
+44
+00:02:48,889 --> 00:02:51,850
+fastest install is the one you do not have to do.
+
+45
+00:02:51,920 --> 00:02:56,681
+Conda is where most researchers start, especially in Python and R. It installs into
+
+46
+00:02:56,701 --> 00:03:01,121
+your own directory, handles non-Python libraries too, and needs no root. On most
+
+47
+00:03:01,141 --> 00:03:05,560
+clusters you load a Conda module rather than installing Conda yourself. Create an
+
+48
+00:03:05,580 --> 00:03:09,659
+environment with a Python version and packages, activate it with source activate,
+
+49
+00:03:09,679 --> 00:03:13,757
+and check. Channels: prefer conda-forge, which has far broader and more current
+
+50
+00:03:13,777 --> 00:03:17,172
+coverage, and remove the defaults channel. Anaconda's terms restrict large
+
+51
+00:03:17,192 --> 00:03:21,270
+organisations' use of its default channels, and many universities now avoid them.
+
+52
+00:03:21,340 --> 00:03:25,875
+Now the pitfalls, the part people skip and then file a ticket about. Solving an
+
+53
+00:03:25,895 --> 00:03:30,733
+environment is heavy, so do it in an interactive job, not on the login node. Watch
+
+54
+00:03:30,753 --> 00:03:35,592
+your home quota: an environment is tens of thousands of small files. But do not put
+
+55
+00:03:35,612 --> 00:03:38,932
+environments on scratch, because scratch is purged, and the environment vanishes,
+
+56
+00:03:38,952 --> 00:03:42,272
+sometimes mid-project. Keep environments in persistent space, home or a project
+
+57
+00:03:42,292 --> 00:03:46,827
+directory. The one piece you can safely send to scratch is the package cache, which
+
+58
+00:03:46,847 --> 00:03:49,560
+is regenerable. Or just empty it now and then.
+
+59
+00:03:49,630 --> 00:03:54,763
+In your dot conda R C, redirect only the package cache to scratch. If home is tight,
+
+60
+00:03:54,783 --> 00:03:59,007
+create environments at a path in a project directory with dash p. And activate
+
+61
+00:03:59,027 --> 00:04:03,858
+inside the job script, never in dot bash R C. Conda's init command writes a block
+
+62
+00:04:03,878 --> 00:04:08,708
+into dot bash R C that auto-activates on every login; it slows every login and can
+
+63
+00:04:08,728 --> 00:04:10,830
+break batch jobs. Comment that block out.
+
+64
+00:04:10,900 --> 00:04:15,672
+The job script does the activating: load the Conda module, source activate, run. And
+
+65
+00:04:15,692 --> 00:04:20,806
+for reproducibility, export the environment to a Y M L file, exact, with builds, and
+
+66
+00:04:20,826 --> 00:04:22,860
+recreate it later from that file.
+
+67
+00:04:22,930 --> 00:04:27,521
+Spack is a package manager built for HPC. Unlike Conda, it builds from source by
+
+68
+00:04:27,541 --> 00:04:32,439
+default, and it lets you choose the compiler, the M P I implementation and the build
+
+69
+00:04:32,459 --> 00:04:36,435
+options, holding many versions side by side. One honest note first. Spack and
+
+70
+00:04:36,455 --> 00:04:40,431
+EasyBuild are heavy: long compiles, big disk footprints, real upkeep. They are not
+
+71
+00:04:40,451 --> 00:04:45,349
+the first thing to reach for. If a module or Conda covers you, use that. Spack's
+
+72
+00:04:45,369 --> 00:04:49,960
+core idea is the spec: package, at version, percent compiler, plus variant. H D F
+
+73
+00:04:49,980 --> 00:04:55,492
+five at one point fourteen point three, percent G C C twelve point two, plus M P I.
+
+74
+00:04:55,512 --> 00:04:59,488
+Spack resolves the whole dependency tree and builds each piece with exactly those
+
+75
+00:04:59,508 --> 00:05:01,640
+choices. The version numbers here are illustrative.
+
+76
+00:05:01,710 --> 00:05:06,004
+The workflow. Clone Spack, source its setup script to load it into your shell, list
+
+77
+00:05:06,024 --> 00:05:10,319
+and info a package to see versions and variants, install it with the variant you
+
+78
+00:05:10,339 --> 00:05:14,633
+want, and spack load it. A clean install with many dependencies compiles for a long
+
+79
+00:05:14,653 --> 00:05:18,660
+time, so run spack install inside a job with several cores. A Spack environment
+
+80
+00:05:18,680 --> 00:05:22,399
+groups specs for one project: create it, activate it, add specs, install everything,
+
+81
+00:05:22,419 --> 00:05:24,700
+and commit the spack dot yaml it writes.
+
+82
+00:05:24,770 --> 00:05:28,292
+EasyBuild solves a similar problem with a different philosophy. It builds from
+
+83
+00:05:28,312 --> 00:05:32,130
+recipe files called easyconfigs, and you almost never write one: thousands ship with
+
+84
+00:05:32,150 --> 00:05:36,853
+it, so you install a package by name and the recipe is fixed, which is the
+
+85
+00:05:36,873 --> 00:05:41,281
+reproducibility selling point. A toolchain is a named bundle of compiler, M P I and
+
+86
+00:05:41,301 --> 00:05:46,595
+math libraries; gom-pee is G C C plus Open M P I. There is no EasyBuild module here,
+
+87
+00:05:46,615 --> 00:05:51,613
+so you install it once into a Conda environment. Then search for a recipe and run E
+
+88
+00:05:51,633 --> 00:05:54,270
+B with three flags that are easy to miss.
+
+89
+00:05:54,340 --> 00:05:57,482
+Those three flags. Modules tool equals Environment Modules, because EasyBuild
+
+90
+00:05:57,502 --> 00:06:02,856
+assumes L mod by default and this cluster does not run it. Module syntax equals T C
+
+91
+00:06:02,876 --> 00:06:07,599
+L, because Loo-ah module files will not load here. And install path in your own
+
+92
+00:06:07,619 --> 00:06:12,025
+space, because you cannot write to system directories. Put them in a config file
+
+93
+00:06:12,045 --> 00:06:16,768
+once. Then the key detail: EasyBuild's output is a module file. Point module at its
+
+94
+00:06:16,788 --> 00:06:20,878
+directory with module use, and load the result with module load like any
+
+95
+00:06:20,898 --> 00:06:21,510
+preinstalled package.
+
+96
+00:06:21,580 --> 00:06:26,651
+Spack versus EasyBuild, in four rows. How you install: a spec on the command line,
+
+97
+00:06:26,671 --> 00:06:30,385
+versus a named recipe. Dependencies: Spack resolves a flexible graph; EasyBuild
+
+98
+00:06:30,405 --> 00:06:35,137
+follows a fixed toolchain. Output: spack load or a module, versus always a module
+
+99
+00:06:35,157 --> 00:06:38,191
+file. Strength: flexible variants and versions, versus strict, repeatable,
+
+100
+00:06:38,211 --> 00:06:41,925
+toolchain-based builds. And the candid note from experience: neither is the
+
+101
+00:06:41,945 --> 00:06:47,016
+recommended first option on this cluster. Both are heavy to set up and painful to
+
+102
+00:06:47,036 --> 00:06:51,429
+maintain, and Spack in particular can be frustrating when builds break. Reach for
+
+103
+00:06:51,449 --> 00:06:56,181
+them only when you need source-level control and have decided the upkeep is worth
+
+104
+00:06:56,201 --> 00:06:56,520
+it.
+
+105
+00:06:56,590 --> 00:07:01,090
+Sometimes nothing prebuilt exists, or you need a patch, a specific version, or a
+
+106
+00:07:01,110 --> 00:07:05,288
+flag no package manager exposes. Then you compile from source. The project's README
+
+107
+00:07:05,308 --> 00:07:10,454
+or INSTALL file names its build system; the two you will meet most are Autotools, a
+
+108
+00:07:10,474 --> 00:07:14,651
+configure script, and C make. Autotools: configure with a prefix, make with several
+
+109
+00:07:14,671 --> 00:07:19,171
+cores, make install. C make: load the C make module, configure with an install
+
+110
+00:07:19,191 --> 00:07:22,400
+prefix, build, install. Always read the project's own instructions first.
+
+111
+00:07:22,470 --> 00:07:27,566
+What makes it an HPC build. Always set a prefix; you cannot install to the system's
+
+112
+00:07:27,586 --> 00:07:31,402
+user local directory. Load the cluster's compiler and libraries as modules before
+
+113
+00:07:31,422 --> 00:07:35,879
+you configure, so the build links against the optimised versions; that is the same
+
+114
+00:07:35,899 --> 00:07:39,715
+reason Spack and EasyBuild produce fast binaries. Point parallel or numerical code
+
+115
+00:07:39,735 --> 00:07:45,470
+at the cluster's M P I and BLAS and LAPACK, not a slow generic fallback. And run the
+
+116
+00:07:45,490 --> 00:07:50,266
+make step inside a job, because dash j eight is a multi-core workload. Five steps:
+
+117
+00:07:50,286 --> 00:07:54,423
+load modules, configure with a prefix, compile inside a job, install into the
+
+118
+00:07:54,443 --> 00:07:57,620
+prefix, expose it on PATH or with a module file.
+
+119
+00:07:57,690 --> 00:08:01,726
+After installing to a prefix, the shell still does not know the software exists.
+
+120
+00:08:01,746 --> 00:08:06,362
+Export PATH and L D library path by hand, and it works for this session. For
+
+121
+00:08:06,382 --> 00:08:10,128
+something you reuse, write your own module file instead. Make a directory, tell
+
+122
+00:08:10,148 --> 00:08:15,053
+module to look there with module use, in your dot bash R C, so it persists, and
+
+123
+00:08:15,073 --> 00:08:19,689
+write the file. This cluster's module files are T C L. The first line, hash percent
+
+124
+00:08:19,709 --> 00:08:24,324
+Module, must be exactly that, the magic cookie that marks the file as a module file.
+
+125
+00:08:24,344 --> 00:08:28,670
+Two prepend-path lines, one for PATH and one for the library path, and a one-line
+
+126
+00:08:28,690 --> 00:08:28,960
+description.
+
+127
+00:08:29,030 --> 00:08:33,206
+The directory name becomes the module name and the file name becomes the version.
+
+128
+00:08:33,226 --> 00:08:37,701
+Now module avail shows your build, module load sets the paths for you, and unload
+
+129
+00:08:37,721 --> 00:08:41,597
+reverses everything cleanly. One module file becomes a personal stack: each tool its
+
+130
+00:08:41,617 --> 00:08:46,392
+own subdirectory, each version a file inside it, so my tool one point oh and two
+
+131
+00:08:46,412 --> 00:08:51,187
+point oh sit side by side and you switch with one load, exactly like the cluster's
+
+132
+00:08:51,207 --> 00:08:56,582
+compilers. A module file can load other modules, such as the right G C C, and a dot
+
+133
+00:08:56,602 --> 00:08:58,080
+version file names the default.
+
+134
+00:08:58,150 --> 00:09:02,066
+App tainer, formerly Singularity, brings containers to HPC. A container packs an
+
+135
+00:09:02,086 --> 00:09:06,330
+application with its entire operating system environment into a single image file, a
+
+136
+00:09:06,350 --> 00:09:11,906
+dot S I F, so it runs the same way everywhere. Why not Docker? Docker normally needs
+
+137
+00:09:11,926 --> 00:09:16,826
+root to run, a security problem on a shared system. App-tainer runs a container as
+
+138
+00:09:16,846 --> 00:09:20,762
+you, with no elevated privileges, works with the scheduler and the shared
+
+139
+00:09:20,782 --> 00:09:26,338
+filesystem, runs G P U and M P I workloads, and can pull and convert Docker images,
+
+140
+00:09:26,358 --> 00:09:29,290
+so you are not locked out of that ecosystem.
+
+141
+00:09:29,360 --> 00:09:33,008
+App-tainer is installed system-wide, no module needed. Pull an existing image,
+
+142
+00:09:33,028 --> 00:09:38,010
+including from Docker registries, into a dot S I F file. Exec runs one command
+
+143
+00:09:38,030 --> 00:09:43,679
+inside it. Shell opens an interactive shell inside it. The dot S I F is one file:
+
+144
+00:09:43,699 --> 00:09:47,680
+copy it, archive it, share it, and it reproduces the same environment.
+
+145
+00:09:47,750 --> 00:09:52,510
+To build your own, you describe the image in a definition file: bootstrap from a
+
+146
+00:09:52,530 --> 00:09:56,653
+Docker image, Ubuntu twenty-two oh four; a post section that installs Python and
+
+147
+00:09:56,673 --> 00:09:59,840
+numpy; and a runscript that says what runs by default.
+
+148
+00:09:59,910 --> 00:10:04,807
+Build images on your own machine, not on the cluster: building a dot S I F from
+
+149
+00:10:04,827 --> 00:10:08,856
+scratch generally needs root. So build where you have it, your laptop or a
+
+150
+00:10:08,876 --> 00:10:13,772
+workstation, then copy the finished image up with S C P and exec it on the cluster.
+
+151
+00:10:13,792 --> 00:10:17,532
+The privileged step stays on a machine you control; only the unprivileged run
+
+152
+00:10:17,552 --> 00:10:21,292
+happens here. Containers shine when software is hard to install natively, when a
+
+153
+00:10:21,312 --> 00:10:25,341
+research group already publishes an image, or when you want one portable artifact to
+
+154
+00:10:25,361 --> 00:10:29,390
+move between clusters or cite. The cost is image size and the upfront build.
+
+155
+00:10:29,460 --> 00:10:33,391
+Choosing the tool. Six options, and none needs root. Environment modules:
+
+156
+00:10:33,411 --> 00:10:37,700
+preinstalled, best for what the cluster already provides, limited to what admins
+
+157
+00:10:37,720 --> 00:10:42,369
+installed. Conda: prebuilt binaries, best for Python and R and quick setups, heavy
+
+158
+00:10:42,389 --> 00:10:46,679
+on quota. Spack: builds from source, source-level control and many variants, heavy
+
+159
+00:10:46,699 --> 00:10:50,630
+and slow to maintain. EasyBuild: from source, reproducible toolchain builds, mostly
+
+160
+00:10:50,650 --> 00:10:54,940
+an admin tool, toolchain-bound. A source install: full control, patches and niche
+
+161
+00:10:54,960 --> 00:11:00,327
+tools, the most manual and the easiest to get wrong. App-tainer: an image, for hard
+
+162
+00:11:00,347 --> 00:11:03,200
+dependencies and portability, built locally then copied up.
+
+163
+00:11:03,270 --> 00:11:07,847
+Now, the practical order. One: check for a module first; the best install is no
+
+164
+00:11:07,867 --> 00:11:11,832
+install. Two: a Python or R package? Conda, with the quota and login-node
+
+165
+00:11:11,852 --> 00:11:15,203
+precautions. Three: isolated, portable, or a nightmare of dependencies? Build a
+
+166
+00:11:15,223 --> 00:11:20,107
+container on your own machine and run it here. Four: a patch, a specific version, or
+
+167
+00:11:20,127 --> 00:11:23,785
+a build flag nothing else exposes? Build from source. Five: source-level control
+
+168
+00:11:23,805 --> 00:11:28,689
+over compiler, M P I or variants, and willing to maintain it? Then, and mostly then,
+
+169
+00:11:28,709 --> 00:11:32,980
+Spack or EasyBuild. And if none of that fits, ask the Research Computing team.
+
+170
+00:11:33,050 --> 00:11:37,654
+Let's recap with Claude. No root and a shared filesystem, so every install goes in
+
+171
+00:11:37,674 --> 00:11:42,277
+your own space, off the login node, mindful of quota. Check for a module first;
+
+172
+00:11:42,297 --> 00:11:45,976
+module load only edits your environment. Conda for Python and R: conda-forge,
+
+173
+00:11:45,996 --> 00:11:49,675
+environments in persistent space, activate in the job script. Spack and EasyBuild
+
+174
+00:11:49,695 --> 00:11:53,990
+build from source and are the heavy, advanced option, not the default. From source:
+
+175
+00:11:54,010 --> 00:11:58,614
+a prefix, the cluster's modules and libraries, compile inside a job, and your own T
+
+176
+00:11:58,634 --> 00:12:04,470
+C L module file. App-tainer: build the dot S I F locally, copy it up, run it as you.
+
+177
+00:12:04,540 --> 00:12:09,299
+Your turn. Paste this into Claude: I need to run [name the software] on a shared HPC
+
+178
+00:12:09,319 --> 00:12:13,797
+cluster where I have no root access and a tight home quota. Walk me down the
+
+179
+00:12:13,817 --> 00:12:18,014
+decision order: is it likely a module, a Conda package, a container image, a source
+
+180
+00:12:18,034 --> 00:12:21,950
+build, or a Spack/EasyBuild job? Give me the exact commands for the first option
+
+181
+00:12:21,970 --> 00:12:26,729
+that fits, where each file should live, and what I must not run on the login node.
+
+182
+00:12:26,749 --> 00:12:30,946
+Then check two things yourself. Run module avail for the name before you believe any
+
+183
+00:12:30,966 --> 00:12:35,444
+install is needed. And confirm every path it gave you is in your own space, never
+
+184
+00:12:35,464 --> 00:12:36,850
+the system's user local directory.
+
+185
+00:12:36,920 --> 00:12:42,290
+Installing Software on an HPC Cluster. At Nik Bear Brown.

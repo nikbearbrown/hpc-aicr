@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<title>Four profiling layers</title>
+<desc>A ladder of four profiling layers from nvidia-smi down to Nsight Compute, with the top two marked as where most problems show up.</desc>
+<rect width="1200" height="760" fill="#F2F0E9"/>
+<text x="60" y="76" font-size="46" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Four profiling layers</text>
+<text x="60" y="112" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Start at the top. Go deeper only when the row above does not explain it.</text>
+<text x="60" y="148" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >LAYER</text>
+<text x="330" y="148" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >TOOL</text>
+<text x="640" y="148" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >QUESTION</text>
+<rect x="60" y="160" width="920" height="108" rx="12" fill="#FBEDE6" stroke="#D97757" stroke-width="3.5" />
+<circle cx="112" cy="214.0" r="26" fill="#D97757"/>
+<text x="112" y="223.0" font-size="26" font-weight="700" fill="#FAF9F5" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >1</text>
+<text x="160" y="223.0" font-size="28" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >System, live</text>
+<text x="330" y="222.0" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >nvidia-smi, nvitop</text>
+<text x="640" y="222.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Is it busy?</text>
+<path d="M520 271 L520 287" stroke="#8A8470" stroke-width="3"/>
+<rect x="60" y="290" width="920" height="108" rx="12" fill="#FBEDE6" stroke="#D97757" stroke-width="3.5" />
+<circle cx="112" cy="344.0" r="26" fill="#D97757"/>
+<text x="112" y="353.0" font-size="26" font-weight="700" fill="#FAF9F5" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >2</text>
+<text x="160" y="353.0" font-size="28" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Framework</text>
+<text x="330" y="352.0" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >PyTorch Profiler</text>
+<text x="640" y="352.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Which operator costs most?</text>
+<path d="M520 401 L520 417" stroke="#8A8470" stroke-width="3"/>
+<rect x="60" y="420" width="920" height="108" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<circle cx="112" cy="474.0" r="26" fill="#E6E2D6"/>
+<text x="112" y="483.0" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >3</text>
+<text x="160" y="483.0" font-size="28" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Timeline</text>
+<text x="330" y="482.0" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >Nsight Systems (nsys)</text>
+<text x="640" y="482.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >In what order?</text>
+<path d="M520 531 L520 547" stroke="#8A8470" stroke-width="3"/>
+<rect x="60" y="550" width="920" height="108" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<circle cx="112" cy="604.0" r="26" fill="#E6E2D6"/>
+<text x="112" y="613.0" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >4</text>
+<text x="160" y="613.0" font-size="28" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Kernel</text>
+<text x="330" y="612.0" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >Nsight Compute (ncu)</text>
+<text x="640" y="612.0" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Memory or compute bound?</text>
+<path d="M1000 160 L1018 160 L1018 398 L1000 398" fill="none" stroke="#D97757" stroke-width="4" stroke-linejoin="round"/>
+<text x="1036" y="273.0" font-size="22" font-weight="700" fill="#D97757" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Most</text>
+<text x="1036" y="301.0" font-size="22" font-weight="700" fill="#D97757" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >problems</text>
+<text x="1036" y="329.0" font-size="22" font-weight="700" fill="#D97757" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >show up here</text>
+<text x="600" y="708" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >Keep a deep capture to 50 to 100 steps.</text>
+
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740">
+<title>The loader and the GPU, taking turns versus overlapping</title>
+<desc>Two lane timelines: with zero workers the GPU sits idle while the CPU prepares each batch; with workers the next batch is prepared while the GPU runs the current one.</desc>
+<rect width="1200" height="740" fill="#F2F0E9"/>
+<text x="600" y="64" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#3D3929" text-anchor="middle">Keep the loader ahead of the card</text>
+<text x="60" y="130" font-family="Inter, Helvetica, Arial, sans-serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="start">Default: zero workers</text>
+<text x="60" y="194" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Loader (CPU)</text>
+<text x="60" y="274" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<rect x="250" y="164" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="302.0" y="196" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 1</text>
+<rect x="360" y="244" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="412.0" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 1</text>
+<rect x="470" y="164" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="522.0" y="196" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 2</text>
+<rect x="580" y="244" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="632.0" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 2</text>
+<rect x="690" y="164" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="742.0" y="196" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 3</text>
+<rect x="800" y="244" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="852.0" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 3</text>
+<rect x="910" y="164" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="962.0" y="196" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 4</text>
+<rect x="1020" y="244" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="1072.0" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 4</text>
+<rect x="250" y="244" width="104" height="50" rx="8" fill="none" stroke="#D97757" stroke-width="3" stroke-dasharray="8 6"/>
+<rect x="470" y="244" width="104" height="50" rx="8" fill="none" stroke="#D97757" stroke-width="3" stroke-dasharray="8 6"/>
+<rect x="690" y="244" width="104" height="50" rx="8" fill="none" stroke="#D97757" stroke-width="3" stroke-dasharray="8 6"/>
+<rect x="910" y="244" width="104" height="50" rx="8" fill="none" stroke="#D97757" stroke-width="3" stroke-dasharray="8 6"/>
+<text x="60" y="420" font-family="Inter, Helvetica, Arial, sans-serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="start">With workers and pinned memory</text>
+<text x="60" y="484" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Loader (CPU)</text>
+<text x="60" y="564" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">GPU</text>
+<rect x="250" y="454" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="302.0" y="486" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 1</text>
+<rect x="360" y="534" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="412.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 1</text>
+<rect x="360" y="454" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="412.0" y="486" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 2</text>
+<rect x="470" y="534" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="522.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 2</text>
+<rect x="470" y="454" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="522.0" y="486" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 3</text>
+<rect x="580" y="534" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="632.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 3</text>
+<rect x="580" y="454" width="104" height="50" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2"/>
+<text x="632.0" y="486" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle">prep 4</text>
+<rect x="690" y="534" width="104" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="742.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="middle">run 4</text>
+<rect x="250" y="534" width="104" height="50" rx="8" fill="none" stroke="#D97757" stroke-width="3" stroke-dasharray="8 6"/>
+<text x="302" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D97757" text-anchor="middle">idle</text>
+<text x="302" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D97757" text-anchor="middle">idle</text>
+<text x="520" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D97757" text-anchor="middle">idle</text>
+<text x="740" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D97757" text-anchor="middle">idle</text>
+<text x="960" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#D97757" text-anchor="middle">idle</text>
+<text x="600" y="680" font-family="EB Garamond, Georgia, serif" font-size="24" font-weight="500" fill="#D97757" text-anchor="middle">Dashed boxes mark the GPU waiting for data</text>
+</svg>

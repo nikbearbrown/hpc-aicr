@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 780" role="img">
+<title>The order to try installation routes</title>
+<desc>A numbered ladder of five routes, from module at the top to Spack or EasyBuild last, ordered from light to heavy.</desc>
+<rect width="1200" height="780" fill="#F2F0E9"/>
+<text x="60" y="68" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Try them in this order</text>
+<text x="60" y="104" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Stop at the first rung that fits. No route needs root.</text>
+<!-- column heads -->
+<text x="190" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470" letter-spacing="1">ROUTE</text>
+<text x="490" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470" letter-spacing="1">USE IT WHEN</text>
+<text x="810" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470" letter-spacing="1">HOW IT ARRIVES</text>
+<!-- light-heavy arrow -->
+<line x1="40" y1="170" x2="40" y2="640" stroke="#CFC9B8" stroke-width="3"/>
+<polygon points="40,656 31,636 49,636" fill="#CFC9B8"/>
+<text transform="translate(26,410) rotate(-90)" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470" letter-spacing="2">LIGHT TO HEAVY</text>
+<!-- rows -->
+<g font-family="Inter, Helvetica, Arial, sans-serif">
+<rect x="76" y="168" width="1070" height="82" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<circle cx="130" cy="209" r="26" fill="#D97757"/><text x="130" y="219" text-anchor="middle" font-size="28" fill="#FAF9F5" font-weight="600">1</text>
+<text x="190" y="219" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">Module</text>
+<text x="490" y="217" font-size="22" fill="#3D3929">Already installed</text>
+<text x="810" y="217" font-size="22" fill="#3D3929">Pre-installed</text>
+<text x="1118" y="217" text-anchor="end" font-size="20" fill="#D97757" font-weight="600">TRY FIRST</text>
+
+<rect x="76" y="266" width="1070" height="82" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="130" cy="307" r="26" fill="#E6E2D6"/><text x="130" y="317" text-anchor="middle" font-size="28" fill="#3D3929" font-weight="600">2</text>
+<text x="190" y="317" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">Conda</text>
+<text x="490" y="315" font-size="22" fill="#3D3929">Python or R package</text>
+<text x="810" y="315" font-size="22" fill="#3D3929">Prebuilt binaries</text>
+
+<rect x="76" y="364" width="1070" height="82" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="130" cy="405" r="26" fill="#E6E2D6"/><text x="130" y="415" text-anchor="middle" font-size="28" fill="#3D3929" font-weight="600">3</text>
+<text x="190" y="415" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">Container</text>
+<text x="490" y="413" font-size="22" fill="#3D3929">Tangled dependencies</text>
+<text x="810" y="413" font-size="22" fill="#3D3929">One image file</text>
+
+<rect x="76" y="462" width="1070" height="82" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="130" cy="503" r="26" fill="#E6E2D6"/><text x="130" y="513" text-anchor="middle" font-size="28" fill="#3D3929" font-weight="600">4</text>
+<text x="190" y="513" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">Source build</text>
+<text x="490" y="511" font-size="22" fill="#3D3929">Patch or exact version</text>
+<text x="810" y="511" font-size="22" fill="#3D3929">Compiled by you</text>
+
+<rect x="76" y="560" width="1070" height="82" rx="12" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="130" cy="601" r="26" fill="#CFC9B8"/><text x="130" y="611" text-anchor="middle" font-size="28" fill="#3D3929" font-weight="600">5</text>
+<text x="190" y="611" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">Spack or EasyBuild</text>
+<text x="490" y="609" font-size="22" fill="#3D3929">You choose the compiler</text>
+<text x="810" y="609" font-size="22" fill="#3D3929">Built from source</text>
+<text x="1118" y="609" text-anchor="end" font-size="20" fill="#8A8470" font-weight="600">LAST</text>
+</g>
+<text x="76" y="702" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Nothing fits? Ask Research Computing.</text>
+<text x="76" y="740" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Order from the guide, Act VIII.</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<title>AICR storage map</title>
+<desc>Three cards compare home, scratch and project storage on AICR by path, purpose, size, recovery window and purge rule, with scratch highlighted as the risky one.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">Three places for files on AICR</text>
+<rect x="60" y="130" width="340" height="470" rx="14" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="84" y="190" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#3D3929" text-anchor="start">Home</text>
+<text x="84" y="232" font-family="Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">/home/&lt;aicr-username&gt;</text>
+<text x="84" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start">Scripts, environment</text>
+<line x1="84" y1="300" x2="376" y2="300" stroke="#CFC9B8" stroke-width="2"/>
+<text x="84" y="330" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Size</text>
+<text x="84" y="366" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">100 GB</text>
+<line x1="84" y1="384" x2="376" y2="384" stroke="#CFC9B8" stroke-width="2"/>
+<text x="84" y="414" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Recovery</text>
+<text x="84" y="450" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">7 days</text>
+<line x1="84" y1="468" x2="376" y2="468" stroke="#CFC9B8" stroke-width="2"/>
+<text x="84" y="498" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Purge</text>
+<text x="84" y="534" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">None</text>
+<rect x="430" y="130" width="340" height="470" rx="14" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="454" y="190" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#D97757" text-anchor="start">Scratch</text>
+<text x="454" y="232" font-family="Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">/scratch/&lt;aicr-username&gt;</text>
+<text x="454" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start">Temporary job output</text>
+<line x1="454" y1="300" x2="746" y2="300" stroke="#CFC9B8" stroke-width="2"/>
+<text x="454" y="330" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Size</text>
+<text x="454" y="366" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">10 TB</text>
+<line x1="454" y1="384" x2="746" y2="384" stroke="#CFC9B8" stroke-width="2"/>
+<text x="454" y="414" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Recovery</text>
+<text x="454" y="450" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#D97757" text-anchor="start">None</text>
+<line x1="454" y1="468" x2="746" y2="468" stroke="#CFC9B8" stroke-width="2"/>
+<text x="454" y="498" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Purge</text>
+<text x="454" y="534" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#D97757" text-anchor="start">30 days</text>
+<rect x="800" y="130" width="340" height="470" rx="14" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="824" y="190" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#3D3929" text-anchor="start">Project</text>
+<text x="824" y="232" font-family="Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">/work/neu/&lt;project&gt;</text>
+<text x="824" y="276" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start">Shared project work</text>
+<line x1="824" y1="300" x2="1116" y2="300" stroke="#CFC9B8" stroke-width="2"/>
+<text x="824" y="330" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Size</text>
+<text x="824" y="366" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">Set per project</text>
+<line x1="824" y1="384" x2="1116" y2="384" stroke="#CFC9B8" stroke-width="2"/>
+<text x="824" y="414" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Recovery</text>
+<text x="824" y="450" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">7 days</text>
+<line x1="824" y1="468" x2="1116" y2="468" stroke="#CFC9B8" stroke-width="2"/>
+<text x="824" y="498" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" fill="#8A8470" text-anchor="start">Purge</text>
+<text x="824" y="534" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">None</text>
+<text x="60" y="650" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#D97757" text-anchor="start">Never keep the only copy in scratch.</text>
+<text x="1140" y="650" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="end">Seven days is a safety net, not a backup.</text>
+
+</svg>

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<title>Nodes times tasks times CPUs per task</title>
+<desc>A hybrid Slurm request drawn as four node boxes, each holding four MPI ranks, each rank holding five cores, giving 80 cores.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<text x="60" y="72" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="start" >Say the multiplication before you submit</text>
+<rect x="55" y="170" width="250" height="330" rx="14" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="75" y="208" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start" >Node 1</text>
+<rect x="75" y="228" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="89" y="262" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 1</text>
+<circle cx="173" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="197" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="221" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="245" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="269" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="75" y="294" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="89" y="328" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 2</text>
+<circle cx="173" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="197" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="221" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="245" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="269" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="75" y="360" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="89" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 3</text>
+<circle cx="173" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="197" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="221" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="245" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="269" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="75" y="426" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="89" y="460" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 4</text>
+<circle cx="173" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="197" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="221" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="245" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="269" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="335" y="170" width="250" height="330" rx="14" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="355" y="208" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start" >Node 2</text>
+<rect x="355" y="228" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="369" y="262" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 1</text>
+<circle cx="453" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="477" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="501" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="525" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="549" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="355" y="294" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="369" y="328" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 2</text>
+<circle cx="453" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="477" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="501" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="525" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="549" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="355" y="360" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="369" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 3</text>
+<circle cx="453" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="477" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="501" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="525" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="549" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="355" y="426" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="369" y="460" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 4</text>
+<circle cx="453" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="477" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="501" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="525" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="549" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="615" y="170" width="250" height="330" rx="14" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="635" y="208" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start" >Node 3</text>
+<rect x="635" y="228" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="649" y="262" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 1</text>
+<circle cx="733" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="757" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="781" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="805" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="829" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="635" y="294" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="649" y="328" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 2</text>
+<circle cx="733" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="757" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="781" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="805" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="829" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="635" y="360" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="649" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 3</text>
+<circle cx="733" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="757" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="781" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="805" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="829" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="635" y="426" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="649" y="460" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 4</text>
+<circle cx="733" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="757" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="781" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="805" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="829" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="895" y="170" width="250" height="330" rx="14" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="915" y="208" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start" >Node 4</text>
+<rect x="915" y="228" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="929" y="262" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 1</text>
+<circle cx="1013" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1037" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1061" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1085" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1109" cy="255" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="915" y="294" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="929" y="328" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 2</text>
+<circle cx="1013" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1037" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1061" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1085" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1109" cy="321" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="915" y="360" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="929" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 3</text>
+<circle cx="1013" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1037" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1061" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1085" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1109" cy="387" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<rect x="915" y="426" width="210" height="54" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="929" y="460" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" >Rank 4</text>
+<circle cx="1013" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1037" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1061" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1085" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<circle cx="1109" cy="453" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<text x="60" y="140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" >Box = node (-N 4)</text>
+<text x="360" y="140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" >Rank = task (--ntasks-per-node=4)</text>
+<circle cx="858" cy="133" r="8" fill="#D97757" stroke="none" stroke-width="2"/>
+<text x="876" y="140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" >Core (--cpus-per-task=5)</text>
+<text x="600" y="570" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="500" fill="#3D3929" text-anchor="middle" >4 nodes  x  4 tasks per node  x  5 CPUs per task  =  80 cores</text>
+<rect x="60" y="610" width="340" height="62" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="230.0" y="634" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" >Pure OpenMP, one node</text>
+<text x="230.0" y="660" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="middle" >1 task x 20 CPUs = 20</text>
+<rect x="430" y="610" width="340" height="62" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="600.0" y="634" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" >Pure MPI</text>
+<text x="600.0" y="660" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="middle" >20 tasks x 1 CPU = 20</text>
+<rect x="800" y="610" width="340" height="62" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="970.0" y="634" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" >Hybrid, per node</text>
+<text x="970.0" y="660" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="middle" >4 tasks x 5 CPUs = 20</text>
+</svg>

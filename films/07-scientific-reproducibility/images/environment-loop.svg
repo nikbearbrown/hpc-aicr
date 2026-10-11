@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<title>The environment file loop</title>
+<desc>A loop: write environment.yml, create the environment from the file, work in it, export the final environment, commit both files, and rebuild from the file later.</desc>
+<rect width="1200" height="620" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start" >Write it down, rebuild it later</text>
+<text x="60" y="118" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start" >The environment file is the record</text>
+<rect x="37.0" y="190" width="190" height="150" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="71.0" cy="226" r="18" fill="#E6E2D6"/>
+<text x="71.0" y="233" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#3D3929" text-anchor="middle" >1</text>
+<text x="132.0" y="280" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="600" fill="#3D3929" text-anchor="middle" >Write</text>
+<text x="132.0" y="314" font-family="Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" >environment.yml</text>
+<path d="M231.0 265.0 h30" stroke="#3D3929" stroke-width="3" fill="none"/><path d="M253.0 257.0 l10 8 l-10 8" stroke="#3D3929" stroke-width="3" fill="none"/>
+<rect x="271.0" y="190" width="190" height="150" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="305.0" cy="226" r="18" fill="#E6E2D6"/>
+<text x="305.0" y="233" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#3D3929" text-anchor="middle" >2</text>
+<text x="366.0" y="280" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="600" fill="#3D3929" text-anchor="middle" >Create</text>
+<text x="366.0" y="314" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >from the file</text>
+<path d="M465.0 265.0 h30" stroke="#3D3929" stroke-width="3" fill="none"/><path d="M487.0 257.0 l10 8 l-10 8" stroke="#3D3929" stroke-width="3" fill="none"/>
+<rect x="505.0" y="190" width="190" height="150" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="539.0" cy="226" r="18" fill="#E6E2D6"/>
+<text x="539.0" y="233" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#3D3929" text-anchor="middle" >3</text>
+<text x="600.0" y="280" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="600" fill="#3D3929" text-anchor="middle" >Work</text>
+<text x="600.0" y="314" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >in the environment</text>
+<path d="M699.0 265.0 h30" stroke="#3D3929" stroke-width="3" fill="none"/><path d="M721.0 257.0 l10 8 l-10 8" stroke="#3D3929" stroke-width="3" fill="none"/>
+<rect x="739.0" y="190" width="190" height="150" rx="14" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<circle cx="773.0" cy="226" r="18" fill="#D97757"/>
+<text x="773.0" y="233" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle" >4</text>
+<text x="834.0" y="280" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="600" fill="#3D3929" text-anchor="middle" >Export</text>
+<text x="834.0" y="314" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >final snapshot</text>
+<path d="M933.0 265.0 h30" stroke="#3D3929" stroke-width="3" fill="none"/><path d="M955.0 257.0 l10 8 l-10 8" stroke="#3D3929" stroke-width="3" fill="none"/>
+<rect x="973.0" y="190" width="190" height="150" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="1007.0" cy="226" r="18" fill="#E6E2D6"/>
+<text x="1007.0" y="233" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#3D3929" text-anchor="middle" >5</text>
+<text x="1068.0" y="280" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="600" fill="#3D3929" text-anchor="middle" >Commit</text>
+<text x="1068.0" y="314" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >both files</text>
+<path d="M1068.0 340 V430 H152.0 Q132.0 430 132.0 410 V348" stroke="#D97757" stroke-width="4" fill="none" stroke-dasharray="3 0"/>
+<path d="M123.0 360 l9 -14 l9 14" stroke="#D97757" stroke-width="4" fill="none"/>
+<rect x="450" y="404" width="300" height="52" rx="12" fill="#F2F0E9" stroke="#F2F0E9" stroke-width="0"/>
+<text x="600" y="438" font-family="EB Garamond, Georgia, serif" font-size="26" font-weight="600" fill="#D97757" text-anchor="middle" >Months later: rebuild</text>
+<text x="600" y="550" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle" >Keep the first file and the final export.</text>
+</svg>

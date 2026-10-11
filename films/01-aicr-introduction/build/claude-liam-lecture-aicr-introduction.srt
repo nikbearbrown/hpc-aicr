@@ -1,0 +1,383 @@
+1
+00:00:00,000 --> 00:00:03,778
+Research Computing on Explorer and AICR. AICR Introduction. What Northeastern's AI
+
+2
+00:00:03,798 --> 00:00:10,338
+cluster is, how to log in, and how to run your first job, so you can use its GPUs
+
+3
+00:00:10,358 --> 00:00:12,410
+instead of waiting on your laptop.
+
+4
+00:00:12,480 --> 00:00:16,701
+Hallo. This is Liam, in for Bear. First, a correction. AICR is not the cluster where
+
+5
+00:00:16,721 --> 00:00:21,473
+you build and test your AI work. It's the cluster where you run the big jobs. It's a
+
+6
+00:00:21,493 --> 00:00:25,184
+shared GPU cluster for AI research in Massachusetts, and this lecture covers what it
+
+7
+00:00:25,204 --> 00:00:29,160
+is, how you get on, where your files live, and how you run a job.
+
+8
+00:00:29,230 --> 00:00:33,374
+Six terms. An HPC cluster: many computers wired together and shared by many people.
+
+9
+00:00:33,394 --> 00:00:38,132
+A GPU: a chip that does AI math far faster than a normal processor. Slurm: the
+
+10
+00:00:38,152 --> 00:00:42,593
+scheduler. You ask for resources, and it decides when you run. A partition: a named
+
+11
+00:00:42,613 --> 00:00:46,757
+group of machines with its own rules. A PI: the principal investigator, the faculty
+
+12
+00:00:46,777 --> 00:00:51,218
+member who leads a project. And Open OnDemand: a website that gives you the cluster
+
+13
+00:00:51,238 --> 00:00:52,110
+in a browser.
+
+14
+00:00:52,180 --> 00:00:57,785
+Start with what it is. AICR stands for AI Compute Resource. Six universities at the
+
+15
+00:00:57,805 --> 00:01:01,160
+Massachusetts Green High Performance Computing Center, together with the
+
+16
+00:01:01,180 --> 00:01:04,910
+Massachusetts AI Hub, built one cluster, and they share it.
+
+17
+00:01:04,980 --> 00:01:11,003
+Inside are two kinds of GPU. Two hundred forty-eight NVIDIA B200s, and one hundred
+
+18
+00:01:11,023 --> 00:01:15,320
+fifty-two RTX PRO 6000s. That's four hundred GPUs in all.
+
+19
+00:01:15,390 --> 00:01:20,635
+Around the GPUs: fast storage, a modern software stack for machine learning, and a
+
+20
+00:01:20,655 --> 00:01:25,900
+CPU-only section for the work that needs no GPU, like cleaning and analysing data.
+
+21
+00:01:25,970 --> 00:01:29,885
+Northeastern already has its own cluster, called Explorer. Treat AICR as an
+
+22
+00:01:29,905 --> 00:01:35,132
+extension of it. You develop and test on Explorer. When the code works, you bring it
+
+23
+00:01:35,152 --> 00:01:40,050
+to AICR for the production run. AICR is shared by every partner university, so it
+
+24
+00:01:40,070 --> 00:01:41,690
+isn't the place to debug.
+
+25
+00:01:41,760 --> 00:01:46,607
+Getting on starts with a faculty member. The principal investigator submits a brief
+
+26
+00:01:46,627 --> 00:01:50,350
+proposal through a request form. Access comes through that project.
+
+27
+00:01:50,420 --> 00:01:56,186
+Once you're on a project, the easiest door is Open OnDemand, at o o d dot A I C R
+
+28
+00:01:56,206 --> 00:02:00,815
+dot A I. It sends you to a sign-in page. You choose your identity provider, then
+
+29
+00:02:00,835 --> 00:02:03,130
+sign in with your Northeastern username and password.
+
+30
+00:02:03,200 --> 00:02:07,443
+One thing changes: your username. On the cluster it's slightly different, so
+
+31
+00:02:07,463 --> 00:02:12,417
+accounts from the partner schools stay distinct. If you're j dot smith on Explorer,
+
+32
+00:02:12,437 --> 00:02:15,970
+you're j underscore smith underscore n e u on AICR.
+
+33
+00:02:16,040 --> 00:02:21,345
+Your files live in three places, the same three as on Explorer. Home, for small
+
+34
+00:02:21,365 --> 00:02:25,605
+scripts and your environment. Scratch, for temporary output from running jobs. And
+
+35
+00:02:25,625 --> 00:02:28,090
+the project directory, for shared, longer-term work.
+
+36
+00:02:28,160 --> 00:02:33,304
+Home holds a hundred gigabytes. Delete a file there by accident, and you have seven
+
+37
+00:02:33,324 --> 00:02:37,780
+days to recover it. The project directory has the same seven-day safety net.
+
+38
+00:02:37,850 --> 00:02:42,382
+Scratch is huge. Ten terabytes, and up to fifteen million files. But nothing in
+
+39
+00:02:42,402 --> 00:02:46,609
+scratch can be recovered, and there's a thirty-day purge. So move anything important
+
+40
+00:02:46,629 --> 00:02:47,910
+out before it's gone.
+
+41
+00:02:47,980 --> 00:02:53,433
+Compute is split into partitions. One is CPU only. Four have GPUs: a batch and a
+
+42
+00:02:53,453 --> 00:02:58,907
+devel partition for the B200s, and a batch and a devel partition for the RTX cards.
+
+43
+00:02:58,927 --> 00:03:02,670
+Every GPU node carries about two point three terabytes of memory.
+
+44
+00:03:02,740 --> 00:03:07,453
+Batch partitions are for jobs you submit and walk away from. They run up to
+
+45
+00:03:07,473 --> 00:03:11,554
+twenty-four hours, and they support more than one GPU. Devel partitions are for
+
+46
+00:03:11,574 --> 00:03:15,340
+interactive work: four hours at most, and four running jobs per user.
+
+47
+00:03:15,410 --> 00:03:20,697
+Before you ask for more than one GPU, confirm your code can actually use them. If it
+
+48
+00:03:20,717 --> 00:03:22,570
+can't, the extra cards sit idle.
+
+49
+00:03:22,640 --> 00:03:27,047
+And idle is watched. A background process tracks GPU utilization and cancels jobs
+
+50
+00:03:27,067 --> 00:03:31,814
+that sit idle. So end your interactive session when you're done. A tool called
+
+51
+00:03:31,834 --> 00:03:35,900
+jobstats will also report how each job used what it asked for.
+
+52
+00:03:35,970 --> 00:03:40,454
+You can see the live list yourself. The command s info prints every partition, its
+
+53
+00:03:40,474 --> 00:03:45,558
+time limit, and its node count. Run it and you may see more partitions than the five
+
+54
+00:03:45,578 --> 00:03:47,360
+here, because the cluster keeps changing.
+
+55
+00:03:47,430 --> 00:03:52,992
+AICR runs Slurm, so there are three ways to work. s batch, for jobs that run without
+
+56
+00:03:53,012 --> 00:03:57,260
+you. s run, for an interactive shell. And Open OnDemand, in the browser.
+
+57
+00:03:57,330 --> 00:04:02,790
+A batch job is a script. The lines that start with S BATCH are your request: which
+
+58
+00:04:02,810 --> 00:04:07,625
+partition, how many CPUs, one GPU, sixteen gigabytes of memory, and a time limit of
+
+59
+00:04:07,645 --> 00:04:08,270
+thirty minutes.
+
+60
+00:04:08,340 --> 00:04:13,354
+Below the request is the work. Clear the loaded modules. Load CUDA and miniforge.
+
+61
+00:04:13,374 --> 00:04:16,230
+Activate your environment. Then run your training script.
+
+62
+00:04:16,300 --> 00:04:21,339
+Submit it with s batch and the file name. If your script writes logs into a folder,
+
+63
+00:04:21,359 --> 00:04:25,506
+create that folder first. Then three commands follow the job around. s queue shows
+
+64
+00:04:25,526 --> 00:04:30,267
+your queued and running jobs. s cancel stops one. And s acct shows what a finished
+
+65
+00:04:30,287 --> 00:04:31,160
+job actually used.
+
+66
+00:04:31,230 --> 00:04:36,536
+For an interactive shell on a GPU node, use s run. This one asks the RTX devel
+
+67
+00:04:36,556 --> 00:04:40,921
+partition for eight CPUs, sixteen gigabytes, and one GPU, for one hour. Always set
+
+68
+00:04:40,941 --> 00:04:46,247
+the time, so the session ends even if you forget. And type exit to give the GPU
+
+69
+00:04:46,267 --> 00:04:46,560
+back.
+
+70
+00:04:46,630 --> 00:04:50,717
+Or skip the terminal. Open OnDemand launches graphical sessions, such as JupyterLab
+
+71
+00:04:50,737 --> 00:04:55,851
+or a desktop. You choose the partition, the time, and the resources, and it submits
+
+72
+00:04:55,871 --> 00:05:00,300
+the job to Slurm for you. Those sessions count against the devel limits.
+
+73
+00:05:00,370 --> 00:05:04,757
+To move large data, the primary method is Globus. Northeastern has a subscription.
+
+74
+00:05:04,777 --> 00:05:09,163
+You set up a Globus account with your Northeastern credentials, then connect a
+
+75
+00:05:09,183 --> 00:05:13,570
+folder on Explorer, or on your own machine, to a folder on AICR.
+
+76
+00:05:13,640 --> 00:05:18,150
+Last, the part people forget. Accounts and project directories on AICR are
+
+77
+00:05:18,170 --> 00:05:23,435
+temporary. Once a year there's a check-in. The PI renews the request, and the
+
+78
+00:05:23,455 --> 00:05:24,190
+project continues.
+
+79
+00:05:24,260 --> 00:05:29,149
+And when the project ends, the data has to leave. AICR is not permanent storage.
+
+80
+00:05:29,169 --> 00:05:33,403
+Move your results back to a Northeastern resource. Questions go to the Research
+
+81
+00:05:33,423 --> 00:05:37,330
+Computing team, at r c help at northeastern dot e d u.
+
+82
+00:05:37,400 --> 00:05:42,195
+Let's recap with Claude. AICR is a shared GPU cluster, with two hundred forty-eight
+
+83
+00:05:42,215 --> 00:05:47,009
+B200s and one hundred fifty-two RTX PRO 6000s. You develop on Explorer, and bring
+
+84
+00:05:47,029 --> 00:05:52,512
+the production run to AICR. A PI's proposal gets you on, and you sign in through
+
+85
+00:05:52,532 --> 00:05:56,983
+Open OnDemand. Home holds a hundred gigabytes. Scratch holds ten terabytes, with a
+
+86
+00:05:57,003 --> 00:06:00,766
+thirty-day purge. Batch partitions run twenty-four hours, devel partitions run four,
+
+87
+00:06:00,786 --> 00:06:05,580
+and idle GPU jobs get cancelled. Projects are reviewed every year, and your data
+
+88
+00:06:05,600 --> 00:06:07,300
+goes home at the end.
+
+89
+00:06:07,370 --> 00:06:11,702
+Your turn. Paste this into Claude: I'm about to run my first production job on a
+
+90
+00:06:11,722 --> 00:06:15,783
+shared GPU cluster that uses Slurm. Here is my training setup: [describe it in two
+
+91
+00:06:15,803 --> 00:06:19,863
+sentences]. Write an sbatch script that asks for one GPU and a 30-minute time limit.
+
+92
+00:06:19,883 --> 00:06:24,487
+Then tell me which of my files belong in home, which in scratch, and which in the
+
+93
+00:06:24,507 --> 00:06:28,296
+project directory. Then check two things yourself. Does every S BATCH line ask only
+
+94
+00:06:28,316 --> 00:06:32,648
+for what your code can use? And is anything you can't afford to lose sitting in
+
+95
+00:06:32,668 --> 00:06:32,920
+scratch?
+
+96
+00:06:32,990 --> 00:06:37,250
+AICR Introduction. At Nik Bear Brown.

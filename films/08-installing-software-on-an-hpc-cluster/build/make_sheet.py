@@ -1,0 +1,407 @@
+#!/usr/bin/env python3
+"""make_sheet.py — beat_sheet.json for claude-liam-lecture-software-installation.
+
+LECTURE (brutalist.art/skills/make/lecture/SKILL.md). Source: hpc/Intro-to-Software-Installation-2026/
+intro_to_sw_installation.md ("Installing Software on an HPC Cluster", Northeastern Research Computing, presenter
+Ghanghoon "Will" Paik; github.com/northeastern-rc-training/Intro-to-Software-Installation-2026).
+Eighth film of the series; same cast.
+"""
+import json
+from pathlib import Path
+HERE = Path(__file__).resolve().parent
+SLUG = HERE.name
+TITLE = "Installing Software on an HPC Cluster"
+FPS = 30
+SPARSE = ("lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice "
+          "carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply.")
+
+
+def manim(bid, act, narration, cls, image, show, sparse=False):
+    b = {"beat_id": bid, "act": act, "lane": "manim", "proof_gate": "SHOW",
+         "narration_text": narration, "estimated_duration_s": round(len(narration.split()) / 2.5, 1),
+         "voice": "am_onyx", "engine": "kokoro",
+         "shot": {"type": "GRAPHIC", "source": "own", "visual_intent": image, "show": show, "manim": {"class": cls}, "motion_claim": image}}
+    if sparse:
+        b["qc"] = {"sparse_by_design": True, "sparse_reason": SPARSE}
+    return b
+
+
+def remotion(bid, act, narration, pattern, props, show, gate="SHOW", lane="remotion", **extra):
+    b = {"beat_id": bid, "act": act, "lane": lane, "proof_gate": gate,
+         "narration_text": narration, "estimated_duration_s": round(len(narration.split()) / 2.5, 1),
+         "voice": "am_onyx", "engine": "kokoro",
+         "shot": {"type": "REMOTION", "source": "own", "show": show, "remotion": {"pattern": pattern, "props": props}}}
+    b.update(extra)
+    return b
+
+
+def shell(bid, act, narration, lines, show, start=20, gap=40, title="ssh — login.explorer.northeastern.edu"):
+    return remotion(bid, act, narration, "CCPlainShell", {"title": title, "lines": lines, "startCue": start, "lineGap": gap}, show,
+                    motion_claim="The training's own commands and files land in order.")
+
+
+def code(bid, act, narration, title, src, spark, show, lang="python"):
+    return remotion(bid, act, narration, "ClaudeCodeBeat", {"title": title, "code": src, "language": lang, "largeText": True, "sparkLine": spark},
+                    show, motion_claim="The training's own text prints line by line.")
+
+
+A = ["I · Why HPC Is Different", "II · Environment Modules", "III · Conda", "IV · Spack", "V · EasyBuild",
+     "VI · From Source", "VII · Apptainer", "VIII · Choosing The Tool"]
+
+OPEN = [
+ remotion("BIDEA", "the idea",
+    "Jambo. This is Liam, in for Bear. First, a correction. On a shared cluster you do not install software the way you do "
+    "on a laptop. There is no sudo, no root, no system package manager you are allowed to touch. Everything you install goes "
+    "into your own space, built against the cluster's own libraries. This lecture walks the main ways to get research "
+    "software running on a shared cluster: environment modules, Conda, Spack, EasyBuild, compiling from source with your "
+    "own module files, and App-tainer containers. And then, which one to reach for first.",
+    "BrutalistHesitantWriter",
+    {"text": "Just run\nsudo apt install", "triggerWords": "sudo apt install", "replacementWords": "no root here: your own space",
+     "fontSize": 72, "charMs": 62, "hesitateBetween": 6, "hesitateWithin": 1, "mistakeRate": 2, "jitter": 20, "seed": SLUG, "banner": ""},
+    [{"at": 0.0, "event": "types the assumption"}, {"at": 0.3, "event": "corrects it"}],
+    lane="bookend", lead_silence_s=0.8, motion_claim="The writer types the newcomer's picture and corrects it.",
+    qc={"sparse_by_design": True, "sparse_reason": "Hesitant-writer bookend: the correction is the motion."}),
+ remotion("BDEFS", "terms",
+    "Six terms. Root: the administrator account that can write to system directories; you do not have it. A module: a "
+    "package an administrator already built, loaded by name and version. User space: your home, scratch or project "
+    "directories, the only places you can install. A build from source: compiling a program's code yourself, with your "
+    "own options. A module file: the small text file that tells the module command what to change. And a container: an "
+    "application packed with its whole operating system into one image file.",
+    "ClaudeDefinitions",
+    {"title": "Terms In This Lecture",
+     "terms": [{"term": "root", "meaning": "the administrator account that writes to system directories"},
+               {"term": "module", "meaning": "a package an administrator built, loaded by name and version"},
+               {"term": "user space", "meaning": "your home, scratch or project directories"},
+               {"term": "build from source", "meaning": "compiling a program's code yourself, with your own options"},
+               {"term": "modulefile", "meaning": "the text file that tells the module command what to change"},
+               {"term": "container", "meaning": "an application packed with its operating system into one image"}],
+     "folderLabel": "@NikBearBrown"},
+    [{"at": 0.08, "event": "root"}, {"at": 0.25, "event": "module"}, {"at": 0.4, "event": "user space"}, {"at": 0.58, "event": "build from source"}, {"at": 0.72, "event": "modulefile"}, {"at": 0.87, "event": "container"}],
+    gate="CARD", lane="bookend", qc={"sparse_by_design": True, "sparse_reason": "TERMS card: six prerequisites, one line each."}),
+]
+
+EXAMPLE_DEF = """# example.def
+Bootstrap: docker
+From: ubuntu:22.04
+
+%post
+    apt-get update && apt-get install -y python3 python3-pip
+    pip3 install numpy
+
+%runscript
+    python3 "$@\""""
+
+B = [
+ # I
+ manim("B10", A[0],
+    "Why it is different. Your laptop: root access, one user, a local disk with no quota, and generic downloads that just "
+    "work. The cluster: user space only, hundreds of people sharing the login node, a network filesystem with tight quotas, "
+    "and builds that should link against the cluster's own compilers, M P I and math libraries. A generic binary from the "
+    "internet ignores all of that, so it runs slower, or will not launch across nodes.",
+    "B10_LaptopVsCluster",
+    "Two columns build row by row. Left, a small laptop drawn in the kit with four rows landing beside it: 'root' · 'one user' · 'local disk' · 'generic binaries'. Right, the explorer_rack with the matching rows: 'user space only' · 'hundreds of users' · 'shared filesystem, quota' · 'match cluster libraries'. Then a generic-binary box slides from the laptop to the rack and a grey X lands on it. Act title top-left.",
+    [{"at": 0.1, "event": "laptop rows"}, {"at": 0.4, "event": "cluster rows"}, {"at": 0.85, "event": "generic binary struck"}]),
+ manim("B11", A[0],
+    "Two habits follow. First, do not build on the login node. Everyone who is connected shares it; a long compile or a "
+    "memory-hungry install there slows the system for all of them. Heavy builds go into an interactive job or a batch job. "
+    "Second, mind the filesystem. Your home directory is a network filesystem, N F S, G P F S or Lustre, shared across every "
+    "node. Quotas are tight, and it is tuned for large reads, not the tens of thousands of tiny files a Conda environment "
+    "or a build tree creates. That is a real reason job launches are slow.",
+    "B11_LoginNodeAndFilesystem",
+    "Left: the explorer_rack as the login node with a row of five person tokens beside it; a hammer-and-gear 'build' glyph tries to land on the rack and the tokens dim; the build glyph is then moved into a job_box and the tokens restore. Right: the home_box on a network line to three small nodes; a swarm of tiny file dots pours into the home_box ('tens of thousands'), a quota gauge beside it fills to the top, and a clock glyph grows ('slow').",
+    [{"at": 0.1, "event": "login node shared"}, {"at": 0.35, "event": "build moves into a job"}, {"at": 0.55, "event": "network filesystem"}, {"at": 0.8, "event": "tiny files, quota, slow"}]),
+ # II
+ shell("B20", A[1],
+    "Before installing anything, check whether it already exists. Most clusters expose preinstalled software through "
+    "environment modules. This cluster uses the classic T C L based Environment Modules, not L mod, so a few commands differ "
+    "from other tutorials. Module avail lists what is there; avail with a name filters it; show prints what a module would "
+    "change; load adds it; list shows what is loaded; unload removes one; purge clears everything. Names and versions are "
+    "cluster-specific, so always check avail first.",
+    ["$ module avail", "$ module avail miniconda3", "$ module show miniconda3", "$ module load python/3.13.5",
+     "$ module list", "$ module unload python/3.13.5", "$ module purge"],
+    [{"at": 0.3, "event": "avail"}, {"at": 0.5, "event": "show, load"}, {"at": 0.7, "event": "list, unload, purge"}], start=28, gap=56),
+ manim("B21", A[1],
+    "What module load actually does. It does not install anything. It edits your shell's environment, the PATH variable and "
+    "its library cousin, so the shell can find a package an administrator built once and shares with everyone. Load a "
+    "module and PATH gains the package directory in front of user bin. Unload it and the directory is gone. That is how you "
+    "switch between versions cleanly, with no conflicts. And the fastest install is the one you do not have to do.",
+    "B21_WhatModuleLoadDoes",
+    "A dark shell panel left reads PATH = /usr/bin in mono; the aicr-style admin package box sits right, labelled 'built once, shared'. On 'module load python/3.11' (mono command lands above), a kraft pill 'package dir' slides in front of /usr/bin inside PATH and a GHOST arrow links it to the package box. On 'unload', the pill slides out. Then two version pills '3.11' and '3.13' swap in and out of the slot in turn.",
+    [{"at": 0.2, "event": "PATH before"}, {"at": 0.4, "event": "module load: package dir in front"}, {"at": 0.65, "event": "unload: gone"}, {"at": 0.85, "event": "versions swap"}]),
+ # III
+ shell("B30", A[2],
+    "Conda is where most researchers start, especially in Python and R. It installs into your own directory, handles "
+    "non-Python libraries too, and needs no root. On most clusters you load a Conda module rather than installing Conda "
+    "yourself. Create an environment with a Python version and packages, activate it with source activate, and check. "
+    "Channels: prefer conda-forge, which has far broader and more current coverage, and remove the defaults channel. "
+    "Anaconda's terms restrict large organisations' use of its default channels, and many universities now avoid them.",
+    ["$ module load miniconda3", "$ conda create -n myenv python=3.11 numpy scipy", "$ source activate myenv",
+     "$ python -c \"import numpy; print(numpy.__version__)\"", "$ conda config --add channels conda-forge",
+     "$ conda config --remove channels defaults"],
+    [{"at": 0.25, "event": "load, create, activate"}, {"at": 0.6, "event": "conda-forge"}, {"at": 0.8, "event": "remove defaults"}], start=28, gap=50),
+ manim("B31", A[2],
+    "Now the pitfalls, the part people skip and then file a ticket about. Solving an environment is heavy, so do it in an "
+    "interactive job, not on the login node. Watch your home quota: an environment is tens of thousands of small files. "
+    "But do not put environments on scratch, because scratch is purged, and the environment vanishes, sometimes mid-project. "
+    "Keep environments in persistent space, home or a project directory. The one piece you can safely send to scratch is "
+    "the package cache, which is regenerable. Or just empty it now and then.",
+    "B31_CondaPitfalls",
+    "Left: a conda environment box tries to sit on the explorer_rack (login node) and is moved into a job_box with a check. Middle: the home_box with a quota gauge; file dots pour in and the gauge rises. Right: the scratch_bin; an environment box placed in it fades to a dashed outline as a broom/purge sweep passes ('purged'); then a smaller 'pkgs' cache box is placed in the bin instead with a check, while the environment box lands on the project_cabinet.",
+    [{"at": 0.15, "event": "solve in a job"}, {"at": 0.35, "event": "quota fills"}, {"at": 0.55, "event": "scratch purged"}, {"at": 0.8, "event": "cache to scratch, env to project"}]),
+ shell("B32", A[2],
+    "In your dot conda R C, redirect only the package cache to scratch. If home is tight, create environments at a path in "
+    "a project directory with dash p. And activate inside the job script, never in dot bash R C. Conda's init command writes a block "
+    "into dot bash R C that auto-activates on every login; it slows every login and can break batch jobs. Comment that "
+    "block out.",
+    ["$ cat ~/.condarc", "pkgs_dirs:", "  - /scratch/$USER/conda/pkgs",
+     "$ conda create -p /projects/proj_name/envs/myenv", "$ rm -rf ~/.conda/pkgs",
+     "$ cat ~/.bashrc", "# >>> conda initialize >>>", "#__conda_setup=\"$('/opt/conda/bin/conda' 'shell.bash' 'hook')\"",
+     "#    eval \"$__conda_setup\"", "# <<< conda initialize <<<"],
+    [{"at": 0.1, "event": ".condarc"}, {"at": 0.35, "event": "-p path"}, {"at": 0.6, "event": ".bashrc block commented out"}], start=20, gap=34),
+ shell("B33", A[2],
+    "The job script does the activating: load the Conda module, source activate, run. And for reproducibility, export the "
+    "environment to a Y M L file, exact, with builds, and recreate it later from that file.",
+    ["$ cat run.sbatch", "#!/bin/bash", "#SBATCH -N 1", "#SBATCH --cpus-per-task=4", "module load miniconda3", "source activate myenv",
+     "python my_analysis.py", "$ conda env export > environment.yml", "$ conda env create -f environment.yml"],
+    [{"at": 0.15, "event": "the job script"}, {"at": 0.6, "event": "export"}, {"at": 0.85, "event": "recreate"}], start=20, gap=40),
+ # IV
+ manim("B40", A[3],
+    "Spack is a package manager built for HPC. Unlike Conda, it builds from source by default, and it lets you choose the "
+    "compiler, the M P I implementation and the build options, holding many versions side by side. One honest note first. "
+    "Spack and EasyBuild are heavy: long compiles, big disk footprints, real upkeep. They are not the first thing to reach "
+    "for. If a module or Conda covers you, use that. Spack's core idea is the spec: package, at version, percent compiler, "
+    "plus variant. H D F five at one point fourteen point three, percent G C C twelve point two, plus M P I. Spack resolves "
+    "the whole dependency tree and builds each piece with exactly those choices. The version numbers here are illustrative.",
+    "B40_TheSpackSpec",
+    "A caveat pill 'not the first option' lands at top-right in grey. Then the spec builds in mono, one part at a time, each part ringed in ink as named: 'hdf5' · '@1.14.3' · '%gcc@12.2.0' · '+mpi', with a 1–2 word serif label under each (package · version · compiler · variant). Below, a small dependency tree grows downward from the hdf5 node (three child nodes, two grandchildren), each node tinting kraft as it is 'built'. Act title top-left.",
+    [{"at": 0.3, "event": "not the first option"}, {"at": 0.55, "event": "spec parts"}, {"at": 0.85, "event": "dependency tree builds"}]),
+ shell("B41", A[3],
+    "The workflow. Clone Spack, source its setup script to load it into your shell, list and info a package to see versions "
+    "and variants, install it with the variant you want, and spack load it. A clean install with many dependencies compiles "
+    "for a long time, so run spack install inside a job with several cores. A Spack environment groups specs for one "
+    "project: create it, activate it, add specs, install everything, and commit the spack dot yaml it writes.",
+    ["$ git clone -c feature.manyFiles=true \\", "     https://github.com/spack/spack.git", "$ . spack/share/spack/setup-env.sh",
+     "$ spack list hdf5", "$ spack info hdf5", "$ spack install hdf5 +mpi", "$ spack load hdf5",
+     "$ spack env create myproject", "$ spack env activate myproject", "$ spack add hdf5 +mpi", "$ spack add petsc", "$ spack install"],
+    [{"at": 0.1, "event": "clone, setup"}, {"at": 0.3, "event": "list, info, install, load"}, {"at": 0.7, "event": "environment"}], start=20, gap=30),
+ # V
+ shell("B50", A[4],
+    "EasyBuild solves a similar problem with a different philosophy. It builds from recipe files called easyconfigs, and "
+    "you almost never write one: thousands ship with it, so you install a package by name and the recipe is fixed, which "
+    "is the reproducibility selling point. A toolchain is a named bundle of compiler, M P I and math libraries; gom-pee is "
+    "G C C plus Open M P I. There is no EasyBuild module here, so you install it once into a Conda environment. Then search "
+    "for a recipe and run E B with three flags that are easy to miss.",
+    ["$ module load miniconda3", "$ conda create -n easybuild python=3.11", "$ source activate easybuild", "$ pip install easybuild",
+     "$ eb --search HDF5", "$ eb HDF5-1.14.3-gompi-2023a.eb -r \\", "     --modules-tool=EnvironmentModules \\",
+     "     --module-syntax=Tcl \\", "     --installpath=$HOME/easybuild"],
+    [{"at": 0.55, "event": "install into a conda env"}, {"at": 0.8, "event": "search, eb"}, {"at": 0.95, "event": "three flags"}], start=90, gap=20),
+ manim("B51", A[4],
+    "Those three flags. Modules tool equals Environment Modules, because EasyBuild assumes L mod by default and this cluster "
+    "does not run it. Module syntax equals T C L, because Loo-ah module files will not load here. And install path in your own "
+    "space, because you cannot write to system directories. Put them in a config file once. Then the key detail: "
+    "EasyBuild's output is a module file. Point module at its directory with module use, and load the result with module "
+    "load like any preinstalled package.",
+    "B51_ThreeFlagsToModulefile",
+    "Three mono flag lines land one by one at left, each with a short serif reason beside it ('not Lmod' · 'not Lua' · 'your space'); a small kraft page 'config.cfg' gathers them. Right: an EasyBuild gear turns and emits a modulefile page that slides into a drawn folder tree '$HOME/easybuild/modules/all'; then two mono commands land under it: 'module use $HOME/easybuild/modules/all' and 'module load HDF5/1.14.3-gompi-2023a', with a check.",
+    [{"at": 0.1, "event": "flag 1"}, {"at": 0.25, "event": "flag 2"}, {"at": 0.4, "event": "flag 3, config file"}, {"at": 0.65, "event": "output is a modulefile"}, {"at": 0.85, "event": "module use, module load"}]),
+ manim("B52", A[4],
+    "Spack versus EasyBuild, in four rows. How you install: a spec on the command line, versus a named recipe. "
+    "Dependencies: Spack resolves a flexible graph; EasyBuild follows a fixed toolchain. Output: spack load or a module, "
+    "versus always a module file. Strength: flexible variants and versions, versus strict, repeatable, toolchain-based "
+    "builds. And the candid note from experience: neither is the recommended first option on this cluster. Both are heavy "
+    "to set up and painful to maintain, and Spack in particular can be frustrating when builds break. Reach for them only "
+    "when you need source-level control and have decided the upkeep is worth it.",
+    "B52_SpackVsEasyBuild",
+    "A two-column drawn table with four row labels at left (install · dependencies · output · strength); each cell is a tiny glyph plus a 1–3 word label: 'a spec' vs 'a recipe'; a flexible branching graph vs a straight chain; 'load or module' vs 'a modulefile'; 'flexible' vs 'strict'. Rows land in turn. Then a grey weight glyph lands under both columns with the label 'heavy' and a kraft pill 'not the first option'.",
+    [{"at": 0.1, "event": "row 1"}, {"at": 0.28, "event": "row 2"}, {"at": 0.42, "event": "row 3"}, {"at": 0.58, "event": "row 4"}, {"at": 0.75, "event": "heavy; not first"}]),
+ # VI
+ shell("B60", A[5],
+    "Sometimes nothing prebuilt exists, or you need a patch, a specific version, or a flag no package manager exposes. Then "
+    "you compile from source. The project's README or INSTALL file names its build system; the two you will meet most are "
+    "Autotools, a configure script, and C make. Autotools: configure with a prefix, make with several cores, make install. "
+    "C make: load the C make module, configure with an install prefix, build, install. Always read the project's own "
+    "instructions first.",
+    ["$ ./configure --prefix=$HOME/software/mytool", "$ make -j 8", "$ make install",
+     "$ module load cmake", "$ cmake -B build -DCMAKE_INSTALL_PREFIX=$HOME/software/mytool",
+     "$ cmake --build build -j 8", "$ cmake --install build"],
+    [{"at": 0.5, "event": "autotools"}, {"at": 0.75, "event": "cmake"}], start=50, gap=36),
+ manim("B61", A[5],
+    "What makes it an HPC build. Always set a prefix; you cannot install to the system's user local directory. Load the cluster's compiler and "
+    "libraries as modules before you configure, so the build links against the optimised versions; that is the same reason "
+    "Spack and EasyBuild produce fast binaries. Point parallel or numerical code at the cluster's M P I and BLAS and "
+    "LAPACK, not a slow generic fallback. And run the make step inside a job, because dash j eight is a multi-core workload. Five "
+    "steps: load modules, configure with a prefix, compile inside a job, install into the prefix, expose it on PATH or with "
+    "a module file.",
+    "B61_SourceBuildPipeline",
+    "A five-station belt builds left to right in the kit: 1 'load modules' (three module pills slide onto the station), 2 'configure' (a mono '--prefix=$HOME/software/mytool' label), 3 'make' (a job_box with a gear turning), 4 'make install' (a box drops into a home_box-style prefix folder), 5 'expose' (a PATH pill and a modulefile page). A grey X lands on a '/usr/local' label at the start; an 'M P I · BLAS · LAPACK' library block links to station 3 with a GHOST line.",
+    [{"at": 0.1, "event": "prefix, not /usr/local"}, {"at": 0.3, "event": "load modules first"}, {"at": 0.5, "event": "cluster MPI and math"}, {"at": 0.65, "event": "make in a job"}, {"at": 0.85, "event": "five stations"}]),
+ shell("B62", A[5],
+    "After installing to a prefix, the shell still does not know the software exists. Export PATH and L D library path by "
+    "hand, and it works for this session. For something you reuse, write your own module file instead. Make a directory, "
+    "tell module to look there with module use, in your dot bash R C, so it persists, and write the file. This cluster's "
+    "module files are T C L. The first line, hash percent Module, must be exactly that, the magic cookie that marks the file "
+    "as a module file. Two prepend-path lines, one for PATH and one for the library path, and a one-line description.",
+    ["$ export PATH=$HOME/software/mytool/bin:$PATH", "$ export LD_LIBRARY_PATH=$HOME/software/mytool/lib:\\", "     $LD_LIBRARY_PATH",
+     "$ mkdir -p $HOME/modulefiles", "$ module use $HOME/modulefiles", "$ cat $HOME/modulefiles/mytool/1.0", "#%Module",
+     "## mytool 1.0 personal modulefile", "prepend-path PATH            $HOME/software/mytool/bin",
+     "prepend-path LD_LIBRARY_PATH $HOME/software/mytool/lib", "module-whatis \"mytool 1.0, personal build\""],
+    [{"at": 0.1, "event": "export by hand"}, {"at": 0.4, "event": "mkdir, module use"}, {"at": 0.65, "event": "#%Module"}, {"at": 0.85, "event": "prepend-path"}], start=20, gap=36),
+ manim("B63", A[5],
+    "The directory name becomes the module name and the file name becomes the version. Now module avail shows your build, "
+    "module load sets the paths for you, and unload reverses everything cleanly. One module file becomes a personal stack: "
+    "each tool its own subdirectory, each version a file inside it, so my tool one point oh and two point oh sit side by "
+    "side and you switch with one load, exactly like the cluster's compilers. A module file can load other modules, such "
+    "as the right G C C, and a dot version file names the default.",
+    "B63_PersonalModuleStack",
+    "A folder tree draws in mono: '$HOME/modulefiles/' → 'mytool/' → '1.0', '2.0'; 'otherlib/' → '3.4'. A bracket marks 'mytool/' as 'name' and '1.0' as 'version'. Three mono commands land in turn beside it: 'module avail mytool', 'module load mytool/1.0', 'module unload mytool/1.0', each with a check. Then an ink ring moves from '1.0' to '2.0' ('switch'); a small 'gcc' pill attaches under 'mytool/2.0' ('loads others'); a '.version' page lands in 'mytool/' pointing at '2.0' ('default').",
+    [{"at": 0.1, "event": "tree: name and version"}, {"at": 0.3, "event": "avail, load, unload"}, {"at": 0.6, "event": "two versions side by side"}, {"at": 0.85, "event": "gcc line, .version"}]),
+ # VII
+ manim("B70", A[6],
+    "App tainer, formerly Singularity, brings containers to HPC. A container packs an application with its entire operating "
+    "system environment into a single image file, a dot S I F, so it runs the same way everywhere. Why not Docker? Docker "
+    "normally needs root to run, a security problem on a shared system. App-tainer runs a container as you, with no "
+    "elevated privileges, works with the scheduler and the shared filesystem, runs G P U and M P I workloads, and can pull "
+    "and convert Docker images, so you are not locked out of that ecosystem.",
+    "B70_ApptainerVsDocker",
+    "Centre: one drawn .sif image as a stacked block of three slabs that build upward: 'OS layer' · 'libraries' · 'application', labelled beside. Two run paths branch from it: up-right, a person token with the image and a check, label 'runs as you'; down-right, a 'root' key glyph with a grey X, label 'Docker needs root'. Then a small Docker-whale-free 'docker://' mono label flows into the image block with an arrow ('pulls Docker images'). Act title top-left.",
+    [{"at": 0.15, "event": "the image stacks"}, {"at": 0.45, "event": "Docker needs root"}, {"at": 0.65, "event": "runs as you"}, {"at": 0.9, "event": "pulls Docker images"}]),
+ shell("B71", A[6],
+    "App-tainer is installed system-wide, no module needed. Pull an existing image, including from Docker registries, into "
+    "a dot S I F file. Exec runs one command inside it. Shell opens an interactive shell inside it. The dot S I F is one "
+    "file: copy it, archive it, share it, and it reproduces the same environment.",
+    ["$ apptainer pull lolcow.sif docker://ghcr.io/apptainer/lolcow", "$ apptainer exec lolcow.sif \\", "     cowsay \"Hello from inside a container\"",
+     "$ apptainer shell lolcow.sif"],
+    [{"at": 0.3, "event": "pull"}, {"at": 0.55, "event": "exec"}, {"at": 0.7, "event": "shell"}], start=80, gap=70),
+ shell("B72", A[6],
+    "To build your own, you describe the image in a definition file: bootstrap from a Docker image, Ubuntu twenty-two "
+    "oh four; a post section that installs Python and numpy; and a runscript that says what runs by default.",
+    ["$ cat example.def", "Bootstrap: docker", "From: ubuntu:22.04", "%post",
+     "    apt-get update && apt-get install -y python3 python3-pip", "    pip3 install numpy", "%runscript", "    python3 \"$@\""],
+    [{"at": 0.1, "event": "the definition prints"}, {"at": 0.45, "event": "post"}, {"at": 0.8, "event": "runscript"}], start=20, gap=44, title="laptop — example.def"),
+ shell("B73", A[6],
+    "Build images on your own machine, not on the cluster: building a dot S I F from scratch generally needs root. So build "
+    "where you have it, your laptop or a workstation, then copy the finished image up with S C P and exec it on the "
+    "cluster. The privileged step stays on a machine you control; only the unprivileged run happens here. Containers shine "
+    "when software is hard to install natively, when a research group already publishes an image, or when you want one "
+    "portable artifact to move between clusters or cite. The cost is image size and the upfront build.",
+    ["# on your laptop, where you have root", "$ apptainer build example.sif example.def",
+     "$ scp example.sif \\", "     <UserID>@xfer.discovery.neu.edu:/path/in/your/space/",
+     "# then on the cluster", "$ apptainer exec example.sif python3 my_script.py"],
+    [{"at": 0.2, "event": "build locally"}, {"at": 0.35, "event": "scp"}, {"at": 0.5, "event": "exec on the cluster"}], start=30, gap=40),
+ # VIII
+ manim("B80", A[7],
+    "Choosing the tool. Six options, and none needs root. Environment modules: preinstalled, best for what the cluster "
+    "already provides, limited to what admins installed. Conda: prebuilt binaries, best for Python and R and quick setups, "
+    "heavy on quota. Spack: builds from source, source-level control and many variants, heavy and slow to maintain. "
+    "EasyBuild: from source, reproducible toolchain builds, mostly an admin tool, toolchain-bound. A source install: full "
+    "control, patches and niche tools, the most manual and the easiest to get wrong. App-tainer: an image, for hard "
+    "dependencies and portability, built locally then copied up.",
+    "B80_SixToolsTable",
+    "A drawn table of six rows lands one at a time: tool name in serif at left, then three cells with tiny glyphs and 1–3 word labels: 'from source?' (no / no / yes / yes / yes / image), 'best for' (already there · Python, R · variants · toolchains · patches · portability), 'drawback' (admins only · quota · heavy · toolchain-bound · manual · build locally). A 'root?' column shows six grey 'no' pills at once. Act title top-left.",
+    [{"at": 0.12, "event": "modules"}, {"at": 0.27, "event": "conda"}, {"at": 0.42, "event": "spack"}, {"at": 0.57, "event": "easybuild"}, {"at": 0.72, "event": "source"}, {"at": 0.87, "event": "apptainer"}]),
+ manim("B81", A[7],
+    "Now, the practical order. One: check for a module first; the best install is no install. Two: a Python or R package? "
+    "Conda, with the quota and login-node precautions. Three: isolated, portable, or a nightmare of dependencies? Build a "
+    "container on your own machine and run it here. Four: a patch, a specific version, or a build flag nothing else "
+    "exposes? Build from source. Five: source-level control over compiler, M P I or variants, and willing to maintain it? "
+    "Then, and mostly then, Spack or EasyBuild. And if none of that fits, ask the Research Computing team.",
+    "B81_DecisionOrder",
+    "A numbered ladder of five question pills descends at left (1 'a module?' · 2 'Python or R?' · 3 'portable or fragile?' · 4 'patch or flag?' · 5 'compiler, M P I, variants?'); each 'yes' arrow lands on a tool pill at right (modules · Conda · Apptainer · from source · Spack or EasyBuild, the last in grey with a weight glyph); 'no' arrows step down. A terracotta dot marks pill 1. A final grey pill 'ask Research Computing' lands at the bottom.",
+    [{"at": 0.08, "event": "1 module"}, {"at": 0.25, "event": "2 conda"}, {"at": 0.42, "event": "3 container"}, {"at": 0.6, "event": "4 source"}, {"at": 0.78, "event": "5 spack or easybuild"}, {"at": 0.93, "event": "ask RC"}]),
+]
+
+RECAP = ["No root, shared filesystem: install in your own space, off the login node, mindful of quota.",
+         "Check for a module first; module load only edits your environment.",
+         "Conda for Python and R: conda-forge, envs in persistent space, activate in the job script.",
+         "Spack and EasyBuild build from source; heavy, advanced, not the default.",
+         "From source: prefix, cluster modules and libraries, make in a job, your own Tcl modulefile.",
+         "Apptainer: build the .sif locally, copy it up, run it as you."]
+VERDICT = remotion("BVDT", "recap",
+    "Let's recap with Claude. No root and a shared filesystem, so every install goes in your own space, off the login node, "
+    "mindful of quota. Check for a module first; module load only edits your environment. Conda for Python and R: "
+    "conda-forge, environments in persistent space, activate in the job script. Spack and EasyBuild build from source and "
+    "are the heavy, advanced option, not the default. From source: a prefix, the cluster's modules and libraries, "
+    "compile inside a job, and your own T C L module file. App-tainer: build the dot S I F locally, copy it up, run it as you.",
+    "ClaudeVerdictArtifact", {"artifactTitle": "Recap", "artifactHeading": TITLE, "artifactLines": RECAP},
+    [{"at": 0.0, "event": "artifact page opens"}, {"at": 0.1, "event": "six recap lines land"}],
+    lane="bookend", lead_silence_s=0.5, qc={"sparse_by_design": True, "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."})
+
+YT_PROMPT = ("I need to run [name the software] on a shared HPC cluster where I have no root access and a tight home quota. "
+             "Walk me down the decision order: is it likely a module, a Conda package, a container image, a source build, or a "
+             "Spack/EasyBuild job? Give me the exact commands for the first option that fits, where each file should live, and "
+             "what I must not run on the login node.")
+YOURTURN = remotion("BHTF", "your turn",
+    "Your turn. Paste this into Claude: " + YT_PROMPT + " Then check two things yourself. Run module avail for the name "
+    "before you believe any install is needed. And confirm every path it gave you is in your own space, never the system's user local directory.",
+    "ClaudeComposerAsk",
+    {"greeting": "Your turn.", "topic": "CLAUDE · YOUR TURN", "segment": "Pick The Install Path For One Program", "command": YT_PROMPT,
+     "runningText": "paste this into Claude…",
+     "output": ["Check: run module avail <name> before believing any install is needed.", "Check: every path it gave you is in your own space, never /usr/local."],
+     "folderLabel": "@NikBearBrown", "modelLabel": "Opus 5.5", "effortLabel": "High"},
+    [{"at": 0.0, "event": "Composer opens"}, {"at": 0.1, "event": "the prompt types in full"}, {"at": 0.8, "event": "two check lines land"}],
+    lane="bookend")
+
+OUTRO = {"beat_id": "BOUT", "act": "outro", "lane": "bookend", "proof_gate": "SHOW",
+         "narration_text": f"{TITLE}. At Nik Bear Brown.", "estimated_duration_s": 4.0, "voice": "am_onyx", "engine": "kokoro",
+         "shot": {"type": "REMOTION", "source": "own", "show": [{"at": 0.0, "event": "title restates; handle; mascot"}],
+                  "remotion": {"pattern": "ClaudeTitleOutro", "props": {"title": TITLE, "slug": SLUG, "handle": "@NikBearBrown", "subline": ""}}},
+         "kind": "outro_voice", "tail_silence_s": 1.0}
+
+PROGRESSIVE = {"B10", "B11", "B21", "B31", "B40", "B51", "B52", "B61", "B63", "B70", "B80", "B81"}
+for b in B:
+    if b["beat_id"] in PROGRESSIVE and "qc" not in b:
+        b["qc"] = {"sparse_by_design": True, "sparse_reason": SPARSE + " Progressive drawing: the midpoint frame holds only part of the final picture."}
+BOPEN = {"beat_id": "BOPEN", "act": "Opening", "lane": "bookend", "proof_gate": "CARD",
+         "narration_text": "Research Computing on Explorer and AICR. Installing Software on an HPC Cluster. How to get software running on a shared cluster without root: modules, Conda, Spack and EasyBuild, source builds, and Apptainer containers, and which one to reach for first.",
+         "estimated_duration_s": 10.0, "voice": "am_onyx", "engine": "kokoro",
+         "shot": {"type": "CARD", "source": "own", "template": "lecture-title-slide-16x9", "narration_contract": "playlist-title-summary-v1",
+                  "motion": "hold", "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+                  "show": [{"at": 0, "event": "Complete portrait/title/series card visible"}]}}
+BEATS = [BOPEN] + OPEN + B + [VERDICT, YOURTURN, OUTRO]
+sheet = {"metadata": {
+    "slug": SLUG, "title": TITLE, "topic": "RESEARCH COMPUTING · SOFTWARE INSTALLATION", "skill": "lecture", "style_preset": "lecture",
+    "channel": "claude-liam", "persona": "Liam (in for Bear)", "voice": "am_onyx", "voice_kokoro": "am_onyx", "engine": "kokoro",
+    "clock": "narration", "palette": "claude", "register": "Teardown", "fps": 24, "aspect_ratio": "16:9", "width": 3840, "height": 2160,
+    "caption_policy": "none", "greeting_language": "Swahili (Jambo)",
+    "audience": "Researchers who need software running on a shared cluster without root; assumes no other film",
+    "source_doc": "hpc/Intro-to-Software-Installation-2026/intro_to_sw_installation.md (Northeastern Research Computing training, "
+                  "presenter Ghanghoon \"Will\" Paik; github.com/northeastern-rc-training/Intro-to-Software-Installation-2026), read 2026-10-06",
+    "playlist": "Explorer", "chapter_number": 7,
+    "series_title": "Research Computing on Explorer and AICR", "series_video_number": 8, "series_video_count": 13, "series_entry_video": "Video 1 · AICR Introduction",
+    "lecture_opening_description": "Modules, Conda, Spack, source builds, containers",
+    "tags": ["HPC", "software installation", "environment modules", "conda", "Spack", "EasyBuild", "Apptainer", "containers",
+             "modulefile", "build from source", "Northeastern", "Research Computing", "Nik Bear Brown"]},
+    "beats": BEATS}
+
+old = {}
+p = HERE / "beat_sheet.json"
+if p.exists():
+    for ob in json.load(open(p))["beats"]:
+        old[ob["beat_id"]] = ob
+for b in BEATS:
+    ob = old.get(b["beat_id"])
+    if ob and ob.get("narration_text") == b["narration_text"]:
+        for k in ("actual_duration_s", "audio_file"):
+            if k in ob:
+                b[k] = ob[k]
+    dur = b.get("actual_duration_s")
+    props = (b["shot"].get("remotion") or {}).get("props")
+    if dur and props is not None:
+        pat = b["shot"]["remotion"]["pattern"]
+        if pat in ("ClaudeDefinitions", "BrowserCapture", "LibraryIconRow", "CCPlainShell", "ClaudeCodeBeat"):
+            props["durationSeconds"] = dur
+        if pat == "LibraryIconRow":
+            n = b["narration_text"]
+            for it in props["items"]:
+                at = round(n.index(it["cue_phrase"]) / len(n), 3)
+                it["at"] = at if not 0.43 <= at <= 0.57 else 0.58
+p.write_text(json.dumps(sheet, indent=2, ensure_ascii=False) + "\n")
+print(len(BEATS), "beats; est", round(sum(b.get("actual_duration_s") or b["estimated_duration_s"] for b in BEATS)), "s")
+# line-length check for shells
+for b in BEATS:
+    r = b["shot"].get("remotion") or {}
+    if r.get("pattern") == "CCPlainShell":
+        ls = r["props"]["lines"]
+        long = [l for l in ls if len(l) > 66]
+        if len(ls) > 14 or long:
+            print("WARN", b["beat_id"], len(ls), "lines", long)

@@ -1,0 +1,399 @@
+1
+00:00:00,000 --> 00:00:04,717
+Research Computing on Explorer and AICR. Intro to GPUs on Explorer. What a GPU is
+
+2
+00:00:04,737 --> 00:00:10,401
+for, which ones Explorer has, and how to ask for one in a job, so the right work
+
+3
+00:00:10,421 --> 00:00:11,980
+lands on the right hardware.
+
+4
+00:00:12,050 --> 00:00:16,651
+Ciao. This is Liam, in for Bear. First, a correction. A GPU is not a faster CPU.
+
+5
+00:00:16,671 --> 00:00:21,000
+It's thousands of small, simple cores working at once, which is why it wins at some
+
+6
+00:00:21,020 --> 00:00:25,078
+jobs and loses at others. This lecture is the beginner's introduction to the GPUs on
+
+7
+00:00:25,098 --> 00:00:28,340
+Northeastern's Explorer cluster: which partitions and card types there are, what a
+
+8
+00:00:28,360 --> 00:00:33,233
+GPU is, the three ways to get one, how to watch it work, and the two code habits
+
+9
+00:00:33,253 --> 00:00:34,320
+that keep it busy.
+
+10
+00:00:34,390 --> 00:00:38,913
+Six terms. A core: one processing unit that runs instructions on its own. A GPU: a
+
+11
+00:00:38,933 --> 00:00:43,171
+chip with thousands of small cores for parallel work. A partition: a named group of
+
+12
+00:00:43,191 --> 00:00:46,862
+cluster nodes with its own limits. GRES: generic resources, Slurm's name for the
+
+13
+00:00:46,882 --> 00:00:52,257
+GPUs you ask for. s run: the command that gives you a live session on a node. And s
+
+14
+00:00:52,277 --> 00:00:55,380
+batch: the command that submits a script to run without you.
+
+15
+00:00:55,450 --> 00:01:00,449
+Start with where the GPUs are. Explorer groups its GPU nodes into partitions, and
+
+16
+00:01:00,469 --> 00:01:05,468
+six are the ones you'll meet. gpu, the general one, up to eight hours.
+
+17
+00:01:05,488 --> 00:01:09,412
+gpu-interactive, for Open OnDemand sessions, two hours. gpu-short, two hours too,
+
+18
+00:01:09,432 --> 00:01:14,073
+but prioritised, so quick tests schedule fast. multigpu, for jobs that need several
+
+19
+00:01:14,093 --> 00:01:17,658
+cards, twenty-four hours. courses-gpu, for classes, twenty-four hours. And sharing:
+
+20
+00:01:17,678 --> 00:01:21,960
+GPUs that Northeastern PIs lend to everyone, one hour at a time.
+
+21
+00:01:22,030 --> 00:01:27,493
+Which cards live in a partition? Ask sinfo for the G R E S column. On the gpu
+
+22
+00:01:27,513 --> 00:01:32,367
+partition the answer is a mix: V100s in two flavours, T4s, A100s in two node sizes,
+
+23
+00:01:32,387 --> 00:01:37,850
+and H200s, eight to a node. The number after the card is how many sit in each node.
+
+24
+00:01:37,920 --> 00:01:42,249
+Before you submit, it pays to know what's free. sinfo with the node list, the GRES
+
+25
+00:01:42,269 --> 00:01:47,414
+and the GRES in use shows that per node. And to check one node, name it. One trap: a
+
+26
+00:01:47,434 --> 00:01:51,492
+node in the MIXED state isn't telling you about its GPUs. MIXED describes its CPUs.
+
+27
+00:01:51,512 --> 00:01:54,210
+Only the GRES-used column says whether a card is free.
+
+28
+00:01:54,280 --> 00:01:59,082
+There's also a GPU Monitor app on Open OnDemand. It colours every GPU node as idle,
+
+29
+00:01:59,102 --> 00:02:03,905
+mixed or allocated, and lists how many GPU jobs are waiting in the queue by card
+
+30
+00:02:03,925 --> 00:02:07,220
+type, so you can pick a card with a shorter line.
+
+31
+00:02:07,290 --> 00:02:12,981
+So what is a GPU? Start with a core: one unit that runs instructions on its own. A
+
+32
+00:02:13,001 --> 00:02:18,374
+CPU has a few large, complex cores. A GPU has thousands of small, simple ones. For a
+
+33
+00:02:18,394 --> 00:02:22,815
+problem you can split into thousands of identical little pieces, the GPU is the
+
+34
+00:02:22,835 --> 00:02:23,450
+right tool.
+
+35
+00:02:23,520 --> 00:02:27,872
+Two pictures from the training. Delivering thousands of pizzas across a city: a few
+
+36
+00:02:27,892 --> 00:02:31,932
+Ferraris, or thousands of bicycles? The bicycles. Or a room of professors at
+
+37
+00:02:31,952 --> 00:02:35,991
+whiteboards against a stadium of students with calculators. The professors win at a
+
+38
+00:02:36,011 --> 00:02:40,988
+hard proof. But to multiply a very large matrix, a multiply and an add for every
+
+39
+00:02:41,008 --> 00:02:44,111
+cell, the stadium wins. Machine learning, scientific simulation, data analysis:
+
+40
+00:02:44,131 --> 00:02:45,360
+those are stadium jobs.
+
+41
+00:02:45,430 --> 00:02:50,540
+Three ways to use them. Open OnDemand, a website where a GPU session is a form. An
+
+42
+00:02:50,560 --> 00:02:55,066
+interactive session from the terminal with s run. And a batch job, a script you
+
+43
+00:02:55,086 --> 00:02:57,480
+submit with s batch and walk away from.
+
+44
+00:02:57,550 --> 00:03:02,655
+One setup for all three. Log in, go to your scratch directory, and clone the
+
+45
+00:03:02,675 --> 00:03:06,755
+training repository. Everything the demos use is in there: a Python environment
+
+46
+00:03:06,775 --> 00:03:09,830
+script, a tiny GPU check, and the example code.
+
+47
+00:03:09,900 --> 00:03:15,282
+First way: the browser. On the Open OnDemand dashboard, open Standard Apps and pick
+
+48
+00:03:15,302 --> 00:03:16,440
+VS Code Server.
+
+49
+00:03:16,510 --> 00:03:20,931
+The form asks for a simple password for the editor, a partition, sharing here, and
+
+50
+00:03:20,951 --> 00:03:24,780
+the number of GPUs, one. Leave the rest as it is and launch.
+
+51
+00:03:24,850 --> 00:03:29,601
+When the session connects, open the cloned folder in VS Code, then a terminal from
+
+52
+00:03:29,621 --> 00:03:34,053
+the View menu. Make the environment script executable, run it, and check that which
+
+53
+00:03:34,073 --> 00:03:38,187
+python points into the new environment. Then the smallest possible test: the script
+
+54
+00:03:38,207 --> 00:03:42,640
+prints the CUDA visible devices variable. Zero means the scheduler gave you a GPU.
+
+55
+00:03:42,710 --> 00:03:47,561
+Second way: a live session from the terminal. s run on the sharing partition with
+
+56
+00:03:47,581 --> 00:03:52,757
+one GPU drops you onto a GPU node. Activate the same environment and run the fuller
+
+57
+00:03:52,777 --> 00:03:55,030
+check, which asks PyTorch for the card.
+
+58
+00:03:55,100 --> 00:03:58,723
+Here's that check. It prints the PyTorch version, whether CUDA is available, the
+
+59
+00:03:58,743 --> 00:04:03,486
+GPU's name, and then puts a tiny tensor on the card and prints where it lives. Open
+
+60
+00:04:03,506 --> 00:04:09,090
+it in v i, add an NVIDIA S M I line, and run it again to see the card itself.
+
+61
+00:04:09,160 --> 00:04:13,869
+Third way: batch. The same work as a script with S BATCH lines: the gpu partition,
+
+62
+00:04:13,889 --> 00:04:18,008
+one GPU, four CPUs, sixteen gigabytes, one hour, and log files. It activates the
+
+63
+00:04:18,028 --> 00:04:23,033
+environment and runs the check. Submit it with s batch; it runs when a card is free,
+
+64
+00:04:23,053 --> 00:04:26,580
+writes its output to the logs folder, and you read it later.
+
+65
+00:04:26,650 --> 00:04:31,999
+Is the card actually working? Put NVIDIA S M I in your script to print its state
+
+66
+00:04:32,019 --> 00:04:37,052
+while the job runs. And after a job finishes, gpu-logs with the job ID gives a
+
+67
+00:04:37,072 --> 00:04:40,842
+minute-by-minute record. This real one from the training: for five minutes nothing.
+
+68
+00:04:40,862 --> 00:04:44,000
+Then memory climbs to twenty-three percent, then seventy-eight, with utilization
+
+69
+00:04:44,020 --> 00:04:48,422
+still zero: the model is loading. Only at the end does utilization reach fifty-six
+
+70
+00:04:48,442 --> 00:04:51,580
+percent. Most of this job's time, the GPU was waiting.
+
+71
+00:04:51,650 --> 00:04:56,503
+Two habits keep a GPU busy. First, batching. The naive version sends fifty thousand
+
+72
+00:04:56,523 --> 00:05:02,072
+single rows to the card, one request at a time, and pays the overhead fifty thousand
+
+73
+00:05:02,092 --> 00:05:02,420
+times.
+
+74
+00:05:02,490 --> 00:05:07,565
+The batched version sends all fifty thousand rows at once and runs the model once.
+
+75
+00:05:07,585 --> 00:05:12,320
+Same arithmetic, far less overhead, and the card's thousands of cores all have work.
+
+76
+00:05:12,390 --> 00:05:16,903
+Picture it. Fifty thousand tiny parcels through the door one at a time, the card
+
+77
+00:05:16,923 --> 00:05:20,530
+idle between each. Or one crate, and every core busy at once.
+
+78
+00:05:20,600 --> 00:05:25,512
+Second, data loading. With zero workers the CPU prepares one batch at a time and the
+
+79
+00:05:25,532 --> 00:05:29,827
+GPU waits for each. With workers, pinned memory and a non-blocking copy, the next
+
+80
+00:05:29,847 --> 00:05:34,451
+batch is ready before the card finishes the current one. Batch your data. Give the
+
+81
+00:05:34,471 --> 00:05:36,300
+loader workers. Keep the card working.
+
+82
+00:05:36,370 --> 00:05:40,402
+Four habits to leave with. Choose the right partition: gpu-short for a quick job,
+
+83
+00:05:40,422 --> 00:05:45,033
+and s batch for anything long. Request only what you need, and check a finished job
+
+84
+00:05:45,053 --> 00:05:49,664
+with seff to see how many CPUs it really used. Use the GPU-tuned libraries, CUDA and
+
+85
+00:05:49,684 --> 00:05:53,717
+cuDNN, rather than plain code. And profile before you optimise. Stuck? Email r c
+
+86
+00:05:53,737 --> 00:05:57,190
+help at northeastern dot e d u, or come to office hours.
+
+87
+00:05:57,260 --> 00:06:01,187
+Let's recap with Claude. Six GPU partitions; gpu-short schedules fast, and sharing
+
+88
+00:06:01,207 --> 00:06:07,107
+is lent by PIs. sinfo with the G R E S column shows the cards, and the GRES-used
+
+89
+00:06:07,127 --> 00:06:11,711
+column, not MIXED, says what's free. A GPU is thousands of simple cores: the
+
+90
+00:06:11,731 --> 00:06:16,973
+stadium, not the professors. Three ways in: VS Code on Open OnDemand, s run with one
+
+91
+00:06:16,993 --> 00:06:21,578
+GPU, or an s batch script. gpu-logs shows the card's memory and utilization minute
+
+92
+00:06:21,598 --> 00:06:26,511
+by minute. And batch your data and give the DataLoader workers, so the card stays
+
+93
+00:06:26,531 --> 00:06:26,840
+busy.
+
+94
+00:06:26,910 --> 00:06:31,500
+Your turn. Paste this into Claude: Here is a PyTorch loop I run on a GPU: [paste
+
+95
+00:06:31,520 --> 00:06:35,839
+it]. First, tell me whether it processes samples one at a time or in batches, and
+
+96
+00:06:35,859 --> 00:06:39,635
+rewrite it to batch if it doesn't. Second, write the DataLoader line with workers
+
+97
+00:06:39,655 --> 00:06:43,974
+and pinned memory. Third, write me the Slurm srun command for a one-hour test on one
+
+98
+00:06:43,994 --> 00:06:48,312
+GPU and the sbatch script for the real run. Then check two things yourself. Did it
+
+99
+00:06:48,332 --> 00:06:52,380
+keep the arithmetic identical when it batched? And did it ask for only one GPU?
+
+100
+00:06:52,450 --> 00:06:57,330
+Intro to GPUs on Explorer. At Nik Bear Brown.

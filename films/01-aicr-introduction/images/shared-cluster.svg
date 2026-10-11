@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+<title>One cluster, six universities</title>
+<desc>Six universities (Boston University, Harvard, MIT, Northeastern, UMass, Yale) all connect to one shared AICR cluster, with Northeastern highlighted.</desc>
+<rect width="1200" height="680" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">One cluster, six universities</text>
+<path d="M 380 175 C 540 175, 560 385, 720 385" fill="none" stroke="#CFC9B8" stroke-width="2.5"/>
+<rect x="60" y="140" width="320" height="70" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="220" y="184" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="middle">Boston University</text>
+<path d="M 380 257 C 540 257, 560 385, 720 385" fill="none" stroke="#CFC9B8" stroke-width="2.5"/>
+<rect x="60" y="222" width="320" height="70" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="220" y="266" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="middle">Harvard</text>
+<path d="M 380 339 C 540 339, 560 385, 720 385" fill="none" stroke="#CFC9B8" stroke-width="2.5"/>
+<rect x="60" y="304" width="320" height="70" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="220" y="348" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="middle">MIT</text>
+<path d="M 380 421 C 540 421, 560 385, 720 385" fill="none" stroke="#D97757" stroke-width="3"/>
+<rect x="60" y="386" width="320" height="70" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="220" y="430" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="middle">Northeastern</text>
+<path d="M 380 503 C 540 503, 560 385, 720 385" fill="none" stroke="#CFC9B8" stroke-width="2.5"/>
+<rect x="60" y="468" width="320" height="70" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="220" y="512" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="middle">UMass</text>
+<path d="M 380 585 C 540 585, 560 385, 720 385" fill="none" stroke="#CFC9B8" stroke-width="2.5"/>
+<rect x="60" y="550" width="320" height="70" rx="12" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="220" y="594" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="middle">Yale</text>
+<rect x="720" y="250" width="420" height="270" rx="14" fill="#3D3929"/>
+<text x="930" y="360" font-family="EB Garamond, Georgia, serif" font-size="72" font-weight="500" fill="#F2F0E9" text-anchor="middle">AICR</text>
+<text x="930" y="410" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#CFC9B8" text-anchor="middle">AI Compute Resource</text>
+<text x="930" y="470" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#CFC9B8" text-anchor="middle">one shared Slurm cluster</text>
+<text x="930" y="570" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">Massachusetts Green High</text>
+<text x="930" y="596" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">Performance Computing Center</text>
+<text x="930" y="636" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">built with the Massachusetts AI Hub</text>
+
+</svg>

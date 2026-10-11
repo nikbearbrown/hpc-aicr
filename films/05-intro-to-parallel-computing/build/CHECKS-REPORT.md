@@ -1,0 +1,2 @@
+# CHECKS-REPORT — Intro to Parallel Computing (lecture)
+**Result.** No punts, no holds. 30 beats: 28 SHOW / 0 HOLD / 0 PUNT / 2 CARD-class bookends. Teaching arc: FRAMEWORK ✓ (B20/B30 before any code) | WORKED EXAMPLE ✓ (B50–B55: one problem from serial to 80 cores with its real numbers) | FALSIFIABILITY ✓ (B40 the ceiling; B55 the 12-core dip; B73 where more GPUs barely help) | SCAFFOLDED TASK ✓ | BOOKENDS ✓ | NO-SOURCE-NO-VERDICT ✓. Lane histogram: Manim 14 · code 9 · terminal 3 · text-only 0.

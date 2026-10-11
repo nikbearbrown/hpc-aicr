@@ -1,0 +1,936 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-managing-projects",
+    "title": "Managing /projects on Explorer",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "palette": "claude",
+    "source": "hpc/Managing-Projects-on-Explorer/train_main.md",
+    "fps": 30,
+    "pixel_height": 2160,
+    "build": {
+      "at": "2026-10-02T15:05:57",
+      "cut": "master",
+      "filled": 16,
+      "of": 16,
+      "slates": [],
+      "skin_warnings": [
+        "BIDEA: palette=claude but the cold open is 'BrutalistHesitantWriter' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Hallo. This is Liam, in for Bear. A new grad student joins the lab. Who adds them to slash projects? If the answer is submit a ticket and wait, you haven't met the project command yet. This lecture covers how shared storage actually works on Explorer, the five access roles, and every command a PI — or their delegate — needs to run a lab without calling for help.",
+      "estimated_duration_s": 27.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'I need to submit a ticket to add someone to /projects'"
+          },
+          {
+            "at": 0.35,
+            "event": "backspaces 'submit a ticket' -> 'use the project command'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "I need to submit a ticket\nto add someone to /projects",
+            "triggerWords": "submit a ticket",
+            "replacementWords": "use the project command",
+            "fontSize": 70,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-managing-projects",
+            "banner": ""
+          },
+          "rendered": {
+            "out": "media/BIDEA.mp4",
+            "at": "2026-10-02T18:20:28.927515+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the misconception (ticket) and corrects it (project command).",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 18.86,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 18.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. Slash projects: persistent shared storage on Explorer, up to 35 terabytes free, right place for research data and shared pipelines, not slash scratch. The project command: terminal tool that lets PIs and delegates manage membership directly, no ticket. PI: project owner, full control over roles, email, and TTL. Delegate: trusted lab member promoted by the PI, can add and remove members and guests. T T L, time to live: administrative marker, not a countdown — Research Computing emails the PI when it expires, data untouched. And IB constraint: InfiniBand network fabric required by the project command, which is why you land on a compute node before running anything.",
+      "estimated_duration_s": 44.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "'/projects' lands"
+          },
+          {
+            "at": 0.25,
+            "event": "'project command'"
+          },
+          {
+            "at": 0.42,
+            "event": "'PI'"
+          },
+          {
+            "at": 0.6,
+            "event": "'Delegate'"
+          },
+          {
+            "at": 0.75,
+            "event": "'TTL'"
+          },
+          {
+            "at": 0.88,
+            "event": "'IB constraint'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "/projects",
+                "meaning": "persistent shared storage on Explorer, up to 35 TB free — the right place for research data"
+              },
+              {
+                "term": "project command",
+                "meaning": "terminal tool letting PIs and delegates manage /projects membership directly"
+              },
+              {
+                "term": "PI",
+                "meaning": "project owner: full control over roles, group email, and TTL"
+              },
+              {
+                "term": "Delegate",
+                "meaning": "trusted lab member promoted by the PI; can add/remove members and guests"
+              },
+              {
+                "term": "TTL",
+                "meaning": "Time To Live: administrative marker, not a countdown — data is never touched when it expires"
+              },
+              {
+                "term": "IB constraint",
+                "meaning": "InfiniBand fabric required by the project command; run srun --constraint=ib first"
+              }
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/BDEFS.mp4",
+            "at": "2026-10-02T18:21:01.807586+00:00"
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 39.1,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 39.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "remotion:ClaudeDefinitions",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · Storage",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Three storage areas on Explorer. Slash home: 75 gigabytes, personal scripts and configuration files. Slash scratch: 50 terabytes — but purged on the first Tuesday of every month, so not for long-term storage. Slash projects: up to 35 terabytes, free, persistent, and shared across your entire lab.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "/home tile lands"
+          },
+          {
+            "at": 0.42,
+            "event": "/scratch tile lands"
+          },
+          {
+            "at": 0.72,
+            "event": "/projects tile lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "LibraryIconRow",
+          "props": {
+            "title": "Storage on Explorer",
+            "items": [
+              {
+                "label": "/home",
+                "sub": "75 GB — personal",
+                "icon": "home",
+                "at": 0.15,
+                "mono": true
+              },
+              {
+                "label": "/scratch",
+                "sub": "50 TB — purged monthly",
+                "icon": "trash",
+                "at": 0.42,
+                "mono": true
+              },
+              {
+                "label": "/projects",
+                "sub": "35 TB — persistent",
+                "icon": "database",
+                "at": 0.72,
+                "mono": true
+              }
+            ],
+            "durationSeconds": 18.8,
+            "iconPx": 320
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-10-02T18:50:32.697585+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 17.3,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 17.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:LibraryIconRow",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Roles",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Four active roles, stacked by permission. Guest: read-only access to the project directory. Member: read and write. Delegate: everything a Member can do, plus the power to add and remove members and guests on the PI's behalf. PI: full ownership — manages delegates, views and updates the group email, and sees the TTL.",
+      "estimated_duration_s": 21.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "Guest tile lands"
+          },
+          {
+            "at": 0.32,
+            "event": "Member tile lands"
+          },
+          {
+            "at": 0.57,
+            "event": "Delegate tile lands"
+          },
+          {
+            "at": 0.78,
+            "event": "PI tile lands"
+          }
+        ],
+        "remotion": {
+          "pattern": "LibraryIconRow",
+          "props": {
+            "title": "Access Roles",
+            "items": [
+              {
+                "label": "Guest",
+                "sub": "read-only",
+                "icon": "eye",
+                "at": 0.1
+              },
+              {
+                "label": "Member",
+                "sub": "read + write",
+                "icon": "pencil",
+                "at": 0.32
+              },
+              {
+                "label": "Delegate",
+                "sub": "manages members",
+                "icon": "users",
+                "at": 0.57
+              },
+              {
+                "label": "PI",
+                "sub": "full control",
+                "icon": "shield",
+                "at": 0.78
+              }
+            ],
+            "durationSeconds": 21.2,
+            "iconPx": 220
+          },
+          "rendered": {
+            "out": "media/B20.mp4",
+            "at": "2026-10-02T18:22:14.056869+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 17.56,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 17.583333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B20.mp4",
+        "filled_by": "remotion:LibraryIconRow",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · Roles",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Every project gets a TTL when it's created. Think of it as an expiration date on the administrative record, not on your data. When it lapses, Research Computing emails the PI: still active? any changes needed? The data sits exactly where it was.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Horizontal timeline: 'project created' → 'TTL expires' → 'RC emails PI'; annotation 'data untouched' below.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "timeline draws left to right"
+          },
+          {
+            "at": 0.55,
+            "event": "TTL marker highlighted"
+          },
+          {
+            "at": 0.75,
+            "event": "'RC emails PI' lands; 'data untouched' annotation fades in"
+          }
+        ],
+        "manim": {
+          "class": "TTLTimeline"
+        },
+        "motion_claim": "Horizontal timeline: 'project created' → 'TTL expires' → 'RC emails PI'; annotation 'data untouched' below."
+      },
+      "actual_duration_s": 14.38,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 14.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B21.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T15:05:57"
+      },
+      "rendered": true,
+      "media_file": "media/B21.mp4",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture Manim lane (show-tell drawing laws): sparse line-art / text on a cream stage; voice carries the explanation. Underfill and clustered waived; contrast and edge-bleed still apply."
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "One rule before any project command: you have to be on a compute node in the short partition. From the login node, run s-run dash-p short dash dash constraint equals ib dash dash pty bash. Your prompt changes to show a compute node hostname. Now you're ready.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "srun command appears"
+          },
+          {
+            "at": 0.65,
+            "event": "new prompt appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "getting onto an IB compute node",
+            "lines": [
+              "$ srun -p short --constraint=ib --pty bash",
+              "[s.caplins@c0123 ~]$"
+            ],
+            "startCue": 15,
+            "lineGap": 36,
+            "durationSeconds": 18.8
+          },
+          "rendered": {
+            "out": "media/B30.mp4",
+            "at": "2026-10-02T18:22:48.071052+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 14.74,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 14.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B30.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Every command follows the same four-part form: project — the project name — the action — the subcommand — and optionally, a list of users. Memorize the shape; the subcommands are readable.",
+      "estimated_duration_s": 12.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "command form appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "command structure",
+            "lines": [
+              "$ project <project_name> <action> <subcommand> <users>"
+            ],
+            "startCue": 15,
+            "lineGap": 36,
+            "durationSeconds": 12.8
+          },
+          "rendered": {
+            "out": "media/B31.mp4",
+            "at": "2026-10-02T18:23:12.249176+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 10.79,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 10.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B31.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Viewing your roster. Any member can run project mylab view members. Delegates and the PI can also view delegates and guests separately. The PI alone gets two more: view groupemail and view t-t-l.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "project view command appears"
+          },
+          {
+            "at": 0.5,
+            "event": "member list appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "viewing the group",
+            "lines": [
+              "$ project mylab view members",
+              "Members of mylab:",
+              "  pi_username",
+              "  labmanager",
+              "  jsmith"
+            ],
+            "startCue": 15,
+            "lineGap": 28,
+            "durationSeconds": 13.2
+          },
+          "rendered": {
+            "out": "media/B40.mp4",
+            "at": "2026-10-02T18:23:37.850904+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 11.8,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 11.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B40.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "New grad student joins the lab. A delegate or PI runs: project mylab add members jsmith. Then verify: project mylab view members — there they are. No ticket.",
+      "estimated_duration_s": 11.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "add command appears"
+          },
+          {
+            "at": 0.45,
+            "event": "view command appears"
+          },
+          {
+            "at": 0.65,
+            "event": "jsmith appears in list"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "adding a member",
+            "lines": [
+              "$ project mylab add members jsmith",
+              "$ project mylab view members",
+              "Members of mylab:",
+              "  pi_username",
+              "  labmanager",
+              "  jsmith"
+            ],
+            "startCue": 15,
+            "lineGap": 26,
+            "durationSeconds": 11.2
+          },
+          "rendered": {
+            "out": "media/B41.mp4",
+            "at": "2026-10-02T18:24:00.584051+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 10.13,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 10.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B41.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Three rotation students arriving at once. Comma-separated list, no spaces: project mylab add members rot1 comma rot2 comma rot3. One command, three additions.",
+      "estimated_duration_s": 9.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.35,
+            "event": "multi-add command appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "adding multiple members",
+            "lines": [
+              "$ project mylab add members rot1,rot2,rot3"
+            ],
+            "startCue": 15,
+            "lineGap": 36,
+            "durationSeconds": 9.2
+          },
+          "rendered": {
+            "out": "media/B42.mp4",
+            "at": "2026-10-02T18:24:18.880428+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 11.03,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 11.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B42.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B43",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Student graduates, needs to come off the list. project mylab remove members bpatel. If bpatel was a delegate, stripping the delegate role only demotes them to member — you'd run remove members separately to take them out entirely.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "remove members command appears"
+          },
+          {
+            "at": 0.56,
+            "event": "delegate-then-member two-step appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "removing a member",
+            "lines": [
+              "$ project mylab remove members bpatel",
+              "# note: remove delegates first if they held that role",
+              "$ project mylab remove delegates bpatel",
+              "$ project mylab remove members bpatel"
+            ],
+            "startCue": 15,
+            "lineGap": 28,
+            "durationSeconds": 15.2
+          },
+          "rendered": {
+            "out": "media/B43.mp4",
+            "at": "2026-10-02T18:24:47.701313+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 13.38,
+      "audio_file": "mp3/beat-B43.mp3",
+      "render_duration_s": 13.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B43.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "III · Commands",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Two diagnostic commands worth knowing. groups username shows every group the user belongs to, which lets you confirm access without running a project command. getfacl slash projects slash mylab reads the access control list straight from the filesystem — the ground truth on who can read and write.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.18,
+            "event": "groups command + output appears"
+          },
+          {
+            "at": 0.52,
+            "event": "getfacl command + output appears"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "diagnostic commands",
+            "lines": [
+              "$ groups jsmith",
+              "jsmith : jsmith mylab compute_group",
+              "$ getfacl /projects/mylab",
+              "# file: projects/mylab",
+              "user::rwx",
+              "group::rwx",
+              "other::---"
+            ],
+            "startCue": 15,
+            "lineGap": 24,
+            "durationSeconds": 19.2
+          },
+          "rendered": {
+            "out": "media/B50.mp4",
+            "at": "2026-10-02T18:25:23.365295+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 16.79,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 16.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B50.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "III · Commands",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Four habits that prevent headaches. Review membership after every graduation — students leave, access shouldn't follow them. Use Guest for external collaborators: read-only, principle of least privilege, protects your data from accidental modification. Designate at least one Delegate so the PI isn't a bottleneck for every membership change. Keep the group email pointed at an address someone actually reads — that's where quota warnings and TTL notifications land.",
+      "estimated_duration_s": 27.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four best practices appearing one by one: review after graduations; Guest for externals; designate a Delegate; keep group email current.",
+        "show": [
+          {
+            "at": 0.12,
+            "event": "'Review membership' appears"
+          },
+          {
+            "at": 0.35,
+            "event": "'Use Guest for externals' appears"
+          },
+          {
+            "at": 0.58,
+            "event": "'Designate a Delegate' appears"
+          },
+          {
+            "at": 0.78,
+            "event": "'Keep group email current' appears"
+          }
+        ],
+        "manim": {
+          "class": "BestPracticesList"
+        },
+        "motion_claim": "Four best practices appearing one by one: review after graduations; Guest for externals; designate a Delegate; keep group email current."
+      },
+      "actual_duration_s": 24.62,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 24.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B51.mp4",
+        "filled_by": "media",
+        "at": "2026-10-02T15:05:57"
+      },
+      "rendered": true,
+      "media_file": "media/B51.mp4",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture Manim lane (show-tell drawing laws): sparse line-art / text on a cream stage; voice carries the explanation. Underfill and clustered waived; contrast and edge-bleed still apply."
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "The map. Slash projects persists where slash scratch doesn't. Roles stack: Guest reads, Member writes, Delegate manages members, PI manages everything. One setup command gets you onto an IB node. Then: view, add, remove — one command per task, no ticket required.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "title fades in"
+          },
+          {
+            "at": 0.4,
+            "event": "verdict line lands"
+          },
+          {
+            "at": 0.65,
+            "event": "bullet list fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Managing /projects",
+            "artifactLines": [
+              "/projects persists — /scratch is purged every first Tuesday.",
+              "Roles stack: Guest reads, Member writes, Delegate manages, PI owns.",
+              "srun -p short --constraint=ib --pty bash before any project command.",
+              "view · add · remove — one command per task, no ticket required.",
+              "Use Guest for externals; designate a Delegate; keep the group email current.",
+              "groups and getfacl inspect access from the filesystem directly."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": "2026-10-02T18:38:37.678895+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 15.34,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Open a terminal on Explorer. Request a compute node with the srun command. Then run project on your lab's slash projects space — view the membership, and try adding or removing a user if you have delegate access.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "prompt text appears in composer"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "EXPLORER · YOUR TURN",
+            "segment": "Manage Your /projects Space",
+            "command": "I manage a research group's /projects directory on Explorer. Walk me through: (1) how to get onto an IB compute node, (2) how to view current members, (3) how to add a new grad student as a member, and (4) one best practice for keeping membership clean over time.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did you run srun --constraint=ib first?",
+              "Check: does the new member show up in project view members?"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Sonnet 4.6"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": "2026-10-02T18:33:17.204055+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 12.27,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 12.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-02T15:05:57"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "I'm Liam. For Bear. At Nik Bear Brown. Subscribe and I'll see you in the next one.",
+      "estimated_duration_s": 6.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "title fades in"
+          },
+          {
+            "at": 0.6,
+            "event": "handle fades in"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Managing /projects on Explorer",
+            "slug": "claude-liam-lecture-managing-projects",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": "2026-10-02T18:33:31.029243+00:00"
+          }
+        }
+      },
+      "actual_duration_s": 5.16,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 5.166666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-10-02T15:05:57"
+      }
+    }
+  ]
+}

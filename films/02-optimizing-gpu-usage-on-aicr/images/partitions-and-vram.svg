@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<title>AICR GPU partitions</title>
+<desc>Four AICR GPU partitions with their GPU model and time limit as bars, and the memory per card with the B200 figure left to be read from the device.</desc>
+<rect width="1200" height="800" fill="#F2F0E9"/>
+<text x="60" y="76" font-size="46" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >AICR GPU partitions</text>
+<text x="60" y="112" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Read from the live AICR login node with sinfo, 2026-10-11</text>
+<text x="60" y="160" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >PARTITION</text>
+<text x="330" y="160" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >GPU</text>
+<text x="600" y="160" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >TIME LIMIT</text>
+<text x="960" y="160" font-size="18" font-weight="600" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >USE</text>
+<rect x="40" y="180" width="1120" height="50" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2" />
+<text x="60" y="213" font-size="20" font-weight="500" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >b200-devel</text>
+<text x="330" y="213" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >NVIDIA B200</text>
+<rect x="600" y="193" width="43.33333333333333" height="24" rx="6" fill="#D97757" stroke="none" stroke-width="0" />
+<text x="657.3333333333334" y="213" font-size="20" font-weight="600" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >4 h</text>
+<text x="960" y="213" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Interactive</text>
+<rect x="40" y="240" width="1120" height="50" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2" />
+<text x="60" y="273" font-size="20" font-weight="500" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >b200-batch</text>
+<text x="330" y="273" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >NVIDIA B200</text>
+<rect x="600" y="253" width="260.0" height="24" rx="6" fill="#8A8470" stroke="none" stroke-width="0" />
+<text x="874.0" y="273" font-size="20" font-weight="600" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >24 h</text>
+<text x="960" y="273" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Production</text>
+<rect x="40" y="300" width="1120" height="50" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2" />
+<text x="60" y="333" font-size="20" font-weight="500" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >rtx-devel</text>
+<text x="330" y="333" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >NVIDIA RTX PRO 6000</text>
+<rect x="600" y="313" width="43.33333333333333" height="24" rx="6" fill="#D97757" stroke="none" stroke-width="0" />
+<text x="657.3333333333334" y="333" font-size="20" font-weight="600" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >4 h</text>
+<text x="960" y="333" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Interactive</text>
+<rect x="40" y="360" width="1120" height="50" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2" />
+<text x="60" y="393" font-size="20" font-weight="500" fill="#3D3929" text-anchor="start" font-family="Menlo, Consolas, monospace" >rtx-batch</text>
+<text x="330" y="393" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >NVIDIA RTX PRO 6000</text>
+<rect x="600" y="373" width="260.0" height="24" rx="6" fill="#8A8470" stroke="none" stroke-width="0" />
+<text x="874.0" y="393" font-size="20" font-weight="600" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >24 h</text>
+<text x="960" y="393" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Production</text>
+<text x="60" y="450" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >8 GPUs per node on all four. Defaults are small, so set time, CPUs and memory yourself.</text>
+<text x="60" y="520" font-size="32" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Memory per card (VRAM)</text>
+<text x="60" y="574" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >B200</text>
+<rect x="330" y="552" width="400" height="34" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2.5" />
+<rect x="730" y="552" width="60" height="34" rx="8" fill="#F2F0E9" stroke="#8A8470" stroke-width="2.5" stroke-dasharray="8 7"/>
+<text x="812" y="576" font-size="20" font-weight="600" fill="#D97757" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Read it from the device</text>
+<text x="60" y="632" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >RTX PRO 6000</text>
+<rect x="330" y="610" width="210" height="34" rx="8" fill="#E6E2D6" stroke="#8A8470" stroke-width="2.5" />
+<text x="560" y="634" font-size="20" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >about 96 GB (workshop)</text>
+<rect x="60" y="676" width="1080" height="60" rx="10" fill="#1F1E1A" stroke="#1F1E1A" stroke-width="0" />
+<text x="90" y="714" font-size="20" font-weight="400" fill="#FAF9F5" text-anchor="start" font-family="Menlo, Consolas, monospace" >nvidia-smi --query-gpu=memory.total --format=csv,noheader</text>
+<text x="60" y="770" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Run it inside a GPU allocation, not on the login node.</text>
+
+</svg>

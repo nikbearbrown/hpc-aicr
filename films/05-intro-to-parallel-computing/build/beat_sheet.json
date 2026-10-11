@@ -1,0 +1,1560 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-intro-to-parallel-computing",
+    "title": "Intro to Parallel Computing",
+    "topic": "RESEARCH COMPUTING · PARALLEL COMPUTING",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "Hindi (Namaste)",
+    "audience": "Researchers and students scaling code from one core to many GPUs on a cluster; assumes no other film",
+    "source_doc": "hpc/Intro-to-HPC-Scaling-Parallel-Computing-2026/intro_to_parallel_computing.md (Northeastern Research Computing training, presenter Ghanghoon 'Will' Paik; github.com/northeastern-rc-training/Intro-to-HPC-Scaling-Parallel-Computing-2026), read 2026-10-06",
+    "playlist": "Explorer",
+    "chapter_number": 4,
+    "series_title": "Research Computing on Explorer and AICR",
+    "series_video_number": 5,
+    "series_video_count": 13,
+    "series_entry_video": "Video 1 · AICR Introduction",
+    "lecture_opening_description": "Threads, processes and scaling across nodes",
+    "tags": [
+      "parallel computing",
+      "HPC",
+      "Amdahl's law",
+      "Gustafson's law",
+      "OpenMP",
+      "MPI",
+      "Slurm",
+      "Game of Life",
+      "CUDA",
+      "PyTorch DDP",
+      "mpi4py",
+      "Explorer cluster",
+      "Northeastern",
+      "Research Computing",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-09T12:33:22",
+      "cut": "master",
+      "filled": 31,
+      "of": 31,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Intro to Parallel Computing. Threads, processes and scaling across nodes: how work gets split up, and when that actually makes it faster.",
+      "estimated_duration_s": 10.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 10.86,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 10.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Namaste! This is Liam, in for Bear. First, a correction. Twice the processors is not twice the speed. The serial part of your code, and the cost of processors talking to each other, set the limit before the hardware does. This lecture walks from one core to many GPUs across nodes: why we parallelise, the four kinds of parallel machine, shared against distributed memory, Amdahl's and Gustafson's laws, a real benchmark of Conway's Game of Life, how GPUs and PyTorch scale, and the parallel tools in Python, R and MATLAB.",
+      "estimated_duration_s": 36.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types the assumption"
+          },
+          {
+            "at": 0.3,
+            "event": "corrects it"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Twice the processors,\ntwice the speed",
+            "triggerWords": "twice the speed",
+            "replacementWords": "less than twice the speed",
+            "fontSize": 72,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-intro-to-parallel-computing",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the newcomer's assumption and corrects it.",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 28.05,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 28.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. A core: one processing unit that runs instructions on its own. A node: one computer in the cluster, with its own memory. A thread: a stream of work inside one process, sharing that process's memory. A process: a running program with its own memory. MPI: the message passing interface, the standard way processes on different nodes send data to each other. And speedup: serial time divided by parallel time.",
+      "estimated_duration_s": 28.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "core"
+          },
+          {
+            "at": 0.25,
+            "event": "node"
+          },
+          {
+            "at": 0.4,
+            "event": "thread"
+          },
+          {
+            "at": 0.58,
+            "event": "process"
+          },
+          {
+            "at": 0.72,
+            "event": "MPI"
+          },
+          {
+            "at": 0.87,
+            "event": "speedup"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "core",
+                "meaning": "one processing unit that runs instructions on its own"
+              },
+              {
+                "term": "node",
+                "meaning": "one computer in the cluster, with its own memory"
+              },
+              {
+                "term": "thread",
+                "meaning": "a stream of work inside one process, sharing its memory"
+              },
+              {
+                "term": "process",
+                "meaning": "a running program with its own memory"
+              },
+              {
+                "term": "MPI",
+                "meaning": "message passing: how processes on different nodes exchange data"
+              },
+              {
+                "term": "speedup",
+                "meaning": "serial time divided by parallel time"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 22.7
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 22.7,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 22.708333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · Why Parallel",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Start with why. Simulations, data processing, model training: sooner or later one core isn't fast enough, so we split the work. Think of laundry. Serial: wash, dry, fold one load, then the next waits. Nine steps for three loads. Pipelining: while load one dries, load two washes. Five steps. Data parallelism: three washers, three dryers, three loads at once. Three steps. Most of today is data parallelism: cut a big problem into small ones and solve them simultaneously.",
+      "estimated_duration_s": 31.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three timeline grids build one after another from the source's tables: serial (3 loads across 9 time slots, one block per slot), pipelined (5 slots, staggered), data-parallel (3 slots, stacked); each slot is a kraft block labelled wash / dry / fold; the slot count lands as a numeral beside each grid (9 · 5 · 3). Act title top-left.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "serial: 9"
+          },
+          {
+            "at": 0.5,
+            "event": "pipelined: 5"
+          },
+          {
+            "at": 0.7,
+            "event": "data parallel: 3"
+          },
+          {
+            "at": 0.9,
+            "event": "cut a big problem into small ones"
+          }
+        ],
+        "manim": {
+          "class": "B10_Laundry"
+        },
+        "motion_claim": "Three timeline grids build one after another from the source's tables: serial (3 loads across 9 time slots, one block per slot), pipelined (5 slots, staggered), data-parallel (3 slots, stacked); each slot is a kraft block labelled wash / dry / fold; the slot count lands as a numeral beside each grid (9 · 5 · 3). Act title top-left."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 26.3,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 26.333333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Flynn's Four Kinds",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Flynn's taxonomy sorts machines by how instructions and data flow. Single or multiple instruction; single or multiple data. SISD is an ordinary single core. SIMD is one instruction over many data points at once: that is a GPU. MISD is rare, fault-tolerant hardware. And MIMD is many instructions over many data: a multi-node cluster, each task on its own data. Today's two are SIMD, the GPU, and MIMD, the cluster.",
+      "estimated_duration_s": 28.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A 2×2 grid draws with axes 'instruction: single · multiple' and 'data: single · multiple'; each cell lands with its acronym and a tiny cast picture (one core; a GPU block over a row of data squares; a faded cell for MISD; three racks each with its own data box); SIMD and MIMD get the terracotta dot. Act title top-left.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "axes"
+          },
+          {
+            "at": 0.35,
+            "event": "SISD"
+          },
+          {
+            "at": 0.5,
+            "event": "SIMD = GPU"
+          },
+          {
+            "at": 0.62,
+            "event": "MISD"
+          },
+          {
+            "at": 0.75,
+            "event": "MIMD = cluster"
+          },
+          {
+            "at": 0.92,
+            "event": "the two that matter"
+          }
+        ],
+        "manim": {
+          "class": "B20_Flynn"
+        },
+        "motion_claim": "A 2×2 grid draws with axes 'instruction: single · multiple' and 'data: single · multiple'; each cell lands with its acronym and a tiny cast picture (one core; a GPU block over a row of data squares; a faded cell for MISD; three racks each with its own data box); SIMD and MIMD get the terracotta dot. Act title top-left."
+      },
+      "actual_duration_s": 23.17,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 23.208333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · Shared Or Distributed",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "How processors reach memory decides which tool you use. Shared memory: the cores of one node read one pool of RAM, any core any address. Easier to program; the tool is OpenMP; the limit is one machine. Distributed memory: each node has its own RAM, and node A can't read node B's. Programs send data over the network; the tool is MPI; the gain is that you scale across nodes. Most real HPC codes are hybrid: MPI between nodes, OpenMP inside each.",
+      "estimated_duration_s": 32.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left: one node drawn as a plinth with four core pads all cabled to one memory slab ('RAM'), label 'OpenMP'; right: three nodes each with their own memory slab, joined by a network belt, labels 'MPI'; then 'hybrid' lands as both pictures combine: each node's cores share its slab, and belts link the nodes. Act title top-left.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "shared: one RAM, many cores"
+          },
+          {
+            "at": 0.4,
+            "event": "OpenMP"
+          },
+          {
+            "at": 0.55,
+            "event": "distributed: own memory, a network"
+          },
+          {
+            "at": 0.75,
+            "event": "MPI"
+          },
+          {
+            "at": 0.9,
+            "event": "hybrid"
+          }
+        ],
+        "manim": {
+          "class": "B30_SharedVsDistributed"
+        },
+        "motion_claim": "Left: one node drawn as a plinth with four core pads all cabled to one memory slab ('RAM'), label 'OpenMP'; right: three nodes each with their own memory slab, joined by a network belt, labels 'MPI'; then 'hybrid' lands as both pictures combine: each node's cores share its slab, and belts link the nodes. Act title top-left."
+      },
+      "actual_duration_s": 27.2,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 27.208333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B30.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · Shared Or Distributed",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "This maps straight onto Slurm. n tasks is the number of processes, the MPI ranks. CPUs per task is the cores each process gets for its threads. They multiply: four tasks per node, five CPUs per task, is twenty cores per node. Pure OpenMP is one task with twenty CPUs. Pure MPI is twenty tasks with one CPU each. Hybrid sits between.",
+      "estimated_duration_s": 24.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A node plinth with 20 core pads arranged 4 × 5; four process boxes land, each spanning 5 pads ('--ntasks-per-node=4 · --cpus-per-task=5 · 20'); then the same 20 pads regroup under one box ('1 × 20: OpenMP'), then as twenty single boxes ('20 × 1: MPI'); mono flags beside each arrangement.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "4 × 5 = 20"
+          },
+          {
+            "at": 0.6,
+            "event": "1 × 20"
+          },
+          {
+            "at": 0.78,
+            "event": "20 × 1"
+          }
+        ],
+        "manim": {
+          "class": "B31_TasksTimesCpus"
+        },
+        "motion_claim": "A node plinth with 20 core pads arranged 4 × 5; four process boxes land, each spanning 5 pads ('--ntasks-per-node=4 · --cpus-per-task=5 · 20'); then the same 20 pads regroup under one box ('1 × 20: OpenMP'), then as twenty single boxes ('20 × 1: MPI'); mono flags beside each arrangement."
+      },
+      "actual_duration_s": 20.63,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 20.666666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B31.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "IV · The Speed Limit",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Now the speed limit. Not everything parallelises: reading data, writing results, steps that depend on the last. Amdahl's law: speedup equals one over S plus P over N, where S is the serial fraction, P the parallel fraction, and N the number of processors. If ten percent of your code is serial, the most you can ever get is ten times, however many processors you add. The curve climbs, then flattens. This is strong scaling: the same problem, more cores.",
+      "estimated_duration_s": 32.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The formula typeset (MathTex: Speedup = 1/(S + P/N), S, P = 1 − S); axes 'processors N' (1…64) and 'speedup'; the S = 0.1 curve draws and bends toward a dashed ceiling at 10 ('10× at most'); a dashed ideal diagonal for contrast; label 'strong scaling'. Act title top-left.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "the formula"
+          },
+          {
+            "at": 0.55,
+            "event": "S = 0.1: the curve"
+          },
+          {
+            "at": 0.72,
+            "event": "ceiling at 10×"
+          },
+          {
+            "at": 0.92,
+            "event": "strong scaling"
+          }
+        ],
+        "manim": {
+          "class": "B40_Amdahl"
+        },
+        "motion_claim": "The formula typeset (MathTex: Speedup = 1/(S + P/N), S, P = 1 − S); axes 'processors N' (1…64) and 'speedup'; the S = 0.1 curve draws and bends toward a dashed ceiling at 10 ('10× at most'); a dashed ideal diagonal for contrast; label 'strong scaling'. Act title top-left."
+      },
+      "actual_duration_s": 22.66,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 22.666666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "IV · The Speed Limit",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Gustafson asked the other question: what if the problem grows with the cores? A researcher with a hundred cores doesn't finish a ten-minute problem in six seconds. They solve a problem a hundred times larger in the same ten minutes. Speedup equals S plus P times N. That is weak scaling, and it's how most real HPC work gets done. Both laws are right; they answer different questions. One tip before any code: plan what can be parallel. Retrofitting parallelism onto finished serial code is painful.",
+      "estimated_duration_s": 34.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The formula typeset (MathTex: Speedup = S + P·N); the same axes, and a near-straight line climbs beside Amdahl's flattening curve; a clock holding at '10 min' while a problem block grows 100× ('100 cores · 100× the problem'); label 'weak scaling'; a small planning page with a check lands on 'plan what can be parallel'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the question"
+          },
+          {
+            "at": 0.4,
+            "event": "100× the problem, same 10 minutes"
+          },
+          {
+            "at": 0.55,
+            "event": "S + P·N, near-linear"
+          },
+          {
+            "at": 0.7,
+            "event": "weak scaling"
+          },
+          {
+            "at": 0.9,
+            "event": "plan first"
+          }
+        ],
+        "manim": {
+          "class": "B41_Gustafson"
+        },
+        "motion_claim": "The formula typeset (MathTex: Speedup = S + P·N); the same axes, and a near-straight line climbs beside Amdahl's flattening curve; a clock holding at '10 min' while a problem block grows 100× ('100 cores · 100× the problem'); label 'weak scaling'; a small planning page with a check lands on 'plan what can be parallel'."
+      },
+      "actual_duration_s": 26.13,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 26.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B41.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "V · The Game Of Life",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Now a real case. Conway's Game of Life: a grid where each cell's next state depends on its eight neighbours. It is embarrassingly parallel, because within one time step every cell is independent of every other. A single core walks the grid row by row. Many cores can take the rows at once.",
+      "estimated_duration_s": 21.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A grid of cells; a glider pattern steps forward twice; one cell's eight neighbours ring; then a cursor sweeps the grid row by row ('serial'); then the rows split into four bands that each sweep at once ('parallel'). Act title top-left.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the glider steps"
+          },
+          {
+            "at": 0.4,
+            "event": "eight neighbours"
+          },
+          {
+            "at": 0.6,
+            "event": "independent per step"
+          },
+          {
+            "at": 0.8,
+            "event": "row by row, then bands at once"
+          }
+        ],
+        "manim": {
+          "class": "B50_GameOfLife"
+        },
+        "motion_claim": "A grid of cells; a glider pattern steps forward twice; one cell's eight neighbours ring; then a cursor sweeps the grid row by row ('serial'); then the rows split into four bands that each sweep at once ('parallel'). Act title top-left."
+      },
+      "actual_duration_s": 15.85,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 15.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B50.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "V · The Game Of Life",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "With OpenMP, one directive above the loop asks the compiler to spread it across the cores of a node. The pragma collapses the two loops into one parallel space; the compiler creates and distributes the threads.",
+      "estimated_duration_s": 14.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the loop prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "life_openmp.cpp",
+            "code": "#pragma omp parallel for collapse(2)\nfor (int i = 1; i <= rows; i++) {\n    for (int j = 1; j <= cols; j++) {\n        // compute next state for cell (i, j)\n    }\n}",
+            "language": "cpp",
+            "largeText": true,
+            "sparkLine": "One pragma; the compiler does the threads.",
+            "durationSeconds": 12.16
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 12.16,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 12.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B51.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "V · The Game Of Life",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Submitting it: one node, one task, twenty CPUs per task, and the thread count set from Slurm's variable. Ten thousand by ten thousand cells, five hundred generations.",
+      "estimated_duration_s": 10.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "one task, twenty CPUs"
+          },
+          {
+            "at": 0.6,
+            "event": "threads from Slurm"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "openmp.sbatch",
+            "lines": [
+              "#SBATCH -p short",
+              "#SBATCH -N 1",
+              "#SBATCH --ntasks=1",
+              "#SBATCH --cpus-per-task=20",
+              "",
+              "export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK",
+              "./life_openmp --rows 10000 --cols 10000 --gens 500"
+            ],
+            "startCue": 20,
+            "lineGap": 28,
+            "durationSeconds": 10.33
+          }
+        }
+      },
+      "motion_claim": "The real job scripts and commands land in order.",
+      "actual_duration_s": 10.33,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 10.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B52.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B53",
+      "act": "V · The Game Of Life",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "When the grid outgrows one node's memory, split it across nodes: domain decomposition. The grid is cut into horizontal strips, one per MPI rank. But a cell on the edge of a strip needs neighbours from the strip next door, on another node. So before each step the ranks swap their boundary rows with MPI send and receive. Those borrowed rows are the halo, or ghost zone.",
+      "estimated_duration_s": 26.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The grid splits into four horizontal strips that slide apart onto four node plinths; the top and bottom rows of each strip are highlighted; copies of the boundary rows travel across the gaps to the neighbouring strips and land as ghost rows (dashed outline); labels 'rank 0 … rank 3', 'halo', mono 'MPI_Send / MPI_Recv'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "strips onto nodes"
+          },
+          {
+            "at": 0.5,
+            "event": "the edge needs the neighbour"
+          },
+          {
+            "at": 0.75,
+            "event": "rows swap: the halo"
+          }
+        ],
+        "manim": {
+          "class": "B53_HaloExchange"
+        },
+        "motion_claim": "The grid splits into four horizontal strips that slide apart onto four node plinths; the top and bottom rows of each strip are highlighted; copies of the boundary rows travel across the gaps to the neighbouring strips and land as ghost rows (dashed outline); labels 'rank 0 … rank 3', 'halo', mono 'MPI_Send / MPI_Recv'."
+      },
+      "actual_duration_s": 19.43,
+      "audio_file": "mp3/beat-B53.mp3",
+      "render_duration_s": 19.458333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B53.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B54",
+      "act": "V · The Game Of Life",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The hybrid job: four nodes, four ranks per node, five threads per rank. Four times four times five is eighty cores, launched with m p i run and the task count from Slurm.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "four nodes, four ranks, five threads"
+          },
+          {
+            "at": 0.7,
+            "event": "80 cores"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "hybrid.sbatch",
+            "lines": [
+              "#SBATCH -p long",
+              "#SBATCH -N 4",
+              "#SBATCH --ntasks-per-node=4",
+              "#SBATCH --cpus-per-task=5",
+              "",
+              "export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK",
+              "mpirun -np $SLURM_NTASKS ./life_mpi_omp \\",
+              "    --rows 10000 --cols 10000 --gens 500",
+              "# 4 nodes × 4 ranks × 5 threads = 80 cores"
+            ],
+            "startCue": 20,
+            "lineGap": 24,
+            "durationSeconds": 10.47
+          }
+        }
+      },
+      "motion_claim": "The real job scripts and commands land in order.",
+      "actual_duration_s": 10.47,
+      "audio_file": "mp3/beat-B54.mp3",
+      "render_duration_s": 10.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B54.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B55",
+      "act": "V · The Game Of Life",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The real numbers, same grid, five hundred iterations. Serial: two hundred fifty seconds. OpenMP on two cores, two point two times faster. Four cores, four point three. Eight, eight and a half. Twelve, only seven and a half, slower than eight. Sixteen, ten times. Twenty, twelve point four. Then across nodes with MPI: forty cores, twenty-five times. Sixty, thirty-seven. Eighty, forty-four. Inside one node the scaling is close to ideal, with no network in the way. Across nodes the communication cost shows, and the curve bends under the ideal line, exactly as Amdahl predicted.",
+      "estimated_duration_s": 37.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Axes 'cores' (1…80) and 'speedup'; a dashed ideal diagonal; the ten real points land one by one as spoken (1:1.0, 2:2.2, 4:4.3, 8:8.5, 12:7.5, 16:10.0, 20:12.4, 40:25.1, 60:36.9, 80:44.0), joined by an ink line, OpenMP points grey, MPI points dark; the 12-core dip gets a small ring; the gap to the ideal line at 80 is bracketed 'communication'; a wall-time column (250.7 s → 5.7 s) ticks beside.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "serial 250 s"
+          },
+          {
+            "at": 0.3,
+            "event": "OpenMP points climb"
+          },
+          {
+            "at": 0.42,
+            "event": "the dip at 12"
+          },
+          {
+            "at": 0.6,
+            "event": "MPI points: 40, 60, 80"
+          },
+          {
+            "at": 0.85,
+            "event": "the gap to ideal"
+          }
+        ],
+        "manim": {
+          "class": "B55_Benchmark"
+        },
+        "motion_claim": "Axes 'cores' (1…80) and 'speedup'; a dashed ideal diagonal; the ten real points land one by one as spoken (1:1.0, 2:2.2, 4:4.3, 8:8.5, 12:7.5, 16:10.0, 20:12.4, 40:25.1, 60:36.9, 80:44.0), joined by an ink line, OpenMP points grey, MPI points dark; the 12-core dip gets a small ring; the gap to the ideal line at 80 is bracketed 'communication'; a wall-time column (250.7 s → 5.7 s) ticks beside."
+      },
+      "actual_duration_s": 31.53,
+      "audio_file": "mp3/beat-B55.mp3",
+      "render_duration_s": 31.541666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B55.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B60",
+      "act": "VI · GPU Computing",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "GPUs. A CPU is built for low latency: tens of complex cores, good at sequential logic and branching. A GPU is built for throughput: thousands of simple cores doing the same operation across a large array. A few professional chefs cooking complicated dishes, against a thousand line cooks each doing one simple task for a buffet.",
+      "estimated_duration_s": 22.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A two-column drawn table builds: design goal (latency · throughput), core count (tens, complex · thousands, simple), best for (sequential logic · same operation on large arrays), with a small CPU block and GPU block as the column heads; the GPU's dense grey core grid fills. Act title top-left.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "latency vs throughput"
+          },
+          {
+            "at": 0.45,
+            "event": "tens vs thousands"
+          },
+          {
+            "at": 0.65,
+            "event": "best for"
+          },
+          {
+            "at": 0.85,
+            "event": "chefs vs line cooks"
+          }
+        ],
+        "manim": {
+          "class": "B60_CpuVsGpu"
+        },
+        "motion_claim": "A two-column drawn table builds: design goal (latency · throughput), core count (tens, complex · thousands, simple), best for (sequential logic · same operation on large arrays), with a small CPU block and GPU block as the column heads; the GPU's dense grey core grid fills. Act title top-left."
+      },
+      "actual_duration_s": 18.86,
+      "audio_file": "mp3/beat-B60.mp3",
+      "render_duration_s": 18.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B60.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B61",
+      "act": "VI · GPU Computing",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Every GPU program follows four steps. Allocate memory on the device. Copy the data from host to device, CPU to GPU. Launch a kernel: thousands of threads run the same function on different data. Then copy the results back. Host is the CPU; device is the GPU.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left a grey CPU block ('host'), right a dark GPU block ('device'); step 1: a memory slab appears on the device ('cudaMalloc'); step 2: data boxes ride a cable host → device ('cudaMemcpy'); step 3: a grid of terracotta sparks lights across the device ('kernel'); step 4: result boxes ride back ('cudaMemcpy'). Mono step labels land in order.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "allocate"
+          },
+          {
+            "at": 0.4,
+            "event": "copy in"
+          },
+          {
+            "at": 0.6,
+            "event": "launch the kernel"
+          },
+          {
+            "at": 0.8,
+            "event": "copy back"
+          }
+        ],
+        "manim": {
+          "class": "B61_FourSteps"
+        },
+        "motion_claim": "Left a grey CPU block ('host'), right a dark GPU block ('device'); step 1: a memory slab appears on the device ('cudaMalloc'); step 2: data boxes ride a cable host → device ('cudaMemcpy'); step 3: a grid of terracotta sparks lights across the device ('kernel'); step 4: result boxes ride back ('cudaMemcpy'). Mono step labels land in order."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 16.28,
+      "audio_file": "mp3/beat-B61.mp3",
+      "render_duration_s": 16.291666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B61.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B62",
+      "act": "VI · GPU Computing",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A matrix-multiply kernel. Each thread works out its own row and column from its block and thread indices, and computes exactly one element of the result. For a thousand-by-thousand matrix that is over a million threads, in parallel. You may never write Kooda yourself: PyTorch, CuPy and RAPIDS do it for you. But this is what they do.",
+      "estimated_duration_s": 23.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the kernel prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "matmul.cu",
+            "code": "__global__ void MatMulKernel(float *A, float *B,\n                             float *C, int N) {\n    int row = blockIdx.y * blockDim.y + threadIdx.y;\n    int col = blockIdx.x * blockDim.x + threadIdx.x;\n    // each thread computes one element of C\n}",
+            "language": "cpp",
+            "largeText": true,
+            "sparkLine": "One thread, one element of C.",
+            "durationSeconds": 17.94
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 17.94,
+      "audio_file": "mp3/beat-B62.mp3",
+      "render_duration_s": 17.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B62.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B70",
+      "act": "VII · Scaling PyTorch",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "In PyTorch the pattern is: put the tensors on the device, and the library calls the Kooda kernels for you. Two four-thousand-square matrices and one matmul. Submitted with one GPU on the gpu partition.",
+      "estimated_duration_s": 13.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the single-GPU code prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "single_gpu.py",
+            "code": "import torch\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\na = torch.randn(4096, 4096, device=device)\nb = torch.randn(4096, 4096, device=device)\nc = torch.matmul(a, b)   # runs on the GPU automatically",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Tensors on the device; PyTorch calls the kernels.",
+            "durationSeconds": 12.2
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 12.2,
+      "audio_file": "mp3/beat-B70.mp3",
+      "render_duration_s": 12.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B70.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B71",
+      "act": "VII · Scaling PyTorch",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "More than one GPU on a node: split one big operation across them. Partition A by rows, give every GPU its shard and a full copy of B, launch the matmuls, they run in parallel because kernel launches are asynchronous, then synchronise each device. Submitted with two GPUs on the multigpu partition.",
+      "estimated_duration_s": 20.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the sharded code prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "multi_gpu.py",
+            "code": "num_gpus = torch.cuda.device_count()\nshard_rows = N // num_gpus\nshards = []\nfor i in range(num_gpus):            # a row-shard of A, a full B, per GPU\n    device = torch.device(f\"cuda:{i}\")\n    a_shard = torch.randn(shard_rows, N, device=device)\n    b_full  = torch.randn(N, N, device=device)\n    shards.append((a_shard, b_full))\nc_shards = [torch.matmul(a, b) for a, b in shards]   # in parallel\nfor i in range(num_gpus):\n    torch.cuda.synchronize(i)",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Row shards of A, a full B each, parallel matmuls.",
+            "durationSeconds": 17.05
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 17.05,
+      "audio_file": "mp3/beat-B71.mp3",
+      "render_duration_s": 17.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B71.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B72",
+      "act": "VII · Scaling PyTorch",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Across nodes, PyTorch uses Distributed Data Parallel. The vocabulary: the backend is NCCL, NVIDIA's communication library, MPI's cousin for GPUs. World size is the total number of GPUs. Rank is each GPU's ID. Local rank is its index inside its node. The communication test: every GPU holds a one, all-reduce sums them, and if the result equals the world size, every GPU is talking.",
+      "estimated_duration_s": 25.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the DDP test prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ddp_test.py",
+            "code": "import torch.distributed as dist\n\nlocal_rank = int(os.environ[\"LOCAL_RANK\"])\ntorch.cuda.set_device(local_rank)\ndist.init_process_group(backend=\"nccl\")\n\ntensor = torch.ones(1, device=f\"cuda:{local_rank}\")\ndist.all_reduce(tensor, op=dist.ReduceOp.SUM)\n# tensor == world_size means every GPU is talking",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "all_reduce: every GPU contributes, every GPU gets the sum.",
+            "durationSeconds": 23.21
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 23.21,
+      "audio_file": "mp3/beat-B72.mp3",
+      "render_duration_s": 23.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B72.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B73",
+      "act": "VII · Scaling PyTorch",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The GPU benchmark: a four-thousand-square matmul, a hundred times. One GPU, eleven point seven seconds. Two GPUs on one node, five and a half seconds: two point one times, near linear over the fast in-node link. Four GPUs across two nodes, five point one seconds: only two point three times. At this size each GPU gets a tiny shard, and the cross-node sync costs more than the maths. The computation-to-communication ratio decides how far you can scale.",
+      "estimated_duration_s": 30.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three bars grow with their real wall times (11.73 s, 5.48 s, 5.08 s) under labels '1 GPU', '2 GPUs · 1 node', '4 GPUs · 2 nodes'; speedup numerals land (1.0× · 2.1× · 2.3×); a bracket between bars 2 and 3 labelled 'sync > maths'; a small ratio scale 'compute : communication'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "11.73 s"
+          },
+          {
+            "at": 0.4,
+            "event": "5.48 s, 2.1×"
+          },
+          {
+            "at": 0.6,
+            "event": "5.08 s, 2.3×"
+          },
+          {
+            "at": 0.85,
+            "event": "sync > maths"
+          }
+        ],
+        "manim": {
+          "class": "B73_GpuBench"
+        },
+        "motion_claim": "Three bars grow with their real wall times (11.73 s, 5.48 s, 5.08 s) under labels '1 GPU', '2 GPUs · 1 node', '4 GPUs · 2 nodes'; speedup numerals land (1.0× · 2.1× · 2.3×); a bracket between bars 2 and 3 labelled 'sync > maths'; a small ratio scale 'compute : communication'."
+      },
+      "actual_duration_s": 26.54,
+      "audio_file": "mp3/beat-B73.mp3",
+      "render_duration_s": 26.541666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B73.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B80",
+      "act": "VIII · Python, R, MATLAB",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "You don't need C or Kooda to go parallel. In Python, mpi4py gives you MPI: a communicator, your rank and the size of the world, each rank working on its own chunk, and a reduce to rank zero. Launch it with m p i run. Also worth knowing: multiprocessing for one node, concurrent futures, Dask and Ray.",
+      "estimated_duration_s": 22.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "mpi4py prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "my_script.py",
+            "code": "from mpi4py import MPI\n\ncomm = MPI.COMM_WORLD\nrank = comm.Get_rank()\nsize = comm.Get_size()\n\ndata = rank * 10                      # each rank: its own chunk\nresult = comm.reduce(data, op=MPI.SUM, root=0)\n# launch: mpirun -np 4 python my_script.py",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "MPI from Python.",
+            "durationSeconds": 17.73
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 17.73,
+      "audio_file": "mp3/beat-B80.mp3",
+      "render_duration_s": 17.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B80.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B81",
+      "act": "VIII · Python, R, MATLAB",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "In R, the parallel package ships with base R: make a cluster of all cores but one, par l apply over your list, stop the cluster. Or for-each with do-parallel for embarrassingly parallel loops: register four cores and swap do for do-par.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the R code prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "parallel.rmd",
+            "code": "library(parallel)\ncl <- makeCluster(detectCores() - 1)\nresults <- parLapply(cl, data_list, my_function)\nstopCluster(cl)\n\nlibrary(foreach); library(doParallel)\nregisterDoParallel(cores = 4)\nresults <- foreach(i = 1:100) %dopar% { my_function(i) }",
+            "language": "r",
+            "largeText": true,
+            "sparkLine": "makeCluster, parLapply, or foreach %dopar%.",
+            "durationSeconds": 13.61
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 13.61,
+      "audio_file": "mp3/beat-B81.mp3",
+      "render_duration_s": 13.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B81.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B82",
+      "act": "VIII · Python, R, MATLAB",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "In MATLAB, parpool opens a pool of workers and parfor replaces a for loop. MATLAB distributes the iterations.",
+      "estimated_duration_s": 7.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "parfor prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "parallel.mlx",
+            "code": "parpool('local', 4);\nparfor i = 1:1000\n    results(i) = my_function(i);\nend",
+            "language": "matlab",
+            "largeText": true,
+            "sparkLine": "parfor replaces for.",
+            "durationSeconds": 7.08
+          }
+        }
+      },
+      "motion_claim": "The training's own code prints line by line.",
+      "actual_duration_s": 7.08,
+      "audio_file": "mp3/beat-B82.mp3",
+      "render_duration_s": 7.083333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B82.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B83",
+      "act": "VIII · Python, R, MATLAB",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Choosing the tool. OpenMP: shared memory, loop-level parallelism on one node. MPI: distributed, multi-node simulations. mpi4py for multi-node Python. multiprocessing for single-node Python tasks. PyTorch DDP for training. Dask or Ray for big data and pipelines, both memory models. R's parallel and foreach, and MATLAB's parfor, for embarrassingly parallel loops on one node.",
+      "estimated_duration_s": 21.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table builds row by row from the source's eight rows: tool (mono) · memory model · best for; shared rows get a single-slab icon, distributed rows a three-node icon, Dask/Ray both; rows land as spoken. Act title top-left.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "OpenMP"
+          },
+          {
+            "at": 0.3,
+            "event": "MPI"
+          },
+          {
+            "at": 0.42,
+            "event": "mpi4py"
+          },
+          {
+            "at": 0.52,
+            "event": "multiprocessing"
+          },
+          {
+            "at": 0.62,
+            "event": "PyTorch DDP"
+          },
+          {
+            "at": 0.72,
+            "event": "Dask / Ray"
+          },
+          {
+            "at": 0.88,
+            "event": "R, MATLAB"
+          }
+        ],
+        "manim": {
+          "class": "B83_ToolTable"
+        },
+        "motion_claim": "A drawn table builds row by row from the source's eight rows: tool (mono) · memory model · best for; shared rows get a single-slab icon, distributed rows a three-node icon, Dask/Ray both; rows land as spoken. Act title top-left."
+      },
+      "actual_duration_s": 22.63,
+      "audio_file": "mp3/beat-B83.mp3",
+      "render_duration_s": 22.666666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B83.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B90",
+      "act": "IX · Takeaways",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Four things to keep. Profile first: find the bottleneck before you parallelise. Choose the level: shared memory on one node, MPI across nodes, GPUs for data-parallel maths. Communication costs are real: more nodes are not always faster. And plan for parallelism from the start. Questions: r c help at northeastern dot e d u, or office hours.",
+      "estimated_duration_s": 22.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four checkbox rows tick in order (profile first · choose the level · communication costs · plan for parallelism), each with a small cast icon (magnifier · a node slab / three nodes / a GPU block in a row · a belt with a cost tag · a planning page); then 'rchelp@northeastern.edu' lands in mono. Act title top-left.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "profile first"
+          },
+          {
+            "at": 0.3,
+            "event": "choose the level"
+          },
+          {
+            "at": 0.55,
+            "event": "communication costs"
+          },
+          {
+            "at": 0.75,
+            "event": "plan"
+          },
+          {
+            "at": 0.92,
+            "event": "rchelp"
+          }
+        ],
+        "manim": {
+          "class": "B90_Takeaways"
+        },
+        "motion_claim": "Four checkbox rows tick in order (profile first · choose the level · communication costs · plan for parallelism), each with a small cast icon (magnifier · a node slab / three nodes / a GPU block in a row · a belt with a cost tag · a planning page); then 'rchelp@northeastern.edu' lands in mono. Act title top-left."
+      },
+      "actual_duration_s": 19.73,
+      "audio_file": "mp3/beat-B90.mp3",
+      "render_duration_s": 19.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B90.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "B91",
+      "act": "IX · Takeaways",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "And the three Slurm recipes to keep. OpenMP: one node, one task, twenty CPUs. MPI plus OpenMP: four nodes, four ranks each, five threads each. GPU: one node, two GPUs.",
+      "estimated_duration_s": 12.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "OpenMP recipe"
+          },
+          {
+            "at": 0.45,
+            "event": "MPI + OpenMP recipe"
+          },
+          {
+            "at": 0.8,
+            "event": "GPU recipe"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "recipes.sbatch",
+            "lines": [
+              "# OpenMP: one node, 20 cores",
+              "#SBATCH -N 1",
+              "#SBATCH --ntasks=1",
+              "#SBATCH --cpus-per-task=20",
+              "./my_openmp_program",
+              "# MPI + OpenMP: 4 nodes × 4 ranks × 5 threads",
+              "#SBATCH -N 4",
+              "#SBATCH --ntasks-per-node=4",
+              "#SBATCH --cpus-per-task=5",
+              "mpirun -np $SLURM_NTASKS ./my_mpi_program",
+              "# GPU: one node, 2 GPUs",
+              "#SBATCH -N 1",
+              "#SBATCH --gres=gpu:2",
+              "python my_training.py"
+            ],
+            "startCue": 15,
+            "lineGap": 24,
+            "durationSeconds": 12.18
+          }
+        }
+      },
+      "motion_claim": "The real job scripts and commands land in order.",
+      "actual_duration_s": 12.18,
+      "audio_file": "mp3/beat-B91.mp3",
+      "render_duration_s": 12.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B91.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. Pipelining and data parallelism, and today was data parallelism. SIMD is the GPU, MIMD is the cluster; shared memory means OpenMP, distributed means MPI. Amdahl: ten percent serial caps you at ten times. Gustafson: grow the problem with the cores. The Game of Life ran twelve times faster on twenty cores and forty-four times on eighty across nodes, with communication bending the curve. A GPU program allocates, copies in, launches the kernel and copies back; two GPUs gave two point one times, four across nodes only two point three. Profile first, choose the level, count the communication, and plan for parallelism.",
+      "estimated_duration_s": 42.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Intro to Parallel Computing",
+            "artifactLines": [
+              "Pipelining and data parallelism; today is data parallelism.",
+              "SIMD is the GPU; MIMD is the cluster. Shared memory: OpenMP. Distributed: MPI.",
+              "Amdahl: 10% serial caps you at 10×. Gustafson: grow the problem with the cores.",
+              "Game of Life: 12.4× on 20 cores, 44× on 80 across nodes; communication bends the curve.",
+              "GPU: allocate, copy in, launch the kernel, copy back. 2 GPUs 2.1×, 4 across nodes 2.3×.",
+              "Profile first, choose the level, count communication, plan for parallelism."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 37.59,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 37.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Here is a serial program I want to run faster on a cluster: [describe it and paste the main loop]. First, mark which parts are inherently serial and estimate my Amdahl ceiling. Then tell me which level fits: threads on one node, MPI across nodes, or a GPU, and why. Finally, write the Slurm header for that choice with --ntasks and --cpus-per-task explained. Then check two things yourself. Did it name the serial part before it promised a speedup? And do its n tasks times CPUs per task equal the cores you'd actually get?",
+      "estimated_duration_s": 40.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Find Your Ceiling, Then Your Level",
+            "command": "Here is a serial program I want to run faster on a cluster: [describe it and paste the main loop]. First, mark which parts are inherently serial and estimate my Amdahl ceiling. Then tell me which level fits: threads on one node, MPI across nodes, or a GPU, and why. Finally, write the Slurm header for that choice with --ntasks and --cpus-per-task explained.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did it name the serial part before it promised a speedup?",
+              "Check: do ntasks × cpus-per-task equal the cores you'd get?"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 30.29,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 30.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Intro to Parallel Computing. At Nik Bear Brown.",
+      "estimated_duration_s": 4.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Intro to Parallel Computing",
+            "slug": "claude-liam-lecture-intro-to-parallel-computing",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 4.65,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 4.666666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:33:22"
+      }
+    }
+  ]
+}

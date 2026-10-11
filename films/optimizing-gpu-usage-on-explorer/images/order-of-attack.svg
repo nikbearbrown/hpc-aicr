@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780">
+  <title>Order of attack for a slow GPU job</title>
+  <desc>Six steps in order: fix the data loader, batching, batch size, mixed precision, gradient checkpointing, and only last more GPUs.</desc>
+  <rect width="1200" height="780" fill="#F2F0E9"/>
+  <text x="600" y="72" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">Slow GPU job: order of attack</text>
+  <text x="600" y="112" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">Measure, change one thing, measure again, then move down a rung</text>
+
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <!-- 1 -->
+    <rect x="100" y="145" width="1000" height="86" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+    <circle cx="160" cy="188" r="26" fill="#E6E2D6" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="160" y="198" text-anchor="middle" font-size="28" font-weight="600" fill="#3D3929">1</text>
+    <text x="215" y="184" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Data loader</text>
+    <text x="215" y="215" font-size="20" fill="#8A8470">num_workers, pinned memory, prefetch</text>
+    <!-- 2 -->
+    <rect x="100" y="245" width="1000" height="86" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+    <circle cx="160" cy="288" r="26" fill="#E6E2D6" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="160" y="298" text-anchor="middle" font-size="28" font-weight="600" fill="#3D3929">2</text>
+    <text x="215" y="284" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Batching</text>
+    <text x="215" y="315" font-size="20" fill="#8A8470">Batches, never one sample per call</text>
+    <!-- 3 -->
+    <rect x="100" y="345" width="1000" height="86" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+    <circle cx="160" cy="388" r="26" fill="#E6E2D6" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="160" y="398" text-anchor="middle" font-size="28" font-weight="600" fill="#3D3929">3</text>
+    <text x="215" y="384" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Batch size</text>
+    <text x="215" y="415" font-size="20" fill="#8A8470">Raise it while VRAM has room</text>
+    <!-- 4 -->
+    <rect x="100" y="445" width="1000" height="86" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+    <circle cx="160" cy="488" r="26" fill="#E6E2D6" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="160" y="498" text-anchor="middle" font-size="28" font-weight="600" fill="#3D3929">4</text>
+    <text x="215" y="484" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Mixed precision</text>
+    <text x="215" y="515" font-size="20" fill="#8A8470">autocast; BF16 or FP16, chosen by the card</text>
+    <!-- 5 -->
+    <rect x="100" y="545" width="1000" height="86" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+    <circle cx="160" cy="588" r="26" fill="#E6E2D6" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="160" y="598" text-anchor="middle" font-size="28" font-weight="600" fill="#3D3929">5</text>
+    <text x="215" y="584" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">Gradient checkpointing</text>
+    <text x="215" y="615" font-size="20" fill="#8A8470">Only after a smaller batch and mixed precision fail</text>
+    <!-- 6 -->
+    <rect x="100" y="645" width="1000" height="86" rx="12" fill="#D97757" fill-opacity="0.16" stroke="#D97757" stroke-width="3"/>
+    <circle cx="160" cy="688" r="26" fill="#D97757"/>
+    <text x="160" y="698" text-anchor="middle" font-size="28" font-weight="600" fill="#FAF9F5">6</text>
+    <text x="215" y="684" font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">More GPUs, last</text>
+    <text x="215" y="715" font-size="20" fill="#3D3929">Only when one GPU is already above 80%</text>
+  </g>
+</svg>

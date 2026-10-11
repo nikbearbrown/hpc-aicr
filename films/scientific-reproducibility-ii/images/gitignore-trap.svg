@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 600" role="img">
+<title>The .gitignore trap, before and after</title>
+<desc>Ignoring the results folder blocks the allow lines and git add is refused; ignoring the folder's contents with results/* lets the two allowed files through.</desc>
+<rect width="1200" height="600" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">An ignored folder stays closed</text>
+<g font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">
+<text x="60" y="165">Original</text><text x="640" y="165">Ours</text></g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">
+<text x="190" y="165">ignores the folder</text><text x="735" y="165">ignores the contents</text></g>
+<rect x="60" y="195" width="500" height="200" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<rect x="640" y="195" width="500" height="200" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<rect x="80" y="215" width="460" height="48" rx="8" fill="#D97757" fill-opacity="0.25"/>
+<rect x="660" y="215" width="460" height="48" rx="8" fill="#D97757" fill-opacity="0.25"/>
+<g font-family="Menlo, Consolas, Courier New, monospace" font-size="26" fill="#3D3929">
+<text x="100" y="249">results/</text>
+<text x="100" y="307">!results/summary.tsv</text><text x="100" y="355">!results/run.log</text>
+<text x="680" y="249">results/*</text>
+<text x="680" y="307">!results/summary.tsv</text><text x="680" y="355">!results/run.log</text></g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#3D3929">
+<text x="150" y="480">git add refused</text><text x="730" y="480">git add works</text></g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">
+<text x="150" y="518">allow lines never seen</text><text x="730" y="518">folder open, allow lines count</text></g>
+<g stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M80 462L116 498M116 462L80 498" stroke="#8A8470"/>
+<path d="M660 482L680 502L716 458" stroke="#D97757"/></g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 600" role="img">
+<title>Build a container off the cluster</title>
+<desc>A definition file is built into an image on your own computer where you have root, copied up to the cluster, and run there as you.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3D3929"/></marker>
+<marker id="t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker></defs>
+<rect width="1200" height="600" fill="#F2F0E9"/>
+<text x="60" y="68" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Build elsewhere, then copy up</text>
+<g font-family="Inter, Helvetica, Arial, sans-serif">
+<!-- left panel -->
+<rect x="60" y="110" width="520" height="400" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="90" y="160" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">Your own computer</text>
+<text x="550" y="158" text-anchor="end" font-size="20" fill="#8A8470">You have root</text>
+<rect x="90" y="200" width="200" height="90" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="190" y="252" text-anchor="middle" font-size="22" fill="#3D3929">demo.def</text>
+<rect x="350" y="200" width="200" height="90" rx="10" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="450" y="252" text-anchor="middle" font-size="22" fill="#3D3929">demo.sif</text>
+<line x1="292" y1="245" x2="346" y2="245" stroke="#D97757" stroke-width="3" marker-end="url(#t)"/>
+<text x="320" y="190" text-anchor="middle" font-size="20" fill="#D97757" font-weight="600">build</text>
+<text x="90" y="350" font-size="22" fill="#3D3929">apptainer build</text>
+<text x="90" y="392" font-size="22" fill="#8A8470">The privileged step</text>
+<text x="90" y="460" font-size="22" fill="#3D3929">Keep demo.def next to demo.sif</text>
+<!-- right panel -->
+<rect x="680" y="110" width="460" height="400" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="710" y="160" font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929">The cluster</text>
+<text x="1110" y="158" text-anchor="end" font-size="20" fill="#8A8470">No root</text>
+<rect x="710" y="200" width="200" height="90" rx="10" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="810" y="252" text-anchor="middle" font-size="22" fill="#3D3929">demo.sif</text>
+<text x="710" y="350" font-size="22" fill="#3D3929">apptainer exec</text>
+<text x="710" y="392" font-size="22" fill="#8A8470">Runs as you</text>
+<!-- copy arrow -->
+<line x1="582" y1="245" x2="676" y2="245" stroke="#3D3929" stroke-width="3" marker-end="url(#a)"/>
+<text x="630" y="228" text-anchor="middle" font-size="20" fill="#3D3929" font-weight="600">scp</text>
+</g>
+<text x="60" y="560" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Cannot build locally? Ask Research Computing.</text>
+</svg>

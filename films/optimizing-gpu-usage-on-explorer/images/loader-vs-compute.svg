@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <title>Loader time versus compute time</title>
+  <desc>Two timing bars on one millisecond axis: the data loader takes 60 ms per batch while the GPU computes for 25 ms, so the GPU sits idle for the remaining 35 ms.</desc>
+  <rect width="1200" height="600" fill="#F2F0E9"/>
+  <text x="600" y="72" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">Loader versus compute</text>
+  <text x="600" y="112" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">The two stopwatch tests, drawn on one time axis (the guide's example)</text>
+
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <text x="170" y="214" text-anchor="end" font-size="24" font-weight="600" fill="#3D3929">Loader</text>
+    <text x="170" y="242" text-anchor="end" font-size="18" fill="#8A8470">test 1</text>
+    <rect x="200" y="180" width="900" height="80" rx="10" fill="#E6E2D6" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="650" y="231" text-anchor="middle" font-size="26" fill="#3D3929">Loading a batch: 60 ms</text>
+
+    <text x="170" y="354" text-anchor="end" font-size="24" font-weight="600" fill="#3D3929">GPU</text>
+    <text x="170" y="382" text-anchor="end" font-size="18" fill="#8A8470">test 2</text>
+    <rect x="200" y="320" width="375" height="80" rx="10" fill="#FAF9F5" stroke="#3D3929" stroke-width="2.5"/>
+    <text x="387" y="371" text-anchor="middle" font-size="26" fill="#3D3929">Compute: 25 ms</text>
+    <rect x="575" y="320" width="525" height="80" rx="10" fill="#D97757" fill-opacity="0.16" stroke="#D97757" stroke-width="3" stroke-dasharray="10 8"/>
+    <text x="837" y="371" text-anchor="middle" font-size="26" fill="#3D3929">Idle: 35 ms</text>
+
+    <!-- axis -->
+    <line x1="200" y1="450" x2="1100" y2="450" stroke="#CFC9B8" stroke-width="3"/>
+    <line x1="200" y1="440" x2="200" y2="460" stroke="#3D3929" stroke-width="3"/>
+    <line x1="575" y1="440" x2="575" y2="460" stroke="#3D3929" stroke-width="3"/>
+    <line x1="1100" y1="440" x2="1100" y2="460" stroke="#3D3929" stroke-width="3"/>
+    <text x="200" y="490" text-anchor="middle" font-size="22" fill="#3D3929">0</text>
+    <text x="575" y="490" text-anchor="middle" font-size="22" fill="#3D3929">25 ms</text>
+    <text x="1100" y="490" text-anchor="middle" font-size="22" fill="#3D3929">60 ms</text>
+
+    <text x="600" y="552" text-anchor="middle" font-size="26" font-weight="600" fill="#D97757">Loading is longer than computing: you are data-bound</text>
+  </g>
+</svg>

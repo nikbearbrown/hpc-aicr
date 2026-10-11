@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+  <title>Utilization versus memory, a two-by-two</title>
+  <desc>A two-by-two grid with GPU utilization across the top and GPU memory down the side, naming what each of the four readings means and what to do about it.</desc>
+  <rect width="1200" height="700" fill="#F2F0E9"/>
+  <text x="600" y="72" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">Two numbers, two axes</text>
+  <text x="600" y="112" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">nvidia-smi on a GPU node: GPU-Util and memory move independently</text>
+
+  <text x="475" y="162" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929">Low utilization</text>
+  <text x="925" y="162" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929">High utilization</text>
+  <text x="235" y="300" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929">High memory</text>
+  <text x="235" y="530" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929">Low memory</text>
+
+  <!-- top-left: the accent cell -->
+  <rect x="260" y="185" width="430" height="220" rx="14" fill="#D97757" fill-opacity="0.16" stroke="#D97757" stroke-width="3"/>
+  <text x="475" y="265" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="40" fill="#3D3929">Loaded, not fed</text>
+  <text x="475" y="308" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Fix the data pipeline</text>
+  <circle cx="320" cy="360" r="11" fill="#D97757"/>
+  <text x="344" y="368" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929">Practice: 15% util, 75% memory</text>
+
+  <!-- top-right -->
+  <rect x="710" y="185" width="430" height="220" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+  <text x="925" y="265" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="40" fill="#3D3929">Working hard</text>
+  <text x="925" y="308" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">Good. Leave it</text>
+
+  <!-- bottom-left -->
+  <rect x="260" y="425" width="430" height="220" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+  <text x="475" y="505" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="40" fill="#3D3929">Card sits empty</text>
+  <text x="475" y="548" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">Check CUDA, then data</text>
+
+  <!-- bottom-right -->
+  <rect x="710" y="425" width="430" height="220" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+  <text x="925" y="505" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="40" fill="#3D3929">Healthy, spare VRAM</text>
+  <text x="925" y="548" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">Raise the batch size</text>
+
+  <text x="600" y="678" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Optimizing GPU Usage on Explorer, sections II and V</text>
+</svg>

@@ -1,0 +1,2337 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-aicr-optimizing-gpu-usage",
+    "title": "Optimizing GPU Usage on AICR",
+    "topic": "RESEARCH COMPUTING · AICR",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "French (Bonjour)",
+    "audience": "Researchers running GPU jobs on AICR who want to know whether the GPU is actually working; assumes no other film",
+    "source_doc": "hpc/AICR-Optimizing-GPU-Usage/aicr-gpu-optimization.md (Northeastern Research Computing, AICR Training Workshop 2, presenter Arsalan Akhter; github.com/northeastern-rc-training/AICR-Optimizing-GPU-Usage), read 2026-10-06",
+    "playlist": "Explorer",
+    "chapter_number": 1,
+    "series_title": "Research Computing on Explorer and AICR",
+    "series_video_number": 2,
+    "series_video_count": 13,
+    "series_entry_video": "Video 1 · AICR Introduction",
+    "lecture_opening_description": "Request, measure and right-size GPU jobs",
+    "tags": [
+      "AICR",
+      "GPU utilization",
+      "PyTorch",
+      "DataLoader",
+      "nvidia-smi",
+      "PyTorch Profiler",
+      "Nsight Systems",
+      "BF16",
+      "mixed precision",
+      "gradient checkpointing",
+      "DDP",
+      "Slurm",
+      "jobstats",
+      "HPC",
+      "Northeastern",
+      "Research Computing",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-09T12:09:57",
+      "cut": "master",
+      "filled": 48,
+      "of": 48,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Optimizing GPU Usage on AICR. How to request the right GPU, measure what your job actually uses, and right-size it, so your work runs sooner and wastes nothing.",
+      "estimated_duration_s": 10.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 12.86,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 12.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Bonjour. This is Liam, in for Bear. First, a correction. A GPU job that finished is not a GPU job that used the GPU. Many jobs leave the card waiting most of the time. This lecture is a set of measuring instruments: how to confirm you have the GPU, how to watch it live, how to profile it, how to fix the usual bottleneck, how to read memory against utilization, when to add GPUs, and the loop that ties it all together. Measure first. Change second.",
+      "estimated_duration_s": 34.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'My GPU job finished, so the GPU was busy'"
+          },
+          {
+            "at": 0.3,
+            "event": "backspaces 'so the GPU was busy' -> 'but was the GPU busy'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "My GPU job finished,\nso the GPU was busy",
+            "triggerWords": "so the GPU was busy",
+            "replacementWords": "but was the GPU busy",
+            "fontSize": 70,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-aicr-optimizing-gpu-usage",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the assumption (finished, so busy) and corrects it into the question (but was it busy).",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 24.34,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 24.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. GPU utilization: the share of the last second in which the GPU was running any work at all. VRAM: the GPU's own memory, where your model and your batch live. DataLoader: the part of PyTorch that reads and batches your data and hands it to the GPU. Profiler: a tool that says where the time went. BF16: a sixteen-bit number format that keeps the range of thirty-two-bit floats. And DDP: distributed data parallel, one model copy per GPU.",
+      "estimated_duration_s": 32.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "'GPU utilization'"
+          },
+          {
+            "at": 0.25,
+            "event": "'VRAM'"
+          },
+          {
+            "at": 0.4,
+            "event": "'DataLoader'"
+          },
+          {
+            "at": 0.58,
+            "event": "'profiler'"
+          },
+          {
+            "at": 0.72,
+            "event": "'BF16'"
+          },
+          {
+            "at": 0.87,
+            "event": "'DDP'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "GPU utilization",
+                "meaning": "share of the last second in which the GPU ran any work at all"
+              },
+              {
+                "term": "VRAM",
+                "meaning": "the GPU's own memory, where your model and your batch live"
+              },
+              {
+                "term": "DataLoader",
+                "meaning": "the PyTorch part that reads, batches and hands data to the GPU"
+              },
+              {
+                "term": "profiler",
+                "meaning": "a tool that says where the time went"
+              },
+              {
+                "term": "BF16",
+                "meaning": "a 16-bit number format that keeps the range of 32-bit floats"
+              },
+              {
+                "term": "DDP",
+                "meaning": "distributed data parallel: one model copy per GPU"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 25.79
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 25.79,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 25.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · Do You Have The GPU?",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Start where the work can quietly go wrong. If the CUDA module isn't loaded, PyTorch runs on the CPU and raises no error at all. A typo in the GPU request lands you on the wrong kind of node. And a leftover CUDA visible devices setting from an earlier shell can hide the card you were given.",
+      "estimated_duration_s": 22.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three small scenes land in a row on the same stage: a job box slides onto a grey CPU block while a dark GPU block beside it stays unlit (no alarm); a job box lands on the wrong rack; a ghost tag labelled 'CUDA_VISIBLE_DEVICES' covers a GPU light. Act title top-left.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "job lands on the CPU, GPU stays dark"
+          },
+          {
+            "at": 0.5,
+            "event": "wrong node"
+          },
+          {
+            "at": 0.8,
+            "event": "stale tag hides the GPU"
+          }
+        ],
+        "manim": {
+          "class": "B10_SilentFailures"
+        },
+        "motion_claim": "Three small scenes land in a row on the same stage: a job box slides onto a grey CPU block while a dark GPU block beside it stays unlit (no alarm); a job box lands on the wrong rack; a ghost tag labelled 'CUDA_VISIBLE_DEVICES' covers a GPU light. Act title top-left."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 16.62,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 16.625,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "I · Do You Have The GPU?",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "AICR has two GPU families and four GPU partitions. B200 devel and B200 batch, with one hundred ninety-two gigabytes of memory per card. RTX devel and RTX batch, with ninety-six. Devel partitions run four hours and are for interactive work and profiling. Batch partitions run twenty-four hours and are for production.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table builds row by row: partition, GPU, VRAM, max walltime, purpose. Rows: b200-devel, b200-batch, rtx-devel, rtx-batch. VRAM bars drawn beside the numbers: 192 GB twice the length of 96 GB.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "B200 rows"
+          },
+          {
+            "at": 0.45,
+            "event": "RTX rows"
+          },
+          {
+            "at": 0.7,
+            "event": "devel: 4 h"
+          },
+          {
+            "at": 0.88,
+            "event": "batch: 24 h"
+          }
+        ],
+        "manim": {
+          "class": "B11_PartitionTable"
+        },
+        "motion_claim": "A drawn table builds row by row: partition, GPU, VRAM, max walltime, purpose. Rows: b200-devel, b200-batch, rtx-devel, rtx-batch. VRAM bars drawn beside the numbers: 192 GB twice the length of 96 GB."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 19.75,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 19.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "I · Do You Have The GPU?",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A minimal job script. The request first: one node, one task, eight CPUs per task, one GPU, thirty-two gigabytes of memory, four hours, and the log files.",
+      "estimated_duration_s": 10.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the request lines print"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.aicr.ai",
+            "lines": [
+              "$ cat my_training.slurm",
+              "#!/bin/bash",
+              "#SBATCH --job-name=my_training",
+              "#SBATCH --partition=b200-batch",
+              "#SBATCH --nodes=1",
+              "#SBATCH --ntasks=1",
+              "#SBATCH --cpus-per-task=8",
+              "#SBATCH --gres=gpu:1",
+              "#SBATCH --mem=32G",
+              "#SBATCH --time=04:00:00",
+              "#SBATCH --output=logs/%x_%j.out",
+              "#SBATCH --error=logs/%x_%j.err"
+            ],
+            "startCue": 15,
+            "lineGap": 22,
+            "durationSeconds": 9.88
+          }
+        }
+      },
+      "motion_claim": "The real commands land in order; output appears only where it was really captured.",
+      "actual_duration_s": 9.88,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 9.916666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B12B",
+      "act": "I · Do You Have The GPU?",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then the work. Make the logs folder, clear the modules, load CUDA and miniforge, activate the workshop environment, and run your training.",
+      "estimated_duration_s": 8.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the work lines run"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.aicr.ai",
+            "lines": [
+              "$ mkdir -p logs",
+              "$ module purge",
+              "$ module load cuda/13.1",
+              "$ module load miniforge3/25.3.0-3",
+              "$ source activate aicr_gpu_workshop",
+              "$ python train.py"
+            ],
+            "startCue": 15,
+            "lineGap": 36,
+            "durationSeconds": 7.81
+          }
+        }
+      },
+      "motion_claim": "The real commands land in order; output appears only where it was really captured.",
+      "actual_duration_s": 7.81,
+      "audio_file": "mp3/beat-B12B.mp3",
+      "render_duration_s": 7.833333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12B.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "I · Do You Have The GPU?",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Two lines deserve a pause. Mem equals thirty-two gigabytes is CPU memory, not GPU memory. The GPU's own memory comes with the GPU. And CPUs per task is not a formality: your data loading workers run on those cores. Eight cores means seven workers and one main process.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left: a grey CPU block with a kraft RAM box labelled '32G · CPU RAM'; right: a dark GPU block with its own larger dark memory slab labelled 'VRAM'. Then eight small core pads under the CPU: seven light up as 'workers', one as 'main'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "32G sits on the CPU side"
+          },
+          {
+            "at": 0.45,
+            "event": "VRAM comes with the GPU"
+          },
+          {
+            "at": 0.75,
+            "event": "eight cores: seven workers, one main"
+          }
+        ],
+        "manim": {
+          "class": "B13_RamVsVram"
+        },
+        "motion_claim": "Left: a grey CPU block with a kraft RAM box labelled '32G · CPU RAM'; right: a dark GPU block with its own larger dark memory slab labelled 'VRAM'. Then eight small core pads under the CPU: seven light up as 'workers', one as 'main'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 16.73,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 16.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B13.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "I · Do You Have The GPU?",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Never trust that you got what you asked for. The workshop's verify script runs in under five seconds and checks five things. Is CUDA reachable. How many GPUs, which model, how much memory. What CUDA visible devices says. Does NVIDIA S M I agree. And a tensor round trip: CPU to GPU and back. Is available only means PyTorch can see a GPU. The round trip proves it can use it.",
+      "estimated_duration_s": 28.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A mono label '01_gpu_verify.py'; five check rows land one by one with short labels (CUDA reachable · GPUs, model, VRAM · CUDA_VISIBLE_DEVICES · nvidia-smi agrees · round trip); on 'round trip' a small kraft tensor box travels CPU → GPU → CPU along a cable and a check lands.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "five checks land"
+          },
+          {
+            "at": 0.7,
+            "event": "tensor round trip CPU → GPU → CPU"
+          },
+          {
+            "at": 0.95,
+            "event": "check"
+          }
+        ],
+        "manim": {
+          "class": "B14_VerifyFive"
+        },
+        "motion_claim": "A mono label '01_gpu_verify.py'; five check rows land one by one with short labels (CUDA reachable · GPUs, model, VRAM · CUDA_VISIBLE_DEVICES · nvidia-smi agrees · round trip); on 'round trip' a small kraft tensor box travels CPU → GPU → CPU along a cable and a check lands."
+      },
+      "actual_duration_s": 20.31,
+      "audio_file": "mp3/beat-B14.mp3",
+      "render_duration_s": 20.333333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B14.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "I · Do You Have The GPU?",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "About that variable. Slurm sets CUDA visible devices to tell your program which GPUs are yours. Zero means one GPU. Zero comma one means two. Not set means you're outside Slurm, in an interactive shell, which is normal. Never override it in your script unless you deliberately want a subset.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three mono rows land: 'CUDA_VISIBLE_DEVICES=0' with one GPU block lit, '=0,1' with two lit, 'NOT SET' with a plain shell window; a terracotta strike lands over a 'export CUDA_VISIBLE_DEVICES=...' line in a script.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "=0: one GPU"
+          },
+          {
+            "at": 0.4,
+            "event": "=0,1: two"
+          },
+          {
+            "at": 0.55,
+            "event": "NOT SET: outside Slurm"
+          },
+          {
+            "at": 0.85,
+            "event": "never override"
+          }
+        ],
+        "manim": {
+          "class": "B15_VisibleDevices"
+        },
+        "motion_claim": "Three mono rows land: 'CUDA_VISIBLE_DEVICES=0' with one GPU block lit, '=0,1' with two lit, 'NOT SET' with a plain shell window; a terracotta strike lands over a 'export CUDA_VISIBLE_DEVICES=...' line in a script."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 16.75,
+      "audio_file": "mp3/beat-B15.mp3",
+      "render_duration_s": 16.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B15.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "I · Do You Have The GPU?",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "One AICR-specific rule. A background process watches GPU utilization, and a job that holds a GPU without running anything is cancelled. So don't request a GPU and then sit writing code. Run the verify script first, profile in the devel partition in short sessions, and keep the batch partitions for jobs that are already tuned.",
+      "estimated_duration_s": 22.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A utilization line runs flat at zero while a job box sits on a lit GPU; a watcher marker reaches the flat stretch, the job is struck out and removed, and the GPU goes to the next job in the queue. Labels: 'GPU utilization', 'idle', 'cancelled'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "flat line"
+          },
+          {
+            "at": 0.45,
+            "event": "cancelled"
+          },
+          {
+            "at": 0.7,
+            "event": "the GPU goes to the next job"
+          }
+        ],
+        "manim": {
+          "class": "B16_IdleCancel"
+        },
+        "motion_claim": "A utilization line runs flat at zero while a job box sits on a lit GPU; a watcher marker reaches the flat stretch, the job is struck out and removed, and the GPU goes to the next job in the queue. Labels: 'GPU utilization', 'idle', 'cancelled'."
+      },
+      "actual_duration_s": 18.99,
+      "audio_file": "mp3/beat-B16.mp3",
+      "render_duration_s": 19.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B16.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Seeing The GPU Live",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The fastest profiler is already on every node. NVIDIA S M I prints a snapshot; watch it every second in a second terminal. Two numbers matter. GPU utilization: eighty-four percent here means the GPU was running kernels for eighty-four percent of the last second. Healthy. Below fifty, something is wrong. And memory: twenty-four gigabytes of one hundred ninety-two in use. Twelve percent. Enormous room for a bigger batch.",
+      "estimated_duration_s": 27.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A dark terminal panel with the workshop's sample nvidia-smi rows in mono (GPU 0 NVIDIA B200 · 52C 387W / 1000W · 84% · Memory 24576MiB / 196608MiB), typed on '$ watch -n 1 nvidia-smi'; a terracotta ring lands on '84%' then on the memory figures; small labels 'utilization' and '12% of VRAM' beside them. Act title top-left.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "watch -n 1 nvidia-smi"
+          },
+          {
+            "at": 0.4,
+            "event": "ring on 84%"
+          },
+          {
+            "at": 0.8,
+            "event": "ring on memory: 12%"
+          }
+        ],
+        "manim": {
+          "class": "B20_NvidiaSmi"
+        },
+        "motion_claim": "A dark terminal panel with the workshop's sample nvidia-smi rows in mono (GPU 0 NVIDIA B200 · 52C 387W / 1000W · 84% · Memory 24576MiB / 196608MiB), typed on '$ watch -n 1 nvidia-smi'; a terracotta ring lands on '84%' then on the memory figures; small labels 'utilization' and '12% of VRAM' beside them. Act title top-left."
+      },
+      "actual_duration_s": 21.27,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 21.291666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · Seeing The GPU Live",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A quick quiz from the workshop. Utilization twelve percent, memory ninety-one percent. What's wrong? The model is loaded, the card is full, and it's barely computing. Nothing on the CPU side is feeding it. That is data starvation, the most common problem of all, and it gets its own act.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two gauges side by side: 'utilization' fills to 12% and stays low; 'memory' fills to 91%; a job box sits loaded on a GPU while an empty conveyor from a CPU block brings nothing; label 'starved'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "12% and 91%"
+          },
+          {
+            "at": 0.55,
+            "event": "loaded but idle"
+          },
+          {
+            "at": 0.85,
+            "event": "starved"
+          }
+        ],
+        "manim": {
+          "class": "B21_TwoGauges"
+        },
+        "motion_claim": "Two gauges side by side: 'utilization' fills to 12% and stays low; 'memory' fills to 91%; a job box sits loaded on a GPU while an empty conveyor from a CPU block brings nothing; label 'starved'."
+      },
+      "actual_duration_s": 15.42,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 15.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B21.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "II · Seeing The GPU Live",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Hold these two numbers as two axes, because people confuse them. Across: utilization. Up: memory. Top left is a loaded model that isn't running: a data pipeline problem. Bottom left is a GPU doing nothing at all. Bottom right is good throughput with memory to spare. Top right is the target: a big model, working hard. Eighty to a hundred percent utilization, seventy to ninety percent memory.",
+      "estimated_duration_s": 26.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A 2×2 grid draws: x-axis 'utilization', y-axis 'memory'; quadrants land as named with a job-box-and-GPU miniature in each (idle box, dark card, lit card with spare memory, full card lit); the top-right cell gets the terracotta ring and 'target'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "axes"
+          },
+          {
+            "at": 0.4,
+            "event": "top left: loaded, idle"
+          },
+          {
+            "at": 0.55,
+            "event": "bottom left: nothing"
+          },
+          {
+            "at": 0.7,
+            "event": "bottom right: headroom"
+          },
+          {
+            "at": 0.85,
+            "event": "top right: target"
+          }
+        ],
+        "manim": {
+          "class": "B22_TwoAxes"
+        },
+        "motion_claim": "A 2×2 grid draws: x-axis 'utilization', y-axis 'memory'; quadrants land as named with a job-box-and-GPU miniature in each (idle box, dark card, lit card with spare memory, full card lit); the top-right cell gets the terracotta ring and 'target'."
+      },
+      "actual_duration_s": 20.84,
+      "audio_file": "mp3/beat-B22.mp3",
+      "render_duration_s": 20.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B22.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "II · Seeing The GPU Live",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "For a richer live view, N V I top. A dashboard that updates continuously, per process: GPU use, memory trend, power and temperature. On a shared node it answers the question that matters: is it my Python process using the GPU, or someone's leftover.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "install"
+          },
+          {
+            "at": 0.3,
+            "event": "nvitop"
+          },
+          {
+            "at": 0.6,
+            "event": "what it shows"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.aicr.ai",
+            "lines": [
+              "$ pip install nvitop   # if not in your environment",
+              "$ nvitop",
+              "# per-process GPU usage, memory trend,",
+              "# power draw and temperature",
+              "# confirm it is YOUR python process on the GPU"
+            ],
+            "startCue": 30,
+            "lineGap": 70,
+            "durationSeconds": 15.36
+          }
+        }
+      },
+      "motion_claim": "The real commands land in order; output appears only where it was really captured.",
+      "actual_duration_s": 15.36,
+      "audio_file": "mp3/beat-B23.mp3",
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B23.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · The Profiling Toolchain",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "NVIDIA S M I tells you that there's a problem. A profiler tells you where the time goes. There are layers. System level: NVIDIA S M I and N V I top. Is the GPU busy. Framework level: the PyTorch profiler. Which operator or layer eats the GPU time. Timeline: N-sight Systems. Every CPU thread, kernel and memory copy in order. And kernel level: N-sight Compute. Is one kernel memory-bound or compute-bound. Most problems show up on the first two rungs.",
+      "estimated_duration_s": 32.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A ladder builds rung by rung from the bottom: 'system · nvidia-smi, nvitop', 'framework · PyTorch Profiler', 'timeline · nsys', 'kernel · ncu'; each rung carries a one-word question label; the two lowest rungs get a terracotta mark on 'first two rungs'. Act title top-left.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "system rung"
+          },
+          {
+            "at": 0.4,
+            "event": "framework"
+          },
+          {
+            "at": 0.55,
+            "event": "timeline"
+          },
+          {
+            "at": 0.7,
+            "event": "kernel"
+          },
+          {
+            "at": 0.92,
+            "event": "the first two rungs marked"
+          }
+        ],
+        "manim": {
+          "class": "B30_FourLayers"
+        },
+        "motion_claim": "A ladder builds rung by rung from the bottom: 'system · nvidia-smi, nvitop', 'framework · PyTorch Profiler', 'timeline · nsys', 'kernel · ncu'; each rung carries a one-word question label; the two lowest rungs get a terracotta mark on 'first two rungs'. Act title top-left."
+      },
+      "actual_duration_s": 26.05,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 26.083333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B30.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · The Profiling Toolchain",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The habit that matters most on AICR: profile in devel, run production in batch. In a B200 devel session you run the verify script, run your code for fifty to a hundred steps, profile, fix the bottleneck, and profile again until utilization is above seventy percent. Only then does the job go to B200 batch, unattended, and you read jobstats when it finishes.",
+      "estimated_duration_s": 25.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two lanes: left lane 'b200-devel · srun' with steps landing downward (verify · 50–100 steps · profile · fix · re-profile · > 70%); a belt carries the job box across to the right lane 'b200-batch · sbatch' (run · jobstats). Same job box as B16.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "devel lane"
+          },
+          {
+            "at": 0.35,
+            "event": "verify, short run, profile, fix"
+          },
+          {
+            "at": 0.7,
+            "event": "> 70%: cross to batch"
+          },
+          {
+            "at": 0.9,
+            "event": "jobstats"
+          }
+        ],
+        "manim": {
+          "class": "B31_DevelToBatch"
+        },
+        "motion_claim": "Two lanes: left lane 'b200-devel · srun' with steps landing downward (verify · 50–100 steps · profile · fix · re-profile · > 70%); a belt carries the job box across to the right lane 'b200-batch · sbatch' (run · jobstats). Same job box as B16."
+      },
+      "actual_duration_s": 20.25,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 20.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B31.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B32",
+      "act": "III · The Profiling Toolchain",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The PyTorch profiler needs no extra install. Open a profile that records CPU and CUDA activity, records the tensor shapes, and writes a trace you can open in TensorBoard.",
+      "estimated_duration_s": 11.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the profile() block prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "profile_window.py — open the profiler",
+            "code": "from torch.profiler import profile, ProfilerActivity\n\nwith profile(\n    activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],\n    record_shapes=True,\n    on_trace_ready=torch.profiler.tensorboard_trace_handler('./prof')\n) as prof:",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "CPU and CUDA, shapes, a trace.",
+            "durationSeconds": 10.84
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 10.84,
+      "audio_file": "mp3/beat-B32.mp3",
+      "render_duration_s": 10.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B32.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B32B",
+      "act": "III · The Profiling Toolchain",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then the pattern that matters: profile a short window, never the full run. Twenty steps is enough. Step the profiler each iteration, and print the table sorted by total CUDA time. The top row is where you look first.",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the loop and the table print"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "profile_window.py — a short window",
+            "code": "    for step, (x, y) in enumerate(dataloader):\n        if step == 20:\n            break          # short window: 10-20 steps is enough\n        out  = model(x)\n        loss = criterion(out, y)\n        loss.backward()\n        optimizer.step()\n        prof.step()\n\nprint(prof.key_averages().table(sort_by='cuda_time_total', row_limit=15))",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Twenty steps, sorted by CUDA time.",
+            "durationSeconds": 12.05
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 12.05,
+      "audio_file": "mp3/beat-B32B.mp3",
+      "render_duration_s": 12.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B32B.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B33",
+      "act": "III · The Profiling Toolchain",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Reading it, in order. Gaps between kernels on the timeline: the GPU is idle, the CPU is too slow. Large copy entries: data shuttling between CPU and GPU. CPU total far above CUDA total: the work isn't really on the GPU. And DataLoader functions at the top of the CPU table: the pipeline, again.",
+      "estimated_duration_s": 21.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A kernel timeline draws: dark kernel blocks with visible gaps, the gaps ring in terracotta ('idle'); a long bar labelled 'aten::copy_' grows; two bars 'CPU total' and 'CUDA total' grow with CPU far longer; a table row 'DataLoader' slides to the top of a small list.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "gaps between kernels"
+          },
+          {
+            "at": 0.4,
+            "event": "copy_ bar"
+          },
+          {
+            "at": 0.62,
+            "event": "CPU total >> CUDA total"
+          },
+          {
+            "at": 0.85,
+            "event": "DataLoader on top"
+          }
+        ],
+        "manim": {
+          "class": "B33_ReadTheTrace"
+        },
+        "motion_claim": "A kernel timeline draws: dark kernel blocks with visible gaps, the gaps ring in terracotta ('idle'); a long bar labelled 'aten::copy_' grows; two bars 'CPU total' and 'CUDA total' grow with CPU far longer; a table row 'DataLoader' slides to the top of a small list."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 17.81,
+      "audio_file": "mp3/beat-B33.mp3",
+      "render_duration_s": 17.833333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B33.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B34",
+      "act": "III · The Profiling Toolchain",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "When the order of events matters, CPU threads, kernels, memory copies, communication between GPUs, use Nsight Systems. Trace CUDA, NVTX, the OS runtime, c u D N N and c u BLAS, write the report to scratch, and copy it to your laptop for the N-sight GUI. Limit the capture to fifty or a hundred steps: a full run makes gigabyte files.",
+      "estimated_duration_s": 24.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "nsys profile"
+          },
+          {
+            "at": 0.5,
+            "event": "50 steps"
+          },
+          {
+            "at": 0.8,
+            "event": "scp to the laptop"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "ssh — login.aicr.ai",
+            "lines": [
+              "$ nsys profile \\",
+              "    --trace=cuda,nvtx,osrt,cudnn,cublas \\",
+              "    --output=/scratch/$USER/profile_$(date +%s) \\",
+              "    python train.py --max-steps 50",
+              "# then copy the .nsys-rep file to your laptop",
+              "$ scp USER@login.aicr.ai:/scratch/USER/profile_*.nsys-rep ./"
+            ],
+            "startCue": 30,
+            "lineGap": 60,
+            "durationSeconds": 19.75
+          }
+        }
+      },
+      "motion_claim": "The real commands land in order; output appears only where it was really captured.",
+      "actual_duration_s": 19.75,
+      "audio_file": "mp3/beat-B34.mp3",
+      "render_duration_s": 19.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B34.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "IV · Data Starvation",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Now the number one bottleneck. Picture a high-speed factory: the B200. It finishes a batch in eight milliseconds. The supply truck, the CPU data loader, takes fifty milliseconds to bring the next one. The factory stops and waits. Nothing is wrong with the factory. The supply chain can't keep up. And a B200 eats batches far faster than the cards you may be used to, so a loader that barely kept up elsewhere will starve it here.",
+      "estimated_duration_s": 30.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Isometric: a dark machine (GPU) with a stamping press and a timer '8 ms'; a kraft truck (loader) crawls along a belt with timer '50 ms'; the press works briefly then holds with its light off; label 'waiting'. Act title top-left.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the press stamps: 8 ms"
+          },
+          {
+            "at": 0.4,
+            "event": "the truck crawls: 50 ms"
+          },
+          {
+            "at": 0.6,
+            "event": "the press waits, light off"
+          },
+          {
+            "at": 0.9,
+            "event": "waiting"
+          }
+        ],
+        "manim": {
+          "class": "B40_Factory"
+        },
+        "motion_claim": "Isometric: a dark machine (GPU) with a stamping press and a timer '8 ms'; a kraft truck (loader) crawls along a belt with timer '50 ms'; the press works briefly then holds with its light off; label 'waiting'. Act title top-left."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 21.57,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 21.583333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "IV · Data Starvation",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The diagnostic is two timings. First, time fifty batches through the loader alone, with no GPU work at all.",
+      "estimated_duration_s": 7.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the loader timing prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "starvation_check.py — the loader",
+            "code": "# Time just the data loading (no GPU work)\nt0 = time.perf_counter()\nfor i, (x, y) in enumerate(loader):\n    if i >= 50:\n        break\nloader_ms = (time.perf_counter() - t0) / 50 * 1000",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Fifty batches, loader only.",
+            "durationSeconds": 6.93
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 6.93,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 6.958333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B41.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B41B",
+      "act": "IV · Data Starvation",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then time fifty forward-and-backward passes on synthetic data, bypassing the loader entirely. If the loader time is larger than the compute time, you are data bound, and no model optimization will help until that's fixed.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the compute timing prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "starvation_check.py — the compute",
+            "code": "# Time just the compute (synthetic data, bypass the loader)\ndummy_x = torch.randn(256, 3, 224, 224, device='cuda')\ntorch.cuda.synchronize()\nt0 = time.perf_counter()\nfor _ in range(50):\n    out = model(dummy_x)\n    out.sum().backward()\n    torch.cuda.synchronize()\ncompute_ms = (time.perf_counter() - t0) / 50 * 1000\n\n# If loader_ms > compute_ms, you are DATA BOUND.",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Loader time against compute time.",
+            "durationSeconds": 12.93
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 12.93,
+      "audio_file": "mp3/beat-B41B.mp3",
+      "render_duration_s": 12.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B41B.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "IV · Data Starvation",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The workshop's quiz: loader forty-five milliseconds, compute nine. The GPU works for nine and waits for thirty-six. Eighty percent of its time, wasted.",
+      "estimated_duration_s": 9.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two bars grow on one time axis: 'compute 9 ms' (dark, short) then 'loader 45 ms' (kraft, long); the gap between 9 and 45 fills with a grey hatched 'waiting' span and a hero '80%' lands.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "45 ms and 9 ms"
+          },
+          {
+            "at": 0.6,
+            "event": "36 ms of waiting"
+          },
+          {
+            "at": 0.85,
+            "event": "80%"
+          }
+        ],
+        "manim": {
+          "class": "B42_FortyFiveNine"
+        },
+        "motion_claim": "Two bars grow on one time axis: 'compute 9 ms' (dark, short) then 'loader 45 ms' (kraft, long); the gap between 9 and 45 fills with a grey hatched 'waiting' span and a hero '80%' lands."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 9.15,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 9.166666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B42.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B43",
+      "act": "IV · Data Starvation",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The fix usually lives in four DataLoader settings. Workers: CPU processes loading in parallel. Pin memory: page-locked RAM for fast transfer. Persistent workers: don't respawn them every epoch. And prefetch factor: how many batches each worker loads ahead.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the DataLoader call prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "loader.py",
+            "code": "from torch.utils.data import DataLoader\n\nloader = DataLoader(\n    dataset,\n    batch_size=256,\n    num_workers=7,             # cpus-per-task minus 1\n    pin_memory=True,           # always True on GPU training\n    persistent_workers=True,   # keep workers alive between epochs\n    prefetch_factor=2,         # batches each worker pre-loads\n)",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Four knobs.",
+            "durationSeconds": 15.53
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 15.53,
+      "audio_file": "mp3/beat-B43.mp3",
+      "render_duration_s": 15.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B43.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B44",
+      "act": "IV · Data Starvation",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Typical starting values. Workers: CPUs per task minus one, never zero. Pin memory: always true on a GPU node. Persistent workers: true whenever workers are above zero. Prefetch: start at two. The single biggest win in the whole workshop is one line: num workers from zero, the PyTorch default, to four or more. That alone often takes a job from twenty percent utilization to sixty or eighty.",
+      "estimated_duration_s": 26.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four dials land with labels (num_workers · pin_memory · persistent_workers · prefetch_factor) and their start values (cpus−1 · True · True · 2); then a utilization bar labelled 'num_workers=0' at 20% grows to 60–80% as the first dial turns to 4.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "four dials"
+          },
+          {
+            "at": 0.7,
+            "event": "num_workers 0 → 4"
+          },
+          {
+            "at": 0.88,
+            "event": "20% → 60–80%"
+          }
+        ],
+        "manim": {
+          "class": "B44_FourKnobs"
+        },
+        "motion_claim": "Four dials land with labels (num_workers · pin_memory · persistent_workers · prefetch_factor) and their start values (cpus−1 · True · True · 2); then a utilization bar labelled 'num_workers=0' at 20% grows to 60–80% as the first dial turns to 4."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 21.21,
+      "audio_file": "mp3/beat-B44.mp3",
+      "render_duration_s": 21.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B44.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "V · Memory vs Utilization",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Two percentages on the same screen that mean different things. Utilization: the share of the last second the GPU was running. Low means idle, from data or synchronization. A hundred percent sustained is fine. Memory: the share of VRAM allocated. Low means you could hold a bigger batch. High is only bad near the edge, where the job runs out of memory and crashes.",
+      "estimated_duration_s": 25.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two independent gauges with their own needles: 'utilization' sweeps to 100% and gets a check; 'memory' climbs to the top edge where a terracotta 'OOM' mark sits; the needles move independently to show they are not linked. Act title top-left.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "utilization meter"
+          },
+          {
+            "at": 0.45,
+            "event": "100% sustained is fine"
+          },
+          {
+            "at": 0.65,
+            "event": "memory meter"
+          },
+          {
+            "at": 0.9,
+            "event": "OOM at the edge"
+          }
+        ],
+        "manim": {
+          "class": "B50_TwoMeters"
+        },
+        "motion_claim": "Two independent gauges with their own needles: 'utilization' sweeps to 100% and gets a check; 'memory' climbs to the top edge where a terracotta 'OOM' mark sits; the needles move independently to show they are not linked. Act title top-left."
+      },
+      "actual_duration_s": 18.99,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 19.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B50.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "V · Memory vs Utilization",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "So read them as a pair. Low and low: the GPU is doing nothing; verify CUDA, check the data. Low utilization, high memory: loaded but not running; fix the pipeline. High utilization, low memory: healthy, with VRAM unused; increase the batch size. High and high: you're in good shape. And an out-of-memory crash: mixed precision first.",
+      "estimated_duration_s": 22.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table builds row by row: 'what you see' → 'likely cause' → 'first thing to try', five rows, each with two small gauge icons (low/high) drawn instead of words in the first column; the row being read carries the terracotta dot.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "low + low"
+          },
+          {
+            "at": 0.35,
+            "event": "low util + high memory"
+          },
+          {
+            "at": 0.55,
+            "event": "high util + low memory"
+          },
+          {
+            "at": 0.75,
+            "event": "high + high"
+          },
+          {
+            "at": 0.9,
+            "event": "OOM"
+          }
+        ],
+        "manim": {
+          "class": "B51_DecisionTable"
+        },
+        "motion_claim": "A drawn table builds row by row: 'what you see' → 'likely cause' → 'first thing to try', five rows, each with two small gauge icons (low/high) drawn instead of words in the first column; the row being read carries the terracotta dot."
+      },
+      "actual_duration_s": 17.98,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 18.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B51.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "V · Memory vs Utilization",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Batch size moves both axes. Doubling it roughly doubles throughput, as long as the GPU isn't already saturated and the memory is there. On a B200 with one hundred ninety-two gigabytes, memory sitting at fifteen or twenty percent means room for four to eight times the batch. Find the ceiling by binary search: try a size, see if it fits, halve the gap, repeat. Then run production at seventy to eighty-five percent of that ceiling.",
+      "estimated_duration_s": 30.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A VRAM bar at 15–20% full; a batch-size axis from 1 to 4096 with a marker that jumps by halving gaps (2048 fits, 3072 fails, 2560 fits, …) landing on the ceiling; the bar fills as the batch grows; a band marks 70–85% of the ceiling as 'production'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "memory at 15–20%"
+          },
+          {
+            "at": 0.5,
+            "event": "binary search jumps"
+          },
+          {
+            "at": 0.85,
+            "event": "70–85% band"
+          }
+        ],
+        "manim": {
+          "class": "B52_BinarySearch"
+        },
+        "motion_claim": "A VRAM bar at 15–20% full; a batch-size axis from 1 to 4096 with a marker that jumps by halving gaps (2048 fits, 3072 fails, 2560 fits, …) landing on the ceiling; the bar fills as the batch grows; a band marks 70–85% of the ceiling as 'production'."
+      },
+      "actual_duration_s": 21.5,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 21.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B52.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B53",
+      "act": "V · Memory vs Utilization",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Mixed precision is the next lever. PyTorch defaults to thirty-two-bit floats. Both AICR GPU families have tensor cores built for lower precision. The change is one wrapper: autocast to b float sixteen around the forward pass and the loss. Gradients stay in thirty-two bit on their own.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "before and after print"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "bf16.py",
+            "code": "from torch.amp import autocast\n\n# Before (FP32)\nout  = model(x)\nloss = criterion(out, y)\nloss.backward()\n\n# After (BF16): add exactly this wrapper\nwith autocast(device_type='cuda', dtype=torch.bfloat16):\n    out  = model(x)\n    loss = criterion(out, y)\nloss.backward()   # gradients stay in FP32",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "One wrapper.",
+            "durationSeconds": 16.45
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 16.45,
+      "audio_file": "mp3/beat-B53.mp3",
+      "render_duration_s": 16.458333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B53.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B54",
+      "act": "V · Memory vs Utilization",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Why BF16 and not FP16. A sixteen-bit number splits its bits between exponent, which is range, and mantissa, which is precision. FP32 has eight exponent bits and twenty-three of mantissa. BF16 keeps the same eight exponent bits and keeps only seven for precision, so gradients don't underflow and you need no loss scaler. FP16 bets the other way: ten bits of precision, but only five of exponent, which underflows. FP8 goes further still: four and three. Every step down trades numerical quality for speed and memory.",
+      "estimated_duration_s": 34.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four horizontal bit-bars build, one per format, each split into a dark 'exponent' segment and a grey 'mantissa' segment with counts: FP32 8|23, BF16 8|7, FP16 5|10, FP8 4|3; BF16's exponent segment aligns exactly under FP32's and gets the terracotta mark; FP16's short exponent gets a small 'underflow' label.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "FP32 8|23"
+          },
+          {
+            "at": 0.4,
+            "event": "BF16 8|7, same exponent"
+          },
+          {
+            "at": 0.62,
+            "event": "FP16 5|10"
+          },
+          {
+            "at": 0.78,
+            "event": "FP8 4|3"
+          },
+          {
+            "at": 0.92,
+            "event": "quality for speed"
+          }
+        ],
+        "manim": {
+          "class": "B54_BitLadder"
+        },
+        "motion_claim": "Four horizontal bit-bars build, one per format, each split into a dark 'exponent' segment and a grey 'mantissa' segment with counts: FP32 8|23, BF16 8|7, FP16 5|10, FP8 4|3; BF16's exponent segment aligns exactly under FP32's and gets the terracotta mark; FP16's short exponent gets a small 'underflow' label."
+      },
+      "actual_duration_s": 30.55,
+      "audio_file": "mp3/beat-B54.mp3",
+      "render_duration_s": 30.583333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B54.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B55",
+      "act": "V · Memory vs Utilization",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "What BF16 buys on this hardware. Activation memory roughly halves, so a much bigger batch fits. Matrix operations run two to four times faster on the tensor cores. And it is mixed precision, which is the safety net: the risky parts stay in thirty-two bit. Master weights, the loss, softmax, normalization. Autocast handles that for you. So the memory saving is partial, and the speedup is largest for matrix multiplies.",
+      "estimated_duration_s": 28.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A row of model blocks: activation blocks shrink to half height (label '½'); matmul blocks get a '2–4×' speed tag; four blocks labelled 'weights', 'loss', 'softmax', 'norm' stay full height in FP32 ink while the rest turn to BF16 grey.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "activations halve"
+          },
+          {
+            "at": 0.35,
+            "event": "2–4× on matmuls"
+          },
+          {
+            "at": 0.6,
+            "event": "weights, loss, softmax, norm stay FP32"
+          }
+        ],
+        "manim": {
+          "class": "B55_MixedSafetyNet"
+        },
+        "motion_claim": "A row of model blocks: activation blocks shrink to half height (label '½'); matmul blocks get a '2–4×' speed tag; four blocks labelled 'weights', 'loss', 'softmax', 'norm' stay full height in FP32 ink while the rest turn to BF16 grey."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 22.49,
+      "audio_file": "mp3/beat-B55.mp3",
+      "render_duration_s": 22.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B55.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B56",
+      "act": "V · Memory vs Utilization",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "If memory is still too tight, gradient checkpointing trades compute for memory. Activations aren't stored in the forward pass; they're recomputed during backpropagation. Roughly sixty to seventy percent less activation memory for about thirty percent more compute. In Hugging Face it's one call. In custom modules, wrap the expensive layers. Use it when the batch is forced below eight, or when you're fine-tuning a very large model on one card.",
+      "estimated_duration_s": 28.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the two snippets print"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "checkpointing.py",
+            "code": "# Hugging Face Transformers: one flag\nmodel.gradient_checkpointing_enable()\n\n# Custom PyTorch modules\nfrom torch.utils.checkpoint import checkpoint\n\nclass MyBlock(torch.nn.Module):\n    def forward(self, x):\n        return checkpoint(self.expensive_layers, x,\n                          use_reentrant=False)",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Recompute instead of store: −60–70% memory, +30% compute.",
+            "durationSeconds": 22.19
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 22.19,
+      "audio_file": "mp3/beat-B56.mp3",
+      "render_duration_s": 22.208333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B56.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B60",
+      "act": "VI · More Than One GPU",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Multi-GPU is the first thing people reach for when a job is slow, and it's often the wrong move. More GPUs amplify the efficiency you already have; they don't create it. The eighty percent rule: if a single GPU is already above eighty percent, you're compute bound, and adding cards divides the work. If it's below sixty, fix the bottleneck first, because four starved GPUs waste four times as much. And an I/O-bound job gets worse, since the cards now compete for the same files.",
+      "estimated_duration_s": 34.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "One GPU with a gauge: at > 80% it splits into four lit GPUs each sharing the work (check); then at < 60% the four GPUs each show a mostly-empty gauge and the idle span is counted four times (terracotta ×4). Act title top-left.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "> 80%: four GPUs share the work"
+          },
+          {
+            "at": 0.6,
+            "event": "< 60%: waste ×4"
+          },
+          {
+            "at": 0.88,
+            "event": "I/O bound: cards compete"
+          }
+        ],
+        "manim": {
+          "class": "B60_EightyRule"
+        },
+        "motion_claim": "One GPU with a gauge: at > 80% it splits into four lit GPUs each sharing the work (check); then at < 60% the four GPUs each show a mostly-empty gauge and the idle span is counted four times (terracotta ×4). Act title top-left."
+      },
+      "actual_duration_s": 25.69,
+      "audio_file": "mp3/beat-B60.mp3",
+      "render_duration_s": 25.708333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B60.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B61",
+      "act": "VI · More Than One GPU",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Here's what data-parallel training does. Each GPU holds a full copy of the model and takes a different mini-batch. After the backward pass they all-reduce: they average their gradients into one, and each applies the same update. Inside one node, over NVLink, that exchange is fast. Across nodes it's slower, so single-node multi-GPU is usually much faster per card than spreading out.",
+      "estimated_duration_s": 24.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three GPU blocks each receive a different batch box (A, B, C) and produce a gradient slab; the three slabs slide to a centre point, merge into one averaged slab, and copies return to all three; a bracket 'one node · NVLink' spans them, and a dashed longer link to a fourth distant block is labelled 'across nodes · slower'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "three batches, three gradients"
+          },
+          {
+            "at": 0.45,
+            "event": "all-reduce"
+          },
+          {
+            "at": 0.7,
+            "event": "same update everywhere"
+          },
+          {
+            "at": 0.9,
+            "event": "across nodes: slower"
+          }
+        ],
+        "manim": {
+          "class": "B61_AllReduce"
+        },
+        "motion_claim": "Three GPU blocks each receive a different batch box (A, B, C) and produce a gradient slab; the three slabs slide to a centre point, merge into one averaged slab, and copies return to all three; a bracket 'one node · NVLink' spans them, and a dashed longer link to a fourth distant block is labelled 'across nodes · slower'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 20.71,
+      "audio_file": "mp3/beat-B61.mp3",
+      "render_duration_s": 20.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B61.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B62",
+      "act": "VI · More Than One GPU",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Before you ask for four GPUs, confirm your code is written for DDP. A plain script with gres equals gpu four gets four cards and uses one. Check that distributed is available and initialized, and that PyTorch sees as many devices as you requested.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the checks print"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ddp_check.py",
+            "code": "# Check: does your code use DDP?\nimport torch.distributed as dist\nprint(dist.is_available())     # must be True\nprint(dist.is_initialized())   # True after init_process_group()\n\n# Check: how many GPUs does PyTorch see?\nimport torch\nprint(torch.cuda.device_count())   # should match --gres=gpu:N",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "Four cards allocated is not four cards used.",
+            "durationSeconds": 15.21
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 15.21,
+      "audio_file": "mp3/beat-B62.mp3",
+      "render_duration_s": 15.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B62.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B62B",
+      "act": "VI · More Than One GPU",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then the request: one task per GPU, four GPUs, eight CPUs for each GPU's workers, and run it with torchrun.",
+      "estimated_duration_s": 8.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the DDP request prints"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "ddp.slurm",
+            "code": "# For DDP on AICR\n#SBATCH --ntasks-per-node=4      # one task per GPU\n#SBATCH --gres=gpu:4\n#SBATCH --cpus-per-task=8        # CPU workers per GPU process\ntorchrun --nproc_per_node=4 train_ddp.py",
+            "language": "bash",
+            "largeText": true,
+            "sparkLine": "One task per GPU.",
+            "durationSeconds": 7.64
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 7.64,
+      "audio_file": "mp3/beat-B62B.mp3",
+      "render_duration_s": 7.666666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B62B.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B63",
+      "act": "VI · More Than One GPU",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "And measure the scaling. Throughput divided by the number of GPUs times the single-GPU baseline gives efficiency. Above eighty percent, the extra cards pay. Seventy to eighty is acceptable overhead. Below seventy, communication or I/O is the real bottleneck, and more GPUs won't help. Go back to the single card.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A bar per GPU count (1, 2, 4) grows toward an ideal dashed line; the measured bars fall short and an 'efficiency' label lands on each; a three-band scale (> 80% · 70–80% · < 70%) with the lowest band marked terracotta and an arrow back to the single GPU.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "measured vs ideal"
+          },
+          {
+            "at": 0.5,
+            "event": "> 80% pays"
+          },
+          {
+            "at": 0.75,
+            "event": "< 70%: go back"
+          }
+        ],
+        "manim": {
+          "class": "B63_ScalingEfficiency"
+        },
+        "motion_claim": "A bar per GPU count (1, 2, 4) grows toward an ideal dashed line; the measured bars fall short and an 'efficiency' label lands on each; a three-band scale (> 80% · 70–80% · < 70%) with the lowest band marked terracotta and an arrow back to the single GPU."
+      },
+      "actual_duration_s": 18.35,
+      "audio_file": "mp3/beat-B63.mp3",
+      "render_duration_s": 18.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B63.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B70",
+      "act": "VII · The Loop",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Every section was one bottleneck. In practice they come in that order of frequency, so here's the loop. Baseline: fifty steps, record throughput and utilization. Profile twenty steps. Diagnose: data, memory, compute, or communication. Fix one thing. Only one, or you can't tell what helped. Re-profile: did the bottleneck move? Record the gain. Repeat until utilization is above eighty, or the returns run out.",
+      "estimated_duration_s": 25.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A ring of seven steps builds clockwise (baseline · profile · diagnose · fix one · re-profile · record · repeat); a marker travels round it; on 'only one' a second fix card tries to join and is pushed out; the ring's exit arrow lands on '> 80%'. Act title top-left.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "seven steps"
+          },
+          {
+            "at": 0.55,
+            "event": "fix one; the second is pushed out"
+          },
+          {
+            "at": 0.85,
+            "event": "exit at > 80%"
+          }
+        ],
+        "manim": {
+          "class": "B70_TheLoop"
+        },
+        "motion_claim": "A ring of seven steps builds clockwise (baseline · profile · diagnose · fix one · re-profile · record · repeat); a marker travels round it; on 'only one' a second fix card tries to join and is pushed out; the ring's exit arrow lands on '> 80%'. Act title top-left."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 20.8,
+      "audio_file": "mp3/beat-B70.mp3",
+      "render_duration_s": 20.833333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B70.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B71",
+      "act": "VII · The Loop",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The decision guide, as a tree. Utilization under fifty? It's the data pipeline, and if workers is zero, that first. Fifty to eighty? Look at memory. Under forty percent: bigger batch. Forty to eighty-five: try BF16. Over ninety: smaller batch or checkpointing. Memory fine? Profile. Above eighty with healthy memory? Consider more GPUs only if the single card is truly saturated. And out of memory: BF16, then checkpointing, then a smaller batch. In that order.",
+      "estimated_duration_s": 30.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A tree draws from a root 'utilization?' with branches '< 50% → data pipeline', '50–80% → memory?' fanning into four leaves (< 40% batch ↑ · 40–85% BF16 · > 90% batch ↓ / checkpoint · OK → profile), '> 80% → multi-GPU?'; a side branch 'OOM' lists three steps in order; branches light as they are spoken.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "root"
+          },
+          {
+            "at": 0.25,
+            "event": "< 50%: data"
+          },
+          {
+            "at": 0.45,
+            "event": "50–80%: memory leaves"
+          },
+          {
+            "at": 0.75,
+            "event": "> 80%: multi-GPU"
+          },
+          {
+            "at": 0.9,
+            "event": "OOM order"
+          }
+        ],
+        "manim": {
+          "class": "B71_DecisionTree"
+        },
+        "motion_claim": "A tree draws from a root 'utilization?' with branches '< 50% → data pipeline', '50–80% → memory?' fanning into four leaves (< 40% batch ↑ · 40–85% BF16 · > 90% batch ↓ / checkpoint · OK → profile), '> 80% → multi-GPU?'; a side branch 'OOM' lists three steps in order; branches light as they are spoken."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply. Progressive drawing: the midpoint frame holds only part of the final picture."
+      },
+      "actual_duration_s": 24.75,
+      "audio_file": "mp3/beat-B71.mp3",
+      "render_duration_s": 24.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B71.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B72",
+      "act": "VII · The Loop",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "After a batch job finishes, read its report card. Jobstats, from Princeton Research Computing, runs on AICR. Here is a real one, from a fifty-five-minute fine-tuning job on an RTX card. GPU utilization eighty percent: healthy. GPU memory seventeen percent: room for a bigger batch. CPU utilization thirteen percent: eight cores requested, barely one used. And a note: the job needed eleven percent of the eight hours it asked for. Request less time, and the queue moves faster for everyone. Make this a habit: under sixty percent GPU, fix it before the next run.",
+      "estimated_duration_s": 37.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The real report re-composed on cream: '$ jobstats 318592' in mono, header rows (Job Name f5tune-voice · rtx-batch · GPUs 1 · Run Time 00:55:09 · Time Limit 08:00:00), then four utilization bars grow to their real values: CPU 13%, CPU memory 25%, GPU 80%, GPU memory 17%; a terracotta ring on the GPU bar, then on the memory bar, then the note line 'needed 11% of the requested time' lands.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "jobstats 318592"
+          },
+          {
+            "at": 0.35,
+            "event": "GPU 80%"
+          },
+          {
+            "at": 0.5,
+            "event": "GPU memory 17%"
+          },
+          {
+            "at": 0.65,
+            "event": "CPU 13%"
+          },
+          {
+            "at": 0.8,
+            "event": "11% of requested time"
+          }
+        ],
+        "manim": {
+          "class": "B72_Jobstats"
+        },
+        "motion_claim": "The real report re-composed on cream: '$ jobstats 318592' in mono, header rows (Job Name f5tune-voice · rtx-batch · GPUs 1 · Run Time 00:55:09 · Time Limit 08:00:00), then four utilization bars grow to their real values: CPU 13%, CPU memory 25%, GPU 80%, GPU memory 17%; a terracotta ring on the GPU bar, then on the memory bar, then the note line 'needed 11% of the requested time' lands."
+      },
+      "actual_duration_s": 32.64,
+      "audio_file": "mp3/beat-B72.mp3",
+      "render_duration_s": 32.666666666666664,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B72.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B73",
+      "act": "VII · The Loop",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The pre-submission checklist, ideally run in a devel session first. The verify script passes. NVIDIA S M I shows over seventy percent during a fifty-step test. Workers is not zero. Pin memory is on. The batch uses at least sixty percent of VRAM. BF16 autocast is on. The script names the right partition. CPUs per task is at least four and matches workers plus one. The logs folder exists. And you've profiled twenty steps and read the CUDA column. Then cancel the devel session: four running jobs per user is the limit, and an idle one blocks you too.",
+      "estimated_duration_s": 39.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Ten checkbox rows with 1–3 word labels (verify · util > 70% · workers ≠ 0 · pin_memory · batch ≥ 60% VRAM · BF16 · partition · cpus = workers+1 · logs/ · profiled 20) tick one by one; a job box then leaves a devel slot and the slot clears.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "boxes tick in order"
+          },
+          {
+            "at": 0.88,
+            "event": "the devel slot clears"
+          }
+        ],
+        "manim": {
+          "class": "B73_Checklist"
+        },
+        "motion_claim": "Ten checkbox rows with 1–3 word labels (verify · util > 70% · workers ≠ 0 · pin_memory · batch ≥ 60% VRAM · BF16 · partition · cpus = workers+1 · logs/ · profiled 20) tick one by one; a job box then leaves a devel slot and the slot clears."
+      },
+      "actual_duration_s": 31.62,
+      "audio_file": "mp3/beat-B73.mp3",
+      "render_duration_s": 31.625,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B73.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B80",
+      "act": "VIII · Your Domain",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "None of this is PyTorch-only. Deep learning: every section applies, and in Hugging Face most fixes are one flag. Molecular dynamics: verify the GPU type before a long run, and multi-GPU scales well within a node. LLM inference: RTX cards for smaller models, B200s for the seventy-billion class. Custom CUDA or Triton kernels: everything applies, plus N-sight Compute for the kernel itself. And help is one email away: r c help at northeastern dot e d u.",
+      "estimated_duration_s": 30.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "deep learning"
+          },
+          {
+            "at": 0.35,
+            "event": "molecular dynamics"
+          },
+          {
+            "at": 0.55,
+            "event": "LLM inference"
+          },
+          {
+            "at": 0.75,
+            "event": "custom kernels"
+          }
+        ],
+        "remotion": {
+          "pattern": "LibraryIconRow",
+          "props": {
+            "title": "VIII · Your Domain",
+            "items": [
+              {
+                "label": "Deep learning",
+                "sub": "every section applies",
+                "icon": "brain",
+                "cue_phrase": "Deep learning",
+                "at": 0.066
+              },
+              {
+                "label": "Molecular dynamics",
+                "sub": "verify the card; scale in-node",
+                "icon": "atom",
+                "cue_phrase": "Molecular dynamics",
+                "at": 0.249
+              },
+              {
+                "label": "LLM inference",
+                "sub": "RTX small, B200 large",
+                "icon": "message-square",
+                "cue_phrase": "LLM inference",
+                "at": 0.58
+              },
+              {
+                "label": "Custom kernels",
+                "sub": "add Nsight Compute",
+                "icon": "cpu",
+                "cue_phrase": "Custom CUDA",
+                "at": 0.651
+              }
+            ],
+            "durationSeconds": 27.71
+          }
+        }
+      },
+      "motion_claim": "Four domains, each landing as one large library icon as it is named.",
+      "actual_duration_s": 27.71,
+      "audio_file": "mp3/beat-B80.mp3",
+      "render_duration_s": 27.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B80.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "B81",
+      "act": "VIII · Your Domain",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "For Hugging Face Transformers the whole workshop is five lines of training arguments: BF16 on, gradient checkpointing if you need it, eight data loader workers, and pinned memory.",
+      "estimated_duration_s": 11.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the arguments print"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "training_args.py",
+            "code": "from transformers import TrainingArguments\n\nargs = TrainingArguments(\n    bf16=True,                      # mixed precision\n    gradient_checkpointing=True,    # if memory is tight\n    dataloader_num_workers=8,       # feed the GPU\n    dataloader_pin_memory=True,     # fast transfers\n    ...\n)",
+            "language": "python",
+            "largeText": true,
+            "sparkLine": "The workshop as five arguments.",
+            "durationSeconds": 10.6
+          }
+        }
+      },
+      "motion_claim": "The real code from the workshop prints line by line.",
+      "actual_duration_s": 10.6,
+      "audio_file": "mp3/beat-B81.mp3",
+      "render_duration_s": 10.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B81.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. Verify the GPU before anything else, because idle allocations on AICR get cancelled. Watch NVIDIA S M I: under fifty percent utilization means something is wrong. Profile twenty steps, and the top row by CUDA time is where to look. Low utilization with high memory is data starvation: fix the number of workers. High utilization with low memory: raise the batch size. Out of memory: BF16 first. Add GPUs only when one is already above eighty percent, measure the scaling, and read jobstats after every run.",
+      "estimated_duration_s": 36.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Optimizing GPU Usage on AICR",
+            "artifactLines": [
+              "Verify the GPU first; idle allocations on AICR get cancelled.",
+              "Watch nvidia-smi: under 50% utilization means something is wrong.",
+              "Profile 20 steps; the top CUDA-time row is where to look.",
+              "Low utilization with high memory is data starvation: fix num_workers.",
+              "High utilization with low memory: raise the batch; OOM: BF16 first.",
+              "Add GPUs only above 80% on one; measure scaling, read jobstats."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 30.1,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 30.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Here is my PyTorch training loop and my Slurm script: [paste both]. I run it on one GPU. Walk me through the optimization loop: what to measure for a 50-step baseline, how to profile 20 steps, and which of these to try first and why: DataLoader num_workers and pin_memory, a larger batch, BF16 autocast, gradient checkpointing, or a second GPU. Give me the exact code changes for your first pick only. Then check two things yourself. Did it ask you to measure before it changed anything? And did it change exactly one thing?",
+      "estimated_duration_s": 39.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Run The Optimization Loop",
+            "command": "Here is my PyTorch training loop and my Slurm script: [paste both]. I run it on one GPU. Walk me through the optimization loop: what to measure for a 50-step baseline, how to profile 20 steps, and which of these to try first and why: DataLoader num_workers and pin_memory, a larger batch, BF16 autocast, gradient checkpointing, or a second GPU. Give me the exact code changes for your first pick only.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did it ask you to measure before it changed anything?",
+              "Check: did it change exactly one thing?"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 30.06,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 30.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Optimizing GPU Usage on AICR. At Nik Bear Brown.",
+      "estimated_duration_s": 4.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Optimizing GPU Usage on AICR",
+            "slug": "claude-liam-lecture-aicr-optimizing-gpu-usage",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 5.67,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 5.708333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-09T12:09:57"
+      }
+    }
+  ]
+}

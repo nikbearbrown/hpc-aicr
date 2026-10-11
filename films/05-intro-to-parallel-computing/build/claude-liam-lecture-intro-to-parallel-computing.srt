@@ -1,0 +1,583 @@
+1
+00:00:00,000 --> 00:00:04,227
+Research Computing on Explorer and AICR. Intro to Parallel Computing. Threads,
+
+2
+00:00:04,247 --> 00:00:09,632
+processes and scaling across nodes: how work gets split up, and when that actually
+
+3
+00:00:09,652 --> 00:00:10,790
+makes it faster.
+
+4
+00:00:10,860 --> 00:00:15,507
+Namaste! This is Liam, in for Bear. First, a correction. Twice the processors is not
+
+5
+00:00:15,527 --> 00:00:20,484
+twice the speed. The serial part of your code, and the cost of processors talking to
+
+6
+00:00:20,504 --> 00:00:25,151
+each other, set the limit before the hardware does. This lecture walks from one core
+
+7
+00:00:25,171 --> 00:00:29,507
+to many GPUs across nodes: why we parallelise, the four kinds of parallel machine,
+
+8
+00:00:29,527 --> 00:00:32,929
+shared against distributed memory, Amdahl's and Gustafson's laws, a real benchmark
+
+9
+00:00:32,949 --> 00:00:37,596
+of Conway's Game of Life, how GPUs and PyTorch scale, and the parallel tools in
+
+10
+00:00:37,616 --> 00:00:38,840
+Python, R and MATLAB.
+
+11
+00:00:38,910 --> 00:00:43,675
+Six terms. A core: one processing unit that runs instructions on its own. A node:
+
+12
+00:00:43,695 --> 00:00:48,779
+one computer in the cluster, with its own memory. A thread: a stream of work inside
+
+13
+00:00:48,799 --> 00:00:52,927
+one process, sharing that process's memory. A process: a running program with its
+
+14
+00:00:52,947 --> 00:00:56,755
+own memory. MPI: the message passing interface, the standard way processes on
+
+15
+00:00:56,775 --> 00:01:00,902
+different nodes send data to each other. And speedup: serial time divided by
+
+16
+00:01:00,922 --> 00:01:01,540
+parallel time.
+
+17
+00:01:01,610 --> 00:01:05,628
+Start with why. Simulations, data processing, model training: sooner or later one
+
+18
+00:01:05,648 --> 00:01:10,677
+core isn't fast enough, so we split the work. Think of laundry. Serial: wash, dry,
+
+19
+00:01:10,697 --> 00:01:15,388
+fold one load, then the next waits. Nine steps for three loads. Pipelining: while
+
+20
+00:01:15,408 --> 00:01:19,763
+load one dries, load two washes. Five steps. Data parallelism: three washers, three
+
+21
+00:01:19,783 --> 00:01:24,811
+dryers, three loads at once. Three steps. Most of today is data parallelism: cut a
+
+22
+00:01:24,831 --> 00:01:27,840
+big problem into small ones and solve them simultaneously.
+
+23
+00:01:27,910 --> 00:01:31,853
+Flynn's taxonomy sorts machines by how instructions and data flow. Single or
+
+24
+00:01:31,873 --> 00:01:36,147
+multiple instruction; single or multiple data. SISD is an ordinary single core. SIMD
+
+25
+00:01:36,167 --> 00:01:41,432
+is one instruction over many data points at once: that is a GPU. MISD is rare,
+
+26
+00:01:41,452 --> 00:01:45,395
+fault-tolerant hardware. And MIMD is many instructions over many data: a multi-node
+
+27
+00:01:45,415 --> 00:01:50,680
+cluster, each task on its own data. Today's two are SIMD, the GPU, and MIMD, the
+
+28
+00:01:50,700 --> 00:01:51,010
+cluster.
+
+29
+00:01:51,080 --> 00:01:55,695
+How processors reach memory decides which tool you use. Shared memory: the cores of
+
+30
+00:01:55,715 --> 00:02:01,324
+one node read one pool of RAM, any core any address. Easier to program; the tool is
+
+31
+00:02:01,344 --> 00:02:06,290
+OpenMP; the limit is one machine. Distributed memory: each node has its own RAM, and
+
+32
+00:02:06,310 --> 00:02:11,588
+node A can't read node B's. Programs send data over the network; the tool is MPI;
+
+33
+00:02:11,608 --> 00:02:16,886
+the gain is that you scale across nodes. Most real HPC codes are hybrid: MPI between
+
+34
+00:02:16,906 --> 00:02:18,210
+nodes, OpenMP inside each.
+
+35
+00:02:18,280 --> 00:02:23,239
+This maps straight onto Slurm. n tasks is the number of processes, the MPI ranks.
+
+36
+00:02:23,259 --> 00:02:28,218
+CPUs per task is the cores each process gets for its threads. They multiply: four
+
+37
+00:02:28,238 --> 00:02:33,529
+tasks per node, five CPUs per task, is twenty cores per node. Pure OpenMP is one
+
+38
+00:02:33,549 --> 00:02:38,508
+task with twenty CPUs. Pure MPI is twenty tasks with one CPU each. Hybrid sits
+
+39
+00:02:38,528 --> 00:02:38,840
+between.
+
+40
+00:02:38,910 --> 00:02:41,999
+Now the speed limit. Not everything parallelises: reading data, writing results,
+
+41
+00:02:42,019 --> 00:02:46,521
+steps that depend on the last. Amdahl's law: speedup equals one over S plus P over
+
+42
+00:02:46,541 --> 00:02:51,043
+N, where S is the serial fraction, P the parallel fraction, and N the number of
+
+43
+00:02:51,063 --> 00:02:55,848
+processors. If ten percent of your code is serial, the most you can ever get is ten
+
+44
+00:02:55,868 --> 00:02:59,522
+times, however many processors you add. The curve climbs, then flattens. This is
+
+45
+00:02:59,542 --> 00:03:01,500
+strong scaling: the same problem, more cores.
+
+46
+00:03:01,570 --> 00:03:05,796
+Gustafson asked the other question: what if the problem grows with the cores? A
+
+47
+00:03:05,816 --> 00:03:09,738
+researcher with a hundred cores doesn't finish a ten-minute problem in six seconds.
+
+48
+00:03:09,758 --> 00:03:14,287
+They solve a problem a hundred times larger in the same ten minutes. Speedup equals
+
+49
+00:03:14,307 --> 00:03:19,745
+S plus P times N. That is weak scaling, and it's how most real HPC work gets done.
+
+50
+00:03:19,765 --> 00:03:23,991
+Both laws are right; they answer different questions. One tip before any code: plan
+
+51
+00:03:24,011 --> 00:03:27,630
+what can be parallel. Retrofitting parallelism onto finished serial code is painful.
+
+52
+00:03:27,700 --> 00:03:32,450
+Now a real case. Conway's Game of Life: a grid where each cell's next state depends
+
+53
+00:03:32,470 --> 00:03:36,325
+on its eight neighbours. It is embarrassingly parallel, because within one time step
+
+54
+00:03:36,345 --> 00:03:41,095
+every cell is independent of every other. A single core walks the grid row by row.
+
+55
+00:03:41,115 --> 00:03:43,480
+Many cores can take the rows at once.
+
+56
+00:03:43,550 --> 00:03:48,576
+With OpenMP, one directive above the loop asks the compiler to spread it across the
+
+57
+00:03:48,596 --> 00:03:53,622
+cores of a node. The pragma collapses the two loops into one parallel space; the
+
+58
+00:03:53,642 --> 00:03:55,640
+compiler creates and distributes the threads.
+
+59
+00:03:55,710 --> 00:04:01,401
+Submitting it: one node, one task, twenty CPUs per task, and the thread count set
+
+60
+00:04:01,421 --> 00:04:05,970
+from Slurm's variable. Ten thousand by ten thousand cells, five hundred generations.
+
+61
+00:04:06,040 --> 00:04:09,491
+When the grid outgrows one node's memory, split it across nodes: domain
+
+62
+00:04:09,511 --> 00:04:13,830
+decomposition. The grid is cut into horizontal strips, one per MPI rank. But a cell
+
+63
+00:04:13,850 --> 00:04:18,458
+on the edge of a strip needs neighbours from the strip next door, on another node.
+
+64
+00:04:18,478 --> 00:04:22,797
+So before each step the ranks swap their boundary rows with MPI send and receive.
+
+65
+00:04:22,817 --> 00:04:25,400
+Those borrowed rows are the halo, or ghost zone.
+
+66
+00:04:25,470 --> 00:04:30,186
+The hybrid job: four nodes, four ranks per node, five threads per rank. Four times
+
+67
+00:04:30,206 --> 00:04:35,554
+four times five is eighty cores, launched with m p i run and the task count from
+
+68
+00:04:35,574 --> 00:04:35,870
+Slurm.
+
+69
+00:04:35,940 --> 00:04:39,939
+The real numbers, same grid, five hundred iterations. Serial: two hundred fifty
+
+70
+00:04:39,959 --> 00:04:44,627
+seconds. OpenMP on two cores, two point two times faster. Four cores, four point
+
+71
+00:04:44,647 --> 00:04:49,651
+three. Eight, eight and a half. Twelve, only seven and a half, slower than eight.
+
+72
+00:04:49,671 --> 00:04:54,004
+Sixteen, ten times. Twenty, twelve point four. Then across nodes with MPI: forty
+
+73
+00:04:54,024 --> 00:04:57,353
+cores, twenty-five times. Sixty, thirty-seven. Eighty, forty-four. Inside one node
+
+74
+00:04:57,373 --> 00:05:02,377
+the scaling is close to ideal, with no network in the way. Across nodes the
+
+75
+00:05:02,397 --> 00:05:06,730
+communication cost shows, and the curve bends under the ideal line, exactly as
+
+76
+00:05:06,750 --> 00:05:07,400
+Amdahl predicted.
+
+77
+00:05:07,470 --> 00:05:12,488
+GPUs. A CPU is built for low latency: tens of complex cores, good at sequential
+
+78
+00:05:12,508 --> 00:05:17,191
+logic and branching. A GPU is built for throughput: thousands of simple cores doing
+
+79
+00:05:17,211 --> 00:05:21,222
+the same operation across a large array. A few professional chefs cooking
+
+80
+00:05:21,242 --> 00:05:25,924
+complicated dishes, against a thousand line cooks each doing one simple task for a
+
+81
+00:05:25,944 --> 00:05:26,260
+buffet.
+
+82
+00:05:26,330 --> 00:05:31,144
+Every GPU program follows four steps. Allocate memory on the device. Copy the data
+
+83
+00:05:31,164 --> 00:05:36,670
+from host to device, CPU to GPU. Launch a kernel: thousands of threads run the same
+
+84
+00:05:36,690 --> 00:05:41,849
+function on different data. Then copy the results back. Host is the CPU; device is
+
+85
+00:05:41,869 --> 00:05:42,540
+the GPU.
+
+86
+00:05:42,610 --> 00:05:46,908
+A matrix-multiply kernel. Each thread works out its own row and column from its
+
+87
+00:05:46,928 --> 00:05:51,227
+block and thread indices, and computes exactly one element of the result. For a
+
+88
+00:05:51,247 --> 00:05:54,928
+thousand-by-thousand matrix that is over a million threads, in parallel. You may
+
+89
+00:05:54,948 --> 00:05:59,863
+never write Kooda yourself: PyTorch, CuPy and RAPIDS do it for you. But this is what
+
+90
+00:05:59,883 --> 00:06:00,480
+they do.
+
+91
+00:06:00,550 --> 00:06:06,248
+In PyTorch the pattern is: put the tensors on the device, and the library calls the
+
+92
+00:06:06,268 --> 00:06:10,179
+Kooda kernels for you. Two four-thousand-square matrices and one matmul. Submitted
+
+93
+00:06:10,199 --> 00:06:12,680
+with one GPU on the gpu partition.
+
+94
+00:06:12,750 --> 00:06:17,961
+More than one GPU on a node: split one big operation across them. Partition A by
+
+95
+00:06:17,981 --> 00:06:23,845
+rows, give every GPU its shard and a full copy of B, launch the matmuls, they run in
+
+96
+00:06:23,865 --> 00:06:27,115
+parallel because kernel launches are asynchronous, then synchronise each device.
+
+97
+00:06:27,135 --> 00:06:29,730
+Submitted with two GPUs on the multigpu partition.
+
+98
+00:06:29,800 --> 00:06:34,122
+Across nodes, PyTorch uses Distributed Data Parallel. The vocabulary: the backend is
+
+99
+00:06:34,142 --> 00:06:38,827
+NCCL, NVIDIA's communication library, MPI's cousin for GPUs. World size is the total
+
+100
+00:06:38,847 --> 00:06:44,979
+number of GPUs. Rank is each GPU's ID. Local rank is its index inside its node. The
+
+101
+00:06:44,999 --> 00:06:50,045
+communication test: every GPU holds a one, all-reduce sums them, and if the result
+
+102
+00:06:50,065 --> 00:06:52,940
+equals the world size, every GPU is talking.
+
+103
+00:06:53,010 --> 00:06:57,118
+The GPU benchmark: a four-thousand-square matmul, a hundred times. One GPU, eleven
+
+104
+00:06:57,138 --> 00:07:02,623
+point seven seconds. Two GPUs on one node, five and a half seconds: two point one
+
+105
+00:07:02,643 --> 00:07:07,439
+times, near linear over the fast in-node link. Four GPUs across two nodes, five
+
+106
+00:07:07,459 --> 00:07:12,944
+point one seconds: only two point three times. At this size each GPU gets a tiny
+
+107
+00:07:12,964 --> 00:07:16,728
+shard, and the cross-node sync costs more than the maths. The
+
+108
+00:07:16,748 --> 00:07:19,480
+computation-to-communication ratio decides how far you can scale.
+
+109
+00:07:19,550 --> 00:07:24,493
+You don't need C or Kooda to go parallel. In Python, mpi4py gives you MPI: a
+
+110
+00:07:24,513 --> 00:07:29,145
+communicator, your rank and the size of the world, each rank working on its own
+
+111
+00:07:29,165 --> 00:07:34,418
+chunk, and a reduce to rank zero. Launch it with m p i run. Also worth knowing:
+
+112
+00:07:34,438 --> 00:07:37,210
+multiprocessing for one node, concurrent futures, Dask and Ray.
+
+113
+00:07:37,280 --> 00:07:42,749
+In R, the parallel package ships with base R: make a cluster of all cores but one,
+
+114
+00:07:42,769 --> 00:07:47,269
+par l apply over your list, stop the cluster. Or for-each with do-parallel for
+
+115
+00:07:47,289 --> 00:07:50,820
+embarrassingly parallel loops: register four cores and swap do for do-par.
+
+116
+00:07:50,890 --> 00:07:56,728
+In MATLAB, parpool opens a pool of workers and parfor replaces a for loop. MATLAB
+
+117
+00:07:56,748 --> 00:07:57,900
+distributes the iterations.
+
+118
+00:07:57,970 --> 00:08:03,062
+Choosing the tool. OpenMP: shared memory, loop-level parallelism on one node. MPI:
+
+119
+00:08:03,082 --> 00:08:06,471
+distributed, multi-node simulations. mpi4py for multi-node Python. multiprocessing
+
+120
+00:08:06,491 --> 00:08:12,861
+for single-node Python tasks. PyTorch DDP for training. Dask or Ray for big data and
+
+121
+00:08:12,881 --> 00:08:17,974
+pipelines, both memory models. R's parallel and foreach, and MATLAB's parfor, for
+
+122
+00:08:17,994 --> 00:08:20,530
+embarrassingly parallel loops on one node.
+
+123
+00:08:20,600 --> 00:08:24,723
+Four things to keep. Profile first: find the bottleneck before you parallelise.
+
+124
+00:08:24,743 --> 00:08:29,212
+Choose the level: shared memory on one node, MPI across nodes, GPUs for
+
+125
+00:08:29,232 --> 00:08:33,355
+data-parallel maths. Communication costs are real: more nodes are not always faster.
+
+126
+00:08:33,375 --> 00:08:38,879
+And plan for parallelism from the start. Questions: r c help at northeastern dot e d
+
+127
+00:08:38,899 --> 00:08:40,260
+u, or office hours.
+
+128
+00:08:40,330 --> 00:08:46,375
+And the three Slurm recipes to keep. OpenMP: one node, one task, twenty CPUs. MPI
+
+129
+00:08:46,395 --> 00:08:52,036
+plus OpenMP: four nodes, four ranks each, five threads each. GPU: one node, two
+
+130
+00:08:52,056 --> 00:08:52,440
+GPUs.
+
+131
+00:08:52,510 --> 00:08:56,780
+Let's recap with Claude. Pipelining and data parallelism, and today was data
+
+132
+00:08:56,800 --> 00:09:01,428
+parallelism. SIMD is the GPU, MIMD is the cluster; shared memory means OpenMP,
+
+133
+00:09:01,448 --> 00:09:06,076
+distributed means MPI. Amdahl: ten percent serial caps you at ten times. Gustafson:
+
+134
+00:09:06,096 --> 00:09:11,796
+grow the problem with the cores. The Game of Life ran twelve times faster on twenty
+
+135
+00:09:11,816 --> 00:09:16,087
+cores and forty-four times on eighty across nodes, with communication bending the
+
+136
+00:09:16,107 --> 00:09:21,092
+curve. A GPU program allocates, copies in, launches the kernel and copies back; two
+
+137
+00:09:21,112 --> 00:09:26,097
+GPUs gave two point one times, four across nodes only two point three. Profile
+
+138
+00:09:26,117 --> 00:09:30,030
+first, choose the level, count the communication, and plan for parallelism.
+
+139
+00:09:30,100 --> 00:09:35,221
+Your turn. Paste this into Claude: Here is a serial program I want to run faster on
+
+140
+00:09:35,241 --> 00:09:39,454
+a cluster: [describe it and paste the main loop]. First, mark which parts are
+
+141
+00:09:39,474 --> 00:09:43,386
+inherently serial and estimate my Amdahl ceiling. Then tell me which level fits:
+
+142
+00:09:43,406 --> 00:09:48,224
+threads on one node, MPI across nodes, or a GPU, and why. Finally, write the Slurm
+
+143
+00:09:48,244 --> 00:09:51,853
+header for that choice with --ntasks and --cpus-per-task explained. Then check two
+
+144
+00:09:51,873 --> 00:09:56,389
+things yourself. Did it name the serial part before it promised a speedup? And do
+
+145
+00:09:56,409 --> 00:10:00,320
+its n tasks times CPUs per task equal the cores you'd actually get?
+
+146
+00:10:00,390 --> 00:10:04,970
+Intro to Parallel Computing. At Nik Bear Brown.

@@ -1,0 +1,26 @@
+# Rendered media and big files: rebuilt, not stored
+*.mp4
+*.mp3
+*.wav
+*.mov
+*.mkv
+*.m4a
+*.aac
+*.zip
+*.psd
+*.blend
+
+# Build outputs of the film toolkit
+**/media/
+**/manim/
+**/mp3/
+**/mp4/
+**/clips/
+**/exports/
+**/pantry/
+**/_qc/
+**/_superseded/
+**/images/rendered/
+**/__pycache__/
+.DS_Store
+node_modules/

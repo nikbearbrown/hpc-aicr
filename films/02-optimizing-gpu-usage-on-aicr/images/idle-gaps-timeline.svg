@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="716" viewBox="0 0 1200 716">
+<title>A GPU waiting on data</title>
+<desc>A timeline showing a data loader taking 45 ms per batch while the GPU computes for 9 ms and then waits 36 ms, so 80 percent of its time is wasted.</desc>
+<rect width="1200" height="716" fill="#F2F0E9"/>
+<text x="60" y="76" font-size="46" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >A GPU waiting on data</text>
+<text x="60" y="112" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >One batch at a time, with the workshop quiz numbers: load 45 ms, compute 9 ms</text>
+<text x="60" y="236.0" font-size="24" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Data loader</text>
+<text x="60" y="346.0" font-size="24" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >GPU</text>
+<rect x="263.0" y="190" width="269.0" height="76" rx="10" fill="#E6E2D6" stroke="#8A8470" stroke-width="2.5" />
+<text x="397.5" y="236.0" font-size="20" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >load 45 ms</text>
+<rect x="538.0" y="190" width="269.0" height="76" rx="10" fill="#E6E2D6" stroke="#8A8470" stroke-width="2.5" />
+<text x="672.5" y="236.0" font-size="20" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >load 45 ms</text>
+<rect x="813.0" y="190" width="269.0" height="76" rx="10" fill="#E6E2D6" stroke="#8A8470" stroke-width="2.5" />
+<text x="947.5" y="236.0" font-size="20" font-weight="500" fill="#3D3929" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >load 45 ms</text>
+<line x1="260" y1="338.0" x2="1140" y2="338.0" stroke="#CFC9B8" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>
+<rect x="535.0" y="300" width="55.0" height="76" rx="8" fill="#D97757" stroke="#D97757" stroke-width="2" />
+<text x="562.5" y="286" font-size="20" font-weight="700" fill="#D97757" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >9 ms</text>
+<rect x="810.0" y="300" width="55.0" height="76" rx="8" fill="#D97757" stroke="#D97757" stroke-width="2" />
+<text x="837.5" y="286" font-size="20" font-weight="700" fill="#D97757" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >9 ms</text>
+<rect x="1085.0" y="300" width="55.0" height="76" rx="8" fill="#D97757" stroke="#D97757" stroke-width="2" />
+<text x="1112.5" y="286" font-size="20" font-weight="700" fill="#D97757" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >9 ms</text>
+<path d="M268.0 394 L527.0 394" stroke="#8A8470" stroke-width="2.5"/>
+<path d="M268.0 386 L268.0 402 M527.0 386 L527.0 402" stroke="#8A8470" stroke-width="2.5"/>
+<text x="397.5" y="430" font-size="20" font-weight="500" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >waiting</text>
+<path d="M598.0 394 L802.0 394" stroke="#8A8470" stroke-width="2.5"/>
+<path d="M598.0 386 L598.0 402 M802.0 386 L802.0 402" stroke="#8A8470" stroke-width="2.5"/>
+<text x="700.0" y="430" font-size="20" font-weight="500" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >waits 36 ms</text>
+<path d="M873.0 394 L1077.0 394" stroke="#8A8470" stroke-width="2.5"/>
+<path d="M873.0 386 L873.0 402 M1077.0 386 L1077.0 402" stroke="#8A8470" stroke-width="2.5"/>
+<text x="975.0" y="430" font-size="20" font-weight="500" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >waits 36 ms</text>
+<line x1="260" y1="476" x2="1140" y2="476" stroke="#3D3929" stroke-width="2.5"/>
+<line x1="260.0" y1="476" x2="260.0" y2="486" stroke="#3D3929" stroke-width="2.5"/>
+<text x="260.0" y="512" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >0 ms</text>
+<line x1="535.0" y1="476" x2="535.0" y2="486" stroke="#3D3929" stroke-width="2.5"/>
+<text x="535.0" y="512" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >45 ms</text>
+<line x1="810.0" y1="476" x2="810.0" y2="486" stroke="#3D3929" stroke-width="2.5"/>
+<text x="810.0" y="512" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >90 ms</text>
+<line x1="1085.0" y1="476" x2="1085.0" y2="486" stroke="#3D3929" stroke-width="2.5"/>
+<text x="1085.0" y="512" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >135 ms</text>
+<rect x="60" y="556" width="1080" height="92" rx="14" fill="#FBEDE6" stroke="#D97757" stroke-width="3.5" />
+<text x="100" y="614" font-size="30" font-weight="500" fill="#D97757" text-anchor="start" font-family="EB Garamond, Georgia, serif" >9 ms working, 36 ms waiting: 80% of the time wasted</text>
+<text x="60" y="688" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Source: the workshop quiz, as taught in the guide. A sketch of one idea, not a measured run.</text>
+
+</svg>

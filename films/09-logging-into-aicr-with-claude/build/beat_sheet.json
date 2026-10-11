@@ -1,0 +1,2473 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-logging-into-aicr-with-claude",
+    "title": "Logging into AICR with Claude",
+    "topic": "RESEARCH COMPUTING · AICR",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "German (Hallo)",
+    "audience": "A researcher with an AICR account who wants Claude Code to run commands on the cluster; assumes no other film or book",
+    "source_doc": "../source/README.md, evidence ../source/SESSION.md (three real runs, 2026-10-11), primary the AICR documentation 'SSH' page (local copy not included) and a private project setup note (not included) section 2",
+    "playlist": "Northeastern HPC and AICR",
+    "chapter_number": 8,
+    "series_title": "Research Computing on Explorer and AICR",
+    "series_video_number": 9,
+    "series_video_count": 13,
+    "series_entry_video": "Video 1 · AICR Introduction",
+    "lecture_opening_description": "Let Claude Code log in while your key stays yours",
+    "lecture_opening_title_lines": [
+      "Logging into AICR",
+      "with Claude"
+    ],
+    "tags": [
+      "AICR",
+      "AI Compute Resource",
+      "Claude Code",
+      "SSH",
+      "ssh-agent",
+      "SSH certificate",
+      "BatchMode",
+      "Northeastern University",
+      "Research Computing",
+      "HPC",
+      "GPU cluster",
+      "Slurm",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-11T15:56:32",
+      "cut": "master",
+      "filled": 44,
+      "of": 44,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Logging into AICR with Claude. How to let Claude Code log into the AICR cluster for you and run commands there, while your key and your passphrase never leave your hands.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 12.52,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 12.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Hallo. This is Liam, in for Bear. First, a correction. To let Claude log into AICR, the shared GPU cluster, you do not hand it your password. AICR has no password. You unlock a key once, yourself, and Claude never sees it.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'To let Claude log in, I give it my password'"
+          },
+          {
+            "at": 0.35,
+            "event": "backspaces 'give it my password' -> 'unlock the key once'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "To let Claude log in,\nI give it my password",
+            "triggerWords": "give it my password",
+            "replacementWords": "unlock the key once",
+            "fontSize": 70,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-logging-into-aicr-with-claude",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the newcomer's framing (give it my password) and corrects it to the real one (unlock the key once).",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 14.03,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 14.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. A private key: a secret file that proves who you are. A certificate: a signed note from AICR saying that key is yours. A passphrase: the password that locks the key file. The ssh-agent: a helper that holds your unlocked key in memory. BatchMode: a setting that makes ssh refuse to ask any question. And a login node: the shared computer you land on when you log in.",
+      "estimated_duration_s": 28.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "'Private key' lands"
+          },
+          {
+            "at": 0.25,
+            "event": "'Certificate'"
+          },
+          {
+            "at": 0.4,
+            "event": "'Passphrase'"
+          },
+          {
+            "at": 0.55,
+            "event": "'ssh-agent'"
+          },
+          {
+            "at": 0.72,
+            "event": "'BatchMode'"
+          },
+          {
+            "at": 0.87,
+            "event": "'Login node'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "Private key",
+                "meaning": "a secret file that proves who you are"
+              },
+              {
+                "term": "Certificate",
+                "meaning": "a signed note from AICR saying the key is yours"
+              },
+              {
+                "term": "Passphrase",
+                "meaning": "the password that locks the key file"
+              },
+              {
+                "term": "ssh-agent",
+                "meaning": "a helper that holds your unlocked key in memory"
+              },
+              {
+                "term": "BatchMode",
+                "meaning": "an ssh setting that refuses to ask any question"
+              },
+              {
+                "term": "Login node",
+                "meaning": "the shared computer you land on when you log in"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 20.61
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 20.61,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 20.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · What AICR Checks",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "AICR has no password. At the front door it checks two things. A private key, a secret file that only you hold. And a certificate, a note that AICR's own certificate authority signed, saying that key is yours.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The AICR rack stands behind a closed gate with a padlock; a kraft key slides in from the left and a certificate page from the right; both meet at the lock, the lock opens and the rack's lights turn on.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "private key arrives"
+          },
+          {
+            "at": 0.6,
+            "event": "certificate arrives"
+          },
+          {
+            "at": 0.85,
+            "event": "both meet at the lock; it opens"
+          }
+        ],
+        "manim": {
+          "class": "B10_KeyAndCert"
+        },
+        "motion_claim": "The AICR rack stands behind a closed gate with a padlock; a kraft key slides in from the left and a certificate page from the right; both meet at the lock, the lock opens and the rack's lights turn on."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.69,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 12.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "I · What AICR Checks",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "To get in at all, you need an account. A faculty member's proposal opens a project, and your institution creates your user. Your AICR user name is your campus name with the institution on the end, like j smith underscore n e u.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into 'jsmith_neu'.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "the pattern appears"
+          },
+          {
+            "at": 0.85,
+            "event": "it becomes jsmith_neu"
+          }
+        ],
+        "manim": {
+          "class": "B11_UserName"
+        },
+        "motion_claim": "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into 'jsmith_neu'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.55,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 13.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "I · What AICR Checks",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The key files come from one place: the AICR OnDemand portal, at o o d dot aicr dot AI. You sign in there with your institutional credentials. That step is yours, not Claude's.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "browser window opens on ood.aicr.ai"
+          },
+          {
+            "at": 0.6,
+            "event": "zoom to 'Select an Identity Provider'; terracotta ring"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrowserCapture",
+          "props": {
+            "url": "ood.aicr.ai",
+            "image": "lecture-logging-into-aicr-with-claude/ood.png",
+            "caption": "The real sign-in page, captured 2 October 2026",
+            "moves": [
+              {
+                "at": 0.0,
+                "x": 0.5,
+                "y": 0.42,
+                "scale": 1.3
+              },
+              {
+                "at": 0.6,
+                "x": 0.5,
+                "y": 0.55,
+                "scale": 1.7,
+                "ring": [
+                  0.255,
+                  0.405,
+                  0.49,
+                  0.295
+                ]
+              }
+            ],
+            "durationSeconds": 11.5
+          }
+        }
+      },
+      "motion_claim": "The real sign-in page; the camera pushes in to the sign-in choice as 'you sign in' is said.",
+      "actual_duration_s": 11.5,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 11.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "I · What AICR Checks",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Download the folder called aicr keys. Inside are four files. Your private key, locked with a passphrase. Its public half. Your certificate, which is the credential. And a file holding your first passphrase.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table builds row by row with the real file names in mono: id_ed25519_aicr (the key, with the key drawing), the .pub, the -cert.pub (certificate page), .passphrase; the certificate row is ringed.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "private key row"
+          },
+          {
+            "at": 0.45,
+            "event": "public key row"
+          },
+          {
+            "at": 0.65,
+            "event": "certificate row, ringed"
+          },
+          {
+            "at": 0.88,
+            "event": "passphrase row"
+          }
+        ],
+        "manim": {
+          "class": "B13_FourFiles"
+        },
+        "motion_claim": "A drawn table builds row by row with the real file names in mono: id_ed25519_aicr (the key, with the key drawing), the .pub, the -cert.pub (certificate page), .passphrase; the certificate row is ringed."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 11.97,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 12.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B13.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "I · What AICR Checks",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Signing in is the human step. So are putting the files in place and choosing a new passphrase. Do not give Claude your institutional password, and do not ask it to sign in for you.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A Professor Bear portrait on the left; three chips land beside it, 'Sign in', 'Download', 'Passphrase', each with a check; on the right a closed door labelled 'Claude' stays shut to the password.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "Sign in"
+          },
+          {
+            "at": 0.4,
+            "event": "Download / files in place"
+          },
+          {
+            "at": 0.55,
+            "event": "Passphrase"
+          },
+          {
+            "at": 0.85,
+            "event": "the password is turned away from Claude"
+          }
+        ],
+        "manim": {
+          "class": "B14_HumanSteps"
+        },
+        "motion_claim": "A Professor Bear portrait on the left; three chips land beside it, 'Sign in', 'Download', 'Passphrase', each with a check; on the right a closed door labelled 'Claude' stays shut to the password."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.75,
+      "audio_file": "mp3/beat-B14.mp3",
+      "render_duration_s": 9.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B14.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "I · What AICR Checks",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Put the files in your dot ssh folder, set their permissions, and swap the first passphrase for one only you know. Windows is the same, in PowerShell. Then delete the downloaded passphrase file.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "files go to ~/.ssh"
+          },
+          {
+            "at": 0.3,
+            "event": "permissions"
+          },
+          {
+            "at": 0.6,
+            "event": "ssh-keygen -p changes the passphrase"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · macOS or Linux",
+            "lines": [
+              "$ mkdir -p ~/.ssh && chmod 700 ~/.ssh",
+              "$ mv ~/Downloads/aicr_keys/id_ed25519_aicr* ~/.ssh/",
+              "$ chmod 600 ~/.ssh/id_ed25519_aicr",
+              "$ chmod 644 ~/.ssh/id_ed25519_aicr.pub ~/.ssh/id_ed25519_aicr-cert.pub",
+              "$ ssh-keygen -p -f ~/.ssh/id_ed25519_aicr",
+              "# Windows: same files in C:\\Users\\YOU\\.ssh, same ssh-keygen -p in PowerShell."
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              64,
+              64,
+              64,
+              98,
+              184
+            ],
+            "fontSize": 32,
+            "durationSeconds": 11.18
+          }
+        }
+      },
+      "motion_claim": "The real commands print line by line as they are described; no output is shown because none was run for this beat.",
+      "actual_duration_s": 11.18,
+      "audio_file": "mp3/beat-B15.mp3",
+      "render_duration_s": 11.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "I · What AICR Checks",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Check the certificate with ssh-keygen dash L. Valid is a date range, or forever. Principals must be your AICR user name. When it nears its end, renew it in the OnDemand portal.",
+      "estimated_duration_s": 12.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the ssh-keygen -L command"
+          },
+          {
+            "at": 0.4,
+            "event": "Principals, then Valid, in the real output"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · the public certificate file",
+            "lines": [
+              "$ ssh-keygen -L -f ~/.ssh/id_ed25519_aicr-cert.pub",
+              "Type: ssh-ed25519-cert-v01@openssh.com user certificate",
+              "Key ID: \"<aicr-username>@aicr.ai\"",
+              "Valid: forever",
+              "Principals: <aicr-username>",
+              "# (other fields omitted)"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              1,
+              1,
+              91,
+              176,
+              228
+            ],
+            "fontSize": 36,
+            "rings": [
+              {
+                "line": 3,
+                "cue": 103
+              },
+              {
+                "line": 4,
+                "cue": 176
+              }
+            ],
+            "durationSeconds": 11.14
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 11.14,
+      "audio_file": "mp3/beat-B16.mp3",
+      "render_duration_s": 11.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Unlock Once",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Now the problem. Claude Code runs commands with no keyboard attached. If ssh stops to ask for the passphrase, nobody can answer, and the command hangs or fails.",
+      "estimated_duration_s": 11.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A locked key with a padlock; an 'ssh' command box rides up to it; the lock raises a 'passphrase?' chip; the box waits, dimmed, with an empty answer slot beside it.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "command arrives at the locked key"
+          },
+          {
+            "at": 0.45,
+            "event": "'passphrase?' chip"
+          },
+          {
+            "at": 0.75,
+            "event": "no one answers; the box dims and waits"
+          }
+        ],
+        "manim": {
+          "class": "B20_NobodyAnswers"
+        },
+        "motion_claim": "A locked key with a padlock; an 'ssh' command box rides up to it; the lock raises a 'passphrase?' chip; the box waits, dimmed, with an empty answer slot beside it."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 10.11,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 10.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · Unlock Once",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The fix is not to give Claude the passphrase. The fix is to unlock the key before Claude arrives, once, in your own terminal, into a helper called ssh-agent. The agent holds the unlocked key in memory.",
+      "estimated_duration_s": 14.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The Professor Bear portrait types the passphrase to the padlock; the lock opens (terracotta light); the key slides into the small dark 'agent' slab and stays there.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "you unlock the key"
+          },
+          {
+            "at": 0.55,
+            "event": "the key slides into the agent"
+          },
+          {
+            "at": 0.85,
+            "event": "the agent holds it"
+          }
+        ],
+        "manim": {
+          "class": "B21_UnlockOnce"
+        },
+        "motion_claim": "The Professor Bear portrait types the passphrase to the padlock; the lock opens (terracotta light); the key slides into the small dark 'agent' slab and stays there."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.03,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 12.041666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B21.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "II · Unlock Once",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "From then on, when ssh needs the key, it asks the agent, and the agent answers. The key never leaves the agent. Claude does the work. The secret never passes through it.",
+      "estimated_duration_s": 12.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The 'ssh' command box asks the agent (a question chip goes out, a signed slip returns); the box rides on to the AICR rack with the slip; the key stays inside the agent, a barrier line between it and the Claude side.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "ssh asks the agent"
+          },
+          {
+            "at": 0.45,
+            "event": "the agent answers; the key stays"
+          },
+          {
+            "at": 0.75,
+            "event": "the command reaches AICR"
+          }
+        ],
+        "manim": {
+          "class": "B22_AgentAnswers"
+        },
+        "motion_claim": "The 'ssh' command box asks the agent (a question chip goes out, a signed slip returns); the box rides on to the AICR rack with the slip; the key stays inside the agent, a barrier line between it and the Claude side."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.69,
+      "audio_file": "mp3/beat-B22.mp3",
+      "render_duration_s": 9.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B22.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "II · Unlock Once",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Add one block to your ssh config. Host aicr gives the cluster a short name. Then its host name, your AICR user name, your key file, and your certificate file.",
+      "estimated_duration_s": 12.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "Host aicr"
+          },
+          {
+            "at": 0.45,
+            "event": "host name, user"
+          },
+          {
+            "at": 0.75,
+            "event": "key and certificate files"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "The file ~/.ssh/config",
+            "lines": [
+              "Host aicr",
+              "    HostName login.aicr.ai",
+              "    User AICR_USERNAME",
+              "    IdentityFile ~/.ssh/id_ed25519_aicr",
+              "    CertificateFile ~/.ssh/id_ed25519_aicr-cert.pub",
+              "# now the command is just: ssh aicr"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              74,
+              165,
+              186,
+              230,
+              256,
+              256
+            ],
+            "fontSize": 46,
+            "durationSeconds": 10.43
+          },
+          "rendered": {
+            "out": "media/B23.mp4",
+            "at": "2026-10-11T19:50:32.489814+00:00"
+          }
+        }
+      },
+      "motion_claim": "The real config lines appear one by one as each is named.",
+      "actual_duration_s": 10.43,
+      "audio_file": "mp3/beat-B23.mp3",
+      "render_duration_s": 10.458333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B23.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "II · Unlock Once",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Identities only offers just this key. Server alive interval stops idle connections dropping. Add keys to agent loads the key into the agent on first use. Use keychain is for macOS only, and ignore unknown makes other systems skip it.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the first five lines are already there"
+          },
+          {
+            "at": 0.15,
+            "event": "IdentitiesOnly"
+          },
+          {
+            "at": 0.35,
+            "event": "ServerAliveInterval"
+          },
+          {
+            "at": 0.55,
+            "event": "AddKeysToAgent"
+          },
+          {
+            "at": 0.8,
+            "event": "IgnoreUnknown / UseKeychain"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "The file ~/.ssh/config",
+            "lines": [
+              "Host aicr",
+              "    HostName login.aicr.ai",
+              "    User AICR_USERNAME",
+              "    IdentityFile ~/.ssh/id_ed25519_aicr",
+              "    CertificateFile ~/.ssh/id_ed25519_aicr-cert.pub",
+              "    IdentitiesOnly yes",
+              "    ServerAliveInterval 60",
+              "    AddKeysToAgent yes",
+              "    IgnoreUnknown UseKeychain",
+              "    UseKeychain yes",
+              "# keep a single Host aicr block"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              70,
+              167,
+              341,
+              341,
+              394
+            ],
+            "fontSize": 36,
+            "durationSeconds": 14.44
+          }
+        }
+      },
+      "motion_claim": "The five new real lines land one by one as each setting is explained.",
+      "actual_duration_s": 14.44,
+      "audio_file": "mp3/beat-B24.mp3",
+      "render_duration_s": 14.458333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B24.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B25",
+      "act": "II · Unlock Once",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "On a Mac, unlock it with S S H add and the apple keychain flag, so the passphrase survives restarts. On Linux, start an agent, add the key, and start Claude Code from that same terminal.",
+      "estimated_duration_s": 14.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "macOS command"
+          },
+          {
+            "at": 0.55,
+            "event": "Linux commands"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · macOS and Linux",
+            "lines": [
+              "# macOS: the Keychain remembers the passphrase",
+              "$ ssh-add --apple-use-keychain ~/.ssh/id_ed25519_aicr",
+              "# Linux: one agent per login session",
+              "$ eval \"$(ssh-agent -s)\"",
+              "$ ssh-add ~/.ssh/id_ed25519_aicr",
+              "# start Claude Code from this same terminal, so it inherits the agent"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              1,
+              182,
+              197,
+              226,
+              250
+            ],
+            "fontSize": 34,
+            "durationSeconds": 11.16
+          }
+        }
+      },
+      "motion_claim": "The real unlock commands print as each system is named.",
+      "actual_duration_s": 11.16,
+      "audio_file": "mp3/beat-B25.mp3",
+      "render_duration_s": 11.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B25.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B26",
+      "act": "II · Unlock Once",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "On Windows, open PowerShell as administrator, once. Set the agent service to start automatically, start it, and add the key.",
+      "estimated_duration_s": 8.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "administrator note"
+          },
+          {
+            "at": 0.4,
+            "event": "service commands"
+          },
+          {
+            "at": 0.8,
+            "event": "ssh-add"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · Windows PowerShell",
+            "lines": [
+              "# PowerShell, run as administrator, once",
+              "$ Get-Service ssh-agent | Set-Service -StartupType Automatic",
+              "$ Start-Service ssh-agent",
+              "$ ssh-add $HOME\\.ssh\\id_ed25519_aicr",
+              "# under WSL, use the Linux commands inside WSL"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              94,
+              172,
+              192,
+              192
+            ],
+            "fontSize": 36,
+            "durationSeconds": 7.79
+          }
+        }
+      },
+      "motion_claim": "The real PowerShell commands print as each step is said.",
+      "actual_duration_s": 7.79,
+      "audio_file": "mp3/beat-B26.mp3",
+      "render_duration_s": 7.791666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B26.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B27",
+      "act": "II · Unlock Once",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Each of these asks for your passphrase, in your own terminal. Type it there, never in a prompt to Claude. Then ask the agent what it holds. One line ending in E D two five five one nine means the key is loaded.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.55,
+            "event": "ssh-add -l"
+          },
+          {
+            "at": 0.75,
+            "event": "one key, ED25519"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · your own",
+            "lines": [
+              "$ ssh-add -l",
+              "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)",
+              "# one line, ending in (ED25519): the key is loaded"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              80,
+              147,
+              208
+            ],
+            "fontSize": 36,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 220
+              }
+            ],
+            "durationSeconds": 11.99
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 11.99,
+      "audio_file": "mp3/beat-B27.mp3",
+      "render_duration_s": 12.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B27.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · Do It For Real",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Test it by hand first. Run ssh aicr hostname. You should get login dot aicr dot AI. The very first connection asks you to confirm the host key. Type yes yourself, because Claude cannot answer that.",
+      "estimated_duration_s": 14.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the command"
+          },
+          {
+            "at": 0.4,
+            "event": "the expected answer (a comment, not captured output)"
+          },
+          {
+            "at": 0.65,
+            "event": "the host key note"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · your own",
+            "lines": [
+              "$ ssh aicr hostname",
+              "# you should get: login.aicr.ai",
+              "# first connection only: a host key prompt. Type yes yourself."
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              42,
+              111,
+              202
+            ],
+            "fontSize": 40,
+            "durationSeconds": 12.93
+          }
+        }
+      },
+      "motion_claim": "The command from the guide prints; what to expect is a comment line, because this exact command was not captured.",
+      "actual_duration_s": 12.93,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 12.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B30.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · Do It For Real",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Then test it the way Claude connects: with BatchMode on. BatchMode makes ssh fail at once instead of asking anything. If it prints your user name and the host, Claude can log in.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two lanes to the same padlocked key: on the top lane the box waits forever at the lock; on the lower lane (BatchMode) the box meets the lock and bounces straight back with a cross, then with the key unlocked the box passes through and a check lands.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "without BatchMode the box waits"
+          },
+          {
+            "at": 0.45,
+            "event": "with BatchMode it fails at once"
+          },
+          {
+            "at": 0.8,
+            "event": "unlocked: it passes; a check lands"
+          }
+        ],
+        "manim": {
+          "class": "B31_FailFast"
+        },
+        "motion_claim": "Two lanes to the same padlocked key: on the top lane the box waits forever at the lock; on the lower lane (BatchMode) the box meets the lock and bounces straight back with a cross, then with the key unlocked the box passes through and a check lands."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 10.2,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 10.208333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B31.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B32",
+      "act": "III · Do It For Real",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Now a real run. Claude Code ran one ssh command with BatchMode on. Before this call, the agent held no keys. The command asks for the user name, the host, and the date.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the real command"
+          },
+          {
+            "at": 0.55,
+            "event": "user name, host, date print"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · the command Claude Code ran",
+            "lines": [
+              "$ ssh -o BatchMode=yes aicr \\",
+              "    'whoami; hostname; date; sinfo -o \"%14P %11l %6D\"; squeue -u $USER; pwd'",
+              "<aicr-username>",
+              "login.aicr.ai",
+              "Sun Oct 11 13:26:40 EDT 2026"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              40,
+              40,
+              238,
+              261,
+              278
+            ],
+            "fontSize": 32,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 250
+              },
+              {
+                "line": 3,
+                "cue": 273
+              }
+            ],
+            "durationSeconds": 10.47
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 10.47,
+      "audio_file": "mp3/beat-B32.mp3",
+      "render_duration_s": 10.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B32.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B33",
+      "act": "III · Do It For Real",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The cluster answered with its seven partitions, and an empty job queue, because nothing was running. The last line is the home directory, named after the user.",
+      "estimated_duration_s": 10.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the partition table prints"
+          },
+          {
+            "at": 0.5,
+            "event": "empty queue"
+          },
+          {
+            "at": 0.75,
+            "event": "home directory"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · the command Claude Code ran",
+            "lines": [
+              "# same run, output continued",
+              "PARTITION      TIMELIMIT   NODES",
+              "cpu*           1-00:00:00  5",
+              "rtx-batch      1-00:00:00  17",
+              "b200-batch     1-00:00:00  25",
+              "b200-fullnode  1-00:00:00  4",
+              "rtx-devel      4:00:00     2",
+              "b200-devel     4:00:00     2",
+              "preemptable    1-00:00:00  46",
+              "# squeue: header only, no jobs",
+              "/home/<aicr-username>"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              70,
+              70,
+              159
+            ],
+            "fontSize": 32,
+            "durationSeconds": 9.15
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 9.15,
+      "audio_file": "mp3/beat-B33.mp3",
+      "render_duration_s": 9.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B33.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B34",
+      "act": "III · Do It For Real",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Now the test that matters. When you reboot, the agent forgets everything. So empty it on purpose, and see whether Claude can still get in.",
+      "estimated_duration_s": 10.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The agent slab holds the key; a boot cycle dial sweeps; the key is pulled out and the agent's lights go dark; the 'ssh' box waits in front of the empty agent.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "reboot dial sweeps"
+          },
+          {
+            "at": 0.45,
+            "event": "the agent forgets: the key leaves, lights go dark"
+          },
+          {
+            "at": 0.8,
+            "event": "can the box still get in?"
+          }
+        ],
+        "manim": {
+          "class": "B34_EmptyOnPurpose"
+        },
+        "motion_claim": "The agent slab holds the key; a boot cycle dial sweeps; the key is pulled out and the agent's lights go dark; the 'ssh' box waits in front of the empty agent."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 7.62,
+      "audio_file": "mp3/beat-B34.mp3",
+      "render_duration_s": 7.625,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B34.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B35",
+      "act": "III · Do It For Real",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Ask the agent what it holds: one key. Empty it with S S H add dash capital D. Ask again: nothing. The agent is empty, just as it is after a reboot.",
+      "estimated_duration_s": 12.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "ssh-add -l shows one key"
+          },
+          {
+            "at": 0.4,
+            "event": "ssh-add -D empties it"
+          },
+          {
+            "at": 0.6,
+            "event": "ssh-add -l: no identities; ringed"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · your own",
+            "lines": [
+              "$ ssh-add -l",
+              "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)",
+              "$ ssh-add -D",
+              "All identities removed.",
+              "$ ssh-add -l",
+              "The agent has no identities."
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              41,
+              68,
+              68,
+              148,
+              163
+            ],
+            "fontSize": 36,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 175
+              }
+            ],
+            "durationSeconds": 9.28
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 9.28,
+      "audio_file": "mp3/beat-B35.mp3",
+      "render_duration_s": 9.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B35.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B36",
+      "act": "III · Do It For Real",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Now log in the way Claude does, with BatchMode on and an empty agent. It still works. No prompt, no passphrase typed. And ask the agent again: the key is back.",
+      "estimated_duration_s": 12.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "the empty agent is still on screen"
+          },
+          {
+            "at": 0.2,
+            "event": "BatchMode login with an empty agent"
+          },
+          {
+            "at": 0.4,
+            "event": "user name and host print: it works; ringed"
+          },
+          {
+            "at": 0.75,
+            "event": "ssh-add -l: the key is back; ringed"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · your own",
+            "lines": [
+              "$ ssh-add -l",
+              "The agent has no identities.",
+              "$ ssh -o BatchMode=yes aicr 'whoami; hostname'",
+              "<aicr-username>",
+              "login.aicr.ai",
+              "$ ssh-add -l",
+              "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              0,
+              1,
+              101,
+              101,
+              197,
+              232
+            ],
+            "fontSize": 36,
+            "rings": [
+              {
+                "line": 3,
+                "cue": 113
+              },
+              {
+                "line": 4,
+                "cue": 113
+              },
+              {
+                "line": 6,
+                "cue": 244
+              }
+            ],
+            "durationSeconds": 9.15
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 9.15,
+      "audio_file": "mp3/beat-B36.mp3",
+      "render_duration_s": 9.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B36.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B37",
+      "act": "III · Do It For Real",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "On a Mac, that is the Keychain at work. Add keys to agent asks it for the passphrase, and the key goes back into the agent. Nothing was typed, and nothing passed to Claude.",
+      "estimated_duration_s": 13.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The empty agent slab, a dark vault with a round door beside it; the 'ssh' box asks; the vault door opens and the key rises into the agent, whose lights come on; the box passes to AICR. A barrier keeps the Claude side clear of the key.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the box asks the empty agent"
+          },
+          {
+            "at": 0.5,
+            "event": "the vault returns the key"
+          },
+          {
+            "at": 0.8,
+            "event": "the box passes; nothing crossed the barrier"
+          }
+        ],
+        "manim": {
+          "class": "B37_VaultRefills"
+        },
+        "motion_claim": "The empty agent slab, a dark vault with a round door beside it; the 'ssh' box asks; the vault door opens and the key rises into the agent, whose lights come on; the box passes to AICR. A barrier keeps the Claude side clear of the key."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.75,
+      "audio_file": "mp3/beat-B37.mp3",
+      "render_duration_s": 9.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B37.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B38",
+      "act": "III · Do It For Real",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "On Linux and Windows there is no Keychain to reload the key. So this same test fails until you run S S H add again. That is expected. It tells you to run S S H add at the start of each session.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Same empty agent, no vault beside it; the 'ssh' box meets the lock and bounces with a cross; the portrait runs ssh-add (key rises into the agent) and the box passes; a small 'session start' tag lands on the ssh-add step.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "no vault; the box bounces"
+          },
+          {
+            "at": 0.5,
+            "event": "you run ssh-add; the key returns"
+          },
+          {
+            "at": 0.85,
+            "event": "add it to session start"
+          }
+        ],
+        "manim": {
+          "class": "B38_NoVault"
+        },
+        "motion_claim": "Same empty agent, no vault beside it; the 'ssh' box meets the lock and bounces with a cross; the portrait runs ssh-add (key rises into the agent) and the box passes; a small 'session start' tag lands on the ssh-add step."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 11.71,
+      "audio_file": "mp3/beat-B38.mp3",
+      "render_duration_s": 11.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B38.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B39",
+      "act": "III · Do It For Real",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "How did it get in? Ask ssh to show its steps. It found one key in the agent, and offered the certificate. The server accepted it, and ssh reports it authenticated with public key.",
+      "estimated_duration_s": 13.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "ssh -v"
+          },
+          {
+            "at": 0.35,
+            "event": "agent returned 1 keys"
+          },
+          {
+            "at": 0.5,
+            "event": "certificate offered, accepted"
+          },
+          {
+            "at": 0.85,
+            "event": "Authenticated ... publickey"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · how it authenticated",
+            "lines": [
+              "$ ssh -v -o BatchMode=yes aicr true",
+              "# (output filtered to the lines that matter)",
+              "debug1: get_agent_identities: agent returned 1 keys",
+              "debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit",
+              "debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit",
+              "Authenticated to login.aicr.ai ([192.69.103.11]:22) using \"publickey\"."
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              19,
+              19,
+              82,
+              132,
+              176,
+              219
+            ],
+            "fontSize": 26,
+            "windowMargin": 96,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 231
+              }
+            ],
+            "durationSeconds": 10.94
+          }
+        }
+      },
+      "motion_claim": "The real commands and their real output print line by line, each as it is spoken.",
+      "actual_duration_s": 10.94,
+      "audio_file": "mp3/beat-B39.mp3",
+      "render_duration_s": 10.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B39.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "When you ask, Claude runs one ssh command with BatchMode on, followed by your read-only commands. Claude Code asks you to approve it. On a shared system, approve each ssh command, at least the first few times.",
+      "estimated_duration_s": 14.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The 'ssh' command box stops at a gate beside the Professor Bear portrait; the portrait's check lands on a tag on the box; the gate lifts and the box goes on to the AICR rack.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "the command waits at the gate"
+          },
+          {
+            "at": 0.55,
+            "event": "you approve: the check lands"
+          },
+          {
+            "at": 0.85,
+            "event": "the box goes on to AICR"
+          }
+        ],
+        "manim": {
+          "class": "B40_YouApprove"
+        },
+        "motion_claim": "The 'ssh' command box stops at a gate beside the Professor Bear portrait; the portrait's check lands on a tag on the box; the gate lifts and the box goes on to the AICR rack."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.46,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 12.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Rule one. Read only first. Look before you change anything: s info, s queue for your own jobs, s acct, job stats, ls, and module avail.",
+      "estimated_duration_s": 10.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Six command pills in mono land one by one on a row under an eye drawing: sinfo, squeue -u $USER, sacct, jobstats, ls, module avail; each takes a check; the heading 'Read only first' stays above.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "sinfo, squeue"
+          },
+          {
+            "at": 0.55,
+            "event": "sacct, jobstats"
+          },
+          {
+            "at": 0.8,
+            "event": "ls, module avail"
+          }
+        ],
+        "manim": {
+          "class": "B41_ReadOnly"
+        },
+        "motion_claim": "Six command pills in mono land one by one on a row under an eye drawing: sinfo, squeue -u $USER, sacct, jobstats, ls, module avail; each takes a check; the heading 'Read only first' stays above."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 8.45,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 8.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B41.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Rule two. Never compute on a login node. Login nodes are shared, capped at four CPU cores and eight gigabytes of memory per user. Heavy work goes through Slurm, the scheduler: s batch, or s alloc and s run for a live session.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The small login-node rack with a meter capped at '4 cores' and '8 GB'; a heavy job box tries to run there and is stopped at the cap; it is redirected to a 'Slurm' queue gate and on to the big AICR rack.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "4 cores, 8 GB cap"
+          },
+          {
+            "at": 0.5,
+            "event": "the heavy job is stopped"
+          },
+          {
+            "at": 0.8,
+            "event": "it goes through Slurm to the compute rack"
+          }
+        ],
+        "manim": {
+          "class": "B42_LoginCap"
+        },
+        "motion_claim": "The small login-node rack with a meter capped at '4 cores' and '8 GB'; a heavy job box tries to run there and is stopped at the cap; it is redirected to a 'Slurm' queue gate and on to the big AICR rack."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.44,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 13.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B42.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B43",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Rule three. Ask before s batch, s cancel, r m, or anything that writes outside your own project. Jobs use shared GPUs, and they count against your project.",
+      "estimated_duration_s": 11.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three command pills (sbatch, scancel, rm) wait in front of a gate with the Professor Bear portrait beside it; each takes a check from the portrait before it passes; a shared GPU block lights behind the gate.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "sbatch"
+          },
+          {
+            "at": 0.4,
+            "event": "scancel"
+          },
+          {
+            "at": 0.55,
+            "event": "rm"
+          },
+          {
+            "at": 0.85,
+            "event": "shared GPUs count against the project"
+          }
+        ],
+        "manim": {
+          "class": "B43_AskFirst"
+        },
+        "motion_claim": "Three command pills (sbatch, scancel, rm) wait in front of a gate with the Professor Bear portrait beside it; each takes a check from the portrait before it passes; a shared GPU block lights behind the gate."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.88,
+      "audio_file": "mp3/beat-B43.mp3",
+      "render_duration_s": 9.916666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B43.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B44",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Rule four. Never print, copy, or upload the private key. Not cat, not s c p, not into the chat. Claude does not need to read the key to use it. The agent does that.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The key sits inside the agent slab; three pills 'cat', 'scp', 'chat' approach it from the Claude side and each bounces off a glass barrier; the agent's own arrow to the AICR rack stays open.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "cat bounces"
+          },
+          {
+            "at": 0.5,
+            "event": "scp bounces"
+          },
+          {
+            "at": 0.65,
+            "event": "chat bounces"
+          },
+          {
+            "at": 0.88,
+            "event": "the agent uses the key"
+          }
+        ],
+        "manim": {
+          "class": "B44_KeyStays"
+        },
+        "motion_claim": "The key sits inside the agent slab; three pills 'cat', 'scp', 'chat' approach it from the Claude side and each bounces off a glass barrier; the agent's own arrow to the AICR rack stays open."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.73,
+      "audio_file": "mp3/beat-B44.mp3",
+      "render_duration_s": 9.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B44.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B45",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Rule five. Never put the passphrase in a prompt, a file, or a command. If a command asks for it, stop, and unlock the key yourself, in your own terminal.",
+      "estimated_duration_s": 12.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A passphrase chip of dots floats toward a prompt box, a file page and a command pill; each shows a cross; the chip returns to the Professor Bear portrait at the terminal, who unlocks the key (lock opens).",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "prompt, file, command each refused"
+          },
+          {
+            "at": 0.65,
+            "event": "stop"
+          },
+          {
+            "at": 0.85,
+            "event": "you unlock it yourself"
+          }
+        ],
+        "manim": {
+          "class": "B45_PassphraseStays"
+        },
+        "motion_claim": "A passphrase chip of dots floats toward a prompt box, a file page and a command pill; each shows a cross; the chip returns to the Professor Bear portrait at the terminal, who unlocks the key (lock opens)."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 8.64,
+      "audio_file": "mp3/beat-B45.mp3",
+      "render_duration_s": 8.666666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B45.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B46",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Rule six. Use your own account only. The certificate names you, so do not use it to run work for anyone else.",
+      "estimated_duration_s": 8.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The certificate page with a name line and a seal; a second portrait-less user slot to the right is refused: the certificate slides back and stays beside the one Professor Bear portrait it names.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "the certificate names you"
+          },
+          {
+            "at": 0.7,
+            "event": "no one else may use it"
+          }
+        ],
+        "manim": {
+          "class": "B46_OwnAccount"
+        },
+        "motion_claim": "The certificate page with a name line and a seal; a second portrait-less user slot to the right is refused: the certificate slides back and stays beside the one Professor Bear portrait it names."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 6.63,
+      "audio_file": "mp3/beat-B46.mp3",
+      "render_duration_s": 6.666666666666667,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B46.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B47",
+      "act": "IV · Rules For A Shared Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "And rule seven. Mind where files live. Home is small and recoverable. Scratch is large, and it is purged. Check AICR's file system page before you move data.",
+      "estimated_duration_s": 11.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A small closed home box and a wide open scratch bin side by side; the home box gets a restore arrow; the scratch bin fills and a sweep clears it; a 'check first' tag lands on the move arrow.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "home: small, recoverable"
+          },
+          {
+            "at": 0.5,
+            "event": "scratch: large, purged"
+          },
+          {
+            "at": 0.85,
+            "event": "check before moving data"
+          }
+        ],
+        "manim": {
+          "class": "B47_HomeScratch"
+        },
+        "motion_claim": "A small closed home box and a wide open scratch bin side by side; the home box gets a restore arrow; the scratch bin fills and a sweep clears it; a 'check first' tag lands on the move arrow."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.96,
+      "audio_file": "mp3/beat-B47.mp3",
+      "render_duration_s": 10.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B47.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "V · When It Fails",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The error you will see most is permission denied, public key. It usually means one of three things. The key is not unlocked, by far the most common after a reboot. Or the certificate is expired or missing. Or the key's permissions are wrong.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A white plaque with 'Permission denied (publickey)' in mono; three cause cards fan out beneath it: 'Key not unlocked' (largest, most common), 'Certificate expired or missing', 'Wrong permissions'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the error plaque"
+          },
+          {
+            "at": 0.45,
+            "event": "key not unlocked (largest)"
+          },
+          {
+            "at": 0.7,
+            "event": "certificate"
+          },
+          {
+            "at": 0.88,
+            "event": "permissions"
+          }
+        ],
+        "manim": {
+          "class": "B50_ThreeCauses"
+        },
+        "motion_claim": "A white plaque with 'Permission denied (publickey)' in mono; three cause cards fan out beneath it: 'Key not unlocked' (largest, most common), 'Certificate expired or missing', 'Wrong permissions'."
+      },
+      "actual_duration_s": 13.1,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 13.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B50.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "V · When It Fails",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Here is the trap. An empty agent looks exactly like an expired certificate. The error is the same. So check the agent with S S H add dash l before you blame the certificate.",
+      "estimated_duration_s": 13.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two identical error plaques side by side; behind the left one an empty agent, behind the right an expired certificate, both hidden by a curtain; the command pill 'ssh-add -l' sweeps across and lifts the left curtain: the agent is empty.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "two identical errors"
+          },
+          {
+            "at": 0.5,
+            "event": "same message, different causes"
+          },
+          {
+            "at": 0.8,
+            "event": "ssh-add -l lifts the curtain: the agent is empty"
+          }
+        ],
+        "manim": {
+          "class": "B51_TwinErrors"
+        },
+        "motion_claim": "Two identical error plaques side by side; behind the left one an empty agent, behind the right an expired certificate, both hidden by a curtain; the command pill 'ssh-add -l' sweeps across and lifts the left curtain: the agent is empty."
+      },
+      "actual_duration_s": 10.45,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 10.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B51.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "V · When It Fails",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then, if the agent holds the key, check the certificate: is it still valid? If it is not, renew it in OnDemand. And set the private key's permissions to six hundred.",
+      "estimated_duration_s": 12.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "step 1"
+          },
+          {
+            "at": 0.35,
+            "event": "step 2"
+          },
+          {
+            "at": 0.75,
+            "event": "step 3"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Terminal · your own",
+            "lines": [
+              "# 1. is the key in the agent?",
+              "$ ssh-add -l",
+              "# 2. is the certificate still valid?",
+              "$ ssh-keygen -L -f ~/.ssh/id_ed25519_aicr-cert.pub",
+              "# 3. are the permissions right?",
+              "$ chmod 600 ~/.ssh/id_ed25519_aicr"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              1,
+              45,
+              81,
+              172,
+              221
+            ],
+            "fontSize": 40,
+            "durationSeconds": 9.54
+          }
+        }
+      },
+      "motion_claim": "The three checks print as commands, in order; no output is shown because none was run for this beat.",
+      "actual_duration_s": 9.54,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 9.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B52.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B53",
+      "act": "V · When It Fails",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Other messages have short fixes. A command that hangs or wants a passphrase: unlock the key yourself. Host key verification failed: remove the old entry with ssh-keygen dash R, then connect once yourself. A new host key prompt: type yes.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn two-column table builds row by row: 'Hangs, wants passphrase' -> 'Unlock the key yourself'; 'Host key verification failed' -> 'ssh-keygen -R login.aicr.ai, connect once'; 'Confirm new host key?' -> 'Type yes yourself'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "hang row"
+          },
+          {
+            "at": 0.45,
+            "event": "host key changed row"
+          },
+          {
+            "at": 0.8,
+            "event": "new host key prompt row"
+          }
+        ],
+        "manim": {
+          "class": "B53_TableA"
+        },
+        "motion_claim": "A drawn two-column table builds row by row: 'Hangs, wants passphrase' -> 'Unlock the key yourself'; 'Host key verification failed' -> 'ssh-keygen -R login.aicr.ai, connect once'; 'Confirm new host key?' -> 'Type yes yourself'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.34,
+      "audio_file": "mp3/beat-B53.mp3",
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B53.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "B54",
+      "act": "V · When It Fails",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Bad configuration option: add ignore unknown above the keychain line. Connection timed out: try another network, because AICR needs no VPN. Drops when idle: server alive interval sixty. Empty after a restart: S S H add again, on a Mac with the keychain flag.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The same table continues: 'Bad configuration option' -> 'IgnoreUnknown UseKeychain'; 'Connection timed out' -> 'Other network, no VPN'; 'Drops when idle' -> 'ServerAliveInterval 60'; 'Agent empty after restart' -> 'ssh-add again'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "bad option row"
+          },
+          {
+            "at": 0.4,
+            "event": "timed out row"
+          },
+          {
+            "at": 0.6,
+            "event": "idle drops row"
+          },
+          {
+            "at": 0.85,
+            "event": "empty after restart row"
+          }
+        ],
+        "manim": {
+          "class": "B54_TableB"
+        },
+        "motion_claim": "The same table continues: 'Bad configuration option' -> 'IgnoreUnknown UseKeychain'; 'Connection timed out' -> 'Other network, no VPN'; 'Drops when idle' -> 'ServerAliveInterval 60'; 'Agent empty after restart' -> 'ssh-add again'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 16.41,
+      "audio_file": "mp3/beat-B54.mp3",
+      "render_duration_s": 16.416666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B54.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. AICR checks a key and a certificate, not a password. Claude cannot type a passphrase, so you unlock the key once into the ssh-agent. Test with BatchMode: even an emptied agent logged in on a Mac. Claude runs read-only commands, and asks before it changes anything. The key and the passphrase never go into a prompt. And when you see permission denied, check the agent before you blame the certificate.",
+      "estimated_duration_s": 29.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land in narration order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Logging into AICR with Claude",
+            "artifactLines": [
+              "AICR checks a key and a certificate, not a password.",
+              "Claude cannot type a passphrase, so unlock the key once into ssh-agent.",
+              "Test with BatchMode: even an emptied agent logged in on a Mac.",
+              "Claude runs read-only commands and asks before it changes anything.",
+              "The key and the passphrase never go into a prompt.",
+              "Permission denied? Check ssh-add -l before you blame the certificate."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 21.94,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 21.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Log into the AICR cluster with ssh aicr and run read-only commands only. Run: whoami, hostname, pwd, s info with its output format set to percent fourteen P, percent eleven l, percent six D, and s queue for my own user. Tell me the user name, the host, and which partitions exist. Do not submit, cancel or change anything, and do not run computation on the login node. Then check two things yourself. Did Claude run only read-only commands? And did it ever ask for, or print, your passphrase or your key?",
+      "estimated_duration_s": 39.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens — 'Your turn.'"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Log Into AICR With Claude",
+            "command": "Log into the AICR cluster with `ssh aicr` and run read-only commands only. Run: whoami, hostname, pwd, sinfo -o \"%14P %11l %6D\", squeue -u $USER. Tell me the user name, the host, and which partitions exist. Do not submit, cancel or change anything, and do not run computation on the login node.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did Claude run only read-only commands, nothing that submits or changes?",
+              "Check: did Claude ever ask for, or print, your passphrase or key? It should not."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 30.27,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 30.291666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Logging into AICR with Claude. At Nik Bear Brown.",
+      "estimated_duration_s": 4.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Logging into AICR with Claude",
+            "slug": "claude-liam-lecture-logging-into-aicr-with-claude",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 5.03,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 5.041666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-11T15:56:32"
+      }
+    }
+  ]
+}

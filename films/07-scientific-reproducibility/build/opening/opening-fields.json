@@ -1,0 +1,15 @@
+{
+  "series_title": "Research Computing on Explorer and AICR",
+  "episode_position": "Video 07 / 13",
+  "title_lines": [
+    "Scientific",
+    "Reproducibility"
+  ],
+  "subtitle": "Make your computational work redoable",
+  "portrait_path": "<books>/brutalist.art/runtime/remotion/public/professor-bear/professor-bear-1x1-50.jpg",
+  "presenter_name": "Professor Bear",
+  "narrator_credit": "Liam, in for Bear \u00b7 Narration",
+  "entry_pointer": "New here? Start with Video 1 \u00b7 AICR Introduction",
+  "channel_handle": "@NikBearBrown",
+  "seed": "claude-liam-lecture-scientific-reproducibility"
+}

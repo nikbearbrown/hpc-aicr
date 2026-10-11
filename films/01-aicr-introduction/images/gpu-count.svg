@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640">
+<title>AICR GPU count</title>
+<desc>Two rows of squares show 31 B200 nodes and 19 RTX PRO 6000 nodes of 8 GPUs each, giving 248 plus 152 for 400 GPUs in total.</desc>
+<rect width="1200" height="640" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">248 + 152 = 400 GPUs</text>
+<text x="60" y="170" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">B200</text>
+<text x="160" y="170" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#8A8470" text-anchor="start">31 nodes with 8 GPUs each</text>
+<rect x="60.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="94.6" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="129.2" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="163.8" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="198.4" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="233.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="267.6" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="302.2" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="336.8" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="371.4" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="406.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="440.6" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="475.2" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="509.8" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="544.4" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="579.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="613.6" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="648.2" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="682.8" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="717.4" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="752.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="786.6" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="821.2" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="855.8" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="890.4" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="925.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="959.6" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="994.2" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="1028.8" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="1063.4" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<rect x="1098.0" y="195" width="30" height="30" rx="6" fill="#3D3929"/>
+<text x="1140" y="170" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="end">248 GPUs</text>
+<text x="60" y="330" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="start">RTX PRO 6000</text>
+<text x="320" y="330" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#8A8470" text-anchor="start">19 nodes with 8 GPUs each</text>
+<rect x="60.0" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="94.6" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="129.2" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="163.8" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="198.4" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="233.0" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="267.6" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="302.2" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="336.8" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="371.4" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="406.0" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="440.6" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="475.2" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="509.8" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="544.4" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="579.0" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="613.6" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="648.2" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<rect x="682.8" y="355" width="30" height="30" rx="6" fill="#8A8470"/>
+<text x="1140" y="330" font-family="Inter, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#3D3929" text-anchor="end">152 GPUs</text>
+<text x="60" y="438" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Each square is one node of 8 GPUs</text>
+<line x1="60" y1="480" x2="1140" y2="480" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="60" y="570" font-family="Inter, Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#3D3929" text-anchor="start">Total</text>
+<text x="1140" y="580" font-family="EB Garamond, Georgia, serif" font-size="64" font-weight="600" fill="#D97757" text-anchor="end">400 GPUs</text>
+
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<title>The twelve-item record every job leaves behind</title>
+<desc>A three-by-four grid of cards listing the twelve items a job should record, with the two items beyond the original lesson marked as inferred.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start" >The record every job leaves behind</text>
+<text x="60" y="118" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start" >Twelve items, printed at the top of the job log</text>
+<rect x="61.0" y="150" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="91.0" cy="182" r="17" fill="#E6E2D6"/>
+<text x="91.0" y="189" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >1</text>
+<text x="81.0" y="230" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Job ID, nodes,</text>
+<text x="81.0" y="258" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >resources</text>
+<rect x="337.0" y="150" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="367.0" cy="182" r="17" fill="#E6E2D6"/>
+<text x="367.0" y="189" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >2</text>
+<text x="357.0" y="230" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Start and</text>
+<text x="357.0" y="258" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >end time</text>
+<rect x="613.0" y="150" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<circle cx="643.0" cy="182" r="17" fill="#D97757"/>
+<text x="643.0" y="189" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF" text-anchor="middle" >3</text>
+<text x="633.0" y="230" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" >Git commit</text>
+<text x="633.0" y="258" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#3D3929" text-anchor="start" >and tag</text>
+<rect x="889.0" y="150" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="919.0" cy="182" r="17" fill="#E6E2D6"/>
+<text x="919.0" y="189" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >4</text>
+<text x="909.0" y="230" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Exact command</text>
+<rect x="61.0" y="304" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="91.0" cy="336" r="17" fill="#E6E2D6"/>
+<text x="91.0" y="343" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >5</text>
+<text x="81.0" y="384" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Every parameter</text>
+<rect x="337.0" y="304" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="367.0" cy="336" r="17" fill="#E6E2D6"/>
+<text x="367.0" y="343" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >6</text>
+<text x="357.0" y="384" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Every random seed</text>
+<rect x="613.0" y="304" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="643.0" cy="336" r="17" fill="#E6E2D6"/>
+<text x="643.0" y="343" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >7</text>
+<text x="633.0" y="384" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Input paths,</text>
+<text x="633.0" y="412" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >checksums</text>
+<text x="847.0" y="342" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="end" >inferred</text>
+<rect x="889.0" y="304" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="919.0" cy="336" r="17" fill="#E6E2D6"/>
+<text x="919.0" y="343" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >8</text>
+<text x="909.0" y="384" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Software, pinned</text>
+<rect x="61.0" y="458" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="91.0" cy="490" r="17" fill="#E6E2D6"/>
+<text x="91.0" y="497" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >9</text>
+<text x="81.0" y="538" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Container</text>
+<text x="81.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >image, tag</text>
+<rect x="337.0" y="458" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="367.0" cy="490" r="17" fill="#E6E2D6"/>
+<text x="367.0" y="497" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >10</text>
+<text x="357.0" y="538" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Hardware</text>
+<text x="357.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >actually used</text>
+<text x="571.0" y="496" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="end" >inferred</text>
+<rect x="613.0" y="458" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="643.0" cy="490" r="17" fill="#E6E2D6"/>
+<text x="643.0" y="497" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >11</text>
+<text x="633.0" y="538" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Output and</text>
+<text x="633.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >log files</text>
+<rect x="889.0" y="458" width="250" height="130" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<circle cx="919.0" cy="490" r="17" fill="#E6E2D6"/>
+<text x="919.0" y="497" font-family="Inter, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#3D3929" text-anchor="middle" >12</text>
+<text x="909.0" y="538" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >Exit status,</text>
+<text x="909.0" y="566" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#3D3929" text-anchor="start" >rerun line</text>
+<text x="60" y="642" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start" >Commit before you submit. Do not edit the tree while a job waits.</text>
+</svg>

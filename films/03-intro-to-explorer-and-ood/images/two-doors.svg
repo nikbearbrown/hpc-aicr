@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<title>Two doors, one cluster</title>
+<desc>Two ways in, a terminal using ssh and a browser using Open OnDemand, both reach the same Explorer cluster with the same files and the same Slurm.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3D3929"/></marker>
+<marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+</defs>
+<rect width="1200" height="520" fill="#F2F0E9"/>
+<text x="40" y="72" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">Two doors, one cluster</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Pick the door; the cluster behind it is the same</text>
+<rect x="40" y="160" width="520" height="140" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="70" y="212" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="500" fill="#3D3929" text-anchor="start">Terminal</text>
+<text x="70" y="248" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">SSH, port 22</text>
+<text x="70" y="280" font-family="Menlo, Consolas, Courier New, monospace" font-size="19" font-weight="400" fill="#3D3929" text-anchor="start">login.explorer.northeastern.edu</text>
+<rect x="40" y="330" width="520" height="140" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="70" y="382" font-family="EB Garamond, Georgia, serif" font-size="32" font-weight="500" fill="#3D3929" text-anchor="start">Open OnDemand</text>
+<text x="70" y="418" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Web browser</text>
+<text x="70" y="450" font-family="Menlo, Consolas, Courier New, monospace" font-size="19" font-weight="400" fill="#3D3929" text-anchor="start">ood.explorer.northeastern.edu</text>
+<rect x="760" y="160" width="400" height="310" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="960" y="235" font-family="EB Garamond, Georgia, serif" font-size="40" font-weight="500" fill="#3D3929" text-anchor="middle">Explorer</text>
+<text x="960" y="285" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Same files</text>
+<text x="960" y="325" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Same Slurm</text>
+<text x="960" y="365" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Same compute nodes</text>
+<text x="960" y="430" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">Northeastern Research Computing</text>
+<line x1="566" y1="230" x2="754" y2="270" stroke="#D97757" stroke-width="3" marker-end="url(#aa)"/>
+<line x1="566" y1="400" x2="754" y2="360" stroke="#D97757" stroke-width="3" marker-end="url(#aa)"/>
+</svg>

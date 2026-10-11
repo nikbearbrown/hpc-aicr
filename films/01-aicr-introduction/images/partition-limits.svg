@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740">
+<title>AICR partitions and time limits</title>
+<desc>Horizontal bars compare the longest run for five documented AICR partitions: 24 hours for cpu and the batch partitions, 4 hours for the two devel partitions.</desc>
+<rect width="1200" height="740" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">AICR partitions and time limits</text>
+<text x="60" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Partition</text>
+<text x="380" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Longest run</text>
+<text x="1140" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="end">GPU</text>
+<line x1="60" y1="169" x2="1140" y2="169" stroke="#CFC9B8" stroke-width="1.5"/>
+<text x="60" y="219" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#3D3929" text-anchor="start">cpu</text>
+<rect x="380" y="185" width="440.0" height="46" rx="8" fill="#3D3929"/>
+<text x="834.0" y="219" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">24 h</text>
+<text x="1140" y="219" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="end">None</text>
+<line x1="60" y1="251" x2="1140" y2="251" stroke="#CFC9B8" stroke-width="1.5"/>
+<text x="60" y="301" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#3D3929" text-anchor="start">b200-batch</text>
+<rect x="380" y="267" width="440.0" height="46" rx="8" fill="#3D3929"/>
+<text x="834.0" y="301" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">24 h</text>
+<text x="1140" y="301" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">B200</text>
+<line x1="60" y1="333" x2="1140" y2="333" stroke="#CFC9B8" stroke-width="1.5"/>
+<text x="60" y="383" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#3D3929" text-anchor="start">b200-devel</text>
+<rect x="380" y="349" width="73.3" height="46" rx="8" fill="#D97757"/>
+<text x="467.3333333333333" y="383" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#D97757" text-anchor="start">4 h</text>
+<text x="1140" y="383" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">B200</text>
+<line x1="60" y1="415" x2="1140" y2="415" stroke="#CFC9B8" stroke-width="1.5"/>
+<text x="60" y="465" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#3D3929" text-anchor="start">rtx-batch</text>
+<rect x="380" y="431" width="440.0" height="46" rx="8" fill="#3D3929"/>
+<text x="834.0" y="465" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">24 h</text>
+<text x="1140" y="465" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">RTX PRO 6000</text>
+<line x1="60" y1="497" x2="1140" y2="497" stroke="#CFC9B8" stroke-width="1.5"/>
+<text x="60" y="547" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#3D3929" text-anchor="start">rtx-devel</text>
+<rect x="380" y="513" width="73.3" height="46" rx="8" fill="#D97757"/>
+<text x="467.3333333333333" y="547" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#D97757" text-anchor="start">4 h</text>
+<text x="1140" y="547" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">RTX PRO 6000</text>
+<line x1="60" y1="579" x2="1140" y2="579" stroke="#CFC9B8" stroke-width="1.5"/>
+<text x="60" y="665" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#D97757" text-anchor="start">Devel partitions: interactive work, 4 running jobs per user.</text>
+<text x="60" y="705" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">The live cluster lists 7 partitions; 2 are undocumented.</text>
+
+</svg>

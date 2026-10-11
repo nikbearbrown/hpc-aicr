@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 760" role="img">
+<title>Explorer versus AICR software setup</title>
+<desc>A side by side table of what Explorer and AICR provide for modules, Conda, Python, cmake, Apptainer and personal modulefiles.</desc>
+<rect width="1200" height="760" fill="#F2F0E9"/>
+<text x="60" y="68" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Same idea, different setup</text>
+<text x="60" y="102" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Do not carry an Explorer fact to AICR.</text>
+<g font-family="EB Garamond, Georgia, serif" font-size="36" fill="#3D3929">
+<text x="520" y="168" text-anchor="middle">Explorer</text>
+<text x="900" y="168" text-anchor="middle">AICR</text>
+</g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="22">
+<!-- row 1 highlighted -->
+<text x="60" y="233" fill="#3D3929" font-weight="600">Module system</text>
+<rect x="330" y="190" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<rect x="710" y="190" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="520" y="232" text-anchor="middle" fill="#3D3929">Tcl Modules 5.3.0</text>
+<text x="900" y="232" text-anchor="middle" fill="#3D3929">Lmod 8.7.65</text>
+
+<text x="60" y="313" fill="#3D3929" font-weight="600">Conda</text>
+<rect x="330" y="270" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<rect x="710" y="270" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="520" y="312" text-anchor="middle" fill="#3D3929">miniconda3 module</text>
+<text x="900" y="312" text-anchor="middle" fill="#3D3929">miniforge3 module</text>
+
+<text x="60" y="393" fill="#3D3929" font-weight="600">Python module</text>
+<rect x="330" y="350" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<rect x="710" y="350" width="380" height="68" rx="12" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="520" y="392" text-anchor="middle" fill="#3D3929">python/3.13.5</text>
+<text x="900" y="392" text-anchor="middle" fill="#8A8470">None</text>
+
+<text x="60" y="473" fill="#3D3929" font-weight="600">cmake module</text>
+<rect x="330" y="430" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<rect x="710" y="430" width="380" height="68" rx="12" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="520" y="472" text-anchor="middle" fill="#3D3929">Yes, three versions</text>
+<text x="900" y="472" text-anchor="middle" fill="#8A8470">None found</text>
+
+<text x="60" y="553" fill="#3D3929" font-weight="600">Apptainer</text>
+<rect x="330" y="510" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<rect x="710" y="510" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="520" y="552" text-anchor="middle" fill="#3D3929">Installed at /usr/bin</text>
+<text x="900" y="552" text-anchor="middle" fill="#3D3929">Installed at /usr/bin</text>
+
+<text x="60" y="633" fill="#3D3929" font-weight="600">Modulefile syntax</text>
+<rect x="330" y="590" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<rect x="710" y="590" width="380" height="68" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="520" y="632" text-anchor="middle" fill="#3D3929">Tcl</text>
+<text x="900" y="632" text-anchor="middle" fill="#3D3929">Normally Lua</text>
+</g>
+<text x="60" y="708" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Module names seen read-only on 2026-10-11. Lua modulefiles: from the source, not tested.</text>
+<text x="60" y="736" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Both clusters keep Apptainer at /usr/bin; do not module load it.</text>
+</svg>

@@ -1,0 +1,2 @@
+# CHECKS-REPORT — Intro to Linux (lecture)
+**Result.** No punts, no holds. 22 beats: 20 SHOW / 0 HOLD / 0 PUNT / 2 CARD-class bookends. Teaching arc: FRAMEWORK ✓ (B11 the prompt and B20 paths before any command) | WORKED EXAMPLE ✓ (B30–B31: one directory built, copied, moved, renamed with real output) | FALSIFIABILITY ✓ (B32 rm has no undo; B33 a moved original breaks the link; B40 ESC does not close less) | SCAFFOLDED TASK ✓ | BOOKENDS ✓ | NO-SOURCE-NO-VERDICT ✓. Lane histogram: terminal 12 · Manim 6 · text-only 0.

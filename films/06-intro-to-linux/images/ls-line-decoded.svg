@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660">
+<title>Reading one line of ls -l</title>
+<desc>The long listing line for File.txt split into its fields: file type, three permission triplets for owner, group and others, link count, owner, group, size, date and name.</desc>
+<rect width="1200" height="660" fill="#F2F0E9"/>
+<text x="600" y="70" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="middle">Decoding one line of ls -l</text>
+<text x="600" y="135" font-family="Menlo, Consolas, Courier New, monospace" font-size="30" font-weight="700" fill="#3D3929" text-anchor="middle">-rwxrw-r-- 1 user group 46 Feb 14 16:37 File.txt</text>
+<text x="80" y="200" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">The ten characters at the start</text>
+<rect x="80" y="220" width="120" height="90" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="140.0" y="280" font-family="Menlo, Consolas, Courier New, monospace" font-size="44" font-weight="700" fill="#3D3929" text-anchor="middle">-</text>
+<text x="140.0" y="344" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#3D3929" text-anchor="middle">file type</text>
+<text x="140.0" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">file</text>
+<rect x="270" y="220" width="220" height="90" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="380.0" y="280" font-family="Menlo, Consolas, Courier New, monospace" font-size="44" font-weight="700" fill="#D97757" text-anchor="middle">rwx</text>
+<text x="380.0" y="344" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#3D3929" text-anchor="middle">owner</text>
+<text x="380.0" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">read, write, run</text>
+<rect x="520" y="220" width="220" height="90" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="630.0" y="280" font-family="Menlo, Consolas, Courier New, monospace" font-size="44" font-weight="700" fill="#3D3929" text-anchor="middle">rw-</text>
+<text x="630.0" y="344" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#3D3929" text-anchor="middle">group</text>
+<text x="630.0" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">read, write</text>
+<rect x="770" y="220" width="220" height="90" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="880.0" y="280" font-family="Menlo, Consolas, Courier New, monospace" font-size="44" font-weight="700" fill="#3D3929" text-anchor="middle">r--</text>
+<text x="880.0" y="344" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#3D3929" text-anchor="middle">others</text>
+<text x="880.0" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">read only</text>
+<text x="80" y="440" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">The rest of the line</text>
+<rect x="60.0" y="460" width="90" height="80" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="105.0" y="512" font-family="Menlo, Consolas, Courier New, monospace" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle">1</text>
+<text x="105.0" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">link count</text>
+<rect x="170.0" y="460" width="150" height="80" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="245.0" y="512" font-family="Menlo, Consolas, Courier New, monospace" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle">user</text>
+<text x="245.0" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">owner</text>
+<rect x="340.0" y="460" width="170" height="80" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="425.0" y="512" font-family="Menlo, Consolas, Courier New, monospace" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle">group</text>
+<text x="425.0" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">group</text>
+<rect x="530.0" y="460" width="100" height="80" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="580.0" y="512" font-family="Menlo, Consolas, Courier New, monospace" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle">46</text>
+<text x="580.0" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">bytes</text>
+<rect x="650.0" y="460" width="270" height="80" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="785.0" y="512" font-family="Menlo, Consolas, Courier New, monospace" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle">Feb 14 16:37</text>
+<text x="785.0" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">last modified</text>
+<rect x="940.0" y="460" width="200" height="80" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="1040.0" y="512" font-family="Menlo, Consolas, Courier New, monospace" font-size="26" font-weight="700" fill="#3D3929" text-anchor="middle">File.txt</text>
+<text x="1040.0" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">name</text>
+<text x="600" y="634" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">Example listing from the original lesson, used as a teaching placeholder.</text>
+</svg>

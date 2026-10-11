@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620">
+<title>Develop on Explorer, run on AICR</title>
+<desc>A one-way arrow from Explorer, where you write, debug and test on a small sample, to AICR, where the long production run happens once the code works.</desc>
+<rect width="1200" height="620" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">Develop on Explorer, run on AICR</text>
+<rect x="60" y="170" width="420" height="320" rx="14" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="270" y="235" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#3D3929" text-anchor="middle">Explorer</text>
+<text x="270" y="270" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">or your own computer</text>
+<rect x="100" y="305" width="340" height="44" rx="10" fill="#E6E2D6"/>
+<text x="270" y="335" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Write</text>
+<rect x="100" y="363" width="340" height="44" rx="10" fill="#E6E2D6"/>
+<text x="270" y="393" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Debug</text>
+<rect x="100" y="421" width="340" height="44" rx="10" fill="#E6E2D6"/>
+<text x="270" y="451" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Test on a small sample</text>
+<rect x="720" y="170" width="420" height="320" rx="14" fill="#3D3929"/>
+<text x="930" y="235" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="500" fill="#F2F0E9" text-anchor="middle">AICR</text>
+<text x="930" y="270" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#CFC9B8" text-anchor="middle">shared by six universities</text>
+<rect x="760" y="305" width="340" height="44" rx="10" fill="#D97757"/>
+<text x="930" y="335" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#F2F0E9" text-anchor="middle">Long, large production run</text>
+<rect x="760" y="363" width="340" height="44" rx="10" fill="none" stroke="#CFC9B8" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="930" y="393" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#CFC9B8" text-anchor="middle">Not for finding bugs</text>
+<line x1="490" y1="330" x2="700" y2="330" stroke="#D97757" stroke-width="5"/>
+<polygon points="712,330 690,318 690,342" fill="#D97757"/>
+<text x="600" y="305" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#D97757" text-anchor="middle">Code works</text>
+<text x="600" y="372" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">then move</text>
+<text x="60" y="560" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#8A8470" text-anchor="start">AICR is the extension of Explorer for code that already runs.</text>
+
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690">
+<title>Two axes, not one</title>
+<desc>A two by two grid of GPU utilization against memory use, with the high utilization and high memory cell marked as the target.</desc>
+<rect width="1200" height="690" fill="#F2F0E9"/>
+<text x="60" y="76" font-size="46" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Two axes, not one</text>
+<text x="60" y="112" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Utilization and memory are separate measurements</text>
+<rect x="220" y="185" width="440" height="200" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="250" y="255" font-size="32" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Loaded, not running</text>
+<text x="250" y="297" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Fix the data pipeline</text>
+<rect x="676" y="185" width="440" height="200" rx="14" fill="#FBEDE6" stroke="#D97757" stroke-width="4" />
+<text x="706" y="255" font-size="32" font-weight="500" fill="#D97757" text-anchor="start" font-family="EB Garamond, Georgia, serif" >The target</text>
+<text x="706" y="297" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Big model, working hard</text>
+<text x="706" y="343" font-size="18" font-weight="400" fill="#8A8470" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Workshop: 80 to 100% util, 70 to 90% memory</text>
+<rect x="220" y="401" width="440" height="200" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="250" y="471" font-size="32" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Doing nothing</text>
+<text x="250" y="513" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Check everything</text>
+<rect x="676" y="401" width="440" height="200" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5" />
+<text x="706" y="471" font-size="32" font-weight="500" fill="#3D3929" text-anchor="start" font-family="EB Garamond, Georgia, serif" >Healthy, VRAM to spare</text>
+<text x="706" y="513" font-size="22" font-weight="400" fill="#3D3929" text-anchor="start" font-family="Inter, Helvetica, Arial, sans-serif" >Try a larger batch</text>
+<text x="440.0" y="167" font-size="22" font-weight="600" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >Low utilization</text>
+<text x="896.0" y="167" font-size="22" font-weight="600" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >High utilization</text>
+<text x="196" y="293.0" font-size="22" font-weight="600" fill="#8A8470" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" >High memory</text>
+<text x="196" y="509.0" font-size="22" font-weight="600" fill="#8A8470" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" >Low memory</text>
+<text x="668.0" y="661" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" >Utilization runs across, memory runs up. Read them as a pair.</text>
+
+</svg>

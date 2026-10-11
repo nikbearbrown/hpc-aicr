@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<title>The four storage areas</title>
+<desc>Four cards for home, scratch, projects and courses, each with its use, size and whether to keep files there; scratch is highlighted because it is purged on the first Tuesday of each month.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3D3929"/></marker>
+<marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+</defs>
+<rect width="1200" height="720" fill="#F2F0E9"/>
+<text x="40" y="72" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">Where files live</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Write the full path, starting with a slash</text>
+<rect x="40" y="140" width="540" height="260" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="68" y="195" font-family="Menlo, Consolas, Courier New, monospace" font-size="25" font-weight="700" fill="#3D3929" text-anchor="start">/home/&lt;username&gt;</text>
+<text x="68" y="240" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Scripts, environments, small things</text>
+<line x1="68" y1="265" x2="552" y2="265" stroke="#CFC9B8" stroke-width="2"/>
+<text x="68" y="310" font-family="EB Garamond, Georgia, serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start">75 GB, the first to fill</text>
+<text x="68" y="362" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#3D3929" text-anchor="start">Keep: yes, but small</text>
+<rect x="620" y="140" width="540" height="260" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="648" y="195" font-family="Menlo, Consolas, Courier New, monospace" font-size="25" font-weight="700" fill="#3D3929" text-anchor="start">/scratch/&lt;username&gt;</text>
+<text x="648" y="240" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Temporary job data</text>
+<line x1="648" y1="265" x2="1132" y2="265" stroke="#CFC9B8" stroke-width="2"/>
+<text x="648" y="310" font-family="EB Garamond, Georgia, serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start">Size: check your own quota</text>
+<text x="648" y="362" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#D97757" text-anchor="start">Purged: first Tuesday of each month</text>
+<rect x="40" y="430" width="540" height="260" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="68" y="485" font-family="Menlo, Consolas, Courier New, monospace" font-size="25" font-weight="700" fill="#3D3929" text-anchor="start">/projects/&lt;project&gt;</text>
+<text x="68" y="530" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Shared research data, big files</text>
+<line x1="68" y1="555" x2="552" y2="555" stroke="#CFC9B8" stroke-width="2"/>
+<text x="68" y="600" font-family="EB Garamond, Georgia, serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start">Free up to 35 TB</text>
+<text x="68" y="652" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#3D3929" text-anchor="start">Keep: yes</text>
+<rect x="620" y="430" width="540" height="260" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="648" y="485" font-family="Menlo, Consolas, Courier New, monospace" font-size="25" font-weight="700" fill="#3D3929" text-anchor="start">/courses/&lt;coursename.code&gt;</text>
+<text x="648" y="530" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="start">Course work</text>
+<line x1="648" y1="555" x2="1132" y2="555" stroke="#CFC9B8" stroke-width="2"/>
+<text x="648" y="600" font-family="EB Garamond, Georgia, serif" font-size="26" font-weight="500" fill="#3D3929" text-anchor="start">1 to 5 TB, shared by the class</text>
+<text x="648" y="652" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="400" fill="#3D3929" text-anchor="start">Keep: for the course</text>
+</svg>

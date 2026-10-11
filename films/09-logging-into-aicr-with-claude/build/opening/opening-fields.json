@@ -1,0 +1,15 @@
+{
+  "series_title": "Research Computing on Explorer and AICR",
+  "episode_position": "Video 09 / 13",
+  "title_lines": [
+    "Logging into AICR",
+    "with Claude"
+  ],
+  "subtitle": "Let Claude Code log in while your key stays yours",
+  "portrait_path": "<books>/brutalist.art/runtime/remotion/public/professor-bear/professor-bear-1x1-194.jpg",
+  "presenter_name": "Professor Bear",
+  "narrator_credit": "Liam, in for Bear \u00b7 Narration",
+  "entry_pointer": "New here? Start with Video 1 \u00b7 AICR Introduction",
+  "channel_handle": "@NikBearBrown",
+  "seed": "claude-liam-lecture-logging-into-aicr-with-claude"
+}

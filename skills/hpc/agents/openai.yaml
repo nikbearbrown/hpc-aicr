@@ -1,0 +1,4 @@
+interface:
+  display_name: '/hpc'
+  short_description: 'Best-practice rules for running research jobs on Explorer and other shared Slurm clusters'
+  default_prompt: '$hpc: Help me run my analysis on the Explorer cluster the right way: check what I actually need before requesting resources.'

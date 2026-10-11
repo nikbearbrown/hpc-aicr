@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+<title>GPU partitions and their time limits</title>
+<desc>Horizontal bars show the maximum run time of six Explorer GPU partitions: multigpu and courses-gpu 24 hours, gpu 8 hours, gpu-interactive and gpu-short 2 hours, sharing 1 hour.</desc>
+<rect width="1200" height="640" fill="#F2F0E9"/>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9 z" fill="#8A8470"/></marker></defs>
+<text x="60" y="68" font-family="EB Garamond, Georgia, serif" font-size="40" font-weight="500" fill="#3D3929" text-anchor="start">Explorer GPU partitions: longest run allowed</text>
+<text x="266" y="164" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end">multigpu</text>
+<rect x="290" y="130" width="700.0" height="50" rx="8" fill="#FAF9F5" stroke="#8A8470" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="1006.0" y="164" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">24 h</text>
+<text x="266" y="234" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end">courses-gpu</text>
+<rect x="290" y="200" width="700.0" height="50" rx="8" fill="#FAF9F5" stroke="#8A8470" stroke-width="3" stroke-dasharray="10 8"/>
+<text x="1006.0" y="234" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">24 h</text>
+<text x="266" y="304" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end">gpu</text>
+<rect x="290" y="270" width="233.33333333333334" height="50" rx="8" fill="#D97757" stroke="#D97757" stroke-width="0"/>
+<text x="539.3333333333334" y="304" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">8 h</text>
+<text x="266" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end">gpu-interactive</text>
+<rect x="290" y="340" width="58.333333333333336" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="364.3333333333333" y="374" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">2 h</text>
+<text x="266" y="444" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end">gpu-short</text>
+<rect x="290" y="410" width="58.333333333333336" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="364.3333333333333" y="444" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">2 h</text>
+<text x="266" y="514" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="end">sharing</text>
+<rect x="290" y="480" width="29.166666666666668" height="50" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="335.1666666666667" y="514" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929" text-anchor="start">1 h</text>
+<rect x="290" y="560" width="34" height="24" rx="6" fill="#3D3929" stroke="#3D3929" stroke-width="0"/>
+<text x="336" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Seen on Explorer, 2026-10-11</text>
+<rect x="690" y="560" width="34" height="24" rx="6" fill="#FAF9F5" stroke="#8A8470" stroke-width="3" stroke-dasharray="6 5"/>
+<text x="736" y="580" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">From the original, not seen by us</text>
+</svg>

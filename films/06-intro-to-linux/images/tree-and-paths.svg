@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660">
+<title>Directory tree and paths</title>
+<desc>A file tree from the root slash down to a folder you stand in, showing an absolute path, a relative path, and what the dot, double dot and tilde mean.</desc>
+<rect width="1200" height="660" fill="#F2F0E9"/>
+<text x="60" y="70" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="start">Paths are routes through a tree</text>
+<line x1="300" y1="194" x2="180" y2="266" stroke="#CFC9B8" stroke-width="3" stroke-linecap="round"/>
+<line x1="300" y1="194" x2="430" y2="266" stroke="#CFC9B8" stroke-width="3" stroke-linecap="round"/>
+<line x1="180" y1="314" x2="180" y2="386" stroke="#CFC9B8" stroke-width="3" stroke-linecap="round"/>
+<line x1="180" y1="434" x2="90" y2="516" stroke="#D97757" stroke-width="5" stroke-linecap="round"/>
+<line x1="180" y1="434" x2="290" y2="516" stroke="#D97757" stroke-width="5" stroke-linecap="round"/>
+<rect x="255.0" y="146" width="90" height="48" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="300" y="177" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">/</text>
+<rect x="128.0" y="266" width="104" height="48" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="180" y="297" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">home</text>
+<rect x="346.0" y="266" width="168" height="48" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="430" y="297" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">projects</text>
+<rect x="128.0" y="386" width="104" height="48" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="180" y="417" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">user</text>
+<rect x="30.0" y="516" width="120" height="48" rx="12" fill="#D97757" stroke="#D97757" stroke-width="2.5"/>
+<text x="90" y="547" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="700" fill="#FAF9F5" text-anchor="middle">myDir</text>
+<rect x="245.0" y="516" width="90" height="48" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3.5"/>
+<text x="290" y="547" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">dir</text>
+<text x="90" y="596" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#D97757" text-anchor="middle">you stand here</text>
+<text x="300" y="128" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">root</text>
+<rect x="620" y="130" width="520" height="76" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="645" y="178" font-family="Menlo, Consolas, Courier New, monospace" font-size="28" font-weight="700" fill="#3D3929" text-anchor="start">.</text>
+<text x="1120" y="176" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">here (myDir)</text>
+<rect x="620" y="220" width="520" height="76" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="645" y="268" font-family="Menlo, Consolas, Courier New, monospace" font-size="28" font-weight="700" fill="#3D3929" text-anchor="start">..</text>
+<text x="1120" y="266" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">one level up (user)</text>
+<rect x="620" y="310" width="520" height="76" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="645" y="358" font-family="Menlo, Consolas, Courier New, monospace" font-size="28" font-weight="700" fill="#3D3929" text-anchor="start">~</text>
+<text x="1120" y="356" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">your home directory</text>
+<rect x="620" y="400" width="520" height="76" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="645" y="448" font-family="Menlo, Consolas, Courier New, monospace" font-size="28" font-weight="700" fill="#3D3929" text-anchor="start">/home/user/dir</text>
+<text x="1120" y="446" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">absolute: starts at /</text>
+<rect x="620" y="490" width="520" height="76" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="645" y="538" font-family="Menlo, Consolas, Courier New, monospace" font-size="28" font-weight="700" fill="#D97757" text-anchor="start">../dir</text>
+<text x="1120" y="536" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="end">relative: from where you stand</text>
+<text x="620" y="610" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Both of the last two reach the same folder.</text>
+</svg>

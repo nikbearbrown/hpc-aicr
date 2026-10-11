@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+<title>Shared memory versus distributed memory</title>
+<desc>Left, four cores of one node reaching one shared pool of RAM; right, three nodes each with private RAM linked only by a network that carries messages.</desc>
+<rect width="1200" height="680" fill="#F2F0E9"/>
+<text x="60" y="72" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="start" >Who can see which memory</text>
+<rect x="50" y="120" width="520" height="490" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="310" y="168" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="middle" >Shared memory</text>
+<text x="310" y="198" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >one node, tool: OpenMP</text>
+<rect x="90" y="235" width="440" height="320" rx="12" fill="none" stroke="#8A8470" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="110" y="268" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start" >One node</text>
+<rect x="104" y="290" width="72" height="56" rx="8" fill="#E6E2D6" stroke="#3D3929" stroke-width="2"/>
+<text x="140" y="325" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Core 1</text>
+<line x1="140" y1="346" x2="140" y2="438" stroke="#3D3929" stroke-width="2"/>
+<rect x="209" y="290" width="72" height="56" rx="8" fill="#E6E2D6" stroke="#3D3929" stroke-width="2"/>
+<text x="245" y="325" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Core 2</text>
+<line x1="245" y1="346" x2="245" y2="438" stroke="#3D3929" stroke-width="2"/>
+<rect x="314" y="290" width="72" height="56" rx="8" fill="#E6E2D6" stroke="#3D3929" stroke-width="2"/>
+<text x="350" y="325" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Core 3</text>
+<line x1="350" y1="346" x2="350" y2="438" stroke="#3D3929" stroke-width="2"/>
+<rect x="419" y="290" width="72" height="56" rx="8" fill="#E6E2D6" stroke="#3D3929" stroke-width="2"/>
+<text x="455" y="325" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Core 4</text>
+<line x1="455" y1="346" x2="455" y2="438" stroke="#3D3929" stroke-width="2"/>
+<rect x="110" y="438" width="400" height="70" rx="10" fill="#3D3929" stroke="#3D3929" stroke-width="2"/>
+<text x="310" y="482" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#F2F0E9" text-anchor="middle" >One pool of RAM</text>
+<text x="310" y="540" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle" >Any core reads any address</text>
+<text x="310" y="590" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >Limit: one machine</text>
+<rect x="630" y="120" width="520" height="490" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="890" y="168" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="600" fill="#3D3929" text-anchor="middle" >Distributed memory</text>
+<text x="890" y="198" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >several nodes, tool: MPI</text>
+<rect x="655" y="235" width="150" height="215" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="730" y="268" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929" text-anchor="middle" >Node A</text>
+<rect x="675" y="285" width="110" height="48" rx="8" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="730" y="317" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Cores</text>
+<line x1="730" y1="333" x2="730" y2="360" stroke="#3D3929" stroke-width="2"/>
+<rect x="669" y="360" width="122" height="56" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="2"/>
+<text x="730" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#F2F0E9" text-anchor="middle" >Own RAM</text>
+<line x1="730" y1="450" x2="730" y2="478" stroke="#D97757" stroke-width="3"/>
+<rect x="820" y="235" width="150" height="215" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="895" y="268" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929" text-anchor="middle" >Node B</text>
+<rect x="840" y="285" width="110" height="48" rx="8" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="895" y="317" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Cores</text>
+<line x1="895" y1="333" x2="895" y2="360" stroke="#3D3929" stroke-width="2"/>
+<rect x="834" y="360" width="122" height="56" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="2"/>
+<text x="895" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#F2F0E9" text-anchor="middle" >Own RAM</text>
+<line x1="895" y1="450" x2="895" y2="478" stroke="#D97757" stroke-width="3"/>
+<rect x="985" y="235" width="150" height="215" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="1060" y="268" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929" text-anchor="middle" >Node C</text>
+<rect x="1005" y="285" width="110" height="48" rx="8" fill="#FAF9F5" stroke="#3D3929" stroke-width="2"/>
+<text x="1060" y="317" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#3D3929" text-anchor="middle" >Cores</text>
+<line x1="1060" y1="333" x2="1060" y2="360" stroke="#3D3929" stroke-width="2"/>
+<rect x="999" y="360" width="122" height="56" rx="8" fill="#3D3929" stroke="#3D3929" stroke-width="2"/>
+<text x="1060" y="394" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#F2F0E9" text-anchor="middle" >Own RAM</text>
+<line x1="1060" y1="450" x2="1060" y2="478" stroke="#D97757" stroke-width="3"/>
+<line x1="730" y1="478" x2="1060" y2="478" stroke="#D97757" stroke-width="5"/>
+<text x="890" y="516" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#D97757" text-anchor="middle" >Network: send and receive</text>
+<text x="890" y="552" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#3D3929" text-anchor="middle" >Node A cannot read node B's RAM</text>
+<text x="890" y="590" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle" >Limit: network cost</text>
+</svg>

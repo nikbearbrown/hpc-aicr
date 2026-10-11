@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 540" role="img">
+<title>A speculative branch merged back into main</title>
+<desc>Main splits at one commit, a branch called explore/second-rule gets two commits while main stays put, then it merges back with a visible merge commit that carries the submission tag.</desc>
+<rect width="1200" height="540" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">Try an idea on a branch</text>
+<g stroke="#3D3929" stroke-width="4" fill="none" stroke-linecap="round">
+<path d="M140 250H1030"/>
+<path d="M380 250C440 250 480 400 560 400H700C780 400 810 250 860 250"/>
+<path d="M860 250V190" stroke-width="2" stroke="#8A8470"/>
+</g>
+<g fill="#FAF9F5" stroke="#3D3929" stroke-width="4">
+<circle cx="140" cy="250" r="26"/><circle cx="380" cy="250" r="26"/>
+<circle cx="560" cy="400" r="26"/><circle cx="700" cy="400" r="26"/>
+</g>
+<circle cx="860" cy="250" r="30" fill="#D97757" stroke="#3D3929" stroke-width="4"/>
+<rect x="1040" y="220" width="100" height="60" rx="30" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="3"/>
+<rect x="740" y="120" width="240" height="64" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" fill="#3D3929" text-anchor="middle">
+<text x="1090" y="259" font-weight="600">main</text>
+<text x="860" y="160" font-weight="600">v1.0-submission</text>
+<text x="630" y="470" fill="#8A8470">explore/second-rule</text>
+<text x="140" y="310" fill="#8A8470">commit</text>
+<text x="380" y="205" fill="#8A8470">branch point</text>
+</g>
+<text x="905" y="318" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" fill="#3D3929">merge commit</text>
+<text x="700" y="238" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470" text-anchor="middle">main untouched</text>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470"><text x="60" y="510">git switch -c  |  git merge --no-ff</text></g>
+</svg>

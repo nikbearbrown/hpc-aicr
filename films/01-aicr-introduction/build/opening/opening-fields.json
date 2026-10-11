@@ -1,0 +1,14 @@
+{
+  "series_title": "Research Computing on Explorer and AICR",
+  "episode_position": "Video 01 / 13",
+  "title_lines": [
+    "AICR Introduction"
+  ],
+  "subtitle": "What the AI cluster is and how to get on it",
+  "portrait_path": "<books>/brutalist.art/runtime/remotion/public/professor-bear/professor-bear-1x1-46.jpg",
+  "presenter_name": "Professor Bear",
+  "narrator_credit": "Liam, in for Bear \u00b7 Narration",
+  "entry_pointer": "Start here \u00b7 AICR Introduction",
+  "channel_handle": "@NikBearBrown",
+  "seed": "claude-liam-lecture-aicr-introduction"
+}

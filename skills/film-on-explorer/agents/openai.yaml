@@ -1,0 +1,4 @@
+interface:
+  display_name: '/film-on-explorer'
+  short_description: 'Render a lecture film on the Explorer cluster, bring it back, and clean up'
+  default_prompt: '$film-on-explorer: Pack my film and the toolkit, and walk me through a pilot render on Explorer, asking before each job.'

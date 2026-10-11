@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 560" role="img">
+<title>The commit loop for a result</title>
+<desc>Change a value, run the script, inspect the result, then commit code and result together; repeat, and tag the commit at submission.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D3929"/></marker></defs>
+<rect width="1200" height="560" fill="#F2F0E9"/>
+<text x="60" y="80" font-family="EB Garamond, Georgia, serif" font-size="46" fill="#3D3929">Run, look, commit, repeat</text>
+<g fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3">
+<rect x="50" y="170" width="180" height="180" rx="14"/><rect x="280" y="170" width="180" height="180" rx="14"/>
+<rect x="510" y="170" width="180" height="180" rx="14"/>
+<rect x="740" y="170" width="180" height="180" rx="14" stroke="#D97757" stroke-width="5"/>
+<rect x="970" y="170" width="180" height="180" rx="14" stroke-dasharray="10 8"/></g>
+<g font-family="EB Garamond, Georgia, serif" font-size="34" fill="#3D3929" text-anchor="middle">
+<text x="140" y="250">Change</text><text x="370" y="250">Run</text><text x="600" y="250">Inspect</text>
+<text x="830" y="250">Commit</text><text x="1060" y="250">Tag</text></g>
+<g font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470" text-anchor="middle">
+<text x="140" y="298">new threshold</text><text x="370" y="298">filter.sh</text><text x="600" y="298">git diff</text>
+<text x="830" y="298">git add</text><text x="830" y="328">git commit</text><text x="1060" y="298">git tag -a</text>
+<text x="1060" y="328">at submission</text></g>
+<g stroke="#3D3929" stroke-width="3" fill="none">
+<path d="M235 260H272" marker-end="url(#a)"/><path d="M465 260H502" marker-end="url(#a)"/><path d="M695 260H732" marker-end="url(#a)"/>
+<path d="M925 260H962" marker-end="url(#a)" stroke-dasharray="8 6"/>
+<path d="M830 355V440H140V362" stroke="#8A8470" marker-end="url(#a)"/></g>
+<text x="485" y="432" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470" text-anchor="middle">repeat with the next value</text>
+<text x="60" y="520" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#3D3929">Code and result go in the same commit</text>
+</svg>

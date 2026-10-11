@@ -1,0 +1,575 @@
+1
+00:00:00,000 --> 00:00:05,653
+Research Computing on Explorer and AICR. Intro to Explorer and O O D. The web front
+
+2
+00:00:05,673 --> 00:00:10,972
+door to the Explorer cluster: launch apps, move files and start jobs from a browser,
+
+3
+00:00:10,992 --> 00:00:12,390
+with no terminal required.
+
+4
+00:00:12,460 --> 00:00:16,411
+Hola. This is Liam, in for Bear. First, a correction. Explorer is not a big computer
+
+5
+00:00:16,431 --> 00:00:20,630
+where you run your code. It's a cluster of computers, and you ask it for a slice.
+
+6
+00:00:20,650 --> 00:00:24,353
+This lecture is the whole introduction: what a cluster is, how you get an account,
+
+7
+00:00:24,373 --> 00:00:28,076
+how you log in through the terminal or the Open OnDemand website, where your files
+
+8
+00:00:28,096 --> 00:00:32,544
+live, how you move data, how you run and check a job, how to right-size it, and how
+
+9
+00:00:32,564 --> 00:00:33,040
+software works.
+
+10
+00:00:33,110 --> 00:00:37,211
+Six terms. An HPC cluster: many computers wired together to work on one problem. A
+
+11
+00:00:37,231 --> 00:00:41,607
+login node: the machine you land on, for light work only. A compute node: a machine
+
+12
+00:00:41,627 --> 00:00:45,728
+that does the heavy work, handed to you on request. Slurm: the scheduler that takes
+
+13
+00:00:45,748 --> 00:00:49,849
+those requests and decides who runs where. A partition: a named group of nodes with
+
+14
+00:00:49,869 --> 00:00:54,245
+its own limits. And Open OnDemand, OOD: a website that gives you the cluster in a
+
+15
+00:00:54,265 --> 00:00:54,520
+browser.
+
+16
+00:00:54,590 --> 00:00:59,070
+Start with the shape of the thing. A cluster is many computers working together on
+
+17
+00:00:59,090 --> 00:01:04,170
+problems too big for one desk. You log in to a login node. Light work happens there:
+
+18
+00:01:04,190 --> 00:01:08,370
+editing a file, looking around. When you need real computing power, the work moves
+
+19
+00:01:08,390 --> 00:01:12,270
+to a compute node, and a scheduler called Slurm manages everyone's requests for
+
+20
+00:01:12,290 --> 00:01:12,870
+those nodes.
+
+21
+00:01:12,940 --> 00:01:17,485
+Explorer is Northeastern's cluster, run by the Research Computing team, and it
+
+22
+00:01:17,505 --> 00:01:22,050
+replaced the older Discovery cluster. Forty-five thousand CPU cores. More than five
+
+23
+00:01:22,070 --> 00:01:26,615
+hundred twenty-five GPUs. Free of charge to every Northeastern faculty member and
+
+24
+00:01:26,635 --> 00:01:31,180
+student. It lives at the Massachusetts Green High Performance Computing Center in
+
+25
+00:01:31,200 --> 00:01:31,560
+Holyoke.
+
+26
+00:01:31,630 --> 00:01:36,288
+Around the compute: a ten-gigabit link to the university network for moving data in
+
+27
+00:01:36,308 --> 00:01:40,633
+and out, six petabytes of fast shared storage, and between the nodes themselves
+
+28
+00:01:40,652 --> 00:01:44,977
+either ten-gigabit ethernet or InfiniBand at one or two hundred gigabits a second,
+
+29
+00:01:44,997 --> 00:01:47,650
+so every size of workload has a place.
+
+30
+00:01:47,720 --> 00:01:52,207
+Getting on. For research, every user belongs to a storage space owned by a PI or
+
+31
+00:01:52,227 --> 00:01:56,432
+staff member; storage is free up to thirty-five terabytes. If your lab has one, the
+
+32
+00:01:56,452 --> 00:02:00,939
+PI adds you with the project command, or you file an access request. If it doesn't,
+
+33
+00:02:00,959 --> 00:02:04,320
+the PI requests a storage space first. For coursework, your instructor applies
+
+34
+00:02:04,340 --> 00:02:07,700
+through the classroom access form, and students get in through the course.
+
+35
+00:02:07,770 --> 00:02:12,298
+Two ways in. The terminal, and the Open OnDemand website. Both reach the same
+
+36
+00:02:12,318 --> 00:02:16,845
+cluster. The team's advice is to get comfortable with the terminal, and we'll use
+
+37
+00:02:16,865 --> 00:02:17,170
+both.
+
+38
+00:02:17,240 --> 00:02:22,955
+From a Mac, open Terminal and s s h to login dot explorer dot northeastern dot e d u
+
+39
+00:02:22,975 --> 00:02:26,879
+with your Northeastern username. It asks for your password; the cursor doesn't move
+
+40
+00:02:26,899 --> 00:02:31,407
+while you type it, which is normal. The welcome banner means you're on. On Windows,
+
+41
+00:02:31,427 --> 00:02:36,538
+install an SSH client such as MobaXterm or PuTTY and point it at the same host, port
+
+42
+00:02:36,558 --> 00:02:36,840
+twenty-two.
+
+43
+00:02:36,910 --> 00:02:43,311
+Or open a browser at o o d dot explorer dot northeastern dot e d u. You sign in with
+
+44
+00:02:43,331 --> 00:02:47,484
+your Northeastern username and password, confirm with Duo, and land on the Open
+
+45
+00:02:47,504 --> 00:02:49,410
+OnDemand dashboard. You're on the cluster.
+
+46
+00:02:49,480 --> 00:02:53,309
+Now, where things live. Everyone has a home directory and a scratch directory.
+
+47
+00:02:53,329 --> 00:02:57,454
+Researchers also have a projects space. Students in a course have a courses space,
+
+48
+00:02:57,474 --> 00:03:02,191
+and may not have projects. Always write the full path, starting with a slash, so a
+
+49
+00:03:02,211 --> 00:03:04,560
+script means the same place wherever it runs.
+
+50
+00:03:04,630 --> 00:03:08,567
+Each has a size. Home holds seventy-five gigabytes, and it fills fastest; when it
+
+51
+00:03:08,587 --> 00:03:12,242
+does, you'll see quota exceeded. Scratch holds fifty terabytes, but it's purged on
+
+52
+00:03:12,262 --> 00:03:16,765
+the first Tuesday of every month, so it's no place for anything you want to keep.
+
+53
+00:03:16,785 --> 00:03:21,288
+Projects is the long-term home for big data and for folders of many small files. A
+
+54
+00:03:21,308 --> 00:03:24,680
+course space holds one to five terabytes, shared by the whole class.
+
+55
+00:03:24,750 --> 00:03:29,551
+Paths in practice. L S lists a directory, and cat prints a file. With an absolute
+
+56
+00:03:29,571 --> 00:03:34,070
+path you can read any file you have permission for, from anywhere on the cluster.
+
+57
+00:03:34,140 --> 00:03:38,791
+Moving data in. From your own machine, S C P copies a file to the cluster through
+
+58
+00:03:38,811 --> 00:03:42,912
+the transfer node. Make a small test file, copy it into your home directory, then
+
+59
+00:03:42,932 --> 00:03:48,132
+log in and l s to see it arrive. To put it in your project space instead, change the
+
+60
+00:03:48,152 --> 00:03:50,880
+destination path. Many small files? Zip or tar them first.
+
+61
+00:03:50,950 --> 00:03:55,805
+Or use the website. On the Open OnDemand dashboard, open Files, then Home Directory.
+
+62
+00:03:55,825 --> 00:04:00,679
+The Files app starts in your home directory, and the Change directory button takes
+
+63
+00:04:00,699 --> 00:04:02,420
+you to scratch or projects.
+
+64
+00:04:02,490 --> 00:04:07,823
+Upload opens a window where you browse for files or drop them in. The Files app is
+
+65
+00:04:07,843 --> 00:04:12,861
+limited to ten gigabytes a transfer. Bigger than that, use S C P; for very large
+
+66
+00:04:12,881 --> 00:04:16,955
+datasets, Globus. And the same app downloads files, edits them, and makes new
+
+67
+00:04:16,975 --> 00:04:17,270
+folders.
+
+68
+00:04:17,340 --> 00:04:22,263
+Running jobs. So far we've only used the login nodes and the transfer node. Real
+
+69
+00:04:22,283 --> 00:04:26,877
+computation has to move to a compute node: no scientific software, big transfers or
+
+70
+00:04:26,897 --> 00:04:31,490
+heavy work on the login node, because its traffic slows the whole cluster for
+
+71
+00:04:31,510 --> 00:04:31,820
+everyone.
+
+72
+00:04:31,890 --> 00:04:36,745
+From the terminal, s run gets you a compute node. The simplest form takes the
+
+73
+00:04:36,765 --> 00:04:41,620
+defaults: four hours, one node, one task, two gigabytes of memory, two CPUs, on the
+
+74
+00:04:41,640 --> 00:04:45,520
+short partition. Flags ask for more: here, six hours, fifty gigabytes, sixteen
+
+75
+00:04:45,540 --> 00:04:48,120
+tasks. Every flag has a short form too.
+
+76
+00:04:48,190 --> 00:04:53,760
+A partition is how the team groups nodes: by time limit, by node count, by CPU or
+
+77
+00:04:53,780 --> 00:04:57,706
+GPU. On Explorer: short, the default, and sharing for CPU work. gpu,
+
+78
+00:04:57,726 --> 00:05:01,981
+gpu-interactive, gpu-short and sharing for GPU work. Two you apply for: long and
+
+79
+00:05:02,001 --> 00:05:06,914
+multigpu, once you can show your code uses them well. And two only for courses:
+
+80
+00:05:06,934 --> 00:05:07,900
+courses and courses-gpu.
+
+81
+00:05:07,970 --> 00:05:14,090
+Which one? If you're in a course and have a courses directory, use courses for CPU
+
+82
+00:05:14,110 --> 00:05:18,694
+jobs and courses-gpu for GPU jobs. Otherwise, short for most CPU work;
+
+83
+00:05:18,714 --> 00:05:23,299
+gpu-interactive or gpu-short for interactive GPU sessions; and the gpu partition for
+
+84
+00:05:23,319 --> 00:05:24,450
+GPU batch jobs.
+
+85
+00:05:24,520 --> 00:05:28,820
+A GPU is a processor built for thousands of parallel tasks, and it's what AI and
+
+86
+00:05:28,840 --> 00:05:32,870
+much of modern science run on. To get one interactively, name the partition and the
+
+87
+00:05:32,890 --> 00:05:37,460
+g r e s. Naming the card type gives you exactly that card. Leaving it general gives
+
+88
+00:05:37,480 --> 00:05:41,780
+you whatever is free first, fine for a quick test, but for repeated runs use the
+
+89
+00:05:41,800 --> 00:05:44,480
+same type, or at least record which one you got.
+
+90
+00:05:44,550 --> 00:05:49,563
+On the website, an interactive job is a form. For RStudio you pick the version, the
+
+91
+00:05:49,583 --> 00:05:53,966
+partition, the hours, the CPUs and the memory, and press Launch. The defaults are
+
+92
+00:05:53,986 --> 00:05:54,910
+fine to start.
+
+93
+00:05:54,980 --> 00:05:59,262
+The session moves from Queued to Starting to Running, and your time starts when it's
+
+94
+00:05:59,282 --> 00:06:03,565
+running. The card shows the host node, a Cancel button, the time remaining and a
+
+95
+00:06:03,585 --> 00:06:07,580
+session ID. Cancel it when you're done; that frees the node for someone else.
+
+96
+00:06:07,650 --> 00:06:12,431
+The jobs that do most of the real work are batch jobs: set up, submitted, and run
+
+97
+00:06:12,451 --> 00:06:16,950
+without you. Test your commands in an s run session first; then write a script. The
+
+98
+00:06:16,970 --> 00:06:21,469
+S BATCH lines name the job, the partition, one node and sixteen tasks, and ask for
+
+99
+00:06:21,489 --> 00:06:25,140
+email on every event. Then load your software, activate your environment, and run.
+
+100
+00:06:25,210 --> 00:06:29,811
+Submit it with s batch. Slurm answers with a job ID. When the job runs, its output
+
+101
+00:06:29,831 --> 00:06:34,432
+goes to a file named slurm, dash, the job ID, dot out; cat shows what the job
+
+102
+00:06:34,452 --> 00:06:38,782
+printed. Use less to page through long files, and q to quit. If you're unsure how
+
+103
+00:06:38,802 --> 00:06:44,218
+much to ask for, ask for a little and scale up when a job runs out of memory, CPU or
+
+104
+00:06:44,238 --> 00:06:44,490
+time.
+
+105
+00:06:44,560 --> 00:06:48,697
+Is it running? s queue with your username lists your jobs: ID, partition, name,
+
+106
+00:06:48,717 --> 00:06:53,745
+state, R for running, time and node. s queue for a partition, piped to w c, counts
+
+107
+00:06:53,765 --> 00:06:57,902
+how busy the queue is: five hundred eighteen lines here. And dash dash start
+
+108
+00:06:57,922 --> 00:06:59,980
+estimates when a waiting job will begin.
+
+109
+00:07:00,050 --> 00:07:04,888
+On the website, Jobs, then Active Jobs, shows the same list. And My Interactive
+
+110
+00:07:04,908 --> 00:07:09,399
+Sessions shows each session with its host node and, in parentheses, the seven-digit
+
+111
+00:07:09,419 --> 00:07:13,910
+Slurm job ID you'd give the Research Computing team if something goes wrong.
+
+112
+00:07:13,980 --> 00:07:18,396
+Click the Session ID link and you'll see the files Open OnDemand made for the job.
+
+113
+00:07:18,416 --> 00:07:23,109
+output dot log is the one to read when a session doesn't behave, and the one the
+
+114
+00:07:23,129 --> 00:07:25,050
+team will ask for in a ticket.
+
+115
+00:07:25,120 --> 00:07:30,110
+Now the habit that makes you a power user. Ask for close to the minimum you need,
+
+116
+00:07:30,130 --> 00:07:34,531
+because the more you request, the longer you wait for it. After a job finishes,
+
+117
+00:07:34,551 --> 00:07:38,362
+seff, Slurm efficiency, shows what it actually used. Two real reports from the
+
+118
+00:07:38,382 --> 00:07:42,193
+training. Job one: twelve cores, eight percent CPU efficiency, ten percent of fifty
+
+119
+00:07:42,213 --> 00:07:46,319
+gigabytes used. It could have asked for far less. Job two: eight cores at
+
+120
+00:07:46,339 --> 00:07:50,151
+eighty-four percent CPU efficiency. A much better fit. Try seff on your next
+
+121
+00:07:50,171 --> 00:07:50,740
+finished job.
+
+122
+00:07:50,810 --> 00:07:55,584
+Software comes as modules, so you load only what you need, when you need it, because
+
+123
+00:07:55,604 --> 00:07:59,779
+some conflict. module avail lists them; module load loads one, with the exact name
+
+124
+00:07:59,799 --> 00:08:04,573
+and case you saw. Don't put module load in your dot bashrc: it interferes with Open
+
+125
+00:08:04,593 --> 00:08:06,970
+OnDemand and makes your work harder to reproduce.
+
+126
+00:08:07,040 --> 00:08:10,966
+Beyond modules, three routes. Conda environments, which can hold many kinds of
+
+127
+00:08:10,986 --> 00:08:14,582
+scientific software, not only Python. Containers, which the cluster supports. And
+
+128
+00:08:14,602 --> 00:08:19,843
+building from source. And when you're stuck: email r c help at northeastern dot e d
+
+129
+00:08:19,863 --> 00:08:23,460
+u, come to office hours on Zoom, or book a consultation.
+
+130
+00:08:23,530 --> 00:08:28,676
+Let's recap with Claude. A cluster: you log in to a login node and ask Slurm for a
+
+131
+00:08:28,696 --> 00:08:33,269
+compute node. Two doors: s s h to the login address, or the Open OnDemand website.
+
+132
+00:08:33,289 --> 00:08:36,426
+Home holds seventy-five gigabytes; scratch holds fifty terabytes and is purged
+
+133
+00:08:36,446 --> 00:08:41,592
+monthly; projects is for the long term. s run for a live node, s batch for a script,
+
+134
+00:08:41,612 --> 00:08:45,898
+S queue to check on it. Partitions: short by default, the gpu partitions for GPUs,
+
+135
+00:08:45,918 --> 00:08:50,203
+courses for classes. And seff after every job, so you request close to what you
+
+136
+00:08:50,223 --> 00:08:50,490
+need.
+
+137
+00:08:50,560 --> 00:08:55,020
+Your turn. Paste this into Claude: I'm new to a Slurm cluster. Here's what I want to
+
+138
+00:08:55,040 --> 00:08:58,974
+run: [describe your program and data in two sentences]. Tell me which of my files
+
+139
+00:08:58,994 --> 00:09:02,663
+belong in home, scratch and projects; write me an srun command to test it
+
+140
+00:09:02,683 --> 00:09:06,090
+interactively with modest resources; then write the sbatch script for the real run,
+
+141
+00:09:06,110 --> 00:09:10,570
+and tell me which commands I use to check on the job and to read its efficiency
+
+142
+00:09:10,590 --> 00:09:14,260
+afterwards. Then check two things yourself. Does every path it wrote start with a
+
+143
+00:09:14,280 --> 00:09:18,740
+slash? And did it tell you to test with s run before you submit with s batch?
+
+144
+00:09:18,810 --> 00:09:23,540
+Intro to Explorer and OOD. At Nik Bear Brown.

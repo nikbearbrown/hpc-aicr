@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 600" role="img">
+<title>What module load does</title>
+<desc>Loading a module puts the package folder at the front of PATH and unloading removes it; nothing is installed or copied.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3D3929"/></marker></defs>
+<rect width="1200" height="600" fill="#F2F0E9"/>
+<text x="60" y="68" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">A module only edits PATH</text>
+<g font-family="Inter, Helvetica, Arial, sans-serif">
+<text x="240" y="150" text-anchor="middle" font-size="22" fill="#8A8470">Before</text>
+<text x="960" y="150" text-anchor="middle" font-size="22" fill="#8A8470">After module load</text>
+<!-- before stack -->
+<rect x="90" y="180" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="240" y="224" text-anchor="middle" font-size="22" fill="#3D3929">Existing folder</text>
+<rect x="90" y="262" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="240" y="306" text-anchor="middle" font-size="22" fill="#3D3929">Existing folder</text>
+<rect x="90" y="344" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="240" y="388" text-anchor="middle" font-size="22" fill="#3D3929">Existing folder</text>
+<!-- after stack -->
+<rect x="810" y="180" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="960" y="224" text-anchor="middle" font-size="22" fill="#D97757" font-weight="600">Package folder</text>
+<rect x="810" y="262" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="960" y="306" text-anchor="middle" font-size="22" fill="#3D3929">Existing folder</text>
+<rect x="810" y="344" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="960" y="388" text-anchor="middle" font-size="22" fill="#3D3929">Existing folder</text>
+<rect x="810" y="426" width="300" height="70" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="960" y="470" text-anchor="middle" font-size="22" fill="#3D3929">Existing folder</text>
+<!-- arrows -->
+<line x1="430" y1="262" x2="770" y2="262" stroke="#3D3929" stroke-width="3" marker-end="url(#a)"/>
+<text x="600" y="248" text-anchor="middle" font-size="22" fill="#3D3929" font-weight="600">module load</text>
+<line x1="770" y1="340" x2="430" y2="340" stroke="#3D3929" stroke-width="3" marker-end="url(#a)"/>
+<text x="600" y="376" text-anchor="middle" font-size="22" fill="#3D3929" font-weight="600">module unload</text>
+<text x="600" y="456" text-anchor="middle" font-size="22" fill="#8A8470">Nothing is installed</text>
+<text x="90" y="460" font-size="20" fill="#8A8470">PATH, top to bottom</text>
+</g>
+<text x="60" y="560" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Loading puts the folder first; unloading takes it out (guide, Act II).</text>
+</svg>

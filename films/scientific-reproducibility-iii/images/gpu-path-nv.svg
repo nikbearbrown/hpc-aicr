@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 700" role="img">
+<title>The GPU path: --nv</title>
+<desc>Inside a container the CUDA libraries come from the image, but the GPU driver belongs to the node; the --nv flag passes the node's driver into the container so the GPU becomes visible.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<text x="40" y="70" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">The GPU path: what --nv does</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">On a GPU node, with a GPU requested</text>
+<!-- left panel -->
+<rect x="40" y="140" width="530" height="420" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<text x="64" y="188" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">apptainer exec image.sif ...</text>
+<text x="64" y="220" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Without --nv</text>
+<rect x="64" y="244" width="482" height="104" rx="10" fill="#E6E2D6" stroke="#3D3929" stroke-width="2"/>
+<text x="84" y="278" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929">Container</text>
+<text x="84" y="314" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929">your code + CUDA + cuDNN</text>
+<path d="M305 352 L305 410" stroke="#CFC9B8" stroke-width="3" stroke-dasharray="6 8"/>
+<text x="322" y="388" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">no link</text>
+<rect x="64" y="414" width="482" height="104" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="84" y="448" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929">Node</text>
+<text x="84" y="484" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929">NVIDIA driver + GPU</text>
+<!-- right panel -->
+<rect x="630" y="140" width="530" height="420" rx="14" fill="#FAF9F5" stroke="#D97757" stroke-width="3"/>
+<text x="654" y="188" font-family="Menlo, Consolas, monospace" font-size="22" fill="#3D3929">apptainer exec --nv image.sif ...</text>
+<text x="654" y="220" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">With --nv</text>
+<rect x="654" y="244" width="482" height="104" rx="10" fill="#E6E2D6" stroke="#3D3929" stroke-width="2"/>
+<text x="674" y="278" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929">Container</text>
+<text x="674" y="314" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929">your code + CUDA + cuDNN</text>
+<path d="M895 410 L895 372" stroke="#D97757" stroke-width="5"/>
+<polygon points="895,352 877,378 913,378" fill="#D97757"/>
+<rect x="915" y="368" width="100" height="32" rx="16" fill="#D97757"/>
+<text x="965" y="391" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#FAF9F5">--nv</text>
+<rect x="654" y="414" width="482" height="104" rx="10" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2"/>
+<text x="674" y="448" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3D3929">Node</text>
+<text x="674" y="484" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#3D3929">NVIDIA driver + GPU</text>
+<!-- rules -->
+<text x="40" y="610" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Rule 1: the image's CUDA version must fit the node's driver.</text>
+<text x="40" y="646" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Rule 2: you must be on a GPU node with a GPU requested.</text>
+<text x="40" y="684" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Source: guide, A GPU job (from the source, not run by us).</text>
+</svg>

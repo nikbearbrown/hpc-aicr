@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 1200 640" role="img">
+<title>Which paths a container sees</title>
+<desc>On Explorer a container sees your home directory automatically, but /projects and /scratch only appear inside it when you name them with --bind.</desc>
+<rect width="1200" height="640" fill="#F2F0E9"/>
+<text x="40" y="70" font-family="EB Garamond, Georgia, serif" font-size="44" fill="#3D3929">Which paths a container sees</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8A8470">Explorer. AICR bind rules are not documented in our sources.</text>
+<defs>
+<marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8A8470"/></marker>
+<marker id="t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+</defs>
+<!-- host -->
+<rect x="40" y="140" width="400" height="400" rx="14" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="3"/>
+<text x="64" y="188" font-family="EB Garamond, Georgia, serif" font-size="32" fill="#3D3929">On the cluster</text>
+<rect x="64" y="228" width="352" height="64" rx="10" fill="#E6E2D6"/>
+<text x="84" y="268" font-family="Menlo, Consolas, monospace" font-size="21" fill="#3D3929">/home/&lt;username&gt;</text>
+<rect x="64" y="338" width="352" height="64" rx="10" fill="#E6E2D6"/>
+<text x="84" y="378" font-family="Menlo, Consolas, monospace" font-size="21" fill="#3D3929">/projects/&lt;project&gt;</text>
+<rect x="64" y="448" width="352" height="64" rx="10" fill="#E6E2D6"/>
+<text x="84" y="488" font-family="Menlo, Consolas, monospace" font-size="21" fill="#3D3929">/scratch/&lt;username&gt;</text>
+<!-- container -->
+<rect x="760" y="140" width="400" height="400" rx="14" fill="#FAF9F5" stroke="#3D3929" stroke-width="3"/>
+<text x="784" y="188" font-family="EB Garamond, Georgia, serif" font-size="32" fill="#3D3929">Inside the container</text>
+<rect x="784" y="228" width="352" height="64" rx="10" fill="#E6E2D6"/>
+<text x="804" y="268" font-family="Menlo, Consolas, monospace" font-size="21" fill="#3D3929">/home/&lt;username&gt;</text>
+<rect x="784" y="338" width="352" height="64" rx="10" fill="#E6E2D6"/>
+<text x="804" y="378" font-family="Menlo, Consolas, monospace" font-size="21" fill="#3D3929">/projects/&lt;project&gt;</text>
+<rect x="784" y="448" width="352" height="64" rx="10" fill="#E6E2D6"/>
+<text x="804" y="488" font-family="Menlo, Consolas, monospace" font-size="21" fill="#3D3929">/scratch/&lt;username&gt;</text>
+<!-- arrows -->
+<path d="M418 260 L756 260" stroke="#8A8470" stroke-width="3" marker-end="url(#g)"/>
+<text x="600" y="246" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#8A8470">automatic</text>
+<path d="M418 370 L756 370" stroke="#D97757" stroke-width="4" stroke-dasharray="14 8" marker-end="url(#t)"/>
+<text x="600" y="356" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#D97757">--bind</text>
+<path d="M418 480 L756 480" stroke="#D97757" stroke-width="4" stroke-dasharray="14 8" marker-end="url(#t)"/>
+<text x="600" y="466" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#D97757">--bind</text>
+<text x="40" y="588" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" fill="#3D3929">Name every path your code reads or writes. Bind only what the job needs.</text>
+<text x="40" y="620" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8A8470">Source: guide, Binding directories into the container (Explorer).</text>
+</svg>

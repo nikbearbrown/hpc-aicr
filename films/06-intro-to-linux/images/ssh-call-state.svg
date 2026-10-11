@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<title>A non-interactive ssh call remembers nothing</title>
+<desc>Each ssh command run without a person starts in the home directory and keeps nothing; two separate calls lose the cd, while one call that does cd and ls together works.</desc>
+<rect width="1200" height="700" fill="#F2F0E9"/>
+<text x="60" y="70" font-family="EB Garamond, Georgia, serif" font-size="42" font-weight="400" fill="#3D3929" text-anchor="start">Each ssh call starts fresh in home</text>
+<text x="60" y="140" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#3D3929" text-anchor="start">Two calls: the cd is lost</text>
+<rect x="60" y="165" width="500" height="150" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="310.0" y="201" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">call 1 starts in home</text>
+<text x="310.0" y="249" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="700" fill="#3D3929" text-anchor="middle">cd /projects/&lt;project&gt;</text>
+<text x="310.0" y="289" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">moves, then the call ends</text>
+<rect x="640" y="165" width="500" height="150" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="890.0" y="201" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">call 2 starts in home again</text>
+<text x="890.0" y="249" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="700" fill="#3D3929" text-anchor="middle">ls -l</text>
+<text x="890.0" y="289" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#D97757" text-anchor="middle">lists your home, not the project</text>
+<line x1="560" y1="240" x2="636.0" y2="240.0" stroke="#8A8470" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,240 627.4,246.1 627.4,233.9" fill="#8A8470"/>
+<line x1="600" y1="150" x2="600" y2="330" stroke="#CFC9B8" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 8"/>
+<text x="600" y="355" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">nothing carries over between calls</text>
+<text x="60" y="430" font-family="Inter, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#3D3929" text-anchor="start">One call: do both together</text>
+<rect x="60" y="455" width="500" height="150" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="310.0" y="491" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">the call starts in home</text>
+<text x="310.0" y="539" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="700" fill="#3D3929" text-anchor="middle">cd /projects/&lt;project&gt;</text>
+<text x="310.0" y="579" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">first part of the command</text>
+<rect x="640" y="455" width="500" height="150" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="890.0" y="491" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#8A8470" text-anchor="middle">same call continues</text>
+<text x="890.0" y="539" font-family="Menlo, Consolas, Courier New, monospace" font-size="22" font-weight="700" fill="#3D3929" text-anchor="middle">&amp;&amp;  ls -l</text>
+<text x="890.0" y="579" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#D97757" text-anchor="middle">lists the project</text>
+<line x1="560" y1="530" x2="636.0" y2="530.0" stroke="#3D3929" stroke-width="3" stroke-linecap="round"/>
+<polygon points="640,530 627.4,536.1 627.4,523.9" fill="#3D3929"/>
+<text x="600" y="650" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="middle">Or write absolute paths. Never open nano, vim or less this way: no one is there to type.</text>
+</svg>

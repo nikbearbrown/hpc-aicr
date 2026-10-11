@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<title>From laptop to compute node</title>
+<desc>A left-to-right flow: your laptop connects by ssh to a login node, you hand work to the Slurm scheduler, and Slurm assigns it to a compute node where the heavy work runs.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3D3929"/></marker>
+<marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+</defs>
+<rect width="1200" height="520" fill="#F2F0E9"/>
+<text x="40" y="72" font-family="EB Garamond, Georgia, serif" font-size="44" font-weight="500" fill="#3D3929" text-anchor="start">From laptop to compute node</text>
+<text x="40" y="108" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#8A8470" text-anchor="start">Explorer, in four steps</text>
+<rect x="40" y="170" width="220" height="150" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="150" y="235" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="500" fill="#3D3929" text-anchor="middle">Your laptop</text>
+<text x="150" y="280" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">Terminal or browser</text>
+<rect x="340" y="170" width="220" height="150" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="450" y="235" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="500" fill="#3D3929" text-anchor="middle">Login node</text>
+<text x="450" y="280" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">Edit and submit</text>
+<rect x="640" y="170" width="220" height="150" rx="12" fill="#FAF9F5" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="750" y="235" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="500" fill="#3D3929" text-anchor="middle">Slurm</text>
+<text x="750" y="280" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">The scheduler</text>
+<rect x="940" y="170" width="220" height="150" rx="12" fill="#FAF9F5" stroke="#D97757" stroke-width="4"/>
+<text x="1050" y="235" font-family="EB Garamond, Georgia, serif" font-size="28" font-weight="500" fill="#3D3929" text-anchor="middle">Compute node</text>
+<text x="1050" y="280" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">Heavy work runs here</text>
+<line x1="266" y1="245" x2="334" y2="245" stroke="#3D3929" stroke-width="3" marker-end="url(#ah)"/>
+<text x="300" y="222" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">ssh</text>
+<line x1="566" y1="245" x2="634" y2="245" stroke="#3D3929" stroke-width="3" marker-end="url(#ah)"/>
+<text x="600" y="222" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">sbatch</text>
+<line x1="866" y1="245" x2="934" y2="245" stroke="#D97757" stroke-width="3" marker-end="url(#aa)"/>
+<text x="900" y="222" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">assigns</text>
+<rect x="300" y="380" width="300" height="70" rx="10" fill="#E6E2D6" stroke="#CFC9B8" stroke-width="2"/>
+<text x="450" y="423" font-family="Inter, Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#3D3929" text-anchor="middle">Light work only</text>
+<text x="450" y="478" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">No analysis, training, installs, large copies</text>
+<line x1="450" y1="322" x2="450" y2="378" stroke="#CFC9B8" stroke-width="2.5"/>
+<text x="1050" y="380" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">Held only while</text>
+<text x="1050" y="404" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#8A8470" text-anchor="middle">your job runs</text>
+</svg>
