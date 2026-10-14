@@ -20,13 +20,10 @@
     "caption_policy": "none",
     "greeting_language": "German (Hallo)",
     "audience": "A researcher with an AICR account who wants Claude Code to run commands on the cluster; assumes no other film or book",
-    "source_doc": "../source/README.md, evidence ../source/SESSION.md (three real runs, 2026-10-11), primary the AICR documentation 'SSH' page (local copy not included) and a private project setup note (not included) section 2",
+    "source_doc": "hpc-aicr/Logging-into-AICR-with-Claude/README.md, evidence hpc-aicr/Logging-into-AICR-with-Claude/SESSION.md (three real runs, 2026-10-11), primary hpc-aicr/aicr/SSH - AICR Documentation.html and aicr/bearsvoice/AICR-SETUP.md section 2",
     "playlist": "Northeastern HPC and AICR",
     "chapter_number": 8,
     "series_title": "Research Computing on Explorer and AICR",
-    "series_video_number": 9,
-    "series_video_count": 13,
-    "series_entry_video": "Video 1 · AICR Introduction",
     "lecture_opening_description": "Let Claude Code log in while your key stays yours",
     "lecture_opening_title_lines": [
       "Logging into AICR",
@@ -48,7 +45,7 @@
       "Nik Bear Brown"
     ],
     "build": {
-      "at": "2026-10-11T15:56:32",
+      "at": "2026-10-12T13:30:41",
       "cut": "master",
       "filled": 44,
       "of": 44,
@@ -89,7 +86,7 @@
         "status": "VIDEO",
         "src": "media/BOPEN.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -144,7 +141,7 @@
         "status": "VIDEO",
         "src": "media/BIDEA.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -231,7 +228,7 @@
         "status": "VIDEO",
         "src": "media/BDEFS.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -277,7 +274,7 @@
         "status": "MANIM",
         "src": "manim/B10.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -292,7 +289,7 @@
       "shot": {
         "type": "GRAPHIC",
         "source": "own",
-        "visual_intent": "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into 'jsmith_neu'.",
+        "visual_intent": "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into '<aicr-username>'.",
         "show": [
           {
             "at": 0.3,
@@ -300,13 +297,13 @@
           },
           {
             "at": 0.85,
-            "event": "it becomes jsmith_neu"
+            "event": "it becomes <aicr-username>"
           }
         ],
         "manim": {
           "class": "B11_UserName"
         },
-        "motion_claim": "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into 'jsmith_neu'."
+        "motion_claim": "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into '<aicr-username>'."
       },
       "qc": {
         "sparse_by_design": true,
@@ -319,7 +316,7 @@
         "status": "MANIM",
         "src": "manim/B11.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -382,7 +379,7 @@
         "status": "VIDEO",
         "src": "media/B12.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -432,7 +429,7 @@
         "status": "MANIM",
         "src": "manim/B13.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -482,7 +479,7 @@
         "status": "MANIM",
         "src": "manim/B14.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -546,7 +543,7 @@
         "status": "VIDEO",
         "src": "media/B15.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -616,7 +613,7 @@
         "status": "VIDEO",
         "src": "media/B16.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -662,7 +659,7 @@
         "status": "MANIM",
         "src": "manim/B20.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -708,7 +705,7 @@
         "status": "MANIM",
         "src": "manim/B21.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -754,7 +751,7 @@
         "status": "MANIM",
         "src": "manim/B22.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -807,10 +804,6 @@
             ],
             "fontSize": 46,
             "durationSeconds": 10.43
-          },
-          "rendered": {
-            "out": "media/B23.mp4",
-            "at": "2026-10-11T19:50:32.489814+00:00"
           }
         }
       },
@@ -821,8 +814,8 @@
       "build": {
         "status": "VIDEO",
         "src": "media/B23.mp4",
-        "filled_by": "remotion:CCPlainShell",
-        "at": "2026-10-11T15:56:32"
+        "filled_by": "media",
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -904,7 +897,7 @@
         "status": "VIDEO",
         "src": "media/B24.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -964,7 +957,7 @@
         "status": "VIDEO",
         "src": "media/B25.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1026,7 +1019,7 @@
         "status": "VIDEO",
         "src": "media/B26.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1057,7 +1050,7 @@
             "title": "Terminal · your own",
             "lines": [
               "$ ssh-add -l",
-              "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)",
+              "256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)",
               "# one line, ending in (ED25519): the key is loaded"
             ],
             "startCue": 20,
@@ -1086,7 +1079,7 @@
         "status": "VIDEO",
         "src": "media/B27.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1144,7 +1137,7 @@
         "status": "VIDEO",
         "src": "media/B30.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1190,7 +1183,7 @@
         "status": "MANIM",
         "src": "manim/B31.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1258,7 +1251,7 @@
         "status": "VIDEO",
         "src": "media/B32.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1332,7 +1325,7 @@
         "status": "VIDEO",
         "src": "media/B33.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1378,7 +1371,7 @@
         "status": "MANIM",
         "src": "manim/B34.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1413,7 +1406,7 @@
             "title": "Terminal · your own",
             "lines": [
               "$ ssh-add -l",
-              "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)",
+              "256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)",
               "$ ssh-add -D",
               "All identities removed.",
               "$ ssh-add -l",
@@ -1448,7 +1441,7 @@
         "status": "VIDEO",
         "src": "media/B35.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1492,7 +1485,7 @@
               "<aicr-username>",
               "login.aicr.ai",
               "$ ssh-add -l",
-              "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)"
+              "256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)"
             ],
             "startCue": 20,
             "lineGap": 30,
@@ -1532,7 +1525,7 @@
         "status": "VIDEO",
         "src": "media/B36.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1578,7 +1571,7 @@
         "status": "MANIM",
         "src": "manim/B37.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1624,7 +1617,7 @@
         "status": "MANIM",
         "src": "manim/B38.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1665,8 +1658,8 @@
               "$ ssh -v -o BatchMode=yes aicr true",
               "# (output filtered to the lines that matter)",
               "debug1: get_agent_identities: agent returned 1 keys",
-              "debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit",
-              "debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit",
+              "debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:bu4j...yRYEU explicit",
+              "debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:bu4j...yRYEU explicit",
               "Authenticated to login.aicr.ai ([192.69.103.11]:22) using \"publickey\"."
             ],
             "startCue": 20,
@@ -1699,7 +1692,7 @@
         "status": "VIDEO",
         "src": "media/B39.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1745,7 +1738,7 @@
         "status": "MANIM",
         "src": "manim/B40.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1791,7 +1784,7 @@
         "status": "MANIM",
         "src": "manim/B41.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1837,7 +1830,7 @@
         "status": "MANIM",
         "src": "manim/B42.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1887,7 +1880,7 @@
         "status": "MANIM",
         "src": "manim/B43.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1937,7 +1930,7 @@
         "status": "MANIM",
         "src": "manim/B44.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -1983,7 +1976,7 @@
         "status": "MANIM",
         "src": "manim/B45.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2025,7 +2018,7 @@
         "status": "MANIM",
         "src": "manim/B46.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2071,7 +2064,7 @@
         "status": "MANIM",
         "src": "manim/B47.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2117,7 +2110,7 @@
         "status": "MANIM",
         "src": "manim/B50.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2159,7 +2152,7 @@
         "status": "MANIM",
         "src": "manim/B51.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2223,7 +2216,7 @@
         "status": "VIDEO",
         "src": "media/B52.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2269,7 +2262,7 @@
         "status": "MANIM",
         "src": "manim/B53.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2319,7 +2312,7 @@
         "status": "MANIM",
         "src": "manim/B54.mp4",
         "filled_by": "manim",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2372,7 +2365,7 @@
         "status": "VIDEO",
         "src": "media/BVDT.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2426,7 +2419,7 @@
         "status": "VIDEO",
         "src": "media/BHTF.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     },
     {
@@ -2466,7 +2459,7 @@
         "status": "VIDEO",
         "src": "media/BOUT.mp4",
         "filled_by": "media",
-        "at": "2026-10-11T15:56:32"
+        "at": "2026-10-12T13:30:41"
       }
     }
   ]

@@ -1,8 +1,8 @@
 # Logging into AICR with Claude
 
-**What this is.** Video 9 of the series *Research Computing on Explorer and AICR*. **Status:** built or building at the time of writing; not yet published.
+**What this is.** Video 9 of the series *Research Computing on Explorer and AICR*. **Status:** published.
 
-**Watch the film:** not published yet.
+**Watch the film:** https://youtu.be/QZibDBeMgec (unlisted).
 
 ## Where it comes from
 

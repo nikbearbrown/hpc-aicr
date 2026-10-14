@@ -4,17 +4,17 @@
 
 ---
 
-You are building ONE film with the `lecture` skill, in Bear's brutalist.art ("dot") toolkit, run from <cowork>/bear-textbooks/books. Bear's words: "Again, you're using the lecture [skill] with a Liam persona. The next one has to be logging into AICR with Claude. We have to actually do it."
+You are building ONE film with the `lecture` skill, in Bear's brutalist.art ("dot") toolkit, run from <books>. Bear's words: "Again, you're using the lecture [skill] with a Liam persona. The next one has to be logging into AICR with Claude. We have to actually do it."
 
 READ FIRST, completely, before touching anything:
 1. <books>/brutalist.art/skills/make/lecture/SKILL.md (the governing skill) and the skills it points to as you route beats (nopunt, show-tell, your-turn, cc-explainer, deep-explainer, ai-explainer as needed).
 2. <books>/CLAUDE.md and AGENTS.md (global rules: TOPOST-only publishing, GATE T, absolute paths in reports, free steps run with no approval gate).
-3. THE SOURCE (the whole of it is the "chapter"): <books>/../source/README.md
-4. THE EVIDENCE (every terminal beat traces to it, verbatim): <books>/../source/SESSION.md
-5. The primary the README rests on: <books>/the AICR documentation 'SSH' page (local copy not included) and a private project setup note (not included) section 2.
-6. The sibling film to reuse scaffolding from (scenes.py, _kit.py, make_sheet.py, cast, BrowserCapture/CCPlainShell usage, FACTCHECK/CHECKS-REPORT formats): <books>/../build/ . Also read youtube/publish_hpc.py (the series procedure) and PLAYLIST-DESCRIPTION.md.
+3. THE SOURCE (the whole of it is the "chapter"): <books>/hpc-aicr/Logging-into-AICR-with-Claude/README.md
+4. THE EVIDENCE (every terminal beat traces to it, verbatim): <books>/hpc-aicr/Logging-into-AICR-with-Claude/SESSION.md
+5. The primary the README rests on: <books>/hpc-aicr/aicr/SSH - AICR Documentation.html and .../aicr/bearsvoice/AICR-SETUP.md section 2.
+6. The sibling film to reuse scaffolding from (scenes.py, _kit.py, make_sheet.py, cast, BrowserCapture/CCPlainShell usage, FACTCHECK/CHECKS-REPORT formats): <books>/hpc-aicr/youtube/claude-liam-lecture-aicr-introduction/ . Also read <books>/hpc-aicr/youtube/publish_hpc.py (the series procedure) and <books>/hpc-aicr/PLAYLIST-DESCRIPTION.md.
 
-BUILD INTO (create): <books>/../build/
+BUILD INTO (create): <books>/hpc-aicr/youtube/claude-liam-lecture-logging-into-aicr-with-claude/
 Save THIS brief there first as BUILD-PROMPT.md (it is the handoff).
 
 FIXED FACTS
@@ -32,7 +32,7 @@ THE FILM'S SHAPE (propose in ACTS.md, adjust if the source demands; every README
  Act V When it fails (empty agent looks exactly like an expired cert; check ssh-add -l before blaming the cert; the other troubleshooting rows).
  Then BVDT (4 or 6 lines), BHTF Your Turn (a pasteable prompt = the README step 6 prompt, read in full, props.command == narration_text, two output checks), BOUT per channel. Opening three: BOPEN (narrated portrait/title card, template contract in the skill; Professor Bear portrait from the 1x1 library, slug-seeded), BIDEA (BrutalistHesitantWriter: the naive framing "Give Claude my password" corrected into "Unlock the key once; Claude never sees it" — trigger phrase must appear verbatim in text, neither ends in punctuation), BDEFS (3-6 terms <=17 chars, e.g. Private key, Certificate, ssh-agent, BatchMode, Login node).
 
-SHOW-THE-THING (the skill's law): Real terminal output only from SESSION.md, verbatim, on CCPlainShell, durations set so lines land with the voice. A Claude Code surface (CCSession/CCToolCall) may show ONLY the Bash tool call Claude actually ran and its real output; do NOT invent a typed user prompt and do NOT mock any interface. OnDemand (ood.aicr.ai) sign-in is behind CILogon: reuse the sibling film's real public capture at ../build/captures/ood.png via BrowserCapture (it is the real page); never enter credentials anywhere. A page that cannot be captured is not invented. Concept beats (key + lock + agent; the path from Claude to the cluster) may be isometric drawings per show-tell's DRAWING LAWS, clearly conceptual, never presented as an observed session. Keep one cast per act. Audition >=2 lanes per body beat, SHOTLIST.md with runner-up, FACTCHECK.md (every claim vs README/SSH docs/SESSION.md), CHECKS-REPORT.md before the first compile, TYPECHECK.md no FAIL, MASTERCHECK.md. Motion must carry the claim (still-frame test).
+SHOW-THE-THING (the skill's law): Real terminal output only from SESSION.md, verbatim, on CCPlainShell, durations set so lines land with the voice. A Claude Code surface (CCSession/CCToolCall) may show ONLY the Bash tool call Claude actually ran and its real output; do NOT invent a typed user prompt and do NOT mock any interface. OnDemand (ood.aicr.ai) sign-in is behind CILogon: reuse the sibling film's real public capture at hpc-aicr/youtube/claude-liam-lecture-aicr-introduction/captures/ood.png via BrowserCapture (it is the real page); never enter credentials anywhere. A page that cannot be captured is not invented. Concept beats (key + lock + agent; the path from Claude to the cluster) may be isometric drawings per show-tell's DRAWING LAWS, clearly conceptual, never presented as an observed session. Keep one cast per act. Audition >=2 lanes per body beat, SHOTLIST.md with runner-up, FACTCHECK.md (every claim vs README/SSH docs/SESSION.md), CHECKS-REPORT.md before the first compile, TYPECHECK.md no FAIL, MASTERCHECK.md. Motion must carry the claim (still-frame test).
 
 SAFETY (hard)
 - You MAY NOT touch the cluster's state. You do not need to ssh at all: the evidence exists. If you want one extra fact, only read-only commands, once, and log it in SESSION.md. Never read, print, copy or cat ~/.ssh/id_ed25519_aicr or any private key or the .passphrase; never put either in a file.
@@ -66,4 +66,4 @@ Skill doctrine: `brutalist.art/skills/make/lecture/SKILL.md`. Never stage or pub
 
 ## Status at hand-off (2026-10-11)
 
-Built end to end: the master is `<books>/../build/exports/landscape/claude-liam-lecture-logging-into-aicr-with-claude.mp4` (518.9 s, 44 beats, all machine gates PASS; see BUILD-LOG.md). Not staged, not published. Do not re-run `make_sheet.py` after `art final` (it wipes the build stamps); if a beat must change, edit only that unit, move its clip to `_superseded/`, re-run `art run`, then `art final`.
+Built end to end: the master is `<books>/hpc-aicr/youtube/claude-liam-lecture-logging-into-aicr-with-claude/exports/landscape/claude-liam-lecture-logging-into-aicr-with-claude.mp4` (518.9 s, 44 beats, all machine gates PASS; see BUILD-LOG.md). Not staged, not published. Do not re-run `make_sheet.py` after `art final` (it wipes the build stamps); if a beat must change, edit only that unit, move its clip to `_superseded/`, re-run `art run`, then `art final`.

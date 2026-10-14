@@ -30,7 +30,7 @@ def pB_row(name, role, y, x0=-3.5, w=9.3):
 
 
 class B11_UserName(Scene):
-    """Your AICR user name = campus name + institution; the pattern becomes jsmith_neu."""
+    """Your AICR user name = campus name + institution; the pattern becomes <aicr-username>."""
     def construct(self):
         acct = chip("account", 0.0, 0.5, size=40)
         self.add(acct)
@@ -68,9 +68,9 @@ class B11_UserName(Scene):
         b2 = pB_brk(split + 0.05, R0 - 0.05, 0.0)
         l2 = T("institution", 36).move_to([(split + R0) / 2 + 0.2, -0.65, 0])
         self.play(Create(b2), FadeIn(l2), run_time=0.45)
-        # "like jsmith underscore neu": it becomes jsmith_neu
+        # "like jsmith underscore neu": it becomes <aicr-username>
         hear(self, "like jsmith", lead=0.4)
-        out = M("jsmith_neu", 80).move_to([0, 0.6, 0])
+        out = M("<aicr-username>", 80).move_to([0, 0.6, 0])
         bg2 = pill(0, 0.6, out.width + 0.9, h=0.95)
         sh2 = pill(0.08, 0.52, out.width + 0.9, h=0.95, fill=BOX_L)
         self.play(FadeOut(b1), FadeOut(b2), FadeOut(l1), FadeOut(l2), Transform(pat, out), Transform(bg, bg2), Transform(shadow, sh2), run_time=0.9)
@@ -109,7 +109,7 @@ class B14_HumanSteps(Scene):
         bear = professor_bear("1x1", 2.8, seed="B14", x=-5.0, y=0.2)
         door = Rectangle(width=1.8, height=2.8, fill_color=BOX_L, fill_opacity=1, stroke_color=INK, stroke_width=6).move_to([4.7, -0.1, 0])
         knob = Dot([5.3, -0.1, 0], radius=0.12, color=INK)
-        claude = chip("Claude", 4.7, 2.0, size=38)
+        claude = logo_chip("claude", 4.7, 2.3)
         self.add(bear, door, knob, claude)
         ys = [1.5, 0.4, -0.7]
         names = ["Sign in", "Download", "Passphrase"]

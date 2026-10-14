@@ -1,11 +1,11 @@
 # ACTS — Logging into AICR with Claude (lecture)
 
-**What this is.** The coverage map for the lecture film of `../source/README.md`, written before any beat.
+**What this is.** The coverage map for the lecture film of `hpc-aicr/Logging-into-AICR-with-Claude/README.md`, written before any beat.
 **Why.** A lecture covers the WHOLE source: every section lands in an act or is listed under LEFT OUT with a reason.
 **Found.** All ten sections (intro table, 0 to 8) are covered in five acts, 37 body beats. Nothing is left out. Two sections are told out of source order (logged under Order). Estimated runtime 9 to 11 minutes (an output, not a target).
 
-Source: `<books>/../source/README.md`
-Evidence: `<books>/../source/SESSION.md` (three real runs, 2026-10-11)
+Source: `<books>/hpc-aicr/Logging-into-AICR-with-Claude/README.md`
+Evidence: `<books>/hpc-aicr/Logging-into-AICR-with-Claude/SESSION.md` (three real runs, 2026-10-11)
 
 | Source section | Act | Beats |
 |---|---|---|

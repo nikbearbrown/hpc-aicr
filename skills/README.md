@@ -32,9 +32,10 @@ Never type or read a password, passphrase or key. Use `ssh -o BatchMode=yes`. As
 |---|---|
 | `hpc/HPC.md` | prime directive; the hard NEVERs table; questions to ask first and the read-only commands; Explorer at a glance; is parallel even the answer; sizing and submitting; GPUs; storage and transfers; software and environments; reproducibility; running as an agent; Linux habits; script traps; getting help; conflicts appendix |
 | `aicr/AICR.md` | what is different or stricter on AICR; getting in; partitions and GPU requests; the develop-then-batch workflow and a template; measuring (`jobstats`); AICR speed-ups; storage and project end; transfers; environments; twenty lessons from real jobs; questions before a GPU job; conflicts appendix |
+| `local-llm-on-explorer/` | a get-started recipe (`GET-STARTED.md`) you hand to Claude Code to set up a local model (Ollama in a container) on an Explorer GPU, plus the scripts it installs. Asks before every file it writes and every job it submits. **Not run end to end yet**; two of its scripts are new and only syntax-checked. Explorer only, not AICR |
 | `film-on-explorer/` | a plan and scripts for rendering a narrated lecture film on Explorer (pack, stage, one-time setup, render, fetch, clean up). **Not run on a compute node yet**: the first job is a pilot. Explorer only, not AICR |
 | `hpc/SKILL.md`, `aicr/SKILL.md` | thin routers (the rules live only in the two files above, so they cannot drift apart) |
 
 ## Keeping them current
 
-Dated 2026-10-11. When Research Computing changes a page, fix the rule in its file and the conflict in the appendix, not a summary. If a file and a live record disagree, the live record wins and the file gets fixed.
+Dated 2026-10-13 (the rule files and `film-on-explorer/` were updated from the 2026-10-11 pilot; `local-llm-on-explorer/` was added). When Research Computing changes a page, fix the rule in its file and the conflict in the appendix, not a summary. If a file and a live record disagree, the live record wins and the file gets fixed.

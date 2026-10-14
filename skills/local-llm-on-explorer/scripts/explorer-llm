@@ -1,0 +1,39 @@
+#!/bin/bash
+set -euo pipefail
+HOST="explorer"
+LOCAL_PORT="${LOCAL_PORT:-11435}"
+
+CONN="$(ssh "$HOST" 'cat ~/.ollama-hpc/current 2>/dev/null' || true)"
+if [ -z "$CONN" ]; then
+  echo "No running server. Submit one: ssh $HOST 'sbatch ~/.ollama-hpc/serve.sbatch'" >&2
+  exit 1
+fi
+NODE="$(printf '%s\n' "$CONN" | sed -n 's/^NODE=//p')"
+PROXY_PORT="$(printf '%s\n' "$CONN" | sed -n 's/^PROXY_PORT=//p')"
+MODEL="$(printf '%s\n' "$CONN" | sed -n 's/^MODEL=//p')"
+JOB="$(printf '%s\n' "$CONN" | sed -n 's/^JOB=//p')"
+STATE="$(ssh "$HOST" "squeue -h -j $JOB -o %T" 2>/dev/null || true)"
+if [ "$STATE" != "RUNNING" ]; then
+  echo "Job $JOB is not running (state: ${STATE:-gone}). Resubmit serve.sbatch." >&2
+  exit 1
+fi
+TOKEN="$(ssh "$HOST" 'cat ~/.ollama-hpc/token')"
+
+umask 077
+cat > ~/.explorer-llm.env << ENV_EOF
+unset ANTHROPIC_API_KEY
+export ANTHROPIC_BASE_URL="http://127.0.0.1:${LOCAL_PORT}"
+export ANTHROPIC_AUTH_TOKEN="${TOKEN}"
+export ANTHROPIC_MODEL="${MODEL}"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="${MODEL}"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="${MODEL}"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="${MODEL}"
+export CLAUDE_CODE_SUBAGENT_MODEL="${MODEL}"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export OPENAI_API_BASE="http://127.0.0.1:${LOCAL_PORT}/v1"
+export OPENAI_API_KEY="${TOKEN}"
+ENV_EOF
+
+echo "Job $JOB on $NODE: localhost:$LOCAL_PORT -> $NODE:$PROXY_PORT"
+echo "Leave this window open. In another terminal: source ~/.explorer-llm.env && claude"
+exec ssh -N -L "${LOCAL_PORT}:${NODE}:${PROXY_PORT}" "$HOST"

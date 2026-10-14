@@ -11,11 +11,11 @@
 | Folder | What it holds |
 |---|---|
 | [`films/`](films/) | one subfolder per film: the film link, `guide.md` (our written lesson), `build/` (beat sheet, scenes, fact-check) and a README saying where it comes from. [`films/REAL-OUTPUTS.md`](films/REAL-OUTPUTS.md) is the read-only output we captured on both clusters |
-| [`skills/`](skills/) | `hpc/HPC.md` and `aicr/AICR.md`, the agent rules, plus `film-on-explorer/` (a plan and scripts for rendering a lecture film on Explorer) and thin `SKILL.md` wrappers with Codex metadata. [How to use them](skills/README.md) |
+| [`skills/`](skills/) | `hpc/HPC.md` and `aicr/AICR.md`, the agent rules, plus `local-llm-on-explorer/` (a get-started recipe you hand to Claude Code to set up a local model on an Explorer GPU), `film-on-explorer/` (a plan and scripts for rendering a lecture film on Explorer) and thin `SKILL.md` wrappers with Codex metadata. [How to use them](skills/README.md) |
 
 ## The films
 
-Playlist: https://www.youtube.com/playlist?list=PLX28mAL5_hLk (the first eight are published; links are unlisted).
+Playlist: https://www.youtube.com/playlist?list=PLX28mAL5_hLk (the published films are marked below; links are unlisted).
 
 | # | Film | Watch | Status | Folder |
 |---|---|---|---|---|
@@ -27,18 +27,29 @@ Playlist: https://www.youtube.com/playlist?list=PLX28mAL5_hLk (the first eight a
 | 6 | Intro to Linux | [film](https://youtu.be/Q70HTMmL6oQ) | published | [`films/06-intro-to-linux`](films/06-intro-to-linux) |
 | 7 | Scientific Reproducibility | [film](https://youtu.be/68LPUyZrRYs) | published | [`films/07-scientific-reproducibility`](films/07-scientific-reproducibility) |
 | 8 | Installing Software on an HPC Cluster | [film](https://youtu.be/l2RwXl8W-sA) | published | [`films/08-installing-software-on-an-hpc-cluster`](films/08-installing-software-on-an-hpc-cluster) |
-| 9 | Logging into AICR with Claude | – | built or building at the time of writing; not yet published | [`films/09-logging-into-aicr-with-claude`](films/09-logging-into-aicr-with-claude) |
+| 9 | Logging into AICR with Claude | [film](https://youtu.be/QZibDBeMgec) | published | [`films/09-logging-into-aicr-with-claude`](films/09-logging-into-aicr-with-claude) |
 | 10 | Requesting Access to Explorer | – | laid out (script, scenes, fact-check); not yet rendered | [`films/10-requesting-access-to-explorer`](films/10-requesting-access-to-explorer) |
 |  | Managing /projects on Explorer | – | built; not in the published playlist | [`films/managing-projects-on-explorer`](films/managing-projects-on-explorer) |
-|  | Logging into Explorer with Claude | – | evidence recorded (a real, tested key login); film not yet laid out | [`films/logging-into-explorer-with-claude`](films/logging-into-explorer-with-claude) |
+|  | Logging into Explorer (HPC) with Claude | [film](https://youtu.be/KEKiKe6roQk) | published | [`films/logging-into-explorer-with-claude`](films/logging-into-explorer-with-claude) |
+|  | Guiding Your Agent: HPC.md and AICR.md | [film](https://youtu.be/1OasVYsVVJw) | published | [`films/guiding-your-agent-hpc-md-and-aicr-md`](films/guiding-your-agent-hpc-md-and-aicr-md) |
 |  | Optimizing GPU Usage on Explorer | – | source material only; no film built | [`films/optimizing-gpu-usage-on-explorer`](films/optimizing-gpu-usage-on-explorer) |
-|  | Running a Local LLM on Explorer and Pointing Coding Agents at It | – | source material only; no film built | [`films/running-a-local-llm-on-explorer`](films/running-a-local-llm-on-explorer) |
+|  | Running a Local LLM on Explorer | – | film built, not yet published; **get-started recipe for Claude Code: [`skills/local-llm-on-explorer/GET-STARTED.md`](skills/local-llm-on-explorer/GET-STARTED.md)** | [`films/running-a-local-llm-on-explorer`](films/running-a-local-llm-on-explorer) |
 |  | Scientific Reproducibility II (version control) | – | source material only; no film built | [`films/scientific-reproducibility-ii`](films/scientific-reproducibility-ii) |
 |  | Scientific Reproducibility III (containers) | – | source material only; no film built | [`films/scientific-reproducibility-iii`](films/scientific-reproducibility-iii) |
 
 ## Use the agent rules
 
 Do not paste them into your `CLAUDE.md` or `AGENTS.md`. Point to them: "when a task involves Explorer, Slurm, or HPC, read `skills/hpc/HPC.md` first; for AICR also read `skills/aicr/AICR.md`." Details and a ready snippet are in [`skills/README.md`](skills/README.md).
+
+## Run a local model on Explorer (paste-in instructions)
+
+If you want Claude Code to help you set up a local model on an Explorer GPU, you do not need to follow the steps by hand: hand it one file. Clone this repository, start `claude` inside it, and paste:
+
+```text
+Read skills/local-llm-on-explorer/GET-STARTED.md completely, then guide me through setting up a local model on Explorer, one step at a time. Follow it exactly. Ask me before you write any file on the cluster or submit any job. Never ask for, type or read my password, passphrase or key. Keep a log in SETUP-LOG.md.
+```
+
+[`skills/local-llm-on-explorer/GET-STARTED.md`](skills/local-llm-on-explorer/GET-STARTED.md) says what is verified and what is not (it has not been run end to end), what it needs from you first (a working `ssh explorer`), and what it will ask before each step. It uses the agent rules in `skills/hpc/HPC.md`.
 
 ## Redo a film
 

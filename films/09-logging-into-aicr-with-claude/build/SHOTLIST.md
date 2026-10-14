@@ -5,7 +5,7 @@
 | Beat | About | Lane picked | Runner-up | Why this one wins |
 |---|---|---|---|---|
 | B10 | no password; key + certificate at the door | drawing: key and certificate arrive at a padlocked door in front of the AICR rack; the lock opens | icon row (key, certificate) | the claim is "two things must both arrive"; two objects meeting at a lock is that claim, and it sets the film's cast |
-| B11 | user name pattern | Manim text transform in mono: pattern -> jsmith_neu | static example card | the fact is the shape of the name; bracketing the two halves and transforming shows it |
+| B11 | user name pattern | Manim text transform in mono: pattern -> <aicr-username> | static example card | the fact is the shape of the name; bracketing the two halves and transforming shows it |
 | B12 | the portal where key files come from | **the real page**, captured (BrowserCapture) | drawn browser window | SHOW-THE-THING rung 1: the viewer will see exactly this page; the camera pushes to the sign-in choice as "you sign in" is said |
 | B13 | the four files | Manim drawn table with the real file names; certificate row ringed | isometric file stack | the source's table is the figure to animate (WHOLE-SOURCE LAW 5); the names are the artifact |
 | B14 | which steps are the human's | drawing: portrait plus three check chips; Claude's door stays shut to the password | two-column "You / Claude" card | the person is Professor Bear (PROFESSOR BEAR LAW); the shut door is the rule |

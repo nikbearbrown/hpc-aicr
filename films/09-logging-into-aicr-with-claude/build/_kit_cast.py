@@ -97,6 +97,36 @@ def chip(text, x, y, w=None, mono=False, size=34):
     g.pill, g.label = p, lab
     return g
 
+def _logo_path(company, n=1):
+    """brutalist.art/icons/logos/<company>/<company>-NN.png (LOGO LAW, Bear 2026-10-12: a company is shown by its logo)."""
+    cands = [_os.environ.get("ART_HOME") and _os.path.join(_os.environ["ART_HOME"], "icons", "logos")]
+    here = _os.path.dirname(_os.path.abspath(__file__))
+    for _ in range(8):
+        cands.append(_os.path.join(here, "brutalist.art", "icons", "logos")); here = _os.path.dirname(here)
+    cands.append("<books>/brutalist.art/icons/logos")
+    for c in cands:
+        p = c and _os.path.join(c, company, f"{company}-{n:02d}.png")
+        if p and _os.path.exists(p):
+            return p
+    return None
+
+
+def logo_chip(company, x, y, h=1.35, n=1):
+    """A white pill carrying the company's LOGO (no word). Falls back to a text chip if the logo file is missing.
+    Returns a Group (it holds an image): use FadeIn/FadeOut/self.add on it."""
+    p = _logo_path(company, n)
+    if p is None:
+        return chip(company.title(), x, y)
+    w = h * 1.35
+    shadow = pill(x + 0.08, y - 0.08, w, h=h, fill=BOX_L)
+    body = pill(x, y, w, h=h)
+    img = ImageMobject(p)
+    img.scale_to_fit_height(h * 0.78)
+    img.move_to([x, y, 0])
+    g = Group(shadow, body, img)
+    g.pill = body
+    return g
+
 
 def plaque(text, x, y, w=6.2, h=1.0, size=34):
     """A white card carrying REAL error or command text in mono (no outline)."""

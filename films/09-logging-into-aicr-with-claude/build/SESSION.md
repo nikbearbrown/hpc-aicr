@@ -36,12 +36,12 @@ certificatefile ~/.ssh/id_ed25519_aicr-cert.pub
 addkeystoagent true
 
 $ ssh-add -l
-256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)        <- the call in Run 1 loaded it
+256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)        <- the call in Run 1 loaded it
 
 $ ssh -v -o BatchMode=yes aicr true      (filtered)
 debug1: get_agent_identities: agent returned 1 keys
-debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit
-debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit
+debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:bu4j...yRYEU explicit
+debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:bu4j...yRYEU explicit
 Authenticated to login.aicr.ai ([192.69.103.11]:22) using "publickey".
 ```
 
@@ -49,7 +49,7 @@ Authenticated to login.aicr.ai ([192.69.103.11]:22) using "publickey".
 
 ```
 $ ssh-add -l
-256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)
+256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)
 
 $ ssh-add -D
 All identities removed.
@@ -62,7 +62,7 @@ $ ssh -o BatchMode=yes aicr 'whoami; hostname'
 login.aicr.ai
 
 $ ssh-add -l
-256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)
+256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)
 ```
 
 With the agent emptied, `BatchMode=yes` still logged in and the agent had the key again afterwards. That is `AddKeysToAgent` plus the macOS Keychain doing their job: no prompt, no passphrase typed, nothing passed to Claude.
@@ -87,4 +87,4 @@ Extensions: permit-X11-forwarding permit-agent-forwarding permit-port-forwarding
 
 ## Added for the film (2026-10-11)
 
-This file is a copy of `<books>/../source/SESSION.md`, the real record. The film build ran NO command on the cluster and read no key, certificate or passphrase file. Every terminal line shown in the film is copied from the sections above (see FACTCHECK.md rows 20 to 31). Two display changes only: the long Run 1 command is shown on two lines with a `\` continuation (B32), and `(squeue: header only, no jobs)` is shown as a comment line `# squeue: header only, no jobs` because it is the recorder's note, not captured output (B33).
+This file is a copy of `<books>/hpc-aicr/Logging-into-AICR-with-Claude/SESSION.md`, the real record. The film build ran NO command on the cluster and read no key, certificate or passphrase file. Every terminal line shown in the film is copied from the sections above (see FACTCHECK.md rows 20 to 31). Two display changes only: the long Run 1 command is shown on two lines with a `\` continuation (B32), and `(squeue: header only, no jobs)` is shown as a comment line `# squeue: header only, no jobs` because it is the recorder's note, not captured output (B33).

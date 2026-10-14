@@ -2,7 +2,7 @@
 
 You write Manim scenes for ONE film (a `lecture`: "Logging into AICR with Claude", narrated by Liam, Kokoro audio ALREADY generated and measured). Several authors work in parallel; you own only your part file.
 
-Reel folder: `<books>/../build/`  (call it R)
+Reel folder: `<books>/hpc-aicr/youtube/claude-liam-lecture-logging-into-aicr-with-claude/`  (call it R)
 Toolkit: `<books>/brutalist.art/`
 
 ## Read first

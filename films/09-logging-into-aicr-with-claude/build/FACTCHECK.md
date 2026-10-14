@@ -1,6 +1,6 @@
 # FACTCHECK — Logging into AICR with Claude (lecture)
 
-**What this is.** Every factual claim in the narration and on screen, checked. **Sources.** R = the source README (`../source/README.md`); D = the saved AICR documentation SSH page (June 1, 2026); A = `a private project setup note (not included)` section 2; S = `SESSION.md` (three real runs, 2026-10-11, copied beside this file); I = the AICR Introduction film's FACTCHECK. **Result.** 42 claims: 39 PASS, 3 CORRECTED. **Status.** Checked 2026-10-11 by the build agent; Bear's sign-off pending.
+**What this is.** Every factual claim in the narration and on screen, checked. **Sources.** R = the source README (`hpc-aicr/Logging-into-AICR-with-Claude/README.md`); D = the saved AICR documentation SSH page (June 1, 2026); A = `aicr/bearsvoice/AICR-SETUP.md` section 2; S = `SESSION.md` (three real runs, 2026-10-11, copied beside this file); I = the AICR Introduction film's FACTCHECK. **Result.** 42 claims: 39 PASS, 3 CORRECTED. **Status.** Checked 2026-10-11 by the build agent; Bear's sign-off pending.
 
 | # | Beat | Claim | Verdict | Source | Fix |
 |---|---|---|---|---|---|
@@ -8,7 +8,7 @@
 | 2 | BIDEA, B21, B22 | Claude never sees the key or passphrase: the agent holds the unlocked key and ssh asks it | PASS | R "Why it works", section 4 | |
 | 3 | B10 | The certificate is signed by AICR's own certificate authority | PASS | R section 1; D "signed by AICR's Certificate Authority (CA)" | |
 | 4 | B11 | A PI's proposal opens a project; the institution's research-computing team creates your user | PASS | R section 0 | |
-| 5 | B11 | The user name has the form institutionalusername_institutioncode, e.g. jsmith_neu | PASS | R section 0; D (its example is jsmith_mit) | |
+| 5 | B11 | The user name has the form institutionalusername_institutioncode, e.g. <aicr-username> | PASS | R section 0; D (its example is jsmith_mit) | |
 | 6 | B12 | Key files are downloaded from ood.aicr.ai after signing in with institutional credentials | PASS | R section 1; D | |
 | 7 | B12 | The ood.aicr.ai sign-in page asks you to choose an identity provider | PASS | `captures/ood.png`, real page; I row 11 | |
 | 8 | B13 | The folder is called aicr_keys and holds four files: private key (passphrase-protected), public key, CA-signed certificate, first passphrase | PASS | R section 1; D | |
@@ -23,7 +23,7 @@
 | 17 | B24 | IdentitiesOnly offers only this key; ServerAliveInterval 60 stops idle drops; AddKeysToAgent loads the key on first use; UseKeychain is macOS-only and IgnoreUnknown lets other systems skip it | PASS | R section 3; D "Connection drops frequently: ServerAliveInterval 60" | |
 | 18 | B25 | macOS: `ssh-add --apple-use-keychain`; Linux: `eval "$(ssh-agent -s)"` then `ssh-add`; start Claude Code from the same terminal | PASS | R section 4 | |
 | 19 | B26 | Windows: PowerShell as administrator once; Get-Service/Set-Service Automatic, Start-Service, ssh-add | PASS | R section 4 | |
-| 20 | B27, B35, B36 | `ssh-add -l` prints one line ending in (ED25519): `256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)` | PASS | S Run 2 and Run 3, verbatim | |
+| 20 | B27, B35, B36 | `ssh-add -l` prints one line ending in (ED25519): `256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)` | PASS | S Run 2 and Run 3, verbatim | |
 | 21 | B30 | `ssh aicr hostname` should give login.aicr.ai; the first connection asks to confirm the host key, type yes yourself | PASS | R section 5; D "host key verification prompt. Type yes" | shown as commands and comments, not as captured output |
 | 22 | B31 | BatchMode=yes makes ssh fail at once instead of asking | PASS | R section 5 | |
 | 23 | B32 | Claude Code ran one ssh command with BatchMode on; the agent held no keys before that call | PASS | R "What was found"; S Run 1 | |

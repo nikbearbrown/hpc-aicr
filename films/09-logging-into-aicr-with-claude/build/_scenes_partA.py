@@ -59,7 +59,7 @@ class B21_UnlockOnce(Scene):
         iso = Iso(4.4, -1.9, 1.2)
         agent, alights = agent_slab(iso)
         alab = T("agent", 40).move_to([4.4, -3.0, 0])
-        claude = chip("Claude", 1.2, 2.5, size=38)
+        claude = logo_chip("claude", 1.2, 2.5)
         self.play(FadeIn(you), FadeIn(ylab), FadeIn(key), FadeIn(lock), FadeIn(agent), FadeIn(alights), FadeIn(alab), run_time=0.5)
         # "not to give Claude the passphrase": the passphrase dots head for Claude and are refused
         hear(self, "give Claude the passphrase", lead=0.6)

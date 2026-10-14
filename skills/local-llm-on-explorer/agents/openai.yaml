@@ -1,0 +1,4 @@
+interface:
+  display_name: '/local-llm-on-explorer'
+  short_description: 'Set up a local model on an Explorer GPU and point a coding agent at it, step by step'
+  default_prompt: '$local-llm-on-explorer: Guide me through setting up a local model on Explorer, one step at a time, asking before each job.'

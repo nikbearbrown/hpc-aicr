@@ -1,0 +1,499 @@
+1
+00:00:00,000 --> 00:00:04,698
+Research Computing on Explorer and AICR. Logging into AICR with Claude. How to let
+
+2
+00:00:04,718 --> 00:00:10,091
+Claude Code log into the AICR cluster for you and run commands there, while your key
+
+3
+00:00:10,111 --> 00:00:12,450
+and your passphrase never leave your hands.
+
+4
+00:00:12,520 --> 00:00:17,826
+Hallo. This is Liam, in for Bear. First, a correction. To let Claude log into AICR,
+
+5
+00:00:17,846 --> 00:00:23,151
+the shared GPU cluster, you do not hand it your password. AICR has no password. You
+
+6
+00:00:23,171 --> 00:00:26,480
+unlock a key once, yourself, and Claude never sees it.
+
+7
+00:00:26,550 --> 00:00:31,229
+Six terms. A private key: a secret file that proves who you are. A certificate: a
+
+8
+00:00:31,249 --> 00:00:35,341
+signed note from AICR saying that key is yours. A passphrase: the password that
+
+9
+00:00:35,361 --> 00:00:39,747
+locks the key file. The ssh-agent: a helper that holds your unlocked key in memory.
+
+10
+00:00:39,767 --> 00:00:44,153
+BatchMode: a setting that makes ssh refuse to ask any question. And a login node:
+
+11
+00:00:44,173 --> 00:00:47,090
+the shared computer you land on when you log in.
+
+12
+00:00:47,160 --> 00:00:52,462
+AICR has no password. At the front door it checks two things. A private key, a
+
+13
+00:00:52,482 --> 00:00:57,119
+secret file that only you hold. And a certificate, a note that AICR's own
+
+14
+00:00:57,139 --> 00:00:59,780
+certificate authority signed, saying that key is yours.
+
+15
+00:00:59,850 --> 00:01:04,853
+To get in at all, you need an account. A faculty member's proposal opens a project,
+
+16
+00:01:04,873 --> 00:01:09,563
+and your institution creates your user. Your AICR user name is your campus name with
+
+17
+00:01:09,583 --> 00:01:13,330
+the institution on the end, like j smith underscore n e u.
+
+18
+00:01:13,400 --> 00:01:19,625
+The key files come from one place: the AICR OnDemand portal, at o o d dot aicr dot
+
+19
+00:01:19,645 --> 00:01:24,483
+AI. You sign in there with your institutional credentials. That step is yours, not
+
+20
+00:01:24,503 --> 00:01:24,830
+Claude's.
+
+21
+00:01:24,900 --> 00:01:29,576
+Download the folder called aicr keys. Inside are four files. Your private key,
+
+22
+00:01:29,596 --> 00:01:33,910
+locked with a passphrase. Its public half. Your certificate, which is the
+
+23
+00:01:33,930 --> 00:01:36,800
+credential. And a file holding your first passphrase.
+
+24
+00:01:36,870 --> 00:01:41,561
+Signing in is the human step. So are putting the files in place and choosing a new
+
+25
+00:01:41,581 --> 00:01:45,441
+passphrase. Do not give Claude your institutional password, and do not ask it to
+
+26
+00:01:45,461 --> 00:01:46,550
+sign in for you.
+
+27
+00:01:46,620 --> 00:01:51,659
+Put the files in your dot ssh folder, set their permissions, and swap the first
+
+28
+00:01:51,679 --> 00:01:56,381
+passphrase for one only you know. Windows is the same, in PowerShell. Then delete
+
+29
+00:01:56,401 --> 00:01:57,730
+the downloaded passphrase file.
+
+30
+00:01:57,800 --> 00:02:02,632
+Check the certificate with ssh-keygen dash L. Valid is a date range, or forever.
+
+31
+00:02:02,652 --> 00:02:08,177
+Principals must be your AICR user name. When it nears its end, renew it in the
+
+32
+00:02:08,197 --> 00:02:08,870
+OnDemand portal.
+
+33
+00:02:08,940 --> 00:02:13,950
+Now the problem. Claude Code runs commands with no keyboard attached. If ssh stops
+
+34
+00:02:13,970 --> 00:02:18,980
+to ask for the passphrase, nobody can answer, and the command hangs or fails.
+
+35
+00:02:19,050 --> 00:02:24,534
+The fix is not to give Claude the passphrase. The fix is to unlock the key before
+
+36
+00:02:24,554 --> 00:02:28,744
+Claude arrives, once, in your own terminal, into a helper called ssh-agent. The
+
+37
+00:02:28,764 --> 00:02:31,010
+agent holds the unlocked key in memory.
+
+38
+00:02:31,080 --> 00:02:36,181
+From then on, when ssh needs the key, it asks the agent, and the agent answers. The
+
+39
+00:02:36,201 --> 00:02:40,399
+key never leaves the agent. Claude does the work. The secret never passes through
+
+40
+00:02:40,419 --> 00:02:40,700
+it.
+
+41
+00:02:40,770 --> 00:02:46,632
+Add one block to your ssh config. Host aicr gives the cluster a short name. Then its
+
+42
+00:02:46,652 --> 00:02:51,130
+host name, your AICR user name, your key file, and your certificate file.
+
+43
+00:02:51,200 --> 00:02:55,497
+Identities only offers just this key. Server alive interval stops idle connections
+
+44
+00:02:55,517 --> 00:03:01,253
+dropping. Add keys to agent loads the key into the agent on first use. Use keychain
+
+45
+00:03:01,273 --> 00:03:05,570
+is for macOS only, and ignore unknown makes other systems skip it.
+
+46
+00:03:05,640 --> 00:03:11,175
+On a Mac, unlock it with S S H add and the apple keychain flag, so the passphrase
+
+47
+00:03:11,195 --> 00:03:15,804
+survives restarts. On Linux, start an agent, add the key, and start Claude Code from
+
+48
+00:03:15,824 --> 00:03:16,730
+that same terminal.
+
+49
+00:03:16,800 --> 00:03:21,811
+On Windows, open PowerShell as administrator, once. Set the agent service to start
+
+50
+00:03:21,831 --> 00:03:24,520
+automatically, start it, and add the key.
+
+51
+00:03:24,590 --> 00:03:28,735
+Each of these asks for your passphrase, in your own terminal. Type it there, never
+
+52
+00:03:28,755 --> 00:03:34,011
+in a prompt to Claude. Then ask the agent what it holds. One line ending in E D two
+
+53
+00:03:34,031 --> 00:03:36,510
+five five one nine means the key is loaded.
+
+54
+00:03:36,580 --> 00:03:42,642
+Test it by hand first. Run ssh aicr hostname. You should get login dot aicr dot AI.
+
+55
+00:03:42,662 --> 00:03:47,651
+The very first connection asks you to confirm the host key. Type yes yourself,
+
+56
+00:03:47,671 --> 00:03:49,440
+because Claude cannot answer that.
+
+57
+00:03:49,510 --> 00:03:54,104
+Then test it the way Claude connects: with BatchMode on. BatchMode makes ssh fail at
+
+58
+00:03:54,124 --> 00:03:58,717
+once instead of asking anything. If it prints your user name and the host, Claude
+
+59
+00:03:58,737 --> 00:03:59,640
+can log in.
+
+60
+00:03:59,710 --> 00:04:04,742
+Now a real run. Claude Code ran one ssh command with BatchMode on. Before this call,
+
+61
+00:04:04,762 --> 00:04:10,110
+the agent held no keys. The command asks for the user name, the host, and the date.
+
+62
+00:04:10,180 --> 00:04:14,541
+The cluster answered with its seven partitions, and an empty job queue, because
+
+63
+00:04:14,561 --> 00:04:19,260
+nothing was running. The last line is the home directory, named after the user.
+
+64
+00:04:19,330 --> 00:04:23,549
+Now the test that matters. When you reboot, the agent forgets everything. So empty
+
+65
+00:04:23,569 --> 00:04:26,880
+it on purpose, and see whether Claude can still get in.
+
+66
+00:04:26,950 --> 00:04:32,410
+Ask the agent what it holds: one key. Empty it with S S H add dash capital D. Ask
+
+67
+00:04:32,430 --> 00:04:36,160
+again: nothing. The agent is empty, just as it is after a reboot.
+
+68
+00:04:36,230 --> 00:04:40,907
+Now log in the way Claude does, with BatchMode on and an empty agent. It still
+
+69
+00:04:40,927 --> 00:04:45,310
+works. No prompt, no passphrase typed. And ask the agent again: the key is back.
+
+70
+00:04:45,380 --> 00:04:50,210
+On a Mac, that is the Keychain at work. Add keys to agent asks it for the
+
+71
+00:04:50,230 --> 00:04:54,204
+passphrase, and the key goes back into the agent. Nothing was typed, and nothing
+
+72
+00:04:54,224 --> 00:04:55,060
+passed to Claude.
+
+73
+00:04:55,130 --> 00:04:59,720
+On Linux and Windows there is no Keychain to reload the key. So this same test fails
+
+74
+00:04:59,740 --> 00:05:05,414
+until you run S S H add again. That is expected. It tells you to run S S H add at
+
+75
+00:05:05,434 --> 00:05:06,770
+the start of each session.
+
+76
+00:05:06,840 --> 00:05:12,906
+How did it get in? Ask ssh to show its steps. It found one key in the agent, and
+
+77
+00:05:12,926 --> 00:05:16,749
+offered the certificate. The server accepted it, and ssh reports it authenticated
+
+78
+00:05:16,769 --> 00:05:17,710
+with public key.
+
+79
+00:05:17,780 --> 00:05:22,456
+When you ask, Claude runs one ssh command with BatchMode on, followed by your
+
+80
+00:05:22,476 --> 00:05:27,151
+read-only commands. Claude Code asks you to approve it. On a shared system, approve
+
+81
+00:05:27,171 --> 00:05:30,170
+each ssh command, at least the first few times.
+
+82
+00:05:30,240 --> 00:05:35,389
+Rule one. Read only first. Look before you change anything: s info, s queue for your
+
+83
+00:05:35,409 --> 00:05:38,620
+own jobs, s acct, job stats, ls, and module avail.
+
+84
+00:05:38,690 --> 00:05:43,652
+Rule two. Never compute on a login node. Login nodes are shared, capped at four CPU
+
+85
+00:05:43,672 --> 00:05:48,012
+cores and eight gigabytes of memory per user. Heavy work goes through Slurm, the
+
+86
+00:05:48,032 --> 00:05:52,060
+scheduler: s batch, or s alloc and s run for a live session.
+
+87
+00:05:52,130 --> 00:05:57,727
+Rule three. Ask before s batch, s cancel, r m, or anything that writes outside your
+
+88
+00:05:57,747 --> 00:06:01,940
+own project. Jobs use shared GPUs, and they count against your project.
+
+89
+00:06:02,010 --> 00:06:06,692
+Rule four. Never print, copy, or upload the private key. Not cat, not s c p, not
+
+90
+00:06:06,712 --> 00:06:11,670
+into the chat. Claude does not need to read the key to use it. The agent does that.
+
+91
+00:06:11,740 --> 00:06:16,588
+Rule five. Never put the passphrase in a prompt, a file, or a command. If a command
+
+92
+00:06:16,608 --> 00:06:20,310
+asks for it, stop, and unlock the key yourself, in your own terminal.
+
+93
+00:06:20,380 --> 00:06:25,445
+Rule six. Use your own account only. The certificate names you, so do not use it to
+
+94
+00:06:25,465 --> 00:06:26,940
+run work for anyone else.
+
+95
+00:06:27,010 --> 00:06:31,945
+And rule seven. Mind where files live. Home is small and recoverable. Scratch is
+
+96
+00:06:31,965 --> 00:06:36,900
+large, and it is purged. Check AICR's file system page before you move data.
+
+97
+00:06:36,970 --> 00:06:41,399
+The error you will see most is permission denied, public key. It usually means one
+
+98
+00:06:41,419 --> 00:06:46,441
+of three things. The key is not unlocked, by far the most common after a reboot. Or
+
+99
+00:06:46,461 --> 00:06:50,000
+the certificate is expired or missing. Or the key's permissions are wrong.
+
+100
+00:06:50,070 --> 00:06:54,332
+Here is the trap. An empty agent looks exactly like an expired certificate. The
+
+101
+00:06:54,352 --> 00:07:00,144
+error is the same. So check the agent with S S H add dash l before you blame the
+
+102
+00:07:00,164 --> 00:07:00,450
+certificate.
+
+103
+00:07:00,520 --> 00:07:05,704
+Then, if the agent holds the key, check the certificate: is it still valid? If it is
+
+104
+00:07:05,724 --> 00:07:09,990
+not, renew it in OnDemand. And set the private key's permissions to six hundred.
+
+105
+00:07:10,060 --> 00:07:15,042
+Other messages have short fixes. A command that hangs or wants a passphrase: unlock
+
+106
+00:07:15,062 --> 00:07:19,686
+the key yourself. Host key verification failed: remove the old entry with ssh-keygen
+
+107
+00:07:19,706 --> 00:07:24,330
+dash R, then connect once yourself. A new host key prompt: type yes.
+
+108
+00:07:24,400 --> 00:07:28,470
+Bad configuration option: add ignore unknown above the keychain line. Connection
+
+109
+00:07:28,490 --> 00:07:33,675
+timed out: try another network, because AICR needs no VPN. Drops when idle: server
+
+110
+00:07:33,695 --> 00:07:39,996
+alive interval sixty. Empty after a restart: S S H add again, on a Mac with the
+
+111
+00:07:40,016 --> 00:07:40,740
+keychain flag.
+
+112
+00:07:40,810 --> 00:07:45,227
+Let's recap with Claude. AICR checks a key and a certificate, not a password. Claude
+
+113
+00:07:45,247 --> 00:07:49,664
+cannot type a passphrase, so you unlock the key once into the ssh-agent. Test with
+
+114
+00:07:49,684 --> 00:07:53,806
+BatchMode: even an emptied agent logged in on a Mac. Claude runs read-only commands,
+
+115
+00:07:53,826 --> 00:07:58,243
+and asks before it changes anything. The key and the passphrase never go into a
+
+116
+00:07:58,263 --> 00:08:02,384
+prompt. And when you see permission denied, check the agent before you blame the
+
+117
+00:08:02,404 --> 00:08:02,680
+certificate.
+
+118
+00:08:02,750 --> 00:08:07,664
+Your turn. Paste this into Claude: Log into the AICR cluster with ssh aicr and run
+
+119
+00:08:07,684 --> 00:08:11,673
+read-only commands only. Run: whoami, hostname, pwd, s info with its output format
+
+120
+00:08:11,693 --> 00:08:16,915
+set to percent fourteen P, percent eleven l, percent six D, and s queue for my own
+
+121
+00:08:16,935 --> 00:08:21,540
+user. Tell me the user name, the host, and which partitions exist. Do not submit,
+
+122
+00:08:21,560 --> 00:08:26,166
+cancel or change anything, and do not run computation on the login node. Then check
+
+123
+00:08:26,186 --> 00:08:30,483
+two things yourself. Did Claude run only read-only commands? And did it ever ask
+
+124
+00:08:30,503 --> 00:08:32,950
+for, or print, your passphrase or your key?
+
+125
+00:08:33,020 --> 00:08:37,080
+Logging into AICR with Claude. At Nik Bear Brown.

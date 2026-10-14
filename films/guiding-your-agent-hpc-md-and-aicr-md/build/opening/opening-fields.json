@@ -1,0 +1,15 @@
+{
+  "series_title": "Research Computing on Explorer and AICR",
+  "episode_position": "",
+  "title_lines": [
+    "Guiding Your Agent:",
+    "HPC.md and AICR.md"
+  ],
+  "subtitle": "Rule files that keep an agent safe on a cluster",
+  "portrait_path": "<books>/brutalist.art/runtime/remotion/public/professor-bear/professor-bear-1x1-19.jpg",
+  "presenter_name": "Professor Bear",
+  "narrator_credit": "Liam, in for Bear \u00b7 Narration",
+  "entry_pointer": "",
+  "channel_handle": "@NikBearBrown",
+  "seed": "claude-liam-lecture-guiding-your-agent-hpc-md-and-aicr-md"
+}

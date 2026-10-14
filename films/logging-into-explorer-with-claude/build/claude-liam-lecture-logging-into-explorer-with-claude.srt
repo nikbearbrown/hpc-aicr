@@ -1,0 +1,136 @@
+1
+00:00:00,000 --> 00:00:12,660
+Research Computing on Explorer and AICR.
+Logging into Explorer, H P C, with Claude.
+How to make a key, unlock it once, and let
+
+2
+00:00:12,710 --> 00:00:23,960
+Hallo. This is Liam, in for Bear. First, a
+correction. To let Claude log into
+Explorer, you do not hand it your
+
+3
+00:00:24,010 --> 00:00:43,670
+Six terms. A private key: a secret file
+that proves who you are. A public key: its
+matching half, safe to share. An ssh
+
+4
+00:00:43,720 --> 00:00:58,990
+Explorer lets you in with your
+Northeastern password. You connect to the
+login host, answer the first host key
+
+5
+00:00:59,040 --> 00:01:12,620
+That works for you at a keyboard. It does
+not work for Claude. Claude Code runs
+commands with no keyboard attached, and a
+
+6
+00:01:12,670 --> 00:01:25,360
+One detail on the login name. The one that
+worked was the name from the access form,
+the user I D, not the first part of an
+
+7
+00:01:25,410 --> 00:01:37,900
+A key comes in two halves. The private
+half stays on your computer and proves who
+you are. The public half is safe to hand
+
+8
+00:01:37,950 --> 00:01:52,020
+Make it with ssh keygen. The type is E D
+twenty-five five-nineteen, a modern
+default. You choose a passphrase, which
+
+9
+00:01:52,070 --> 00:02:03,990
+To install the public half, one command:
+ssh copy id. It asks for your Northeastern
+password this one time, typed by you, and
+
+10
+00:02:04,040 --> 00:02:17,240
+Now the old problem. Claude cannot type a
+passphrase. So you unlock the key
+yourself, once, into a helper called the
+
+11
+00:02:17,290 --> 00:02:29,850
+On a Mac, one command: ssh add, with the
+Apple Keychain flag. You type the
+passphrase here, in your own terminal. It
+
+12
+00:02:29,900 --> 00:02:43,650
+Then give the cluster a short name. One
+block in your ssh config. Host explorer.
+The real host name. Your user name. The
+
+13
+00:02:43,700 --> 00:02:57,820
+Here is a real mistake from this setup, so
+you do not repeat it. Before that block
+existed, the test failed: could not
+
+14
+00:02:57,870 --> 00:03:10,070
+Test it the way Claude will connect.
+BatchMode makes ssh fail at once instead
+of asking a question. It printed the user
+
+15
+00:03:10,120 --> 00:03:20,990
+Then Claude Code ran the same login
+itself, with four read-only commands: who
+am I, which host, which folder, and my own
+
+16
+00:03:21,040 --> 00:03:33,810
+From here, Claude follows the rules in the
+H P C dot M D file. Read only first. Ask
+before it submits, cancels, or deletes.
+
+17
+00:03:33,860 --> 00:03:48,1000
+Then the hardest test, which is a
+deliberate one. Empty the agent. It
+reports no identities. Log in anyway, and
+
+18
+00:03:49,050 --> 00:04:11,100
+How is this different from AICR? On
+Explorer you start with your password, and
+you make your own key. On AICR there is no
+
+19
+00:04:11,150 --> 00:04:22,530
+What is the same matters more. Both are
+ssh. Both need you to unlock a key once
+into the agent. Both are tested with
+
+20
+00:04:22,580 --> 00:04:37,530
+And what we did not test. Logging in from
+off campus or another network. The web
+portal. And whether Research Computing
+
+21
+00:04:37,580 --> 00:04:59,450
+Let's recap with Claude. Explorer starts
+with your password, which Claude must
+never hold. Make a key, install its public
+
+22
+00:04:59,500 --> 00:05:23,960
+Your turn. Paste this into Claude: Log
+into the Explorer cluster with ssh
+explorer and run read-only commands only.
+
+23
+00:05:24,010 --> 00:05:29,500
+Logging into Explorer, H P C, with Claude.
+At Nik Bear Brown.

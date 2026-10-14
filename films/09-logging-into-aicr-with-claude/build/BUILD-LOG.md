@@ -1,6 +1,6 @@
 # BUILD-LOG — Logging into AICR with Claude (lecture)
 
-**What this is.** The decisions, traps and gate results for the film built from `../source/README.md` with real evidence from `SESSION.md`. **Result.** Master built, all machine gates PASS, 2026-10-11. Not staged, not published.
+**What this is.** The decisions, traps and gate results for the film built from `hpc-aicr/Logging-into-AICR-with-Claude/README.md` with real evidence from `SESSION.md`. **Result.** Master built, all machine gates PASS, 2026-10-11. Not staged, not published.
 
 ## Decisions
 - **Video number 9 of 13.** The eight published films carry `series_video_number` 1 to 8 in their make_sheet.py files (AICR Introduction 1, Optimizing GPU Usage on AICR 2, Intro to Explorer and OOD 3, Intro to GPUs on Explorer 4, Intro to Parallel Computing 5, Intro to Linux 6, Scientific Reproducibility 7, Installing Software 8), and the playlist note says 8 of 13 planned. The next free number is 9. `claude-liam-lecture-managing-projects` carries no number (built 2026-10-02, not in the playlist), so 9 does not collide with a numbered film; if Bear wants this film earlier in the series, the number is `series_video_number` in make_sheet.py plus a re-voiced BOPEN is not needed (the number is on the card only).

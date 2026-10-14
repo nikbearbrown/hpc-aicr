@@ -1,0 +1,4 @@
+Part A. Your scenes (beat id, class, target duration, design):
+- **B10** class `B10_PasswordToday`, 15.32 s: The Professor Bear portrait (1x1) at the left types dots into a password chip; an arrow runs to a small login rack labelled 'login node'; on the way a 'host key? yes' chip is answered; a 'Duo' chip sits crossed beside the ssh arrow and a second 'Duo' chip beside a 'web portal' box is ticked as 'asks (documented)'.
+- **B11** class `B11_NotForClaude`, 13.63 s: The Claude logo chip (logo_chip) at the left reaches toward a password chip held by the portrait; a closed door stops the hand; a small kraft key chip then slides into view beside the logo and the door opens to the login rack.
+- **B12** class `B12_WhichLoginName`, 12.74 s: Two mono chips side by side: 'user ID from the access form' (ringed, with a check) and 'email prefix' (second try); a small clock chip 'wait after a password change' lands under them.

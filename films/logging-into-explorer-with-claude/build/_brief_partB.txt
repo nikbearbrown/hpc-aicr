@@ -1,0 +1,3 @@
+Part B. Your scenes (beat id, class, target duration, design):
+- **B20** class `B20_KeyPair`, 12.54 s: A kraft key drawn in two halves: the private half (dark outline, a padlock) stays beside the portrait; the public half (lighter, no lock) slides across to the login rack and is filed on a shelf; the two halves briefly line up across the gap with a check.
+- **B30** class `B30_UnlockOnce`, 13.25 s: The portrait types the passphrase to a padlock on the private key; the lock opens (terracotta light); the key slides into a dark agent slab; the Claude logo chip then sends an 'ssh' command box to the agent, which answers with a signed slip while the key stays inside; a barrier line separates the key from the Claude side.

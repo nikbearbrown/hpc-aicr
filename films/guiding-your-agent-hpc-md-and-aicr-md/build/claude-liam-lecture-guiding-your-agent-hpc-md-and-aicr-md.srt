@@ -1,0 +1,220 @@
+1
+00:00:00,000 --> 00:00:13,070
+Research Computing on Explorer and AICR.
+Guiding Your Agent, H P C dot M D and AICR
+dot M D. Why an agent on a shared cluster
+
+2
+00:00:13,120 --> 00:00:26,840
+Hallo. This is Liam, in for Bear. First, a
+correction. To let an agent work on a
+cluster, you do not just say, run my job.
+
+3
+00:00:26,890 --> 00:00:43,570
+Five terms. A rule file: a plain text file
+the agent reads before it acts. A hard
+never: a rule with no exceptions. A login
+
+4
+00:00:43,620 --> 00:00:55,130
+An agent is fast, literal, and never
+tired. That is the good news. On a shared
+cluster it is also the risk. It will do
+
+5
+00:00:55,180 --> 00:01:08,440
+Most trouble on a cluster is not hard
+computer science. It is work on the wrong
+machine. It is a request far bigger than
+
+6
+00:01:08,490 --> 00:01:23,180
+So there are two files. H P C dot M D
+holds the rules for any shared cluster,
+written for Northeastern's Explorer. AICR
+
+7
+00:01:23,230 --> 00:01:36,490
+You do not paste either file into your
+instructions. You put one line in your
+Claude dot M D or agents dot M D, and the
+
+8
+00:01:36,540 --> 00:01:53,410
+Open the file H P C dot M D and the first
+thing you see is not a rule. It is a short
+summary: what it is, why it exists, what
+
+9
+00:01:53,460 --> 00:02:09,560
+Section zero is the prime directive. The
+agent does the pipeline work: inspect,
+measure, size, check, keep records. The
+
+10
+00:02:09,610 --> 00:02:28,440
+Section one is the list the agent checks
+before every command. Never run
+computation on a login node. Never ask
+
+11
+00:02:28,490 --> 00:02:41,300
+Notice that every never comes with a
+because. A rule the agent understands is a
+rule it can apply to a case the file never
+
+12
+00:02:41,350 --> 00:02:57,300
+Section two is before the first command.
+If a read-only command can answer a
+question, the agent runs it instead of
+
+13
+00:02:57,350 --> 00:03:13,510
+Section four stops the agent asking for
+more than it needs. Is parallel even the
+answer? In Research Computing's own
+
+14
+00:03:13,560 --> 00:03:28,230
+Section five: every script states its
+numbers. Partition, time, memory, cores, a
+name, and a log file. Time is the expected
+
+15
+00:03:28,280 --> 00:03:43,610
+Section six is GPUs. Never trust the
+allocation. A job that worked may have run
+on the processor with no error. So every
+
+16
+00:03:43,660 --> 00:03:57,520
+Section seven is where files live. Code
+and environments in home. Temporary job
+data in scratch, which is wiped on the
+
+17
+00:03:57,570 --> 00:04:12,150
+Section eight is software, in order. First
+a module. Then conda. Then a container
+built on your own machine. Then a source
+
+18
+00:04:12,200 --> 00:04:26,460
+Section nine is the record every job
+leaves behind. The job and node. When it
+started. The git commit it ran from. The
+
+19
+00:04:26,510 --> 00:04:41,650
+Section ten is about being an agent on the
+cluster. The researcher creates and
+unlocks the key, never the agent. If a
+
+20
+00:04:41,700 --> 00:04:56,390
+Section twelve is a list of things the
+training slides get wrong. A comment after
+a line continuation, which breaks the
+
+21
+00:04:56,440 --> 00:05:12,540
+And the appendix is the honest part. Where
+the sources disagree, the file says so and
+picks the safe reading. The scratch quota:
+
+22
+00:05:12,590 --> 00:05:27,520
+Now AICR dot M D. It builds on the first
+file, and where the two differ, it wins on
+AICR. Explorer's hosts, partitions,
+
+23
+00:05:27,570 --> 00:05:42,880
+AICR differs in ways that bite. Your user
+name is built differently. There is no
+password, only a key and a certificate.
+
+24
+00:05:42,930 --> 00:05:58,820
+AICR's own nevers are specific. Never run
+S S H add dash capital D, because it
+empties every key. Never source activate
+
+25
+00:05:58,870 --> 00:06:12,130
+Section five is a template built from
+flags that real completed jobs used. Every
+setting is stated. The environment is
+
+26
+00:06:12,180 --> 00:06:30,050
+After every batch job the agent runs
+jobstats, a command that exists only on
+AICR. Its real example: a job that asked
+
+27
+00:06:30,100 --> 00:06:49,440
+Section eleven is lessons from real AICR
+runs, and they are all quiet failures. A
+checkpoint that loaded without error and
+
+28
+00:06:49,490 --> 00:07:00,130
+And before any GPU job, the agent asks
+only what only you can answer. Your user
+name and account. Whether any data is
+
+29
+00:07:00,180 --> 00:07:15,000
+Rules also come from mistakes. While
+making the film about rendering on
+Explorer, the agent listed every folder
+
+30
+00:07:15,050 --> 00:07:29,760
+Another. A job script began with module
+purge. That removed the module that sets
+the cluster's proxy, so every download
+
+31
+00:07:29,810 --> 00:07:42,900
+And a third. The scripts assumed scratch
+belonged to the user. On this account it
+belonged to root, and refused every write.
+
+32
+00:07:42,950 --> 00:07:58,260
+Where to find them. Both files are free on
+GitHub, in the hpc dash aicr repository,
+inside the skills folder. H P C dot M D is
+
+33
+00:07:58,310 --> 00:08:11,380
+To use them: put both files where your
+agent can read them. Add the one line to
+your Claude dot M D or agents dot M D. And
+
+34
+00:08:11,430 --> 00:08:27,610
+The files do not replace judgment. Nothing
+in any policy page says whether automated
+agents are allowed on Explorer or AICR, so
+
+35
+00:08:27,660 --> 00:08:52,980
+Let's recap with Claude. An agent is fast
+and literal, so a shared cluster needs
+written rules. H P C dot M D holds the
+
+36
+00:08:53,030 --> 00:09:17,070
+Your turn. Paste this into Claude: Read
+the files H P C dot M D and AICR dot M D
+completely. Do not run anything on any
+
+37
+00:09:17,120 --> 00:09:24,090
+Guiding Your Agent, H P C dot M D and AICR
+dot M D. At Nik Bear Brown.

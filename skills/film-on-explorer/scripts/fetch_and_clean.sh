@@ -9,7 +9,7 @@
 set -euo pipefail
 HOST=${1:?ssh alias}; RDIR=${2:?remote job dir}; LOUT=${3:?local out dir}; shift 3
 SSH="ssh -o BatchMode=yes -o ConnectTimeout=10 $HOST"
-[[ "$RDIR" =~ ^/scratch/[A-Za-z0-9._-]+/film-jobs/[A-Za-z0-9._-]+-[0-9]{8}-[0-9]{4}$ ]] || { echo "REFUSED: $RDIR is not a film job directory"; exit 1; }
+[[ "$RDIR" =~ ^(/scratch|/projects)/[A-Za-z0-9._-]+/film-jobs/[A-Za-z0-9._-]+-[0-9]{8}-[0-9]{4}$ ]] || { echo "REFUSED: $RDIR is not a film job directory"; exit 1; }
 $SSH "test -f '$RDIR/.film-job'" || { echo "REFUSED: no .film-job marker in $RDIR"; exit 1; }
 mkdir -p "$LOUT"
 SRC="$HOST:$RDIR/"

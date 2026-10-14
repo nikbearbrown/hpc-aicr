@@ -1,0 +1,2179 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-guiding-your-agent-hpc-md-and-aicr-md",
+    "title": "Guiding Your Agent: HPC.md and AICR.md",
+    "topic": "RESEARCH COMPUTING · AGENT RULES",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "German (Hallo)",
+    "audience": "A researcher who wants Claude Code (or another agent) to work on a shared research cluster and needs to know what rules to give it; assumes no other film or book",
+    "source_doc": "hpc-aicr/skills/hpc/HPC.md and hpc-aicr/skills/aicr/AICR.md (the two files), STORY.md, and the real Explorer session record in the film 'Making a Lecture Film on Explorer' SESSION.md",
+    "playlist": "Northeastern HPC and AICR",
+    "series_title": "Research Computing on Explorer and AICR",
+    "lecture_opening_description": "Rule files that keep an agent safe on a shared cluster",
+    "lecture_opening_title_lines": [
+      "Guiding Your Agent:",
+      "HPC.md and AICR.md"
+    ],
+    "tags": [
+      "HPC.md",
+      "AICR.md",
+      "Claude Code",
+      "AI agents",
+      "CLAUDE.md",
+      "AGENTS.md",
+      "Slurm",
+      "Explorer",
+      "AICR",
+      "Northeastern University",
+      "Research Computing",
+      "HPC",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-12T21:44:24",
+      "cut": "master",
+      "filled": 37,
+      "of": 37,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    },
+    "chapter_number": 9
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Guiding Your Agent, H P C dot M D and AICR dot M D. Why an agent on a shared cluster needs written rules, and a walk through the two rule files that give them.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 13.12,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 13.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Hallo. This is Liam, in for Bear. First, a correction. To let an agent work on a cluster, you do not just say, run my job. The cluster is shared, and the agent is fast and literal. You give it two short rule files first, and you point it at them.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'To use Claude on a cluster, I just say: run my job'"
+          },
+          {
+            "at": 0.35,
+            "event": "backspaces 'I just say: run my job' -> 'give it rules first'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "To use Claude on a cluster,\nI just say: run my job",
+            "triggerWords": "I just say: run my job",
+            "replacementWords": "give it rules first",
+            "fontSize": 66,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-guiding-your-agent-hpc-md-and-aicr-md",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the newcomer's framing (I just say: run my job) and corrects it to the real one (give it rules first).",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 13.77,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 13.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Five terms. A rule file: a plain text file the agent reads before it acts. A hard never: a rule with no exceptions. A login node: the shared computer you land on when you connect. A Slurm job: your request for a compute node, written as a script. And fairshare: the priority you lose when you ask for more than you use.",
+      "estimated_duration_s": 24.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "'Rule file' lands"
+          },
+          {
+            "at": 0.3,
+            "event": "'Hard never'"
+          },
+          {
+            "at": 0.5,
+            "event": "'Login node'"
+          },
+          {
+            "at": 0.7,
+            "event": "'Slurm job'"
+          },
+          {
+            "at": 0.87,
+            "event": "'Fairshare'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "Rule file",
+                "meaning": "a text file the agent reads before it acts"
+              },
+              {
+                "term": "Hard never",
+                "meaning": "a rule with no exceptions"
+              },
+              {
+                "term": "Login node",
+                "meaning": "the shared computer you land on when you connect"
+              },
+              {
+                "term": "Slurm job",
+                "meaning": "your request for a compute node, as a script"
+              },
+              {
+                "term": "Fairshare",
+                "meaning": "the priority you lose by asking for more than you use"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 16.73
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: five prerequisites, one line each."
+      },
+      "actual_duration_s": 16.73,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 16.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · Why An Agent Needs Rules",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "An agent is fast, literal, and never tired. That is the good news. On a shared cluster it is also the risk. It will do exactly what you asked, as many times as you asked, and it will not feel the cost to anyone else.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "On the left a Claude logo chip (logo_chip('claude')) with a stopwatch and a stack of many small 'job' boxes flying out fast; on the right a shared rack grid with several small dark racks that each get a different terracotta dot (other people's work); the boxes pile into one rack and its dots crowd out the others.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the agent chip, fast, many job boxes"
+          },
+          {
+            "at": 0.55,
+            "event": "the shared racks appear"
+          },
+          {
+            "at": 0.85,
+            "event": "one rack fills; the others dim"
+          }
+        ],
+        "manim": {
+          "class": "B10_FastAndLiteral"
+        },
+        "motion_claim": "On the left a Claude logo chip (logo_chip('claude')) with a stopwatch and a stack of many small 'job' boxes flying out fast; on the right a shared rack grid with several small dark racks that each get a different terracotta dot (other people's work); the boxes pile into one rack and its dots crowd out the others."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 11.56,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 11.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "I · Why An Agent Needs Rules",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Most trouble on a cluster is not hard computer science. It is work on the wrong machine. It is a request far bigger than the job. And it is a check that passes when it should fail. These are quiet failures: nothing crashes, and you find out later.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three plain cards fan out, each with a short mono label and one small drawing: 'login node' (a door rack with a running job), '8 h for 25 min' (a long bar with a short filled part), 'exit 0, no CUDA' (a check mark over a rack whose GPU slot is empty); a 'no error' tag lands on all three.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "wrong machine: login node"
+          },
+          {
+            "at": 0.45,
+            "event": "wrong size: 8 h for 25 min"
+          },
+          {
+            "at": 0.7,
+            "event": "passing check: exit 0, no CUDA"
+          },
+          {
+            "at": 0.9,
+            "event": "'no error' on all three"
+          }
+        ],
+        "manim": {
+          "class": "B11_ThreeQuietFailures"
+        },
+        "motion_claim": "Three plain cards fan out, each with a short mono label and one small drawing: 'login node' (a door rack with a running job), '8 h for 25 min' (a long bar with a short filled part), 'exit 0, no CUDA' (a check mark over a rack whose GPU slot is empty); a 'no error' tag lands on all three."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.31,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 13.333333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "I · Why An Agent Needs Rules",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "So there are two files. H P C dot M D holds the rules for any shared cluster, written for Northeastern's Explorer. AICR dot M D builds on it and adds what is different or stricter on the AICR GPU cluster. Read the first, then the second.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two document pages stacked: the lower labelled 'HPC.md' with the subtitle 'any shared cluster (Explorer)', the upper labelled 'AICR.md' with 'stricter on AICR'; an arrow 'builds on' from the upper to the lower; a number-free reading order shown as 'first' on HPC.md and 'then' on AICR.md.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "HPC.md page: any shared cluster"
+          },
+          {
+            "at": 0.6,
+            "event": "AICR.md page lands on it: builds on"
+          },
+          {
+            "at": 0.88,
+            "event": "first / then labels"
+          }
+        ],
+        "manim": {
+          "class": "B12_TwoFiles"
+        },
+        "motion_claim": "Two document pages stacked: the lower labelled 'HPC.md' with the subtitle 'any shared cluster (Explorer)', the upper labelled 'AICR.md' with 'stricter on AICR'; an arrow 'builds on' from the upper to the lower; a number-free reading order shown as 'first' on HPC.md and 'then' on AICR.md."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.74,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 14.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B12.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "I · Why An Agent Needs Rules",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "You do not paste either file into your instructions. You put one line in your Claude dot M D or agents dot M D, and the agent reads the files when the work is cluster work. Here are the two lines, copied from the files themselves.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.4,
+            "event": "the HPC.md line"
+          },
+          {
+            "at": 0.75,
+            "event": "the AICR.md line"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "The one line, from HPC.md and from AICR.md",
+            "lines": [
+              "> When a task involves a research computing cluster (Explorer, Slurm, `sbatch`, `srun`, GPUs on a cluster, …",
+              "> When a task involves the AICR cluster (`login.aicr.ai`, `ssh aicr`, B200 or RTX PRO 6000 GPUs, AICR …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              293,
+              293
+            ],
+            "fontSize": 30,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 208
+              },
+              {
+                "line": 1,
+                "cue": 238
+              }
+            ],
+            "durationSeconds": 13.31
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 13.31,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 13.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Open the file H P C dot M D and the first thing you see is not a rule. It is a short summary: what it is, why it exists, what was found, and what is not verified. Then a line that says everything below is for the agent. Then fourteen numbered sections, zero to thirteen, and an honest appendix of conflicts.",
+      "estimated_duration_s": 24.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the title"
+          },
+          {
+            "at": 0.4,
+            "event": "the agent line, then sections"
+          },
+          {
+            "at": 0.9,
+            "event": "the appendix of conflicts"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "II · Walking Through HPC.md  ·  the headings, from the file",
+            "lines": [
+              "# HPC.md: Rules for any agent helping a researcher use a shared HPC cluster",
+              "# Agent rules (everything below is for the agent)",
+              "## 0. Prime directive",
+              "## 1. Hard NEVERs (check this list before every command)",
+              "## 2. Before the first command",
+              "## 6. GPUs",
+              "## 9. Reproducibility: the record every job leaves behind",
+              "## 12. Slurm scripting traps and slide errors (do not copy these)",
+              "# Appendix A: Conflicts and unverified items (the honest list)"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              284,
+              541,
+              541,
+              541,
+              541,
+              541,
+              541,
+              541
+            ],
+            "fontSize": 34,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 296
+              },
+              {
+                "line": 8,
+                "cue": 442
+              }
+            ],
+            "durationSeconds": 16.92
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 16.92,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 16.958333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B20.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section zero is the prime directive. The agent does the pipeline work: inspect, measure, size, check, keep records. The researcher keeps the judgment: what to spend, who gets access, and anything that cannot be undone. Look before you act. Measure before you change. Ask before you spend, delete, or share.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A split drawing: left column 'agent' (a Claude logo chip) with four small verbs inspect / measure / size / record on ticks; right column 'you' (Professor Bear portrait, 1x1) with 'spend', 'access', 'cannot undo' as three chips; a bold horizontal rule between them; three phrases 'look first', 'measure first', 'ask first' land along the rule.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "agent column"
+          },
+          {
+            "at": 0.45,
+            "event": "you column"
+          },
+          {
+            "at": 0.75,
+            "event": "look, measure, ask along the rule"
+          }
+        ],
+        "manim": {
+          "class": "B21_PrimeDirective"
+        },
+        "motion_claim": "A split drawing: left column 'agent' (a Claude logo chip) with four small verbs inspect / measure / size / record on ticks; right column 'you' (Professor Bear portrait, 1x1) with 'spend', 'access', 'cannot undo' as three chips; a bold horizontal rule between them; three phrases 'look first', 'measure first', 'ask first' land along the rule."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 16.15,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 16.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B21.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section one is the list the agent checks before every command. Never run computation on a login node. Never ask for, read, or print a password or a key. Never delete without listing what will go and getting a yes. Never submit a job until you have confirmed what it asks for. Never cancel with S cancel dash u. And never invent a flag, a module, or a limit.",
+      "estimated_duration_s": 27.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table builds row by row, six rows each starting with a bold 'never' chip and a short mono item: 'compute on a login node', 'password or key', 'delete without a list', 'submit unconfirmed', 'scancel -u', 'invent a flag'; each row gets a small cross mark as it lands.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "login node row"
+          },
+          {
+            "at": 0.3,
+            "event": "password row"
+          },
+          {
+            "at": 0.45,
+            "event": "delete row"
+          },
+          {
+            "at": 0.6,
+            "event": "submit row"
+          },
+          {
+            "at": 0.75,
+            "event": "scancel row"
+          },
+          {
+            "at": 0.9,
+            "event": "invent row"
+          }
+        ],
+        "manim": {
+          "class": "B22_HardNevers"
+        },
+        "motion_claim": "A drawn table builds row by row, six rows each starting with a bold 'never' chip and a short mono item: 'compute on a login node', 'password or key', 'delete without a list', 'submit unconfirmed', 'scancel -u', 'invent a flag'; each row gets a small cross mark as it lands."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 18.88,
+      "audio_file": "mp3/beat-B22.mp3",
+      "render_duration_s": 18.916666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B22.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Notice that every never comes with a because. A rule the agent understands is a rule it can apply to a case the file never listed. And some rules are labelled house rule, because they are our judgment, not the cluster's policy.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "sudo row"
+          },
+          {
+            "at": 0.5,
+            "event": "poll row: house rule"
+          },
+          {
+            "at": 0.85,
+            "event": "invent a flag row"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "HPC.md · three rows from the hard-never table",
+            "lines": [
+              "| `sudo`, `apt install`, `yum install`, Docker | No root on a shared system. Use modules, conda, Apptainer, or a …",
+              "… hits a shared scheduler. Check `squeue -u $USER` at most about once every 5 minutes **(house rule)**; use job …",
+              "| Invent a flag, module name, partition, version or quota | State what you could not confirm instead. |"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              253,
+              253
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 265
+              }
+            ],
+            "durationSeconds": 12.86
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 12.86,
+      "audio_file": "mp3/beat-B23.mp3",
+      "render_duration_s": 12.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B23.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Section two is before the first command. If a read-only command can answer a question, the agent runs it instead of asking you. Who am I, where am I, which groups, what is free. It asks only what only you can answer: your access, what it may submit, whether the data is restricted, and what you are trying to do.",
+      "estimated_duration_s": 24.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "read or measure first"
+          },
+          {
+            "at": 0.5,
+            "event": "must ask"
+          },
+          {
+            "at": 0.85,
+            "event": "access and data"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "HPC.md · Section 2, from the file",
+            "lines": [
+              "**Read or measure first; ask only what remains, in one message.** If a read-only command can answer it, run it …",
+              "…",
+              "**Must ask** (only the researcher can answer; skip any already answered):",
+              "1. **Access:** your login name and whether you can log in now (Explorer: your Northeastern username, which can …",
+              "3. **Data:** where is it, how big, and is any of it restricted (human subjects, licensed, under an agreement)? …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              90,
+              276,
+              331,
+              400
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 102
+              },
+              {
+                "line": 2,
+                "cue": 288
+              }
+            ],
+            "durationSeconds": 16.0
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 16.0,
+      "audio_file": "mp3/beat-B24.mp3",
+      "render_duration_s": 16.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B24.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B25",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section four stops the agent asking for more than it needs. Is parallel even the answer? In Research Computing's own benchmark, one core took two hundred fifty seconds. Eight cores took twenty-nine. Twelve cores took thirty-three, slower than eight. Never promise that N cores is N times faster.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A bar chart with six bars labelled by cores and real seconds: 1 core 250.7 s; 2 cores 116.8; 4 cores 58.1; 8 cores 29.4; 12 cores 33.4 (this bar ringed in terracotta and a small 'slower than 8' tag); 16 cores 25.2; the 20-core bar 20.2 s lands last. Bars grow on the spoken numbers.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "1 core: 250.7 s"
+          },
+          {
+            "at": 0.5,
+            "event": "8 cores: 29.4 s"
+          },
+          {
+            "at": 0.7,
+            "event": "12 cores: 33.4 s, ringed, slower than 8"
+          },
+          {
+            "at": 0.9,
+            "event": "never promise N times faster"
+          }
+        ],
+        "manim": {
+          "class": "B25_TwelveSlowerThanEight"
+        },
+        "motion_claim": "A bar chart with six bars labelled by cores and real seconds: 1 core 250.7 s; 2 cores 116.8; 4 cores 58.1; 8 cores 29.4; 12 cores 33.4 (this bar ringed in terracotta and a small 'slower than 8' tag); 16 cores 25.2; the 20-core bar 20.2 s lands last. Bars grow on the spoken numbers."
+      },
+      "actual_duration_s": 16.21,
+      "audio_file": "mp3/beat-B25.mp3",
+      "render_duration_s": 16.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B25.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B26",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Section five: every script states its numbers. Partition, time, memory, cores, a name, and a log file. Time is the expected runtime plus about twenty percent, never the maximum just to be safe. And memory is computer memory, not GPU memory.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "always set"
+          },
+          {
+            "at": 0.45,
+            "event": "time = runtime + 20%"
+          },
+          {
+            "at": 0.8,
+            "event": "mem is CPU RAM"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "HPC.md · Section 5, from the file",
+            "lines": [
+              "- Always set `--partition`, `--time`, `--mem` (CPU RAM), `--cpus-per-task`, `--job-name`, and …",
+              "- **`--time` = expected runtime + about 20%, never above the partition maximum.** Estimate the runtime from a …",
+              "- **`--mem` is CPU RAM, not GPU memory.** Never raise `--mem` to cure a CUDA out-of-memory error."
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              190,
+              338
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 278
+              },
+              {
+                "line": 2,
+                "cue": 399
+              }
+            ],
+            "durationSeconds": 14.72
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 14.72,
+      "audio_file": "mp3/beat-B26.mp3",
+      "render_duration_s": 14.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B26.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B27",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Section six is GPUs. Never trust the allocation. A job that worked may have run on the processor with no error. So every GPU script proves the GPU is there before the expensive part: the device name, the memory, and a number that travels to the GPU and back.",
+      "estimated_duration_s": 19.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "never trust the allocation"
+          },
+          {
+            "at": 0.6,
+            "event": "when a GPU is the right tool"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "HPC.md · Section 6, from the file",
+            "lines": [
+              "**Never trust the allocation; verify it at the top of every GPU script, or at least the first run.** Check that …",
+              "**A GPU is the right tool only for the same operation over a lot of data** (deep-learning training and inference, …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              49
+            ],
+            "fontSize": 30,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 243
+              }
+            ],
+            "durationSeconds": 15.38
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 15.38,
+      "audio_file": "mp3/beat-B27.mp3",
+      "render_duration_s": 15.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B27.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B28",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section seven is where files live. Code and environments in home. Temporary job data in scratch, which is wiped on the first Tuesday of every month. Anything you keep in projects. And the agent never keeps the only copy of anything in scratch.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three folder boxes: 'home' (code, environments), 'scratch' (a calendar page 'first Tuesday' with a sweep that empties it), 'projects' (long-term, a check); a kraft box labelled 'only copy' is carried out of scratch and set down in projects just before the sweep.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "home: code, environments"
+          },
+          {
+            "at": 0.45,
+            "event": "scratch: wiped the first Tuesday"
+          },
+          {
+            "at": 0.7,
+            "event": "projects: kept"
+          },
+          {
+            "at": 0.9,
+            "event": "the only copy moves out before the sweep"
+          }
+        ],
+        "manim": {
+          "class": "B28_WhereFilesLive"
+        },
+        "motion_claim": "Three folder boxes: 'home' (code, environments), 'scratch' (a calendar page 'first Tuesday' with a sweep that empties it), 'projects' (long-term, a check); a kraft box labelled 'only copy' is carried out of scratch and set down in projects just before the sweep."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.91,
+      "audio_file": "mp3/beat-B28.mp3",
+      "render_duration_s": 13.916666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B28.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B29",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section eight is software, in order. First a module. Then conda. Then a container built on your own machine. Then a source build. And a tool like Spack only last, because each step down costs more to keep. Before installing anything, the agent checks whether a module already exists.",
+      "estimated_duration_s": 19.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A five-rung ladder drawn top to bottom: 'module', 'conda', 'container (built at home)', 'source build', 'Spack / EasyBuild (last)'; a cost bar grows wider with each rung; a magnifier 'module avail' sweeps the top rung first.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "module"
+          },
+          {
+            "at": 0.4,
+            "event": "conda"
+          },
+          {
+            "at": 0.55,
+            "event": "container"
+          },
+          {
+            "at": 0.7,
+            "event": "source build"
+          },
+          {
+            "at": 0.85,
+            "event": "Spack last; the cost bar widens"
+          }
+        ],
+        "manim": {
+          "class": "B29_InstallLadder"
+        },
+        "motion_claim": "A five-rung ladder drawn top to bottom: 'module', 'conda', 'container (built at home)', 'source build', 'Spack / EasyBuild (last)'; a cost bar grows wider with each rung; a magnifier 'module avail' sweeps the top rung first."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.63,
+      "audio_file": "mp3/beat-B29.mp3",
+      "render_duration_s": 14.666666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B29.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Section nine is the record every job leaves behind. The job and node. When it started. The git commit it ran from. The exact command, the parameters, the seeds, the inputs. The software, and the hardware it really used. Twelve items, so a stranger can rerun it.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "item 1"
+          },
+          {
+            "at": 0.4,
+            "event": "item 3, the commit"
+          },
+          {
+            "at": 0.6,
+            "event": "seeds"
+          },
+          {
+            "at": 0.85,
+            "event": "item 12, so a stranger can rerun"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "HPC.md · Section 9, the minimum record",
+            "lines": [
+              "  1. job ID, node list, partition, requested resources",
+              "  3. git commit hash, branch, `run-<jobid>` tag, and a clean working tree",
+              "  6. every random seed",
+              "  10. hardware actually used: CPU count and GPU type and count",
+              "  12. exit status, headline numbers, and the README line that tells a stranger how to rerun"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              143,
+              236,
+              296,
+              471
+            ],
+            "fontSize": 32,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 155
+              },
+              {
+                "line": 4,
+                "cue": 483
+              }
+            ],
+            "durationSeconds": 14.31
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 14.31,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 14.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B30.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "II · Walking Through HPC.md",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Section ten is about being an agent on the cluster. The researcher creates and unlocks the key, never the agent. If a command prompts, hangs, or says permission denied, the agent stops and reports the exact error. It does not retry in a loop, and it never asks for a password.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "stop and report the exact error"
+          },
+          {
+            "at": 0.55,
+            "event": "human-only steps"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "HPC.md · Section 10, from the file",
+            "lines": [
+              "**If a command prompts, hangs, or says `Permission denied`: stop and report the exact error.** Do not retry in a …",
+              "**Getting in (human-only steps first).** The researcher, not you, creates the key, installs it and unlocks it once …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              78
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 280
+              }
+            ],
+            "durationSeconds": 15.19
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 15.19,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 15.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B31.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B32",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section twelve is a list of things the training slides get wrong. A comment after a line continuation, which breaks the command. A partition called compute, which does not exist. A sample script with no time and no memory. The agent is told not to copy them.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three slide cards, each stamped with a terracotta 'do not copy' tag: 'python train.py \\  # CHANGE' (the line cut at the backslash), '--partition=compute' (a partition rack that is not there, dotted), 'sbatch with no --time or --mem' (empty slots); a Claude logo chip nods past them without taking any.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "backslash comment card"
+          },
+          {
+            "at": 0.45,
+            "event": "partition=compute card (nothing there)"
+          },
+          {
+            "at": 0.7,
+            "event": "no time or memory card"
+          },
+          {
+            "at": 0.9,
+            "event": "none copied"
+          }
+        ],
+        "manim": {
+          "class": "B32_DoNotCopy"
+        },
+        "motion_claim": "Three slide cards, each stamped with a terracotta 'do not copy' tag: 'python train.py \\  # CHANGE' (the line cut at the backslash), '--partition=compute' (a partition rack that is not there, dotted), 'sbatch with no --time or --mem' (empty slots); a Claude logo chip nods past them without taking any."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.74,
+      "audio_file": "mp3/beat-B32.mp3",
+      "render_duration_s": 14.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B32.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B33",
+      "act": "II · Walking Through HPC.md",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "And the appendix is the honest part. Where the sources disagree, the file says so and picks the safe reading. The scratch quota: fifty terabytes in the slides, twenty on the policy page. So the agent is told never to quote a number. Rules marked house rule or inferred are our judgment, not policy.",
+      "estimated_duration_s": 21.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two source pages side by side, one with '50 TB' and one with '20 TB' on the same line 'scratch quota'; a not-equal sign; a third card 'the file: never quote a number'; then two small stamps 'house rule' and 'inferred' land beside a rule line.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "50 TB on one page"
+          },
+          {
+            "at": 0.4,
+            "event": "20 TB on the other"
+          },
+          {
+            "at": 0.65,
+            "event": "the file picks the safe reading"
+          },
+          {
+            "at": 0.88,
+            "event": "house rule and inferred stamps"
+          }
+        ],
+        "manim": {
+          "class": "B33_HonestAppendix"
+        },
+        "motion_claim": "Two source pages side by side, one with '50 TB' and one with '20 TB' on the same line 'scratch quota'; a not-equal sign; a third card 'the file: never quote a number'; then two small stamps 'house rule' and 'inferred' land beside a rule line."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 16.15,
+      "audio_file": "mp3/beat-B33.mp3",
+      "render_duration_s": 16.166666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B33.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "III · What AICR.md Changes",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Now AICR dot M D. It builds on the first file, and where the two differ, it wins on AICR. Explorer's hosts, partitions, storage rules and module setup do not carry over. The first rule of the second file: assume AICR is not Explorer.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The two stacked pages from before, now with the AICR.md page on top lit; four small Explorer items (a host chip, a partition chip, a storage chip, a module chip) try to slide from the HPC.md page onto the AICR rack and bounce off one by one; a short line 'AICR is not Explorer' lands.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "AICR.md on top: it wins"
+          },
+          {
+            "at": 0.5,
+            "event": "Explorer's host, partition, storage, module bounce off"
+          },
+          {
+            "at": 0.88,
+            "event": "assume AICR is not Explorer"
+          }
+        ],
+        "manim": {
+          "class": "B40_AssumeNotExplorer"
+        },
+        "motion_claim": "The two stacked pages from before, now with the AICR.md page on top lit; four small Explorer items (a host chip, a partition chip, a storage chip, a module chip) try to slide from the HPC.md page onto the AICR rack and bounce off one by one; a short line 'AICR is not Explorer' lands."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.98,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 15.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "III · What AICR.md Changes",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "AICR differs in ways that bite. Your user name is built differently. There is no password, only a key and a certificate. The partition decides which GPU you get. Idle GPUs are cancelled automatically. And scratch is purged after thirty days, with no off-site backup.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn two-column table builds row by row: 'user name' -> 'dot becomes underscore, _neu added'; 'login' -> 'key + certificate, no password'; 'GPU' -> 'the partition picks it'; 'idle GPU' -> 'cancelled automatically'; 'scratch' -> 'purged after 30 days, no off-site backup'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "user name row"
+          },
+          {
+            "at": 0.35,
+            "event": "no password row"
+          },
+          {
+            "at": 0.55,
+            "event": "partition picks the GPU row"
+          },
+          {
+            "at": 0.72,
+            "event": "idle GPU row"
+          },
+          {
+            "at": 0.9,
+            "event": "scratch row"
+          }
+        ],
+        "manim": {
+          "class": "B41_AICRDiffers"
+        },
+        "motion_claim": "A drawn two-column table builds row by row: 'user name' -> 'dot becomes underscore, _neu added'; 'login' -> 'key + certificate, no password'; 'GPU' -> 'the partition picks it'; 'idle GPU' -> 'cancelled automatically'; 'scratch' -> 'purged after 30 days, no off-site backup'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 15.36,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B41.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "III · What AICR.md Changes",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "AICR's own nevers are specific. Never run S S H add dash capital D, because it empties every key. Never source activate in a batch script, because a real job died on it. And never copy the workshop's GPU check, because it exits zero even when the GPU is missing.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "ssh-add -D"
+          },
+          {
+            "at": 0.45,
+            "event": "source activate"
+          },
+          {
+            "at": 0.8,
+            "event": "01_gpu_verify.py"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "AICR.md · three of its hard nevers, from the file",
+            "lines": [
+              "| Run `ssh-add -D` | It empties **every** …",
+              "| `source activate` or `conda activate` in an `sbatch` script or a non-interactive `ssh aicr '...'` | One real job died on it …",
+              "| Copy `01_gpu_verify.py` into a batch script as the GPU check | It exits with status 0 even when …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              192,
+              394
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 160
+              },
+              {
+                "line": 1,
+                "cue": 267
+              },
+              {
+                "line": 2,
+                "cue": 396
+              }
+            ],
+            "durationSeconds": 15.94
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 15.94,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 15.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B42.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B43",
+      "act": "III · What AICR.md Changes",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Section five is a template built from flags that real completed jobs used. Every setting is stated. The environment is added to the path, not activated. And the script fails itself, on purpose, if the GPU is not visible.",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "every setting stated"
+          },
+          {
+            "at": 0.5,
+            "event": "PATH prepend, not activate"
+          },
+          {
+            "at": 0.85,
+            "event": "the hard-fail CUDA check"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "AICR.md · the template, three lines of it",
+            "lines": [
+              "#SBATCH --partition=rtx-batch                 # the partition decides the GPU; use *-devel while …",
+              "export PATH=$HOME/.conda/envs/<env>/bin:$PATH # PATH prepend, NOT 'source activate' (Section 10)",
+              "python -c \"import torch,sys; sys.exit(0 if torch.cuda.is_available() else 1)\"   # hard-fail if CUDA …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              208,
+              276
+            ],
+            "fontSize": 30,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 211
+              },
+              {
+                "line": 2,
+                "cue": 288
+              }
+            ],
+            "durationSeconds": 13.31
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 13.31,
+      "audio_file": "mp3/beat-B43.mp3",
+      "render_duration_s": 13.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B43.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B44",
+      "act": "III · What AICR.md Changes",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "After every batch job the agent runs jobstats, a command that exists only on AICR. Its real example: a job that asked for eight hours and ran fifty-five minutes, with the GPU eighty percent busy. The targets are written down: over seventy percent GPU use is acceptable, and under fifty is a problem.",
+      "estimated_duration_s": 21.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four horizontal bars drawn like jobstats: CPU utilisation 13%, CPU memory 25%, GPU utilisation 80% (the one filled terracotta), GPU memory 17%; a time bar '8 h asked, 55 min ran'; two tick marks on the GPU bar at 50 and 70 labelled 'problem' and 'acceptable'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the time bar: 8 h asked, 55 min ran"
+          },
+          {
+            "at": 0.5,
+            "event": "GPU utilisation 80%"
+          },
+          {
+            "at": 0.85,
+            "event": "the 70 and 50 marks"
+          }
+        ],
+        "manim": {
+          "class": "B44_JobstatsTargets"
+        },
+        "motion_claim": "Four horizontal bars drawn like jobstats: CPU utilisation 13%, CPU memory 25%, GPU utilisation 80% (the one filled terracotta), GPU memory 17%; a time bar '8 h asked, 55 min ran'; two tick marks on the GPU bar at 50 and 70 labelled 'problem' and 'acceptable'."
+      },
+      "actual_duration_s": 17.92,
+      "audio_file": "mp3/beat-B44.mp3",
+      "render_duration_s": 17.958333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B44.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B45",
+      "act": "III · What AICR.md Changes",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Section eleven is lessons from real AICR runs, and they are all quiet failures. A checkpoint that loaded without error and left random weights. An input clip so quiet it produced silence. A cached file served under the same path after it was replaced. Each became a rule: prove the weights loaded, gate every input with a number, give a replaced file a new name.",
+      "estimated_duration_s": 26.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three cards each with a small drawing and a rule chip: a model box with a 'loaded, no error' tick but random dots inside -> 'prove the weights loaded'; a flat audio line with peak '4 of 32767' -> 'gate every input with a number'; two files with the same path, the old one served from a cache shelf -> 'give it a new name'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "weights loaded with no error"
+          },
+          {
+            "at": 0.45,
+            "event": "the silent clip"
+          },
+          {
+            "at": 0.7,
+            "event": "the cached file"
+          },
+          {
+            "at": 0.9,
+            "event": "three rules"
+          }
+        ],
+        "manim": {
+          "class": "B45_QuietLessons"
+        },
+        "motion_claim": "Three cards each with a small drawing and a rule chip: a model box with a 'loaded, no error' tick but random dots inside -> 'prove the weights loaded'; a flat audio line with peak '4 of 32767' -> 'gate every input with a number'; two files with the same path, the old one served from a cache shelf -> 'give it a new name'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 19.39,
+      "audio_file": "mp3/beat-B45.mp3",
+      "render_duration_s": 19.416666666666668,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B45.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B46",
+      "act": "III · What AICR.md Changes",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "And before any GPU job, the agent asks only what only you can answer. Your user name and account. Whether any data is restricted. Whether it may submit for you. And what success looks like.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "must ask"
+          },
+          {
+            "at": 0.35,
+            "event": "username and account"
+          },
+          {
+            "at": 0.6,
+            "event": "restricted data"
+          },
+          {
+            "at": 0.85,
+            "event": "what success looks like"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "AICR.md · Section 12, the questions, from the file",
+            "lines": [
+              "**Must ask (only the researcher can answer):**",
+              "1. What is your **AICR username** and **Slurm account**, and what is the persistent project path under …",
+              "2. **Is any of the data non-anonymised, under a data-use agreement, or security-restricted?** If yes, stop and …",
+              "4. What counts as success, and what quick check will show the job used the inputs and the GPU?"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              169,
+              186,
+              262
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 198
+              }
+            ],
+            "durationSeconds": 10.69
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 10.69,
+      "audio_file": "mp3/beat-B46.mp3",
+      "render_duration_s": 10.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B46.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "IV · Rules Born From Real Mistakes",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Rules also come from mistakes. While making the film about rendering on Explorer, the agent listed every folder under projects. That showed other people's names. Then it ran a disk usage command over a shared folder, and it hung. Neither was forbidden by the file. Now both are.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the listing, redacted"
+          },
+          {
+            "at": 0.45,
+            "event": "the hung disk count"
+          },
+          {
+            "at": 0.85,
+            "event": "the new rule, copied from HPC.md"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Rules Born From Real Mistakes, the real record, then the rule",
+            "lines": [
+              "(Redacted: a first command also listed every directory under /projects.",
+              "That showed other people's names, so it is not kept.)",
+              "Command did not complete within its 120s timeout and was moved to the background",
+              "NEW RULE in HPC.md, Section 1:",
+              "| List `/projects` (or any folder that holds other people's projects or home directories), or …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              182,
+              326,
+              404,
+              404
+            ],
+            "fontSize": 28,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 338
+              },
+              {
+                "line": 4,
+                "cue": 416
+              }
+            ],
+            "durationSeconds": 14.87
+          },
+          "rendered": {
+            "out": "media/B50.mp4",
+            "at": "2026-10-13T00:58:18.335695+00:00"
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 14.87,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 14.875,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B50.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "IV · Rules Born From Real Mistakes",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Another. A job script began with module purge. That removed the module that sets the cluster's proxy, so every download timed out. A one line test showed the network was fine. Now the file says: module purge can remove your network, so load that module again.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "proxy set before the purge"
+          },
+          {
+            "at": 0.4,
+            "event": "gone after the purge, and after loading tools"
+          },
+          {
+            "at": 0.85,
+            "event": "the new rule"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "The real test, then the rule that came from it",
+            "lines": [
+              "before purge: [<the cluster proxy>]",
+              "after purge: []",
+              "after load: []",
+              "NEW RULE in HPC.md, Section 8:",
+              "- **`module purge` can also remove your network.** On Explorer the default module `explorer/1.0` sets the …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              82,
+              82,
+              288,
+              288
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 94
+              },
+              {
+                "line": 4,
+                "cue": 336
+              }
+            ],
+            "durationSeconds": 14.76
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 14.76,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 14.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B51.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "IV · Rules Born From Real Mistakes",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "And a third. The scripts assumed scratch belonged to the user. On this account it belonged to root, and refused every write. The agent had checked with a read first, which is exactly what the file asks. Now the file says why: test before you write.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "scratch belongs to root"
+          },
+          {
+            "at": 0.45,
+            "event": "mkdir refused"
+          },
+          {
+            "at": 0.85,
+            "event": "the new rule"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "The real check, then the rule that came from it",
+            "lines": [
+              "root:root 755 2023-01-27 16:20:13.110253069 -0500",
+              "mkdir: cannot create directory ‘/scratch/<username>/.probe’: Permission denied",
+              "NEW RULE in HPC.md, Section 7:",
+              "- **Test before you write to scratch.** Do not assume `/scratch/<username>` is yours to write: check `stat -c …"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              139,
+              298,
+              346
+            ],
+            "fontSize": 28,
+            "windowMargin": 50,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 124
+              },
+              {
+                "line": 3,
+                "cue": 358
+              }
+            ],
+            "durationSeconds": 13.14
+          }
+        }
+      },
+      "motion_claim": "The real file text prints line by line, each as it is spoken.",
+      "actual_duration_s": 13.14,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 13.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B52.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B59",
+      "act": "V · Using The Files",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Where to find them. Both files are free on GitHub, in the hpc dash aicr repository, inside the skills folder. H P C dot M D is in the hpc folder, and AICR dot M D is in the aicr folder. The link is in the description.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The repository address github.com/nikbearbrown/hpc-aicr appears in mono; below it a skills folder splits into two folders, hpc and aicr, each holding one document page labelled HPC.md and AICR.md.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the repository address"
+          },
+          {
+            "at": 0.55,
+            "event": "skills opens into hpc and aicr"
+          },
+          {
+            "at": 0.85,
+            "event": "the two files, one in each"
+          }
+        ],
+        "manim": {
+          "class": "B59_WhereToFindThem"
+        },
+        "motion_claim": "The repository address github.com/nikbearbrown/hpc-aicr appears in mono; below it a skills folder splits into two folders, hpc and aicr, each holding one document page labelled HPC.md and AICR.md."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 15.36,
+      "audio_file": "mp3/beat-B59.mp3",
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B59.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B60",
+      "act": "V · Using The Files",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "To use them: put both files where your agent can read them. Add the one line to your Claude dot M D or agents dot M D. And at the start of cluster work, ask the agent to say back which rules apply, before it runs anything.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three steps land left to right on a line: a folder with two document pages ('put the files where the agent can read them'), a small instructions page with one highlighted line ('add the one line'), and a speech bubble from a Claude logo chip ('say back the rules that apply') that appears before any command box moves.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "two files in a folder"
+          },
+          {
+            "at": 0.5,
+            "event": "one line in the instructions"
+          },
+          {
+            "at": 0.85,
+            "event": "the agent says the rules back first"
+          }
+        ],
+        "manim": {
+          "class": "B60_ThreeSteps"
+        },
+        "motion_claim": "Three steps land left to right on a line: a folder with two document pages ('put the files where the agent can read them'), a small instructions page with one highlighted line ('add the one line'), and a speech bubble from a Claude logo chip ('say back the rules that apply') that appears before any command box moves."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.12,
+      "audio_file": "mp3/beat-B60.mp3",
+      "render_duration_s": 13.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B60.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "B61",
+      "act": "V · Using The Files",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The files do not replace judgment. Nothing in any policy page says whether automated agents are allowed on Explorer or AICR, so the files say to ask Research Computing once. And every claim is labelled by how we know it: from the sources, from a real run, or our own judgment.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A small gate drawn with a Professor Bear portrait (1x1) standing beside it holding the key; a Claude logo chip waits at the gate; a note 'ask Research Computing once' lands on the gate; below, three label stamps in a row: 'from the sources', 'from a real run', 'our own judgment'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "you at the gate, the agent waits"
+          },
+          {
+            "at": 0.5,
+            "event": "ask Research Computing once"
+          },
+          {
+            "at": 0.85,
+            "event": "three label stamps"
+          }
+        ],
+        "manim": {
+          "class": "B61_WhatRulesCannotDo"
+        },
+        "motion_claim": "A small gate drawn with a Professor Bear portrait (1x1) standing beside it holding the key; a Claude logo chip waits at the gate; a note 'ask Research Computing once' lands on the gate; below, three label stamps in a row: 'from the sources', 'from a real run', 'our own judgment'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 16.23,
+      "audio_file": "mp3/beat-B61.mp3",
+      "render_duration_s": 16.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B61.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. An agent is fast and literal, so a shared cluster needs written rules. H P C dot M D holds the general rules: never compute on a login node, ask before you spend, verify the GPU. AICR dot M D adds what is stricter: no idle GPUs, no source activate, and scratch is purged. Every rule comes with a because. Real mistakes become new rules. And one line in your instructions points the agent at both files.",
+      "estimated_duration_s": 32.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land in narration order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Guiding Your Agent: HPC.md and AICR.md",
+            "artifactLines": [
+              "An agent is fast and literal, so a shared cluster needs written rules.",
+              "HPC.md holds the general rules: never compute on a login node, ask before you spend, verify the GPU.",
+              "AICR.md adds what is stricter: no idle GPUs, no source activate, scratch is purged.",
+              "Every rule comes with a because.",
+              "Real mistakes become new rules.",
+              "One line in your instructions points the agent at both files."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 25.37,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 25.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Read the files H P C dot M D and AICR dot M D completely. Do not run anything on any cluster. Then tell me the five hard nevers that matter most for my task, which questions you would ask me before your first command, and anything in the files that you could not confirm. My task, then describe your job in one sentence. Then check two things yourself. Did Claude run nothing on a cluster? And did it say what it could not confirm?",
+      "estimated_duration_s": 36.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens — 'Your turn.'"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Read The Rules First",
+            "command": "Read the files HPC.md and AICR.md completely. Do not run anything on any cluster. Then tell me the five hard nevers that matter most for my task, which questions you would ask me before your first command, and anything in the files that you could not confirm. My task: <describe your job in one sentence>.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did Claude run nothing on a cluster? It should only read the two files.",
+              "Check: did it say what it could not confirm? A good answer names the unverified parts."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 24.09,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 24.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Guiding Your Agent, H P C dot M D and AICR dot M D. At Nik Bear Brown.",
+      "estimated_duration_s": 5.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Guiding Your Agent: HPC.md and AICR.md",
+            "slug": "claude-liam-lecture-guiding-your-agent-hpc-md-and-aicr-md",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 7.02,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 7.041666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-12T21:44:24"
+      }
+    }
+  ]
+}

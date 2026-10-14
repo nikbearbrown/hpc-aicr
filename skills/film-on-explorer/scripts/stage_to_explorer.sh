@@ -9,7 +9,10 @@ HOST=${1:?ssh alias, e.g. explorer}; PACK=${2:?pack dir from pack_for_cluster.sh
 [[ "$SLUG" =~ ^[A-Za-z0-9._-]+$ ]] || { echo "bad slug"; exit 1; }
 STAMP=$(date +%Y%m%d-%H%M)
 SSH="ssh -o BatchMode=yes -o ConnectTimeout=10 $HOST"
-JOB=$($SSH 'echo /scratch/$USER/film-jobs')/"$SLUG-$STAMP"
+# JOBROOT: where job folders live. Default is your scratch. If /scratch/<user> is not writable (it was root-owned on one account), set JOBROOT=/projects/<project>/film-jobs.
+JOBROOT=${JOBROOT:-$($SSH 'echo /scratch/$USER/film-jobs')}
+[[ "$JOBROOT" =~ ^(/scratch/[A-Za-z0-9._-]+|/projects/[A-Za-z0-9._-]+)/film-jobs$ ]] || { echo "bad JOBROOT"; exit 1; }
+JOB="$JOBROOT/$SLUG-$STAMP"
 $SSH "mkdir -p '$JOB' && printf 'created %s by stage_to_explorer.sh\n' '$STAMP' > '$JOB/.film-job'"
 rsync -av -e "ssh -o BatchMode=yes" "$PACK/reel.tar.gz" "$PACK/SHA256SUMS" "$HOST:$JOB/"
 [ -z "${4:-}" ] && rsync -av -e "ssh -o BatchMode=yes" "$PACK/toolkit-code.tar.gz" "$HOST:$JOB/" || true

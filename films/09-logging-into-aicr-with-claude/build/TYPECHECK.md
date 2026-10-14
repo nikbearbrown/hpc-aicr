@@ -1,6 +1,6 @@
 # TYPECHECK.md — GATE T
 
-Reel: `claude-liam-lecture-logging-into-aicr-with-claude`  |  Checked: 2026-10-11T15:54  |  Overall: PASS  |  Beats checked: 44  |  FAILs: 0
+Reel: `claude-liam-lecture-logging-into-aicr-with-claude`  |  Checked: 2026-10-12T13:27  |  Overall: PASS  |  Beats checked: 44  |  FAILs: 0
 
 Spec: `skills/make/kerning/reference/type-spec.md` §8.  Floor: 1.9% frame-height.  Contrast: 4.5:1 WCAG.  Kern threshold: 3.5× expected advance.  Wordy budget: 2 elements.
 

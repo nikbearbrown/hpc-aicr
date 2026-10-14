@@ -4,10 +4,10 @@
 LECTURE (Bear, 2026-10-02): the WHOLE source as one act-structured film, primarily visual, best visual per beat from
 the full playset, a tool shown as itself. Skill doctrine: brutalist.art/skills/make/lecture/SKILL.md.
 
-Source:   ../source/README.md
-Evidence: ../source/SESSION.md (three real runs, 2026-10-11): every terminal line below is
+Source:   hpc-aicr/Logging-into-AICR-with-Claude/README.md
+Evidence: hpc-aicr/Logging-into-AICR-with-Claude/SESSION.md (three real runs, 2026-10-11): every terminal line below is
           copied from it verbatim (the one allowed change: a very long command is shown on two lines with a `\\`).
-Primary:  the AICR documentation 'SSH' page (local copy not included), a private project setup note (not included) section 2.
+Primary:  hpc-aicr/aicr/SSH - AICR Documentation.html, hpc-aicr/aicr/bearsvoice/AICR-SETUP.md section 2.
 
 Spine: BOPEN -> BIDEA -> BDEFS -> five acts -> BVDT -> BHTF -> BOUT.
 Two passes: pass 1 (no _qc/asr.json) estimates cues; after Kokoro + faster-whisper, pass 2 places every terminal line
@@ -132,7 +132,7 @@ def remotion(bid, act, narration, pattern, props, show, gate="SHOW", lane="remot
 A1, A2, A3, A4, A5 = ("I · What AICR Checks", "II · Unlock Once", "III · Do It For Real",
                       "IV · Rules For A Shared Cluster", "V · When It Fails")
 
-KEYLINE = "256 SHA256:<fingerprint> <aicr-username>@aicr.ai (ED25519)"
+KEYLINE = "256 SHA256:bu4j...yRYEU <aicr-username>@aicr.ai (ED25519)"
 
 # ───────────────────────────── the opening pair ─────────────────────────────
 OPEN = [
@@ -210,8 +210,8 @@ add(manim("B11", A1,
     "To get in at all, you need an account. A faculty member's proposal opens a project, and your institution creates "
     "your user. Your AICR user name is your campus name with the institution on the end, like j smith underscore n e u.",
     "B11_UserName",
-    "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into 'jsmith_neu'.",
-    [{"at": 0.3, "event": "the pattern appears"}, {"at": 0.85, "event": "it becomes jsmith_neu"}], sparse=True))
+    "Mono 'institutionalusername_institutioncode' on a pill; the two halves are bracketed and labelled; it transforms into '<aicr-username>'.",
+    [{"at": 0.3, "event": "the pattern appears"}, {"at": 0.85, "event": "it becomes <aicr-username>"}], sparse=True))
 add(remotion("B12", A1,
     "The key files come from one place: the AICR OnDemand portal, at o o d dot aicr dot AI. You sign in there with "
     "your institutional credentials. That step is yours, not Claude's.",
@@ -428,8 +428,8 @@ shell("B39", A3,
     ["$ ssh -v -o BatchMode=yes aicr true",
      "# (output filtered to the lines that matter)",
      "debug1: get_agent_identities: agent returned 1 keys",
-     "debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit",
-     "debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:<fingerprint> explicit",
+     "debug1: Offering public key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:bu4j...yRYEU explicit",
+     "debug1: Server accepts key: ~/.ssh/id_ed25519_aicr-cert.pub ED25519-CERT SHA256:bu4j...yRYEU explicit",
      'Authenticated to login.aicr.ai ([192.69.103.11]:22) using "publickey".'],
     ["Ask ssh", "Ask ssh", "It found one key", "offered the certificate", "The server accepted", "ssh reports"],
     [{"at": 0.1, "event": "ssh -v"}, {"at": 0.35, "event": "agent returned 1 keys"}, {"at": 0.5, "event": "certificate offered, accepted"}, {"at": 0.85, "event": "Authenticated ... publickey"}],
@@ -585,11 +585,10 @@ sheet = {"metadata": {
     "clock": "narration", "palette": "claude", "register": "Teardown", "fps": 24, "aspect_ratio": "16:9", "width": 3840, "height": 2160,
     "caption_policy": "none", "greeting_language": "German (Hallo)",
     "audience": "A researcher with an AICR account who wants Claude Code to run commands on the cluster; assumes no other film or book",
-    "source_doc": "../source/README.md, evidence ../source/SESSION.md "
-                  "(three real runs, 2026-10-11), primary the AICR documentation 'SSH' page (local copy not included) and a private project setup note (not included) section 2",
+    "source_doc": "hpc-aicr/Logging-into-AICR-with-Claude/README.md, evidence hpc-aicr/Logging-into-AICR-with-Claude/SESSION.md "
+                  "(three real runs, 2026-10-11), primary hpc-aicr/aicr/SSH - AICR Documentation.html and aicr/bearsvoice/AICR-SETUP.md section 2",
     "playlist": "Northeastern HPC and AICR", "chapter_number": 8,
-    "series_title": "Research Computing on Explorer and AICR", "series_video_number": 9, "series_video_count": 13,
-    "series_entry_video": "Video 1 · AICR Introduction",
+    "series_title": "Research Computing on Explorer and AICR",
     "lecture_opening_description": "Let Claude Code log in while your key stays yours",
     "lecture_opening_title_lines": ["Logging into AICR", "with Claude"],
     "tags": ["AICR", "AI Compute Resource", "Claude Code", "SSH", "ssh-agent", "SSH certificate", "BatchMode", "Northeastern University",
