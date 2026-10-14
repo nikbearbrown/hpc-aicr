@@ -1,8 +1,8 @@
 # Running a Local LLM on Explorer
 
-**What this is.** A film in the series *Research Computing on Explorer and AICR* (about 14 minutes) on running an open model on an Explorer GPU and pointing a coding agent such as Claude Code at it. **Status:** film built; not yet published.
+**What this is.** A film in the series *Research Computing on Explorer and AICR* (about 14 minutes) on running an open model on an Explorer GPU and pointing a coding agent such as Claude Code at it. **Status:** published.
 
-**Watch the film:** not published yet.
+**Watch the film:** https://youtu.be/LHFKxBoYin8 (unlisted).
 
 **Want instructions you can paste to get started?** Go to [`skills/local-llm-on-explorer/GET-STARTED.md`](../../skills/local-llm-on-explorer/GET-STARTED.md): one file you hand to Claude Code, which guides you step by step and asks before every file it writes and every job it submits.
 
