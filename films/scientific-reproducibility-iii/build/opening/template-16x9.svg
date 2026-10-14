@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<title>Lecture opening · editable 16:9 template</title>
+<desc>Narrated portrait and film-title card. Named live-text fields are editable.</desc>
+<rect width="1920" height="1080" fill="#FAF9F5"/>
+<g id="series-and-position">
+<text id="series-title" x="96" y="124" fill="#3D3929" font-family="EB Garamond" font-size="52" text-anchor="start">[Series Title]</text>
+<text id="episode-position" x="1824" y="124" fill="#3D3929" font-family="Inter" font-size="32" text-anchor="end"></text>
+</g>
+<g id="portrait-slot">
+<rect x="96" y="214" width="640" height="640" fill="#EDEBE1"/>
+<path d="M96 214L736 854M736 214L96 854" stroke="#A9A491" stroke-width="2"/>
+<rect x="196" y="486" width="440" height="96" fill="#FAF9F5"/>
+<text id="portrait-placeholder" x="416" y="545" fill="#3D3929" font-family="Inter" font-size="38" text-anchor="middle">[Portrait Image]</text>
+</g>
+<g id="film-title">
+<rect x="832" y="244" width="88" height="8" fill="#D97757"/>
+<text id="film-title-line-1" x="832" y="395" fill="#3D3929" font-family="EB Garamond" font-size="92" text-anchor="start">[Film Title]</text>
+<text id="film-title-line-2" x="832" y="511" fill="#3D3929" font-family="EB Garamond" font-size="92" text-anchor="start">[Optional Second Line]</text>
+<text id="series-purpose" x="832" y="669" fill="#3D3929" font-family="Inter" font-size="36" text-anchor="start">[Series Purpose — Short Phrase]</text>
+</g>
+<g id="presenter-credit">
+<text id="presenter-name" x="96" y="918" fill="#3D3929" font-family="EB Garamond" font-size="42" text-anchor="start">[Presenter Name]</text>
+<text id="narrator-credit" x="96" y="965" fill="#3D3929" font-family="Inter" font-size="28" text-anchor="start">[Narrator Credit — Optional]</text>
+</g>
+<g id="entry-and-channel">
+<text id="newcomer-pointer" x="832" y="918" fill="#3D3929" font-family="Inter" font-size="28" text-anchor="start"></text>
+<text id="channel-handle" x="1824" y="1005" fill="#3D3929" font-family="EB Garamond" font-size="28" text-anchor="end">[Channel Handle]</text>
+</g>
+</svg>

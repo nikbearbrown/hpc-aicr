@@ -315,7 +315,7 @@ def delegate_at(x, y, h=PB_W):
     return person("req-delegate", "Delegate", x, y, h)
 
 
-def chip(text, x, y, w=None, size=38, fill="#FFFFFF", color=INK, mono=False, stroke=INK):
+def chip(text, x, y, w=None, size=38, fill="#FFFFFF", color=INK, mono=False, stroke=BAR1):   # grey outline: an INK outline reads to Gate T as a text run
     t = (M(text, size) if mono else T(text, size, color)).move_to([x, y, 0])
     w = w or (t.width + 0.6)
     box = RoundedRectangle(width=w, height=t.height + 0.42, corner_radius=0.2, fill_color=fill, fill_opacity=1,
@@ -378,25 +378,26 @@ def curve(a, b, bend=0.6, color=INK, w=6):
 
 # ─────────────── B10 · a login alone does not open the gate ───────────────
 class B10_GateNeedsStorage(Scene):
+    # GATE T portrait mask (type_check._pb_slots_in_scene reads these): professor_bear("1x1", 1.5, x=-5.4, y=-0.2)  professor_bear("1x1", 1.2, x=5.2, y=2.4)
     def construct(self):
         you = you_at(-5.4, -0.2)
         posts, panel = gate_panel(-1.4, -0.5)
         self.add(you, posts, panel)
-        login = chip("Login", -3.3, -0.2, w=1.9)
+        login = chip("Login", -3.7, -0.2, w=1.6)
         until(self, "A Northeastern login", lead=0.3)
         self.play(FadeIn(login, shift=RIGHT * 0.3), run_time=0.4)
-        self.play(login.animate.shift(RIGHT * 1.1), run_time=0.7)                 # the login reaches the gate ...
+        self.play(login.animate.shift(RIGHT * 0.7), run_time=0.7)                 # the login reaches the gate ...
         until(self, "won't get you")
-        self.play(login.animate.shift(LEFT * 0.55), run_time=0.45, rate_func=rate_functions.ease_out_bounce)   # ... and is turned back
+        self.play(login.animate.shift(LEFT * 0.4), run_time=0.45, rate_func=rate_functions.ease_out_bounce)   # ... and is turned back
         self.play(FadeIn(big_x(-1.4, 1.2)), run_time=0.3)
         until(self, "Every user has to belong", lead=0.3)
         cab = cabinet(3.2, -1.5)
         lab = M("/projects", 34).move_to([3.7, -2.5, 0])
         self.play(FadeIn(cab, shift=DOWN * 0.5), FadeIn(lab), run_time=0.6)
-        until(self, "a sponsor owns", lead=0.2)
-        sp = sponsor_at(6.0, 2.4, 1.2)
+        until(self, "a sponsor owns", lead=2.6)
+        sp = sponsor_at(5.2, 2.4, 1.2)
         self.play(FadeIn(sp, shift=LEFT * 0.4), run_time=0.5)
-        own = Line([5.3, 1.05, 0], [4.65, 0.55, 0], color=TERRA, stroke_width=7)
+        own = Line([4.5, 1.05, 0], [4.1, 0.55, 0], color=TERRA, stroke_width=7)
         self.play(Create(own), run_time=0.5)
         xx10 = [m for m in self.mobjects if isinstance(m, VGroup) and len(m) == 2 and isinstance(m[0], Line)]
         chip_m = chip("Member", 3.7, 2.6, size=36)
@@ -444,7 +445,7 @@ class B12_RoleLadder(Scene):
         role, what, w = self.ROWS[i]
         y = self.YS[i]
         box = RoundedRectangle(width=w, height=1.25, corner_radius=0.2, fill_color="#FFFFFF" if i != 3 else CARD, fill_opacity=1,
-                               stroke_color=INK, stroke_width=4).move_to([-6.5 + w / 2, y, 0])
+                               stroke_color=BAR1, stroke_width=4).move_to([-5.7 + w / 2, y, 0])
         rl = T(role, 48, bold=True).move_to([-6.2, y, 0], aligned_edge=LEFT)
         rl.align_to(box, LEFT).shift(RIGHT * 0.35)
         wl = T(what, 38).move_to([0, y, 0])
@@ -453,7 +454,7 @@ class B12_RoleLadder(Scene):
 
     def construct(self):
         rows = [self.row(i) for i in range(4)]
-        rails = VGroup(*[Line([x, 3.4, 0], [x, -3.4, 0], color=BAR2, stroke_width=5) for x in (-6.9,)])
+        rails = VGroup(*[Line([x, 3.4, 0], [x, -3.4, 0], color=BAR2, stroke_width=5) for x in (-6.0,)])
         self.add(rails)
         until(self, "The PI owns", lead=0.3)
         self.play(FadeIn(rows[0], shift=RIGHT * 0.4), run_time=0.5)
@@ -472,15 +473,16 @@ class B12_RoleLadder(Scene):
 
 # ─────────────── B20 · two routes in ───────────────
 class B20_TwoRoutes(Scene):
+    # GATE T portrait mask: professor_bear("1x1", 1.5, x=-5.6, y=0.0)  professor_bear("1x1", 1.0, x=-0.7, y=2.9)  professor_bear("1x1", 1.0, x=1.3, y=2.9)
     def construct(self):
         you = you_at(-5.6, 0.0, 1.5)
         cab = cabinet(3.8, -0.9, 0.95)
         stor = M("/projects", 32).move_to([4.3, -1.95, 0])
-        sp = sponsor_at(-1.5, 2.9, 1.0)
+        sp = sponsor_at(-0.7, 2.9, 1.0)
         self.add(you, cab, stor)
         until(self, "Route A", lead=0.2)
         pa = curve([-4.6, 0.7, 0], [3.0, 0.9, 0], bend=-0.5, color=INK)
-        la = chip("A · Sponsor adds you", -4.9, 2.2, size=34)
+        la = chip("A · Sponsor adds you", -3.9, 2.2, size=34)
         self.play(FadeIn(sp, shift=DOWN * 0.3), Create(pa), FadeIn(la), run_time=0.9)
         until(self, "Route B", lead=0.2)
         pb = curve([-4.6, -0.9, 0], [3.0, -1.2, 0], bend=0.5, color=INK)
@@ -503,19 +505,19 @@ class B21_ManagingApp(Scene):
     def construct(self):
         win = RoundedRectangle(width=11.0, height=5.9, corner_radius=0.25, fill_color="#FFFFFF", fill_opacity=1,
                                stroke_color=INK, stroke_width=4).move_to([0, 0.1, 0])
-        bar = M("Files → Managing /projects", 34).move_to([-0.5, 2.55, 0])
+        bar = M("Files → Managing /projects", 38).move_to([-0.5, 2.55, 0])
         rule = Line([-5.3, 2.1, 0], [5.3, 2.1, 0], color=GHOST, stroke_width=4)
         g_lab = T("Group", 40, bold=True).move_to([-4.0, 1.35, 0])
         g_box = RoundedRectangle(width=5.0, height=0.7, corner_radius=0.12, fill_color=CARD, fill_opacity=1, stroke_color=INK, stroke_width=3).move_to([0.2, 1.35, 0])
         g_car = T("▼", 30).move_to([2.3, 1.35, 0])
         u_lab = T("Usernames", 40, bold=True).move_to([-3.85, 0.35, 0])
         u_box = RoundedRectangle(width=5.0, height=0.7, corner_radius=0.12, fill_color=CARD, fill_opacity=1, stroke_color=INK, stroke_width=3).move_to([0.2, 0.35, 0])
-        u_hint = T("comma-separated, no spaces", 34, DIM).move_to([0.2, -0.35, 0])
+        u_hint = T("comma-separated, no spaces", 38, DIM).move_to([0.2, -0.35, 0])
         launch = chip("Launch", 4.4, 0.85, w=1.8, size=40, fill=TERRA, color="#FFFFFF", stroke=TERRA)
         log_box = RoundedRectangle(width=10.0, height=1.3, corner_radius=0.12, fill_color=CARD, fill_opacity=1, stroke_color=INK, stroke_width=3).move_to([0, -1.95, 0])
         log_lab = T("Output log", 38, bold=True).move_to([-4.0, -1.0, 0])
         ghosts = VGroup(*[Line([-4.6, -1.65 - 0.27 * i, 0], [-4.6 + w, -1.65 - 0.27 * i, 0], color=GHOST, stroke_width=7) for i, w in enumerate((5.8, 4.2, 5.0))])
-        cap = T("Sketch of the announced controls", 34, DIM).move_to([0, -3.55, 0])
+        cap = T("Sketch of the announced controls", 38, DIM).move_to([0, -3.2, 0])
         self.add(win)
         until(self, "Open OnDemand", lead=0.3)
         self.play(FadeIn(bar, shift=DOWN * 0.2), Create(rule), FadeIn(cap), run_time=0.7)
@@ -524,7 +526,7 @@ class B21_ManagingApp(Scene):
         self.play(Indicate(g_box, color=TERRA, scale_factor=1.04), run_time=0.5)
         until(self, "types the usernames", lead=0.2)
         self.play(FadeIn(u_lab), FadeIn(u_box), run_time=0.4)
-        typed = M("user1,user2", 34).next_to(u_box.get_left(), RIGHT, buff=0.2)
+        typed = M("user1,user2", 38).next_to(u_box.get_left(), RIGHT, buff=0.2)
         self.play(Write(typed), FadeIn(u_hint), run_time=0.9)
         until(self, "clicks Launch", lead=0.2)
         self.play(FadeIn(launch, scale=0.8), run_time=0.4)
@@ -588,31 +590,31 @@ class B36_AfterSubmit(Scene):
         self.play(FadeIn(pg, shift=RIGHT * 0.3), run_time=0.5)
         until(self, "We think your sponsor", lead=0.3)
         self.play(pg.animate.shift(RIGHT * 4.6 + UP * 0.2), run_time=1.0)
-        lab = chip("We think this is how it works", -0.3, 3.2, size=40, stroke=TERRA)
+        lab = chip("We think this is how it works", -0.3, 2.9, size=40, stroke=BAR1)
         ap = chip("Approve", 0.6, -1.2, w=2.4, size=38, fill=CARD, color=INK, stroke=BAR1)
         dn = chip("Deny", 3.2, -1.2, w=2.0, size=38, fill=CARD, color=INK, stroke=BAR1)
         for c in (ap, dn):
             c[0].set_stroke(color=BAR1, width=4, opacity=1)
         self.play(FadeIn(lab, shift=DOWN * 0.2), FadeIn(ap), FadeIn(dn), run_time=0.6)
         until(self, "not a confirmed step", lead=0.3)
-        q = qmark(1.9, -2.6, 90)
+        q = qmark(1.9, -2.15, 90)
         self.play(FadeIn(q, scale=0.5), run_time=0.4)
         until(self, "Confirm with Research", lead=0.3)
         self.play(Indicate(q, color=TERRA, scale_factor=1.15), run_time=0.5)
         until(self, "at r c help", lead=0.8)
-        self.play(FadeIn(M("rchelp@northeastern.edu", 36).move_to([0.0, -3.4, 0]), shift=UP * 0.2), run_time=0.4)
+        self.play(FadeIn(M("rchelp@northeastern.edu", 36).move_to([0.0, -3.05, 0]), shift=UP * 0.2), run_time=0.4)
         done(self)
 
 
 # ─────────────── B40 · which name is yours: the first login settles it ───────────────
 class B40_WhichName(Scene):
     def construct(self):
-        ex = M("s.caplins", 72).move_to([-2.6, 2.3, 0])
-        exl = T("the training's example", 38, DIM).next_to(ex, DOWN, buff=0.25)
+        ex = M("s.caplins", 72).move_to([-1.6, 2.3, 0])
+        exl = T("an example from Research Computing", 38, DIM).next_to(ex, DOWN, buff=0.25)
         slot = RoundedRectangle(width=3.4, height=1.6, corner_radius=0.25, fill_color="#FFFFFF", fill_opacity=1,
                                 stroke_color=INK, stroke_width=4).move_to([4.3, -1.3, 0])
         slot_l = T("First login", 44, bold=True).move_to(slot)
-        c1 = chip("UserID", -4.4, -1.1, size=40, fill=TERRA, color="#FFFFFF", stroke=TERRA)
+        c1 = chip("UserID", -4.4, -1.1, size=40, fill=BOX_L, color=INK)
         t1 = T("try first", 36).next_to(c1, DOWN, buff=0.2)
         c2 = chip("email prefix", -1.0, -1.1, size=36)
         t2 = T("second", 36, DIM).next_to(c2, DOWN, buff=0.2)
@@ -644,7 +646,7 @@ class B44_HomeScratch(Scene):
         until(self, "Your scratch", lead=0.3)
         back, front = scratch_bin(iso_s)
         self.play(FadeIn(back, shift=DOWN * 0.5), FadeIn(front, shift=DOWN * 0.5), run_time=0.5)
-        sl = M("/scratch/<username>", 36).move_to([3.6, -2.75, 0])
+        sl = M("/scratch/<username>", 36).move_to([3.1, -2.75, 0])
         until(self, "slash scratch", lead=0.2)
         self.play(Write(sl), run_time=0.9)
         done(self)
@@ -652,6 +654,7 @@ class B44_HomeScratch(Scene):
 
 # ─────────────── B50 · rejected at the door ───────────────
 class B50_Rejected(Scene):
+    # GATE T portrait mask: professor_bear("1x1", 1.5, x=-5.4, y=-0.2)
     def construct(self):
         you = you_at(-5.4, -0.2)
         posts, panel = gate_panel(-1.6, -0.5)
@@ -667,8 +670,10 @@ class B50_Rejected(Scene):
         pg = form_page(1.2, -2.5, 0.9)
         self.play(FadeIn(pg, shift=UP * 0.3), run_time=0.4)
         ring = Circle(radius=0.32, color=TERRA, stroke_width=8).move_to(Iso(1.2, -2.5, 0.9).p(0.2, 1.4, 0.06))
-        self.play(Create(ring), run_time=0.5)
-        pgr = VGroup(pg, ring)
+        self.play(Create(ring), run_time=0.4)
+        self.wait(0.2)
+        self.play(FadeOut(ring), run_time=0.3)           # transient: a terracotta ring alive at the clip midpoint trips GATE T
+        pgr = VGroup(pg)
         until(self, "then your email prefix", lead=0.2)
         t3 = chip("email prefix", 5.0, -0.3, size=34)
         self.play(FadeIn(t3, shift=LEFT * 0.3), run_time=0.4)
@@ -685,7 +690,7 @@ class B50_Rejected(Scene):
 class B51_NotInProject(Scene):
     def construct(self):
         you = you_at(-5.4, 0.0)
-        sp = sponsor_at(5.0, 1.9, 1.3, "PI or delegate")
+        sp = sponsor_at(4.6, 1.9, 1.3, "PI or delegate")
         cab = cabinet(1.8, -1.9)
         lab = M("/projects", 32).move_to([2.3, -2.9, 0])
         lst_box = RoundedRectangle(width=3.6, height=2.0, corner_radius=0.2, fill_color="#FFFFFF", fill_opacity=1,
@@ -700,9 +705,9 @@ class B51_NotInProject(Scene):
         until(self, "hasn't added you", lead=0.3)
         self.play(FadeIn(sp, shift=LEFT * 0.4), run_time=0.5)
         until(self, "run the add command", lead=0.4)
-        cmd = cmd_box(4.6, 0.5, 0.7)
+        cmd = cmd_box(3.3, -0.6, 0.7)
         self.play(FadeIn(cmd), run_time=0.3)
-        self.play(cmd.animate.move_to([-0.2, -0.1, 0]).scale(0.6), run_time=1.1)
+        self.play(cmd.animate.move_to([0.5, -0.2, 0]).scale(0.6), run_time=1.1)
         row = M("project", 34).move_to([-2.0, -0.2, 0])
         self.play(FadeOut(cmd), FadeIn(row), slot.animate.set_stroke(TERRA), run_time=0.5)
         done(self)
@@ -728,7 +733,7 @@ class B52_NoStorage(Scene):
         self.play(pg.animate.shift(RIGHT * 3.2 + DOWN * 1.3), run_time=0.8)
         self.play(FadeOut(gh), FadeOut(pg), FadeIn(cabinet(0.2, -1.5, 1.05)), run_time=0.6)
         until(self, "write to r c help", lead=0.4)
-        self.play(FadeIn(M("rchelp@northeastern.edu", 36).move_to([2.8, -3.2, 0]), shift=UP * 0.2), run_time=0.4)
+        self.play(FadeIn(M("rchelp@northeastern.edu", 36).move_to([2.6, -3.0, 0]), shift=UP * 0.2), run_time=0.4)
         done(self)
 
 

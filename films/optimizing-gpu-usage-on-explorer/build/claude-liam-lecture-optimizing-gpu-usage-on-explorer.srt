@@ -1,0 +1,364 @@
+1
+00:00:00,000 --> 00:00:12,750
+Research Computing on Explorer and AICR.
+Optimizing GPU Usage on Explorer. How to
+confirm that a job really used the GPU,
+
+2
+00:00:12,800 --> 00:00:32,660
+Hallo. This is Liam, in for Bear. First, a
+correction. A GPU job that finishes
+without an error has not necessarily used
+
+3
+00:00:32,710 --> 00:00:56,640
+Six terms. GPU utilization: the share of
+the last second in which the card ran any
+work at all. V RAM: the card's own memory,
+
+4
+00:00:56,690 --> 00:01:08,840
+Three things go wrong with no error
+message. You ask for one kind of card and
+get another. The software cannot see a
+
+5
+00:01:08,890 --> 00:01:26,310
+Explorer names its GPU partitions by
+purpose. G P U short and G P U interactive
+give two hours, for tests, profiling and
+
+6
+00:01:26,360 --> 00:01:39,920
+Here is the cluster itself, read from the
+login node without submitting anything.
+The three G P U partitions list the same
+
+7
+00:01:39,970 --> 00:01:55,580
+Never guess the card name. Ask the
+cluster. Partition G P U holds five types:
+V one hundred S X M two, mostly four to a
+
+8
+00:01:55,630 --> 00:02:07,630
+Now the request, from a template in
+Research Computing's training material. A
+G P U partition. A gres line that names
+
+9
+00:02:07,680 --> 00:02:21,800
+Two lines deserve a pause. Mem is CPU
+memory. The card's own memory, V RAM,
+comes with the card, so raising mem never
+
+10
+00:02:21,850 --> 00:02:34,580
+The environment is plain. A virtual
+environment from system Python, and pip
+wheels. PyTorch's wheel carries its own
+
+11
+00:02:34,630 --> 00:02:50,350
+Two facts, recorded on the login node. G P
+U logs and S eff are installed, but NVIDIA
+S M I is missing, so GPU checks belong
+
+12
+00:02:50,400 --> 00:03:05,200
+Never trust the allocation. This verify
+script checks five things: CUDA available,
+the cards and their memory, the visible-
+
+13
+00:03:05,250 --> 00:03:18,900
+Slurm sets CUDA visible devices to your
+cards' numbers: zero is one card, zero
+comma one is two. Leave it alone unless
+
+14
+00:03:18,950 --> 00:03:33,430
+Now watch it. NVIDIA S M I has two numbers
+that matter. GPU utilization: the share of
+the last second in which a kernel was
+
+15
+00:03:33,480 --> 00:03:47,280
+To see it live, a person opens a second
+terminal on the compute node and runs
+watch. N V I top is a richer view, per
+
+16
+00:03:47,330 --> 00:04:02,900
+Read them as two axes. High memory with
+low utilization: loaded, but nothing is
+feeding it. Low and low: the card sits
+
+17
+00:04:02,950 --> 00:04:18,220
+Use one set of bands. Under fifty percent
+is a problem. Under sixty, suspect the
+data pipeline. Sixty to seventy is amber,
+
+18
+00:04:18,270 --> 00:04:33,600
+Explorer also watches for idle cards. A
+bot called Idle Bot emails you after about
+fif teen minutes of under-use, and the job
+
+19
+00:04:33,650 --> 00:04:48,770
+A profiler tells you where the time went.
+Four layers, lightest first. Live tools:
+NVIDIA S M I and N V I top. The framework
+
+20
+00:04:48,820 --> 00:05:00,930
+Profile in a short interactive session,
+not through the batch queue. Get a session
+on G P U short, activate your environment,
+
+21
+00:05:00,980 --> 00:05:16,160
+The PyTorch profiler needs no install.
+Warm up for a few untimed steps, or start-
+up cost swamps the table. Then profile a
+
+22
+00:05:16,210 --> 00:05:33,910
+Read the table in order. Gaps between
+kernels: the GPU is idle. Large copy rows:
+data shuttling between CPU and GPU. CPU
+
+23
+00:05:33,960 --> 00:05:47,260
+When order matters, trace a timeline with
+Nsight Systems. Profile one or two epochs,
+never a hundred, write the report to
+
+24
+00:05:47,310 --> 00:06:01,170
+On the timeline, an empty GPU row with
+short bursts means data arrives late. File
+reads filling the gaps mean you are
+
+25
+00:06:01,220 --> 00:06:15,120
+The most common bottleneck is not the
+model. A fast cook waits for slow
+deliveries. Say the card computes a batch
+
+26
+00:06:15,170 --> 00:06:22,290
+Two stopwatch tests need no profiler.
+First, time fifty batches out of your
+loader, with no GPU work at all.
+
+27
+00:06:22,340 --> 00:06:33,980
+Second, time fifty forward and backward
+steps on synthetic data made directly on
+the GPU, and synchronize before you stop
+
+28
+00:06:34,030 --> 00:06:49,210
+The fix usually lives in four DataLoader
+settings. Workers: CPU processes that load
+in parallel. Pin memory: page-locked RAM
+
+29
+00:06:49,260 --> 00:07:05,250
+Starting values. Workers: CPUs per task,
+minus one, never zero. Pin memory: always
+on in a GPU job. Persistent workers: on
+
+30
+00:07:05,300 --> 00:07:17,960
+The benchmark script tries four
+configurations: zero workers, two, four,
+and four with pinned memory, persistent
+
+31
+00:07:18,010 --> 00:07:30,060
+And never feed the card one item at a
+time. Every call has a fixed cost: launch,
+transfer set-up, synchronization. Ten
+
+32
+00:07:30,110 --> 00:07:44,990
+Where the data lives matters. On Explorer,
+home, scratch and projects are all network
+filesystems. Keep data in scratch or a
+
+33
+00:07:45,040 --> 00:08:03,060
+Research Computing's material illustrates
+the direction. With no workers: about
+eighteen percent utilization, four hundred
+
+34
+00:08:03,110 --> 00:08:19,040
+Batch size is the simplest lever. Doubling
+it roughly doubles throughput, until the
+card is saturated, if the memory is there.
+
+35
+00:08:19,090 --> 00:08:30,030
+To find the ceiling, try sizes and narrow
+the search. Make a batch, run forward and
+backward, catch the out-of-memory error,
+
+36
+00:08:30,080 --> 00:08:42,620
+Mixed precision is next. Wrap the forward
+pass and the loss in autocast, and leave
+the backward call outside it. Do not cast
+
+37
+00:08:42,670 --> 00:08:58,260
+A sixteen-bit format splits its bits
+between range and precision. B F sixteen
+keeps the full range, so no loss scaler. F
+
+38
+00:08:58,310 --> 00:09:12,870
+Choose by compute capability, not by the
+library's own support call. One demo
+script picks with that call. A second
+
+39
+00:09:12,920 --> 00:09:28,830
+Be honest about gains. Total memory does
+not drop by half, because optimizer state
+and master weights stay put. The speed-up
+
+40
+00:09:28,880 --> 00:09:44,000
+Gradient checkpointing is the last resort
+for memory: activations are recomputed in
+the backward pass instead of stored. The
+
+41
+00:09:44,050 --> 00:09:55,220
+And watch the memory. Log peak V RAM per
+epoch with max memory allocated, and
+compare it with the card's total. After an
+
+42
+00:09:55,270 --> 00:10:10,600
+More GPUs multiply the efficiency you
+have; they do not create it. A job at
+twenty percent on one card becomes four
+
+43
+00:10:10,650 --> 00:10:24,700
+In data-parallel training, each card holds
+a full model copy and takes a different
+batch. They then average their gradients,
+
+44
+00:10:24,750 --> 00:10:36,350
+Check your code is written for it. A plain
+script given four cards uses one and
+wastes three. Is distributed available?
+
+45
+00:10:36,400 --> 00:10:51,070
+The rules for the code: launch with torch
+run, never plain python. Use
+DistributedDataParallel, not DataParallel.
+
+46
+00:10:51,120 --> 00:11:02,650
+Three numbers must agree: the count in
+gres, tasks per node, and torch run's
+processes per node. Keep one node. This
+
+47
+00:11:02,700 --> 00:11:15,790
+One trap in both of Research Computing's
+templates. A comment after a trailing
+backslash ends the line there, so the next
+
+48
+00:11:15,840 --> 00:11:30,740
+Measure the scaling. Efficiency is
+throughput, divided by the number of cards
+times one card's throughput. Above eighty
+
+49
+00:11:30,790 --> 00:11:44,800
+Every bottleneck comes in roughly this
+order of frequency, so here is the loop.
+Baseline: throughput, utilization, wall
+
+50
+00:11:44,850 --> 00:12:02,120
+The decision guide. Utilization under
+fifty: the data pipeline first, and is
+workers still zero? Fifty to eighty: look
+
+51
+00:12:02,170 --> 00:12:14,510
+After a batch job, read its report. G P U
+logs shows utilization over time for a
+finished job. It needs a compute node, so
+
+52
+00:12:14,560 --> 00:12:31,280
+Read three things. Average utilization:
+aim above seventy. The shape of the line:
+flat and high is healthy; bouncing low is
+
+53
+00:12:31,330 --> 00:12:48,090
+Before you submit. The check passed and
+you know the card and its memory. A short
+run showed over seventy percent. Workers
+
+54
+00:12:48,140 --> 00:13:04,860
+None of this is only for PyTorch. PyTorch
+and TensorFlow: every act applies.
+Packaged tools like Hugging Face: verify,
+
+55
+00:13:04,910 --> 00:13:13,120
+In Hugging Face, the three fixes are
+arguments: B F sixteen, gradient
+checkpointing, and data loader workers,
+
+56
+00:13:13,170 --> 00:13:32,450
+Explorer and AICR differ, so do not carry
+lines between them. AICR is Northeastern's
+other GPU cluster. Here you name the card
+
+57
+00:13:32,500 --> 00:13:48,750
+Here is what we checked and what we only
+read. We ran nothing on a GPU node. Read-
+only on the login node we checked the
+
+58
+00:13:48,800 --> 00:13:57,110
+For help, write to r c help at
+northeastern dot e d u, come to office
+hours, or book a consultation with the
+
+59
+00:13:57,160 --> 00:14:24,580
+Let's recap with Claude. Verify the card
+in every job: the partition, a named type,
+and a tensor round trip. Read utilization
+
+60
+00:14:24,630 --> 00:14:56,990
+Your turn. Paste this into Claude: Here is
+my PyTorch training loop and my Slurm
+script for Explorer: paste both here. I
+
+61
+00:14:57,040 --> 00:15:02,430
+Optimizing GPU Usage on Explorer. At Nik
+Bear Brown.

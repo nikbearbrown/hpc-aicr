@@ -1,0 +1,172 @@
+1
+00:00:00,000 --> 00:00:11,020
+Research Computing on Explorer and AICR.
+Requesting Access to Explorer. Why a login
+alone isn't enough, the two ways to get
+
+2
+00:00:11,070 --> 00:00:27,030
+Bonjour. This is Liam, in for Bear. First,
+a correction. Getting on Explorer isn't
+just a form and your login. Either way,
+
+3
+00:00:27,080 --> 00:00:46,210
+Six terms. A PI: the principal
+investigator, the faculty member who leads
+a project. A sponsor: the PI or staff
+
+4
+00:00:46,260 --> 00:00:55,750
+Here's the rule that decides everything. A
+Northeastern login alone won't get you
+onto Explorer. Every user has to belong to
+
+5
+00:00:55,800 --> 00:01:07,630
+The sponsor is a PI or a staff member, and
+the space is a folder under slash
+projects. Research groups get it free, up
+
+6
+00:01:07,680 --> 00:01:18,230
+Four roles. The PI owns the project, and
+can add members, guests and delegates. A
+delegate can add members. A member reads,
+
+7
+00:01:18,280 --> 00:01:29,880
+Two routes in. Route A: your sponsor or
+their delegate adds you. Route B: you
+submit the access form. Research Computing
+
+8
+00:01:29,930 --> 00:01:44,370
+Route A has two ways. The simpler one
+needs no terminal. In Open OnDemand, under
+Files, is an app called Managing slash
+
+9
+00:01:44,420 --> 00:01:58,450
+The other way is a command. First, s run
+gets the sponsor or a delegate onto a node
+in the short partition. Then the project
+
+10
+00:01:58,500 --> 00:02:07,540
+Then wait. Changes can take up to two
+hours to reach the whole cluster. And once
+you're added, start a fresh login session,
+
+11
+00:02:07,590 --> 00:02:19,760
+One caveat I can't settle. Whether either
+way works for someone who has never had an
+Explorer account is not confirmed. If
+
+12
+00:02:19,810 --> 00:02:30,490
+Route B is a form, reached at bit dot l y,
+slash N U R C, dash Access Request. It
+starts at the university sign-in. You sign
+
+13
+00:02:30,540 --> 00:02:42,760
+Once you're in, the first screen is headed
+Requester Information, and it's pre-filled
+from your sign-in. Your name, last then
+
+14
+00:02:42,810 --> 00:02:52,210
+Then one required choice. Please choose
+one. First option: I do not have access to
+the High Performance Computer, H P C,
+
+15
+00:02:52,260 --> 00:03:04,010
+Second option: I already have access to
+the High Performance Computer, H P C,
+cluster. I need to update my sponsor
+
+16
+00:03:04,060 --> 00:03:17,540
+Below that, two paragraphs. One: every
+user must belong to a sponsor-owned
+storage space, and a sponsor with none can
+
+17
+00:03:17,590 --> 00:03:24,130
+The form goes on below this. I haven't
+seen the rest, so I won't describe it.
+Read every field before you submit.
+
+18
+00:03:24,180 --> 00:03:36,380
+What happens after you submit? We think
+your sponsor is asked to approve it.
+That's our guess, not a confirmed step,
+
+19
+00:03:36,430 --> 00:03:49,990
+Once you're approved, which name do you
+log in with? Research Computing's own
+example is s dot caplins. In the one real
+
+20
+00:03:50,040 --> 00:04:04,860
+Door one is the terminal. S S H, your
+username, at login dot explorer dot
+northeastern dot e d u. The first time, it
+
+21
+00:04:04,910 --> 00:04:13,670
+Door two is the browser: O O D dot
+explorer dot northeastern dot e d u. Your
+username and password, plus Duo. You land
+
+22
+00:04:13,720 --> 00:04:20,620
+To check you're in, type who am I, and it
+prints your login name. Then type groups.
+It should list your sponsor's project
+
+23
+00:04:20,670 --> 00:04:26,270
+Your home is slash home, slash your
+username. Your scratch is slash scratch,
+slash your username.
+
+24
+00:04:26,320 --> 00:04:38,980
+Rejected at the door? Either you have no
+Explorer account yet, or the username is
+wrong. Try the user I D from the form,
+
+25
+00:04:39,030 --> 00:04:46,850
+You can log in, but groups doesn't list
+the project? Your sponsor hasn't added you
+yet. Ask the PI or a delegate to run the
+
+26
+00:04:46,900 --> 00:04:57,520
+You're the sponsor and you have no storage
+space? There's nothing to add people to.
+Submit the storage space request first.
+
+27
+00:04:57,570 --> 00:05:14,360
+Let's recap with Claude. Explorer needs a
+place in a sponsor's storage space, not
+just a login. Your sponsor adds you with
+
+28
+00:05:14,410 --> 00:05:42,410
+Your turn. Paste this into Claude: I'm a
+new user of Northeastern's Explorer
+cluster. My Northeastern username is [my
+
+29
+00:05:42,460 --> 00:05:47,140
+Requesting Access to Explorer. At Nik Bear
+Brown.

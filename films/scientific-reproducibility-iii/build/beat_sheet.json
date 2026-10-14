@@ -1,0 +1,2597 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-scientific-reproducibility-iii-containers",
+    "title": "Scientific Reproducibility III: Containers",
+    "topic": "RESEARCH COMPUTING · CONTAINERS",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "German (Hallo)",
+    "audience": "A researcher who wants to run, build and record software containers with Apptainer on a Northeastern cluster; assumes no other film or book",
+    "source_doc": "hpc-aicr/guides/scientific-reproducibility-iii.md and the lesson it rewrites, hpc-aicr/Scientific-Reproducibility-III-2026/scientific-reproducibility3.md (read in full; commands shown verbatim), plus HPC.md Section 8 and the recorded read-only checks",
+    "playlist": "Northeastern HPC and AICR",
+    "series_title": "Research Computing on Explorer and AICR",
+    "lecture_opening_description": "Seal a program into one file and run it on a cluster",
+    "lecture_opening_title_lines": [
+      "Scientific",
+      "Reproducibility III:",
+      "Containers"
+    ],
+    "tags": [
+      "containers",
+      "Apptainer",
+      "Singularity",
+      "Docker",
+      "reproducibility",
+      "HPC",
+      "Slurm",
+      "GPU",
+      "Explorer",
+      "AICR",
+      "Northeastern University",
+      "Research Computing",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-14T02:02:16",
+      "cut": "master",
+      "filled": 44,
+      "of": 44,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    },
+    "chapter_number": 23
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Scientific Reproducibility Three: Containers. How to put a program and everything it needs into one file, run it on a cluster with Apptainer, and record it so someone else can repeat your results.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 13.67,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 13.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Hallo. This is Liam, in for Bear. First, a correction. To repeat a result, sharing your code is not enough. The libraries and the system under it change. A container seals the whole software stack into one file.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'To repeat my result, I just share my code'"
+          },
+          {
+            "at": 0.35,
+            "event": "backspaces 'share my code' -> 'seal the whole stack'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "To repeat my result,\nI just share my code",
+            "triggerWords": "share my code",
+            "replacementWords": "seal the whole stack",
+            "fontSize": 66,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-scientific-reproducibility-iii-containers",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the newcomer's framing (share my code) and corrects it to the real one (seal the whole stack).",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 12.53,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 12.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. Container: a sealed bundle of a program and what it needs. Image: the file a container is made from. Apptainer: runs containers on shared clusters. S I F file: Apptainer's single-file image. Bind: shows a folder from the machine inside the container. And tag: the version label on an image.",
+      "estimated_duration_s": 20.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.06,
+            "event": "'Container' lands"
+          },
+          {
+            "at": 0.22,
+            "event": "'Image'"
+          },
+          {
+            "at": 0.38,
+            "event": "'Apptainer'"
+          },
+          {
+            "at": 0.55,
+            "event": "'.sif file'"
+          },
+          {
+            "at": 0.72,
+            "event": "'Bind'"
+          },
+          {
+            "at": 0.88,
+            "event": "'Tag'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "Container",
+                "meaning": "a sealed bundle of a program and what it needs"
+              },
+              {
+                "term": "Image",
+                "meaning": "the file a container is made from"
+              },
+              {
+                "term": "Apptainer",
+                "meaning": "runs containers on shared clusters"
+              },
+              {
+                "term": ".sif file",
+                "meaning": "Apptainer's single-file image"
+              },
+              {
+                "term": "Bind",
+                "meaning": "shows a host folder inside"
+              },
+              {
+                "term": "Tag",
+                "meaning": "the version label on an image"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 17.24
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 17.24,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 17.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · What A Container Is",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A container is one sealed file. Inside it sit a program, its libraries, its settings, and a small runtime. Move that file to a laptop, to a cluster, or to the cloud, and what is inside does not change.",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A kraft box is taped shut on the left; four small labelled blocks drop into it first ('program', 'libraries', 'settings', 'runtime'), then the terracotta tape seals it. The sealed box slides in turn onto a laptop slab, a cluster rack and a cloud, and is the same box with the same four labels visible on a tag each time.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the four parts drop into the box and it is taped"
+          },
+          {
+            "at": 0.6,
+            "event": "it moves to a laptop, a cluster and the cloud unchanged"
+          }
+        ],
+        "manim": {
+          "class": "B10_SealedBox"
+        },
+        "motion_claim": "A kraft box is taped shut on the left; four small labelled blocks drop into it first ('program', 'libraries', 'settings', 'runtime'), then the terracotta tape seals it. The sealed box slides in turn onto a laptop slab, a cluster rack and a cloud, and is the same box with the same four labels visible on a tag each time."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.2,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 12.208333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "I · What A Container Is",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "You will meet three names. Docker is the most common tool, on laptops, cloud servers, and most published images. Singularity is the older name of the cluster tool. Apptainer is its current name, and it is what Northeastern's clusters, Explorer and AICR, use.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three chips left to right: the Docker logo with 'laptops, cloud'; a plain mono chip 'singularity' with 'older name'; the Apptainer logo with 'Explorer, AICR'. An arrow labelled 'renamed' runs from singularity to Apptainer.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "Docker, on laptops and cloud servers"
+          },
+          {
+            "at": 0.5,
+            "event": "singularity, the older name"
+          },
+          {
+            "at": 0.8,
+            "event": "Apptainer, current name, Explorer and AICR"
+          }
+        ],
+        "manim": {
+          "class": "B11_ThreeNames"
+        },
+        "motion_claim": "Three chips left to right: the Docker logo with 'laptops, cloud'; a plain mono chip 'singularity' with 'older name'; the Apptainer logo with 'Explorer, AICR'. An arrow labelled 'renamed' runs from singularity to Apptainer."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.7,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 14.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "I · What A Container Is",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Why not use Docker on a cluster? Docker's normal setup needs administrator-level power, and on a machine shared by thousands of people that is a security problem. Apptainer runs the container as you, with your permissions and no more. It can still read Docker images.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A cluster rack in the middle with many small plain dots around it (the other users). Left: the Docker logo chip holds a large kraft key labelled 'admin' that reaches into the rack; a cross lands on it. Right: Professor Bear portrait beside the Apptainer logo chip; a small arrow 'as you' enters the rack with one small key; a thin arrow from a Docker logo image block 'image' into the Apptainer chip shows it reads Docker images; a terracotta check.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "Docker needs admin power: a security problem on a shared machine"
+          },
+          {
+            "at": 0.55,
+            "event": "Apptainer runs as you, no more"
+          },
+          {
+            "at": 0.88,
+            "event": "it can still read Docker images"
+          }
+        ],
+        "manim": {
+          "class": "B12_WhyApptainer"
+        },
+        "motion_claim": "A cluster rack in the middle with many small plain dots around it (the other users). Left: the Docker logo chip holds a large kraft key labelled 'admin' that reaches into the rack; a cross lands on it. Right: Professor Bear portrait beside the Apptainer logo chip; a small arrow 'as you' enters the rack with one small key; a thin arrow from a Docker logo image block 'image' into the Apptainer chip shows it reads Docker images; a terracotta check."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.95,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 14.958333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B12.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Why Use One",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "First benefit: reproducible. The whole software stack is captured, so your result ties to one named, versioned image. A collaborator running it six months from now gets the same software, even after the system underneath has been updated.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A result page on the left tied by a line to a sealed box tagged 'image 1.0'; a calendar strip scrolls forward with a label 'six months'; the cluster rack under the box swaps its top slab for a lighter one ('system updated') while the box and its tag stay exactly the same; a second Professor Bear portrait on the right opens the same box and a check lands.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the result ties to a named, versioned image"
+          },
+          {
+            "at": 0.55,
+            "event": "six months pass; the system updates; the box does not change"
+          },
+          {
+            "at": 0.88,
+            "event": "a collaborator gets the same software"
+          }
+        ],
+        "manim": {
+          "class": "B20_Reproducible"
+        },
+        "motion_claim": "A result page on the left tied by a line to a sealed box tagged 'image 1.0'; a calendar strip scrolls forward with a label 'six months'; the cluster rack under the box swaps its top slab for a lighter one ('system updated') while the box and its tag stay exactly the same; a second Professor Bear portrait on the right opens the same box and a check lands."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.89,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 13.916666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · Why Use One",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Portable: the same file runs on your laptop, on Explorer, on another cluster, or in the cloud. And no dependency fights. Two tools that need incompatible versions of one library each get their own image, so neither one breaks the other.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Top row: one sealed box with three arrows to a laptop, a rack and a cloud, a check on each. Bottom row: with no container, two tool blocks 'tool A' and 'tool B' reach for one shared library block 'library' labelled 'v1' and 'v2' and collide with a cross; then each tool block gets its own box with its own library ('v1' in one, 'v2' in the other), side by side, both checked.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the same box runs on laptop, cluster, cloud"
+          },
+          {
+            "at": 0.55,
+            "event": "two tools want incompatible versions of one library"
+          },
+          {
+            "at": 0.85,
+            "event": "each gets its own image: no clash"
+          }
+        ],
+        "manim": {
+          "class": "B21_PortableNoFights"
+        },
+        "motion_claim": "Top row: one sealed box with three arrows to a laptop, a rack and a cloud, a check on each. Bottom row: with no container, two tool blocks 'tool A' and 'tool B' reach for one shared library block 'library' labelled 'v1' and 'v2' and collide with a cross; then each tool block gets its own box with its own library ('v1' in one, 'v2' in the other), side by side, both checked."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.57,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 13.583333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B21.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "II · Why Use One",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Shareable: it is one file you can hand to a collaborator, archive with your data, or point a reviewer at. And ready-made: registries such as Docker Hub, Key dot I O, NVIDIA's N G C, and BioContainers host thousands of maintained images.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A sealed box in the middle with three short arrows to 'collaborator' (a Professor Bear portrait), 'archive with data' (a drawn folder) and 'reviewer' (a plain page); above, a shelf of four chips: the Docker logo ('Docker Hub'), a mono chip 'quay.io', the NVIDIA logo ('NGC'), a mono chip 'BioContainers', with small box shapes stacked on each.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "one file: collaborator, archive, reviewer"
+          },
+          {
+            "at": 0.6,
+            "event": "four registries each hold stacks of ready-made images"
+          }
+        ],
+        "manim": {
+          "class": "B22_ShareRegistries"
+        },
+        "motion_claim": "A sealed box in the middle with three short arrows to 'collaborator' (a Professor Bear portrait), 'archive with data' (a drawn folder) and 'reviewer' (a plain page); above, a shelf of four chips: the Docker logo ('Docker Hub'), a mono chip 'quay.io', the NVIDIA logo ('NGC'), a mono chip 'BioContainers', with small box shapes stacked on each."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.99,
+      "audio_file": "mp3/beat-B22.mp3",
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B22.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "II · Why Use One",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Containers cost something: images are large, and the first build takes effort. So try a module first, software the cluster already installed. Then conda, a package manager. Then a container, when the install is painful or you need a portable record.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A three-step staircase drawn left to right, rising: 'module' (a plain labelled block, the cluster rack beside it), 'conda' (the conda-forge logo chip), 'container' (a sealed box). A small figure token is NOT used; a terracotta ring marks the step you take only when the previous one fails; an arrow climbs the steps on the spoken words, and a weight label 'large images' sits on the top step.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "images are large; the first build takes effort"
+          },
+          {
+            "at": 0.4,
+            "event": "module first"
+          },
+          {
+            "at": 0.6,
+            "event": "then conda"
+          },
+          {
+            "at": 0.8,
+            "event": "then a container"
+          }
+        ],
+        "manim": {
+          "class": "B23_TheLadder"
+        },
+        "motion_claim": "A three-step staircase drawn left to right, rising: 'module' (a plain labelled block, the cluster rack beside it), 'conda' (the conda-forge logo chip), 'container' (a sealed box). A small figure token is NOT used; a terracotta ring marks the step you take only when the previous one fails; an arrow climbs the steps on the spoken words, and a weight label 'large images' sits on the top step."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.91,
+      "audio_file": "mp3/beat-B23.mp3",
+      "render_duration_s": 13.916666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B23.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Apptainer has three verbs. Exec runs one command inside the container, then returns. That is the verb for jobs. Shell opens an interactive shell inside it, for poking around and testing. And run does the container's built-in default action.",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the exec line"
+          },
+          {
+            "at": 0.4,
+            "event": "the shell line"
+          },
+          {
+            "at": 0.8,
+            "event": "the run line"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "III · Running A Container  ·  the three verbs",
+            "lines": [
+              "$ apptainer exec <image> <command>",
+              "$ apptainer shell <image>",
+              "$ apptainer run <image>"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              49,
+              215,
+              316
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 151
+              }
+            ],
+            "durationSeconds": 13.76
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 13.76,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 13.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B30.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Check the tool first. Both commands are read-only and safe on a login node. On Explorer we recorded this: the path, and version one point four point five, installed system-wide, so there is no module to load. AICR has apptainer and singularity as well.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "label: recorded output"
+          },
+          {
+            "at": 0.3,
+            "event": "command -v and its recorded path"
+          },
+          {
+            "at": 0.65,
+            "event": "--version and its recorded output"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Check the tool  ·  recorded on the Explorer login node",
+            "lines": [
+              "# recorded output, Explorer login node, read-only",
+              "$ command -v apptainer",
+              "/usr/bin/apptainer",
+              "$ apptainer --version",
+              "apptainer version 1.4.5-3.el9"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              29,
+              169,
+              188,
+              238
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 4,
+                "cue": 250
+              }
+            ],
+            "durationSeconds": 14.98
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 14.98,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 15.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B31.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B32",
+      "act": "III · Running A Container",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Run containers on a compute node, never on the login node. The login node is shared by everyone, and heavy work there gets terminated. Ask Slurm for a compute node first with S run, then work inside that session.",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two racks: a small one 'login node' with a sealed box drawn on it and a cross; a larger one 'compute node'. The mono chip 'srun --pty bash' travels from the login rack to the compute rack, which lights up (a ghost light turns terracotta), and the sealed box then moves onto the compute rack with a check.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the login node is shared: the box is crossed out there"
+          },
+          {
+            "at": 0.6,
+            "event": "srun --pty bash asks for a compute node"
+          },
+          {
+            "at": 0.88,
+            "event": "the box runs on the compute node"
+          }
+        ],
+        "manim": {
+          "class": "B32_ComputeNode"
+        },
+        "motion_claim": "Two racks: a small one 'login node' with a sealed box drawn on it and a cross; a larger one 'compute node'. The mono chip 'srun --pty bash' travels from the login rack to the compute rack, which lights up (a ghost light turns terracotta), and the sealed box then moves onto the compute rack with a check."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.25,
+      "audio_file": "mp3/beat-B32.mp3",
+      "render_duration_s": 12.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B32.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B33",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then open a shell in an image. The path is a placeholder for your own project. Your prompt changes to Apptainer, which tells you that you are inside. Type exit to leave. Inside, you have only what the image holds, plus the folders you bind in.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "srun for a compute node"
+          },
+          {
+            "at": 0.35,
+            "event": "apptainer shell"
+          },
+          {
+            "at": 0.7,
+            "event": "the prompt changes; exit leaves"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Open a shell in an image  ·  from the source, not run",
+            "lines": [
+              "$ srun --pty bash",
+              "$ apptainer shell /projects/<project>/containers/myimage.sif",
+              "Apptainer> exit"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              1,
+              116,
+              218
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 128
+              }
+            ],
+            "durationSeconds": 13.14
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 13.14,
+      "audio_file": "mp3/beat-B33.mp3",
+      "render_duration_s": 13.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B33.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B34",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "For a batch job, put the same command in a script. Ask for the partition, cores, memory and time your work needs, then run exec, binding your project folder in. Create the logs folder first, and submit with S batch.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the resource lines"
+          },
+          {
+            "at": 0.45,
+            "event": "the exec command with its bind"
+          },
+          {
+            "at": 0.85,
+            "event": "mkdir and sbatch"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "A CPU job  ·  from the source, not run",
+            "lines": [
+              "#SBATCH --job-name=container_cpu",
+              "#SBATCH --partition=short",
+              "#SBATCH --cpus-per-task=8",
+              "#SBATCH --mem=32GB",
+              "#SBATCH --time=04:00:00",
+              " ",
+              "apptainer exec \\",
+              "  --bind /projects/<project>:/projects/<project> \\",
+              "  /projects/<project>/containers/myimage.sif \\",
+              "  python /projects/<project>/code/analysis.py",
+              "$ mkdir -p logs",
+              "$ sbatch run_container.sh"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              80,
+              117,
+              130,
+              144,
+              0,
+              194,
+              197,
+              218,
+              229,
+              265,
+              315
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 6,
+                "cue": 194
+              },
+              {
+                "line": 7,
+                "cue": 209
+              }
+            ],
+            "durationSeconds": 12.39
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 12.39,
+      "audio_file": "mp3/beat-B34.mp3",
+      "render_duration_s": 12.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B34.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B35",
+      "act": "III · Running A Container",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "On a GPU, the container can carry its own CUDA, so you do not match the node's modules. But it still needs the node's driver. The dash dash N V flag passes that driver in. Without it, the container has no link to the GPU.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A GPU-node rack at the bottom with the NVIDIA logo chip on it and a label 'driver'; above, a sealed container box holding a labelled block 'CUDA'. First the gap between them: a dashed link with a cross ('no GPU'); then the mono chip '--nv' lays a solid bridge from the driver up into the container and the cross is replaced by a terracotta check; a small label 'must fit' on the bridge joins 'CUDA' and 'driver'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the container carries its own CUDA"
+          },
+          {
+            "at": 0.45,
+            "event": "it still needs the node's driver: no link"
+          },
+          {
+            "at": 0.75,
+            "event": "--nv bridges the driver in"
+          }
+        ],
+        "manim": {
+          "class": "B35_NvBridge"
+        },
+        "motion_claim": "A GPU-node rack at the bottom with the NVIDIA logo chip on it and a label 'driver'; above, a sealed container box holding a labelled block 'CUDA'. First the gap between them: a dashed link with a cross ('no GPU'); then the mono chip '--nv' lays a solid bridge from the driver up into the container and the cross is replaced by a terracotta check; a small label 'must fit' on the bridge joins 'CUDA' and 'driver'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.1,
+      "audio_file": "mp3/beat-B35.mp3",
+      "render_duration_s": 13.125,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B35.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B36",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "For an interactive test, ask for one GPU. Naming the card type is good practice when the card matters, because a bare one can land on a different card. List the types first. Then run with dash dash N V, and bind your project.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the srun request for one GPU"
+          },
+          {
+            "at": 0.45,
+            "event": "listing the types"
+          },
+          {
+            "at": 0.75,
+            "event": "apptainer exec --nv with the bind"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "A GPU test  ·  from the source, not run",
+            "lines": [
+              "$ srun --partition=gpu-interactive --gres=gpu:1 --ntasks=4 \\",
+              "    --mem=16GB --time=02:00:00 --nodes=1 --pty bash",
+              "$ sinfo -p gpu -o \"%G\"",
+              "$ apptainer exec --nv --bind /projects/<project>:/projects/<project> myimage.sif python train.py"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              37,
+              86,
+              240,
+              278
+            ],
+            "fontSize": 26,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 49
+              },
+              {
+                "line": 3,
+                "cue": 307
+              }
+            ],
+            "durationSeconds": 12.93
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 12.93,
+      "audio_file": "mp3/beat-B36.mp3",
+      "render_duration_s": 12.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B36.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B37",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "For a batch GPU job, here is a template: one GPU, and inside the partition's time limit. The container carries the software stack, the N V flag connects the driver, and the bind gives it your code.",
+      "estimated_duration_s": 14.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "partition and one GPU"
+          },
+          {
+            "at": 0.4,
+            "event": "the time line"
+          },
+          {
+            "at": 0.75,
+            "event": "exec --nv with the bind"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "A GPU batch job  ·  from the source, not run",
+            "lines": [
+              "#SBATCH --partition=gpu",
+              "#SBATCH --gres=gpu:1",
+              "#SBATCH --cpus-per-task=8",
+              "#SBATCH --mem=64GB",
+              "#SBATCH --time=08:00:00",
+              " ",
+              "apptainer exec --nv \\",
+              "  --bind /projects/<project>:/projects/<project> \\",
+              "  /projects/<project>/containers/pytorch_image.sif \\",
+              "  python /projects/<project>/code/train.py --epochs 50 --batch-size 64"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              75,
+              75,
+              75,
+              142,
+              0,
+              213,
+              247,
+              310,
+              330
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 87
+              },
+              {
+                "line": 4,
+                "cue": 154
+              },
+              {
+                "line": 6,
+                "cue": 259
+              }
+            ],
+            "durationSeconds": 12.31
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 12.31,
+      "audio_file": "mp3/beat-B37.mp3",
+      "render_duration_s": 12.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B37.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B38",
+      "act": "III · Running A Container",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Check the partition limit before you write the script. On Explorer's G P U partition we read an eight hour limit, and two hours on the short and interactive ones. A published example asks for two GPUs for twelve hours. That cannot run there.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A horizontal time axis 0 to 12 h in 2 h ticks with three bars: 'gpu-interactive' to 2 h and 'gpu-short' to 2 h in grey, 'gpu' to 8 h in grey, each with its limit in mono ('2:00:00', '2:00:00', '8:00:00'). A fourth bar 'request' grows to 12 h and crosses a vertical limit line at 8 h; the part beyond is cut off and a cross lands. A mono chip '--gres=gpu:2' sits beside the request bar; a second chip '--gres=gpu:1' sits at the 8 h bar with a check.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the limits: 8 h on gpu, 2 h on the short and interactive partitions"
+          },
+          {
+            "at": 0.6,
+            "event": "a 12 hour, two-GPU request overshoots"
+          },
+          {
+            "at": 0.88,
+            "event": "it cannot run there"
+          }
+        ],
+        "manim": {
+          "class": "B38_TimeLimits"
+        },
+        "motion_claim": "A horizontal time axis 0 to 12 h in 2 h ticks with three bars: 'gpu-interactive' to 2 h and 'gpu-short' to 2 h in grey, 'gpu' to 8 h in grey, each with its limit in mono ('2:00:00', '2:00:00', '8:00:00'). A fourth bar 'request' grows to 12 h and crosses a vertical limit line at 8 h; the part beyond is cut off and a cross lands. A mono chip '--gres=gpu:2' sits beside the request bar; a second chip '--gres=gpu:1' sits at the 8 h bar with a check."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.85,
+      "audio_file": "mp3/beat-B38.mp3",
+      "render_duration_s": 13.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B38.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B39",
+      "act": "III · Running A Container",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A container that starts is not a container that used the GPU. So print the card's name from inside it. With dash dash N V you should see true and a card name, and without it, false. We have not run this one.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the one-line check"
+          },
+          {
+            "at": 0.6,
+            "event": "expected: True and a card name, and False without --nv"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Prove the GPU  ·  from the source, not run",
+            "lines": [
+              "$ apptainer exec --nv <pytorch-image>.sif python -c \\",
+              "    \"import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))\""
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              108,
+              184,
+              261
+            ],
+            "fontSize": 30,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 120
+              }
+            ],
+            "durationSeconds": 11.71
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 11.71,
+      "audio_file": "mp3/beat-B39.mp3",
+      "render_duration_s": 11.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B39.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "IV · Binding Folders",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A container sees its own filesystem, not the cluster's. On Explorer your home directory is bound for you. Slash projects and slash scratch are not. To read your data and write results, you bind each folder in.",
+      "estimated_duration_s": 14.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A container box in the centre with an empty inside (dashed slots). Three folders on the left, outside: a 'home' folder with a terracotta dot, a mono '/projects' folder, a mono '/scratch' folder. 'home' slides in on its own; '/projects' and '/scratch' wait outside until the mono chip '--bind' draws a bridge for each and they slide in.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the container sees only its own filesystem; home slides in by itself"
+          },
+          {
+            "at": 0.55,
+            "event": "/projects and /scratch stay outside"
+          },
+          {
+            "at": 0.85,
+            "event": "--bind brings each in"
+          }
+        ],
+        "manim": {
+          "class": "B40_WhatItSees"
+        },
+        "motion_claim": "A container box in the centre with an empty inside (dashed slots). Three folders on the left, outside: a 'home' folder with a terracotta dot, a mono '/projects' folder, a mono '/scratch' folder. 'home' slides in on its own; '/projects' and '/scratch' wait outside until the mono chip '--bind' draws a bridge for each and they slide in."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 11.84,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 11.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "IV · Binding Folders",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The bind flag takes a folder on the host, a colon, and the path where it appears inside. Binding the same path on both sides is the simplest habit, because your script's paths then mean the same inside and out. Use absolute paths, and bind only what the job needs.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the general form"
+          },
+          {
+            "at": 0.4,
+            "event": "the same path on both sides, two binds"
+          },
+          {
+            "at": 0.85,
+            "event": "only what the job needs"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Bind  ·  from the source, not run",
+            "lines": [
+              "$ apptainer exec --bind /host/path:/path/in/container myimage.sif <command>",
+              " ",
+              "apptainer exec \\",
+              "  --bind /projects/<project>:/projects/<project> \\",
+              "  --bind /scratch/<username>:/scratch/<username> \\",
+              "  myimage.sif <command>"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              14,
+              0,
+              157,
+              157,
+              333,
+              374
+            ],
+            "fontSize": 36,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 169
+              },
+              {
+                "line": 3,
+                "cue": 169
+              }
+            ],
+            "durationSeconds": 14.66
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 14.66,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 14.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B41.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "IV · Binding Folders",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Or set one environment variable instead of repeating the flag. We put it inside each job script, so the script carries its own record, rather than in the dot bash R C file, which would be a permanent edit to a shared startup file.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "a label: inside the job script"
+          },
+          {
+            "at": 0.35,
+            "event": "the export line"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "APPTAINER_BIND  ·  from the source, not run",
+            "lines": [
+              "# inside the job script",
+              "export APPTAINER_BIND=\"/projects/<project>:/projects/<project>,/scratch/<username>:/scratch/<username>\""
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              6
+            ],
+            "fontSize": 24,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 122
+              }
+            ],
+            "durationSeconds": 12.93
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 12.93,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 12.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B42.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "V · Building An Image",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "You cannot build an image on Explorer: building needs administrator rights. So build on a machine where you have them, like your own computer. Copy the finished S I F file to the cluster, store it in project space, and run it there as yourself.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four stations left to right joined by arrows: (1) Professor Bear portrait beside a laptop slab with a mono label 'root' and the Docker and Apptainer logo chips, a sealed box emerges; (2) an arrow 'copy' carries the box; (3) a drawn folder 'project space' receives it; (4) a compute-node rack runs it, labelled 'as you'. A small wrench-and-cross is NOT drawn on the cluster; instead the cluster rack at the right carries a label 'no root'.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "build where you have root"
+          },
+          {
+            "at": 0.5,
+            "event": "copy the finished file to the cluster"
+          },
+          {
+            "at": 0.7,
+            "event": "store it in project space"
+          },
+          {
+            "at": 0.9,
+            "event": "run it as yourself"
+          }
+        ],
+        "manim": {
+          "class": "B50_BuildCopyRun"
+        },
+        "motion_claim": "Four stations left to right joined by arrows: (1) Professor Bear portrait beside a laptop slab with a mono label 'root' and the Docker and Apptainer logo chips, a sealed box emerges; (2) an arrow 'copy' carries the box; (3) a drawn folder 'project space' receives it; (4) a compute-node rack runs it, labelled 'as you'. A small wrench-and-cross is NOT drawn on the cluster; instead the cluster rack at the right carries a label 'no root'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.76,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 12.791666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B50.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "V · Building An Image",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A dot def file is the recipe, and the most valuable file for reproducibility. Bootstrap and From name the base image to start from, with its tag pinned. Post runs once during the build, so install your packages there, at fixed versions.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Bootstrap and From, the base image"
+          },
+          {
+            "at": 0.45,
+            "event": "%post and the pinned install"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "myimage.def  ·  the recipe  ·  from the source, not run",
+            "lines": [
+              "Bootstrap: docker",
+              "From: python:3.11-slim",
+              " ",
+              "%post",
+              "    pip install --no-cache-dir numpy==1.26.4 pandas==2.2.2"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              140,
+              174,
+              256,
+              306
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 233
+              },
+              {
+                "line": 4,
+                "cue": 367
+              }
+            ],
+            "durationSeconds": 13.46
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 13.46,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 13.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B51.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "V · Building An Image",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The other sections: environment sets variables every time the container runs. Runscript is what apptainer run does. Labels hold metadata. The versions in the example are placeholders: pin the ones you actually tested. Then build it, on your own machine.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "%environment"
+          },
+          {
+            "at": 0.3,
+            "event": "%runscript"
+          },
+          {
+            "at": 0.5,
+            "event": "%labels"
+          },
+          {
+            "at": 0.85,
+            "event": "the build command"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "myimage.def, continued  ·  from the source, not run",
+            "lines": [
+              "%environment",
+              "    export LC_ALL=C",
+              " ",
+              "%runscript",
+              "    python --version",
+              " ",
+              "%labels",
+              "    Author <your-name>",
+              "    Version 1.0",
+              " ",
+              "$ apptainer build myimage.sif myimage.def"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              23,
+              0,
+              124,
+              124,
+              0,
+              188,
+              188,
+              188,
+              0,
+              352
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 10,
+                "cue": 364
+              }
+            ],
+            "durationSeconds": 14.04
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 14.04,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 14.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B52.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B53",
+      "act": "V · Building An Image",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "If you already have a Dockerfile, build the Docker image on your own machine, then convert it. Docker builds the image. Apptainer reads it from Docker's local store and writes the S I F file. Or push the image to a registry, and pull it on the cluster.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left to right: a drawn page 'Dockerfile' -> the Docker logo chip with a mono label 'docker build' -> a sealed box 'image' -> the Apptainer logo chip with 'apptainer build' -> a box labelled '.sif'. A second branch drops from the image box down to a cloud 'registry' and then to a compute-node rack with 'pull' in mono.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "Dockerfile to Docker to an image"
+          },
+          {
+            "at": 0.5,
+            "event": "Apptainer converts the image into a .sif"
+          },
+          {
+            "at": 0.85,
+            "event": "or push to a registry and pull on the cluster"
+          }
+        ],
+        "manim": {
+          "class": "B53_DockerRoute"
+        },
+        "motion_claim": "Left to right: a drawn page 'Dockerfile' -> the Docker logo chip with a mono label 'docker build' -> a sealed box 'image' -> the Apptainer logo chip with 'apptainer build' -> a box labelled '.sif'. A second branch drops from the image box down to a cloud 'registry' and then to a compute-node rack with 'pull' in mono."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.7,
+      "audio_file": "mp3/beat-B53.mp3",
+      "render_duration_s": 13.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B53.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B54",
+      "act": "V · Building An Image",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A Dockerfile starts from a base operating system image, and uses RUN lines to install packages. A good one ends with a line that imports your tool, so the build fails early if the install is broken. Here is the shape, from a real example.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "FROM and the install"
+          },
+          {
+            "at": 0.5,
+            "event": "the verifying import"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "A Dockerfile, abridged  ·  from the source, not run",
+            "lines": [
+              "FROM rockylinux:9.3",
+              "RUN pip3 install CDPKit",
+              " ",
+              "# Verify installation",
+              "RUN python3 -c \"import CDPL; print('CDPKit installed successfully')\"",
+              " ",
+              "CMD [\"/bin/bash\"]"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              38,
+              131,
+              0,
+              221,
+              221,
+              0
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 50
+              },
+              {
+                "line": 4,
+                "cue": 239
+              }
+            ],
+            "durationSeconds": 14.19
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 14.19,
+      "audio_file": "mp3/beat-B54.mp3",
+      "render_duration_s": 14.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B54.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B55",
+      "act": "V · Building An Image",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then two commands, on your own machine. Docker build, with a name and a version. Then apptainer build, reading the image from Docker's local store.",
+      "estimated_duration_s": 10.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "docker build"
+          },
+          {
+            "at": 0.5,
+            "event": "apptainer build from docker-daemon"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Docker image to .sif  ·  from the source, not run",
+            "lines": [
+              "$ docker build -t myimage:1.0 .",
+              "$ apptainer build myimage.sif docker-daemon://myimage:1.0"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              67,
+              135
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 202
+              }
+            ],
+            "durationSeconds": 8.41
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 8.41,
+      "audio_file": "mp3/beat-B55.mp3",
+      "render_duration_s": 8.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B55.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B56",
+      "act": "V · Building An Image",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A third option is the remote builder. It needs a free account with the maker, and it uploads your recipe to a third party, so that is your decision, not an agent's. If you choose it, one flag does it. If a build fails, read the error text.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the local build, for contrast"
+          },
+          {
+            "at": 0.6,
+            "event": "the remote build: one flag added"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "The remote builder  ·  from the source, not run",
+            "lines": [
+              "$ apptainer build myimage.sif myimage.def",
+              " ",
+              "$ apptainer build --remote myimage.sif myimage.def"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              0,
+              251
+            ],
+            "fontSize": 40,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 288
+              }
+            ],
+            "durationSeconds": 13.03
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 13.03,
+      "audio_file": "mp3/beat-B56.mp3",
+      "render_duration_s": 13.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B56.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B60",
+      "act": "VI · Getting An Image Onto The Cluster",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "To get an image onto the cluster, pull it from a registry. Pulling is heavy, so do it on a compute node. This writes a S I F file named ubuntu, underscore, twenty-two point oh four. Add a name flag to choose your own.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "a compute node first"
+          },
+          {
+            "at": 0.4,
+            "event": "the pull"
+          },
+          {
+            "at": 0.8,
+            "event": "the --name form"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "VI · Pull an image  ·  from the source, not run",
+            "lines": [
+              "$ srun --pty bash",
+              "$ apptainer pull docker://ubuntu:22.04",
+              "$ apptainer pull --name myubuntu.sif docker://ubuntu:22.04"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              39,
+              147,
+              286
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 132
+              },
+              {
+                "line": 2,
+                "cue": 304
+              }
+            ],
+            "durationSeconds": 11.95
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 11.95,
+      "audio_file": "mp3/beat-B60.mp3",
+      "render_duration_s": 11.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B60.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B61",
+      "act": "VI · Getting An Image Onto The Cluster",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Other registries work the same way. Docker Hub for a tool like G A T K, the NVIDIA catalogue for GPU images, BioContainers for bioinformatics, and the Sigh-labs library. The first three name an exact version. The last has no tag at all, so pin one there too.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "Docker Hub, GATK"
+          },
+          {
+            "at": 0.3,
+            "event": "NGC"
+          },
+          {
+            "at": 0.5,
+            "event": "BioContainers"
+          },
+          {
+            "at": 0.75,
+            "event": "Sylabs library, no tag"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Other registries  ·  from the source, not run",
+            "lines": [
+              "$ apptainer pull docker://broadinstitute/gatk:4.5.0.0",
+              "$ apptainer pull docker://nvcr.io/nvidia/pytorch:24.01-py3",
+              "$ apptainer pull docker://biocontainers/samtools:v1.9-4-deb_cv1",
+              "$ apptainer pull library://lolcow"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              63,
+              125,
+              200,
+              262
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 3,
+                "cue": 398
+              }
+            ],
+            "durationSeconds": 15.59
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 15.59,
+      "audio_file": "mp3/beat-B61.mp3",
+      "render_duration_s": 15.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B61.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B62",
+      "act": "VI · Getting An Image Onto The Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Always pin the tag. A tag called latest points at a different image next month. A pinned tag keeps pointing at the same one. So never use latest for anything you must reproduce, and write the exact tag into your methods.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two rows on a month timeline ('today', 'next month'). Top row: a mono tag ':latest' points to a sealed box 'A' today and, next month, the same tag has its arrow swung to a different box 'B' (a cross lands). Bottom row: a mono tag ':4.5.0.0' keeps its arrow on box 'A' both months (a terracotta check). A page 'methods' receives the pinned tag.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "latest points at a different image next month"
+          },
+          {
+            "at": 0.5,
+            "event": "a pinned tag keeps pointing at the same one"
+          },
+          {
+            "at": 0.85,
+            "event": "the exact tag goes into your methods"
+          }
+        ],
+        "manim": {
+          "class": "B62_PinTheTag"
+        },
+        "motion_claim": "Two rows on a month timeline ('today', 'next month'). Top row: a mono tag ':latest' points to a sealed box 'A' today and, next month, the same tag has its arrow swung to a different box 'B' (a cross lands). Bottom row: a mono tag ':4.5.0.0' keeps its arrow on box 'A' both months (a terracotta check). A page 'methods' receives the pinned tag."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.2,
+      "audio_file": "mp3/beat-B62.mp3",
+      "render_duration_s": 12.208333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B62.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B63",
+      "act": "VI · Getting An Image Onto The Cluster",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "If you built the file on your own computer, copy it through the transfer node into project space. Check Research Computing's documentation for the current transfer host first. For smaller files, the Open OnDemand Files app uploads up to ten gigabytes.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "run on your own computer"
+          },
+          {
+            "at": 0.3,
+            "event": "the scp line"
+          },
+          {
+            "at": 0.8,
+            "event": "the OnDemand alternative"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Copy a local build  ·  from the source, not run",
+            "lines": [
+              "# run this on your own computer",
+              "$ scp myimage.sif <username>@<transfer-host>:/projects/<project>/containers/",
+              " ",
+              "# smaller files: the Open OnDemand Files app, up to 10 GB"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              54,
+              0,
+              308
+            ],
+            "fontSize": 31,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 226
+              }
+            ],
+            "durationSeconds": 14.17
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 14.17,
+      "audio_file": "mp3/beat-B63.mp3",
+      "render_duration_s": 14.208333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B63.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B64",
+      "act": "VI · Getting An Image Onto The Cluster",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Keep images in your project's containers folder, not in home. Project space is shared with your lab, and is not covered by the seventy-five gigabyte home quota. Keep the recipe next to the image, commit it, and archive the image with your data.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left: a small 'home' box with a quota gauge reading '75 GB' and a cross over a .sif dropped toward it. Right: a drawn folder 'containers/' in project space receives the .sif and a page '.def' that lands beside it; a terracotta dot marks a 'commit' (a small git-logo chip is NOT needed: use a mono chip 'git'); finally the pair slides into an 'archive with data' box.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "not in home: the quota"
+          },
+          {
+            "at": 0.45,
+            "event": "in project space, shared with the lab"
+          },
+          {
+            "at": 0.75,
+            "event": "recipe beside the image, committed"
+          },
+          {
+            "at": 0.92,
+            "event": "archived with the data"
+          }
+        ],
+        "manim": {
+          "class": "B64_WhereToKeep"
+        },
+        "motion_claim": "Left: a small 'home' box with a quota gauge reading '75 GB' and a cross over a .sif dropped toward it. Right: a drawn folder 'containers/' in project space receives the .sif and a page '.def' that lands beside it; a terracotta dot marks a 'commit' (a small git-logo chip is NOT needed: use a mono chip 'git'); finally the pair slides into an 'archive with data' box."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.63,
+      "audio_file": "mp3/beat-B64.mp3",
+      "render_duration_s": 13.666666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B64.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B70",
+      "act": "VII · Habits That Keep It Honest",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Apptainer keeps pulled layers in a hidden folder in your home directory, and a big pull can fill your quota, after which your OnDemand sessions stop working. Point both locations at project space before any large pull. The cache is only a cache.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "the cache directory"
+          },
+          {
+            "at": 0.35,
+            "event": "the temporary directory"
+          },
+          {
+            "at": 0.8,
+            "event": "the gentler clean-up"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "VII · Cache off home  ·  from the source, not run",
+            "lines": [
+              "export APPTAINER_CACHEDIR=/projects/<project>/apptainer-cache",
+              "export APPTAINER_TMPDIR=/projects/<project>/apptainer-tmp",
+              " ",
+              "# the cache can be emptied safely; this is the gentler tool",
+              "$ apptainer cache clean all"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              238,
+              238,
+              0,
+              366
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 0,
+                "cue": 250
+              },
+              {
+                "line": 1,
+                "cue": 290
+              }
+            ],
+            "durationSeconds": 13.74
+          },
+          "rendered": {
+            "out": "media/B70.mp4",
+            "at": "2026-10-14T04:55:16.391461+00:00"
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 13.74,
+      "audio_file": "mp3/beat-B70.mp3",
+      "render_duration_s": 13.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B70.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B71",
+      "act": "VII · Habits That Keep It Honest",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Before a long job, test by hand on a compute node: open a shell, run your commands, check they find their files. Then print versions from inside. A job that finishes has not proved it used the container, the binds and the GPU you meant.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.05,
+            "event": "test by hand first"
+          },
+          {
+            "at": 0.6,
+            "event": "print the version from inside"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Test first, then check  ·  from the source, not run",
+            "lines": [
+              "# 1. test by hand, in a compute-node session",
+              "$ srun --pty bash",
+              "$ apptainer shell /projects/<project>/containers/myimage.sif",
+              " ",
+              "# 2. print versions from inside",
+              "$ apptainer exec myimage.sif python --version"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              0,
+              27,
+              80,
+              0,
+              208,
+              208
+            ],
+            "fontSize": 38,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 208
+              }
+            ],
+            "durationSeconds": 13.33
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as in the source, prints line by line as it is spoken.",
+      "actual_duration_s": 13.33,
+      "audio_file": "mp3/beat-B71.mp3",
+      "render_duration_s": 13.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B71.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B72",
+      "act": "VII · Habits That Keep It Honest",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Record the image. Write down the exact tag, and ideally the digest, in your notes and methods. For a locally built image, the recipe plus the S I F file is the record. A checksum from S H A two fifty six sum lets a collaborator confirm they hold the same file.",
+      "estimated_duration_s": 20.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A notes page on the left collects three stamped lines one by one ('tag', 'digest', '.def + .sif'). On the right two sealed boxes 'mine' and 'theirs' face each other with the mono chip 'sha256sum myimage.sif' under each and an equals sign between them, then a terracotta check.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "tag and digest stamped into the notes"
+          },
+          {
+            "at": 0.45,
+            "event": "the recipe plus the .sif is the record"
+          },
+          {
+            "at": 0.75,
+            "event": "sha256sum: the same file on both sides"
+          }
+        ],
+        "manim": {
+          "class": "B72_RecordIt"
+        },
+        "motion_claim": "A notes page on the left collects three stamped lines one by one ('tag', 'digest', '.def + .sif'). On the right two sealed boxes 'mine' and 'theirs' face each other with the mono chip 'sha256sum myimage.sif' under each and an equals sign between them, then a terracotta check."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 15.32,
+      "audio_file": "mp3/beat-B72.mp3",
+      "render_duration_s": 15.333333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B72.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B73",
+      "act": "VII · Habits That Keep It Honest",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Workflow managers like Nextflow and Snakemake can run each step of a pipeline in its own container, so every tool carries its own version. That is a strong pattern for reproducible pipelines, and Research Computing offers help setting it up.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A pipeline of three steps on a conveyor ('step 1', 'step 2', 'step 3'), each step inside its own sealed box carrying a different small version tag ('v1', 'v2', 'v3' in mono); two mono chips 'nextflow' and 'snakemake' sit above as the managers with arrows to the line; the boxes light one after another as the work passes.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "managers run each step in its own container"
+          },
+          {
+            "at": 0.6,
+            "event": "every tool carries its own version"
+          }
+        ],
+        "manim": {
+          "class": "B73_WorkflowManager"
+        },
+        "motion_claim": "A pipeline of three steps on a conveyor ('step 1', 'step 2', 'step 3'), each step inside its own sealed box carrying a different small version tag ('v1', 'v2', 'v3' in mono); two mono chips 'nextflow' and 'snakemake' sit above as the managers with arrows to the line; the boxes light one after another as the work passes."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.91,
+      "audio_file": "mp3/beat-B73.mp3",
+      "render_duration_s": 13.916666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B73.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B74",
+      "act": "VII · Habits That Keep It Honest",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "On AICR, apptainer and singularity are both installed. But we have no documentation of container policy there: nothing on binds or storage. The partition fixes the GPU type, so you add no type to the gres request. Do not copy Explorer's paths; ask AICR support.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The large AICR rack (aicr_rack) labelled 'AICR' with two chips beside it: the Apptainer logo chip and a mono chip 'singularity', both with a check. Under the rack, a stamped plaque 'container policy: not documented' and a mono '--gres=gpu:1' with the type slot crossed ('no type'); a chip '/projects' crossed with the label 'Explorer paths'; a small question chip 'ask AICR support'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "apptainer and singularity installed"
+          },
+          {
+            "at": 0.45,
+            "event": "container policy: not documented"
+          },
+          {
+            "at": 0.8,
+            "event": "no GPU type in gres; do not copy Explorer's paths"
+          }
+        ],
+        "manim": {
+          "class": "B74_AicrContainers"
+        },
+        "motion_claim": "The large AICR rack (aicr_rack) labelled 'AICR' with two chips beside it: the Apptainer logo chip and a mono chip 'singularity', both with a check. Under the rack, a stamped plaque 'container policy: not documented' and a mono '--gres=gpu:1' with the type slot crossed ('no type'); a chip '/projects' crossed with the label 'Explorer paths'; a small question chip 'ask AICR support'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, isometric lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 16.17,
+      "audio_file": "mp3/beat-B74.mp3",
+      "render_duration_s": 16.208333333333332,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B74.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "B80",
+      "act": "VIII · What Was Checked",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Here is what we checked, and what we only read. On the login node, read-only: the path and version of Apptainer, that no module is needed, and the G P U partition limits. We did not run a container, pull an image, build one, or submit a job. The rest came from the source.",
+      "estimated_duration_s": 21.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two columns of stamped plain items, with dashed placeholder slots visible from the start. Left 'checked on the login node': 'apptainer 1.4.5', 'no module needed', 'GPU time limits'. Right 'only read, not run': 'run a container', 'pull an image', 'build an image', 'submit a job'. Stamps land on the spoken words; the right-hand column carries a ringed chip 'from the source'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "three read-only checks stamp in"
+          },
+          {
+            "at": 0.5,
+            "event": "four things we did not run"
+          },
+          {
+            "at": 0.88,
+            "event": "the rest came from the source"
+          }
+        ],
+        "manim": {
+          "class": "B80_CheckedVsRead"
+        },
+        "motion_claim": "Two columns of stamped plain items, with dashed placeholder slots visible from the start. Left 'checked on the login node': 'apptainer 1.4.5', 'no module needed', 'GPU time limits'. Right 'only read, not run': 'run a container', 'pull an image', 'build an image', 'submit a job'. Stamps land on the spoken words; the right-hand column carries a ringed chip 'from the source'."
+      },
+      "actual_duration_s": 14.7,
+      "audio_file": "mp3/beat-B80.mp3",
+      "render_duration_s": 14.708333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B80.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. A container is one sealed file holding a program and everything it needs. Apptainer runs it as you, so it fits a shared cluster. Run on a compute node with exec, shell or run, add the N V flag for a GPU, and bind every folder the job needs. Build where you have root, never on the cluster, then copy the finished file in. Pull on a compute node, pin the tag, and keep the recipe beside the image. And record the image, and say plainly what you tested and what you only read.",
+      "estimated_duration_s": 39.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land in narration order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Scientific Reproducibility III: Containers",
+            "artifactLines": [
+              "A container is one sealed file holding a program and everything it needs.",
+              "Apptainer runs it as you, so it fits a shared cluster.",
+              "Run on a compute node with exec, shell or run, add the N V flag for a GPU, and bind every folder the job needs.",
+              "Build where you have root, never on the cluster, then copy the finished file in.",
+              "Pull on a compute node, pin the tag, and keep the recipe beside the image.",
+              "Record the image, and say plainly what you tested and what you only read."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 26.33,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 26.333333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude: Replace PROGRAM with a tool you use. I run PROGRAM on the Explorer cluster. Is there a module for it, a conda package, or a published container image? Check module avail and the registries, tell me which option you would choose and why, and write the exact apptainer pull and apptainer exec commands with a pinned tag and my project binds. Do not run anything on the login node and do not submit any job. Then check two things yourself. Did Claude name a pinned tag and your project binds? And did it run nothing and submit nothing?",
+      "estimated_duration_s": 41.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens — 'Your turn.'"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Module, Conda Or Container",
+            "command": "Replace PROGRAM with a tool you use. I run PROGRAM on the Explorer cluster. Is there a module for it, a conda package, or a published container image? Check module avail and the registries, tell me which option you would choose and why, and write the exact apptainer pull and apptainer exec commands with a pinned tag and my project binds. Do not run anything on the login node and do not submit any job.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did Claude give a pinned tag and your project binds in the pull and exec commands?",
+              "Check: did it run nothing and submit no job? It should only look up and plan."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 29.25,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 29.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Scientific Reproducibility Three: Containers. At Nik Bear Brown.",
+      "estimated_duration_s": 5.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Scientific Reproducibility III: Containers",
+            "slug": "claude-liam-lecture-scientific-reproducibility-iii-containers",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 5.61,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 5.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T02:02:16"
+      }
+    }
+  ]
+}

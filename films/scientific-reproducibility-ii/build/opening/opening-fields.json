@@ -1,0 +1,16 @@
+{
+  "series_title": "Research Computing on Explorer and AICR",
+  "episode_position": "",
+  "title_lines": [
+    "Scientific",
+    "Reproducibility II:",
+    "Version Control"
+  ],
+  "subtitle": "Tie every result to the exact code that made it",
+  "portrait_path": "<books>/brutalist.art/runtime/remotion/public/professor-bear/professor-bear-1x1-61.jpg",
+  "presenter_name": "Professor Bear",
+  "narrator_credit": "Liam, in for Bear \u00b7 Narration",
+  "entry_pointer": "",
+  "channel_handle": "@NikBearBrown",
+  "seed": "claude-liam-lecture-scientific-reproducibility-ii-version-control"
+}

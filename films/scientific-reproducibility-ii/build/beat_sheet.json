@@ -1,0 +1,3123 @@
+{
+  "metadata": {
+    "slug": "claude-liam-lecture-scientific-reproducibility-ii-version-control",
+    "title": "Scientific Reproducibility II: Version Control",
+    "topic": "RESEARCH COMPUTING · VERSION CONTROL",
+    "skill": "lecture",
+    "style_preset": "lecture",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "greeting_language": "German (Hallo)",
+    "audience": "A researcher who wants every result tied to the exact code that made it, on a laptop or a cluster; assumes no other film or book",
+    "source_doc": "hpc-aicr/Scientific-Reproducibility-II-2026/scientific-reproducibility-II.md (read in full; commands shown verbatim) plus our written guide guides/scientific-reproducibility-ii.md and HPC.md Section 9",
+    "playlist": "Northeastern HPC and AICR",
+    "series_title": "Research Computing on Explorer and AICR",
+    "lecture_opening_description": "Tie every result to the exact code that made it",
+    "lecture_opening_title_lines": [
+      "Scientific",
+      "Reproducibility II:",
+      "Version Control"
+    ],
+    "tags": [
+      "Git",
+      "version control",
+      "reproducibility",
+      "gitignore",
+      "branch",
+      "tag",
+      "Slurm",
+      "Explorer",
+      "AICR",
+      "Northeastern University",
+      "Research Computing",
+      "HPC",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-10-14T01:45:36",
+      "cut": "master",
+      "filled": 52,
+      "of": 52,
+      "slates": [],
+      "skin_warnings": [
+        "BOPEN: palette=claude but the cold open is 'un-annotated' — COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    },
+    "chapter_number": 22
+  },
+  "beats": [
+    {
+      "beat_id": "BOPEN",
+      "act": "Opening",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Research Computing on Explorer and AICR. Scientific Reproducibility Two: Version Control. Learn to use Git so that every result you produce, on a laptop or on a cluster, can be tied to the exact code that made it.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "template": "lecture-title-slide-16x9",
+        "narration_contract": "playlist-title-summary-v1",
+        "motion": "hold",
+        "visual_intent": "Film identity and short teaching description, visible immediately; Liam speaks playlist, title, summary",
+        "show": [
+          {
+            "at": 0,
+            "event": "Complete portrait/title/series card visible"
+          }
+        ]
+      },
+      "actual_duration_s": 12.89,
+      "audio_file": "mp3/beat-BOPEN.mp3",
+      "render_duration_s": 12.916666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOPEN.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "BIDEA",
+      "act": "the idea",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Hallo. This is Liam, in for Bear. First, a correction. Version control is not a backup folder. It is a timeline of snapshots you can search, compare and rewind, and each snapshot can be tied to the result it produced.",
+      "estimated_duration_s": 16.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'Version control is just a backup folder'"
+          },
+          {
+            "at": 0.35,
+            "event": "backspaces 'just a backup folder' -> 'a searchable timeline'"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Version control is\njust a backup folder",
+            "triggerWords": "just a backup folder",
+            "replacementWords": "a searchable timeline",
+            "fontSize": 66,
+            "charMs": 62,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 2,
+            "jitter": 20,
+            "seed": "claude-liam-lecture-scientific-reproducibility-ii-version-control",
+            "banner": ""
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "motion_claim": "The writer types the newcomer's framing (just a backup folder) and corrects it to the real one (a searchable timeline).",
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer bookend: the correction is the motion."
+      },
+      "actual_duration_s": 12.77,
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "render_duration_s": 12.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "BDEFS",
+      "act": "terms",
+      "lane": "bookend",
+      "proof_gate": "CARD",
+      "narration_text": "Six terms. Repository: the project folder plus its history. Commit: a saved snapshot of your files. Branch: a movable name for one line of commits. Tag: a fixed name for one commit. The git ignore file: a list of what Git skips. And a Slurm job: your request for a compute node.",
+      "estimated_duration_s": 20.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.08,
+            "event": "'Repository' lands"
+          },
+          {
+            "at": 0.25,
+            "event": "'Commit'"
+          },
+          {
+            "at": 0.42,
+            "event": "'Branch'"
+          },
+          {
+            "at": 0.58,
+            "event": "'Tag'"
+          },
+          {
+            "at": 0.74,
+            "event": "'.gitignore'"
+          },
+          {
+            "at": 0.9,
+            "event": "'Slurm job'"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeDefinitions",
+          "props": {
+            "title": "Terms In This Lecture",
+            "terms": [
+              {
+                "term": "Repository",
+                "meaning": "the project folder plus its history"
+              },
+              {
+                "term": "Commit",
+                "meaning": "a saved snapshot of your files"
+              },
+              {
+                "term": "Branch",
+                "meaning": "a movable name for a line of commits"
+              },
+              {
+                "term": "Tag",
+                "meaning": "a fixed name for one commit"
+              },
+              {
+                "term": ".gitignore",
+                "meaning": "a list of what Git skips"
+              },
+              {
+                "term": "Slurm job",
+                "meaning": "your request for a compute node"
+              }
+            ],
+            "folderLabel": "@NikBearBrown",
+            "durationSeconds": 16.15
+          }
+        }
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "TERMS card: six prerequisites, one line each."
+      },
+      "actual_duration_s": 16.15,
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "render_duration_s": 16.166666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BDEFS.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "I · Why Keep History",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Six months after you submit a paper, a reviewer asks: what threshold did you use for low-count filtering? Without version control you open a folder like this, and you guess from the file names. Which script made which table?",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left, a Professor Bear portrait (1x1) with a speech chip 'threshold?'; right, eight file and folder chips from the source (filter.sh, filter_v2.sh, filter_final.sh, filter_final_USE_THIS.sh, results_old/, results_new/, results_for_paper/, results_for_paper_FINAL/) stack in one after another; a terracotta question mark pulses over the pile.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "the reviewer's question"
+          },
+          {
+            "at": 0.4,
+            "event": "the pile of file names builds"
+          },
+          {
+            "at": 0.85,
+            "event": "which made which?"
+          }
+        ],
+        "manim": {
+          "class": "B10_ReviewerAsks"
+        },
+        "motion_claim": "Left, a Professor Bear portrait (1x1) with a speech chip 'threshold?'; right, eight file and folder chips from the source (filter.sh, filter_v2.sh, filter_final.sh, filter_final_USE_THIS.sh, results_old/, results_new/, results_for_paper/, results_for_paper_FINAL/) stack in one after another; a terracotta question mark pulses over the pile."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.2,
+      "audio_file": "mp3/beat-B10.mp3",
+      "render_duration_s": 12.208333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "I · Why Keep History",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Version control replaces that folder with one script and a timeline. Every change carries a date, an author and a message. You can mark the exact code behind a figure, give each experiment its own branch, and undo a bad change.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The file-name pile shrinks to one script chip 'filter.sh'; a vertical timeline of dots grows under it, each dot with three tiny chips (date, author, message); a flag 'figure 3' plants on one dot, a side line splits off labelled 'experiment', and one dot is undone with a returning arrow.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "one script and a timeline"
+          },
+          {
+            "at": 0.4,
+            "event": "date, author, message on each change"
+          },
+          {
+            "at": 0.8,
+            "event": "flag, branch, undo"
+          }
+        ],
+        "manim": {
+          "class": "B11_OneTimeline"
+        },
+        "motion_claim": "The file-name pile shrinks to one script chip 'filter.sh'; a vertical timeline of dots grows under it, each dot with three tiny chips (date, author, message); a flag 'figure 3' plants on one dot, a side line splits off labelled 'experiment', and one dot is undone with a returning arrow."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.74,
+      "audio_file": "mp3/beat-B11.mp3",
+      "render_duration_s": 12.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "I · Why Keep History",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The program is called Git, and its idea is simple. It stores snapshots, not edits. A commit is a full picture of your files at one moment, linked to the commit before it.",
+      "estimated_duration_s": 13.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A Git logo chip at the top; a chain of three commit discs with hashes a3f8c21, b7d2e14, d9c1f37 (mono), each disc holding a mini folder picture; arrows point back from each to its parent; a label 'whole picture' lands on one disc.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the Git logo; snapshots not edits"
+          },
+          {
+            "at": 0.55,
+            "event": "three commits, each a full picture"
+          },
+          {
+            "at": 0.85,
+            "event": "each points to the one before"
+          }
+        ],
+        "manim": {
+          "class": "B12_Snapshots"
+        },
+        "motion_claim": "A Git logo chip at the top; a chain of three commit discs with hashes a3f8c21, b7d2e14, d9c1f37 (mono), each disc holding a mini folder picture; arrows point back from each to its parent; a label 'whole picture' lands on one disc."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 9.86,
+      "audio_file": "mp3/beat-B12.mp3",
+      "render_duration_s": 9.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B12.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "I · Why Keep History",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A branch is a movable name for one chain of commits: main here, and an experiment that split off. A tag is a fixed name for one commit, like a flag you plant on the code behind a paper.",
+      "estimated_duration_s": 15.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "The same three-commit chain; a label 'main' sits on the last disc; a fourth disc e5a0b99 forks off the middle one under a label 'explore/idea'; a flag 'v1.0' plants on one disc.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "main on the chain"
+          },
+          {
+            "at": 0.5,
+            "event": "the experiment forks off"
+          },
+          {
+            "at": 0.85,
+            "event": "a flag on one commit"
+          }
+        ],
+        "manim": {
+          "class": "B13_BranchAndTag"
+        },
+        "motion_claim": "The same three-commit chain; a label 'main' sits on the last disc; a fourth disc e5a0b99 forks off the middle one under a label 'explore/idea'; a flag 'v1.0' plants on one disc."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 11.01,
+      "audio_file": "mp3/beat-B13.mp3",
+      "render_duration_s": 11.041666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B13.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "I · Why Keep History",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Your files live in three places. The working tree is what you see and edit. The staging area is the list of changes going into the next snapshot, and git add puts a change there. The repository holds the saved snapshots, and git commit saves them.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three boxes left to right: 'working tree' (a file page), 'staging area' (a tray), 'repository' (a stack of snapshot discs); a file page travels to the tray on the label 'git add' and the tray's page drops into the stack on 'git commit'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "working tree: what you edit"
+          },
+          {
+            "at": 0.45,
+            "event": "git add moves the change to staging"
+          },
+          {
+            "at": 0.8,
+            "event": "git commit saves the snapshot"
+          }
+        ],
+        "manim": {
+          "class": "B14_ThreePlaces"
+        },
+        "motion_claim": "Three boxes left to right: 'working tree' (a file page), 'staging area' (a tray), 'repository' (a stack of snapshot discs); a file page travels to the tray on the label 'git add' and the tray's page drops into the stack on 'git commit'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.85,
+      "audio_file": "mp3/beat-B14.mp3",
+      "render_duration_s": 13.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B14.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "I · Why Keep History",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Four moments where this saves you. A reviewer asks if you tried another value: open the branch where you did. A postdoc leaves: clone the repository and read the README. A cluster setting changed: diff against the last commit. Publishing the code with the paper: tag a release on GitHub.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Four rows. Each row: a short situation chip on the left ('another value?', 'postdoc leaves', 'setting changed', 'with the paper'), an arrow, and on the right the answer in mono ('a branch', 'clone + README', 'git diff HEAD~1', 'a tag') with a GitHub logo chip on the last row. Rows land on the spoken situations.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "row 1"
+          },
+          {
+            "at": 0.4,
+            "event": "row 2"
+          },
+          {
+            "at": 0.6,
+            "event": "row 3"
+          },
+          {
+            "at": 0.85,
+            "event": "row 4"
+          }
+        ],
+        "manim": {
+          "class": "B15_FourMoments"
+        },
+        "motion_claim": "Four rows. Each row: a short situation chip on the left ('another value?', 'postdoc leaves', 'setting changed', 'with the paper'), an arrow, and on the right the answer in mono ('a branch', 'clone + README', 'git diff HEAD~1', 'a tag') with a GitHub logo chip on the last row. Rows land on the spoken situations."
+      },
+      "actual_duration_s": 14.81,
+      "audio_file": "mp3/beat-B15.mp3",
+      "render_duration_s": 14.833333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B15.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "II · Start A Repository",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The example is a small R N A sequencing project: a table of read counts, one row per gene, three control columns and three treated. One script drops low-count genes, works out a fold change, and writes a summary. Any analysis follows the same Git workflow.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A drawn table (gene_id column; three 'control' columns; three 'treated' columns; ghost cells) on the left flows through a funnel labelled 'MIN_COUNT' into a smaller table on the right with a status column and three chips UP, DOWN, NS.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the counts table: genes, control, treated"
+          },
+          {
+            "at": 0.5,
+            "event": "low-count genes drop out in the funnel"
+          },
+          {
+            "at": 0.85,
+            "event": "the summary table with UP, DOWN, NS"
+          }
+        ],
+        "manim": {
+          "class": "B20_TheExample"
+        },
+        "motion_claim": "A drawn table (gene_id column; three 'control' columns; three 'treated' columns; ghost cells) on the left flows through a funnel labelled 'MIN_COUNT' into a smaller table on the right with a status column and three chips UP, DOWN, NS."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 15.04,
+      "audio_file": "mp3/beat-B20.mp3",
+      "render_duration_s": 15.041666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B20.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "II · Start A Repository",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "This is the script we will track. Strict mode, an input, an output, and a parameters block at the top, where the one tunable value lives: min count, ten. Genes with a low mean count are skipped. The rest are called up, down, or not significant by fold change.",
+      "estimated_duration_s": 19.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "scripts/filter_and_summarise.sh  ·  from the source",
+            "lines": [
+              "set -euo pipefail   # exit on error, unset var, pipe failure",
+              "INPUT=\"data/counts.tsv\"",
+              "OUTPUT=\"results/summary.tsv\"",
+              "# ── PARAMETERS ── change these, then commit before re-running",
+              "MIN_COUNT=10        # filter: remove genes with mean count below this",
+              "    if (overall < threshold) next",
+              "    if      (fc >= 2.0) status = \"UP\"",
+              "    else if (fc <= 0.5) status = \"DOWN\"",
+              "    else                status = \"NS\""
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              45,
+              66,
+              81,
+              101,
+              219,
+              253,
+              318,
+              326,
+              334
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 4,
+                "cue": 231
+              }
+            ],
+            "durationSeconds": 14.04
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.04,
+      "audio_file": "mp3/beat-B21.mp3",
+      "render_duration_s": 14.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B21.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "II · Start A Repository",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Start tracking before the first run, not after. Git init makes a hidden dot git folder: Git's database, one per project. A caution: depending on your settings, the first branch may be called master, as it was here, and the later steps say main. So rename it first.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "Start tracking  ·  recorded on a Mac, path shortened",
+            "lines": [
+              "$ git init",
+              "Initialized empty Git repository in …/rnaseq_project/.git/",
+              "hint: Using 'master' as the name for the initial branch. This default branch name",
+              "hint: is subject to change. To configure the initial branch name to use in all",
+              "# not in the source: the later steps switch to main, so rename first",
+              "$ git branch -M main"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              81,
+              89,
+              271,
+              279,
+              287,
+              378
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 283
+              }
+            ],
+            "durationSeconds": 14.29
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.29,
+      "audio_file": "mp3/beat-B22.mp3",
+      "render_duration_s": 14.291666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B22.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B30",
+      "act": "III · What To Leave Out",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Track the code that makes results, not the results themselves. Big raw data lives in project storage, outside the repository, and passwords or tokens never go in at all. Whatever Git should skip goes in a file named dot git ignore.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left, a script page 'scripts/' with a check going into a repository box; centre, a big data block 'data' that an arrow sends to a 'project storage' rack instead; a key chip 'tokens' crossed out; at the right a page named '.gitignore' (mono) that lands last with a stack of skipped items under it.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "code goes into the repository"
+          },
+          {
+            "at": 0.45,
+            "event": "big data goes to storage; tokens never"
+          },
+          {
+            "at": 0.85,
+            "event": "the .gitignore page lists what to skip"
+          }
+        ],
+        "manim": {
+          "class": "B30_CodeNotResults"
+        },
+        "motion_claim": "Left, a script page 'scripts/' with a check going into a repository box; centre, a big data block 'data' that an arrow sends to a 'project storage' rack instead; a key chip 'tokens' crossed out; at the right a page named '.gitignore' (mono) that lands last with a stack of skipped items under it."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.63,
+      "audio_file": "mp3/beat-B30.mp3",
+      "render_duration_s": 13.666666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B30.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B31",
+      "act": "III · What To Leave Out",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Here is the source's version of that file. It ignores the whole results folder, then lists two files to let back in: the summary table and the run log.",
+      "estimated_duration_s": 11.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": ".gitignore  ·  from the source",
+            "lines": [
+              "# ── Results and outputs ──",
+              "results/",
+              "",
+              "# ── Raw data (large — store in institutional repository)",
+              "data/*.fastq",
+              "*.log",
+              "",
+              "# ── Allow small reference files through ──",
+              "!results/summary.tsv     # the table itself is small enough to track",
+              "!results/run.log         # the run log is the audit trail"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              83,
+              91,
+              99,
+              107,
+              138,
+              138,
+              138,
+              187,
+              219
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 95
+              },
+              {
+                "line": 8,
+                "cue": 199
+              },
+              {
+                "line": 9,
+                "cue": 231
+              }
+            ],
+            "durationSeconds": 8.64
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 8.64,
+      "audio_file": "mp3/beat-B31.mp3",
+      "render_duration_s": 8.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B31.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B32",
+      "act": "III · What To Leave Out",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Run that in real Git and it fails. Git never looks inside an ignored folder, so it never reads the two allow lines. The add is refused, and check-ignore names line two of the file as the reason.",
+      "estimated_duration_s": 15.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "git refuses  ·  recorded on a Mac",
+            "lines": [
+              "$ git add results/summary.tsv results/run.log",
+              "The following paths are ignored by one of your .gitignore files:",
+              "results",
+              "hint: Use -f if you really want to add them.",
+              "$ git check-ignore -v results/summary.tsv",
+              ".gitignore:2:results/    results/summary.tsv"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              9,
+              17,
+              212,
+              254,
+              264
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 276
+              }
+            ],
+            "durationSeconds": 11.41
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 11.41,
+      "audio_file": "mp3/beat-B32.mp3",
+      "render_duration_s": 11.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B32.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B33",
+      "act": "III · What To Leave Out",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The fix is one character. Ignore the folder's contents, with slash star, not the folder. Now the folder itself is not ignored, so the two allow lines work, and both files stage.",
+      "estimated_duration_s": 12.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "the fix  ·  recorded on a Mac",
+            "lines": [
+              "# in .gitignore, ours: ignore the contents, not the folder",
+              "results/*",
+              "!results/summary.tsv",
+              "!results/run.log",
+              "$ git add results/summary.tsv results/run.log",
+              "$ git status --short",
+              "A  results/run.log",
+              "A  results/summary.tsv"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              88,
+              96,
+              104,
+              251,
+              259,
+              267,
+              275
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 100
+              }
+            ],
+            "durationSeconds": 10.41
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 10.41,
+      "audio_file": "mp3/beat-B33.mp3",
+      "render_duration_s": 10.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B33.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B34",
+      "act": "III · What To Leave Out",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A second trap, in the same file. The source puts a comment after the pattern, on the same line. Git does not read that as a comment: the text becomes part of the pattern, which then matches nothing. So the add is still refused. Give every comment a line of its own.",
+      "estimated_duration_s": 20.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "second trap  ·  recorded on a Mac",
+            "lines": [
+              "# the source writes a comment after the pattern:",
+              "!results/summary.tsv     # the table itself is small enough to track",
+              "# with results/* above it, we ran:",
+              "$ git add results/summary.tsv results/run.log",
+              "The following paths are ignored by one of your .gitignore files:",
+              "results/run.log",
+              "results/summary.tsv",
+              "hint: Use -f if you really want to add them.",
+              "# comments need a line of their own"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              36,
+              311,
+              319,
+              327,
+              335,
+              343,
+              351
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 8,
+                "cue": 381
+              }
+            ],
+            "durationSeconds": 13.95
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 13.95,
+      "audio_file": "mp3/beat-B34.mp3",
+      "render_duration_s": 13.958333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B34.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B35",
+      "act": "III · What To Leave Out",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Write the README before the first commit. List the requirements, the exact commands to reproduce the result, including the tag to check out, and the parameters. It is a contract with anyone who clones the repository, and that includes you in a year.",
+      "estimated_duration_s": 17.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "README.md  ·  from the source",
+            "lines": [
+              "## Reproduce the paper results",
+              "git clone https://github.com/you/rnaseq_project",
+              "cd rnaseq_project",
+              "git checkout v1.0-submission      # exact code used in paper",
+              "bash scripts/filter_and_summarise.sh",
+              "# Output: results/summary.tsv",
+              "",
+              "## Parameters",
+              "| Parameter | Default | Description |",
+              "| `MIN_COUNT` | 10 | Minimum mean count to keep a gene |"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              94,
+              102,
+              110,
+              170,
+              178,
+              210,
+              210,
+              213,
+              221,
+              229
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 3,
+                "cue": 210
+              }
+            ],
+            "durationSeconds": 13.4
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 13.4,
+      "audio_file": "mp3/beat-B35.mp3",
+      "render_duration_s": 13.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B35.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B40",
+      "act": "IV · Save And Inspect",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "The habit for every result: change a value, run the script, look at the output, then commit the code and the result together. Repeat. Before a paper goes out, tag the commit. That ties each result to the code and the parameters behind it.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A four-node loop (change, run, inspect, commit) drawn as a ring; a terracotta dot rides it twice; after the second lap a flag 'tag' plants on the commit node; the commit node holds two stacked chips 'code' and 'result'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "change, run, inspect"
+          },
+          {
+            "at": 0.45,
+            "event": "commit code and result together"
+          },
+          {
+            "at": 0.85,
+            "event": "tag before it goes out"
+          }
+        ],
+        "manim": {
+          "class": "B40_RunInspectCommit"
+        },
+        "motion_claim": "A four-node loop (change, run, inspect, commit) drawn as a ring; a terracotta dot rides it twice; after the second lap a flag 'tag' plants on the commit node; the commit node holds two stacked chips 'code' and 'result'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.74,
+      "audio_file": "mp3/beat-B40.mp3",
+      "render_duration_s": 12.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B40.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B41",
+      "act": "IV · Save And Inspect",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Three commands you will use dozens of times a day. Status shows what changed. Add chooses what goes into the next snapshot: that is the staging area. Commit saves it. The source stages everything with a dot; in a folder holding data, tokens or logs, name the files instead.",
+      "estimated_duration_s": 19.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "the first commit  ·  recorded on a Mac",
+            "lines": [
+              "$ git status",
+              "On branch main",
+              "No commits yet",
+              "Untracked files:",
+              "$ git add .",
+              "$ git commit -m 'Initial pipeline: filter script, README, .gitignore'",
+              "[main (root-commit) 48350fb] Initial pipeline: filter script, README, .gitignore",
+              " 4 files changed, 338 insertions(+)",
+              "$ git log --oneline",
+              "48350fb Initial pipeline: filter script, README, .gitignore"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              36,
+              44,
+              123,
+              237,
+              239,
+              247,
+              255,
+              263
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 4,
+                "cue": 410
+              }
+            ],
+            "durationSeconds": 15.23
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 15.23,
+      "audio_file": "mp3/beat-B41.mp3",
+      "render_duration_s": 15.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B41.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B42",
+      "act": "IV · Save And Inspect",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Now run it. The log names the commit, and the counts are there: two hundred genes, a hundred ninety-nine kept. But look at the date error and the empty brackets. Dash dash i s o is a G N U option, so it fails on a Mac. It should work on Linux, but we did not run this on a cluster. On a Mac, use date dash u with a format.",
+      "estimated_duration_s": 28.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "run it  ·  recorded on a Mac, trimmed",
+            "lines": [
+              "$ bash scripts/filter_and_summarise.sh",
+              "date: illegal option -- -",
+              "usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]",
+              "[] Starting analysis",
+              "  Threshold:  10",
+              "  Git commit: 48350fb3fb10eb62090e6458949bb5b30a5d52ed",
+              "── Results ──────────────────",
+              "  Total genes:        200",
+              "  After filter:       199",
+              "  Upregulated:         29",
+              "  Downregulated:        0",
+              "  Not significant:      170"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              160,
+              168,
+              176,
+              184,
+              185,
+              193,
+              201,
+              202,
+              210,
+              218,
+              226
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 172
+              },
+              {
+                "line": 3,
+                "cue": 196
+              }
+            ],
+            "durationSeconds": 16.79
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 16.79,
+      "audio_file": "mp3/beat-B42.mp3",
+      "render_duration_s": 16.791666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B42.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B43",
+      "act": "IV · Save And Inspect",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Then commit the results together with the code that made them, and let the message say what the run was. The log inside this commit names the commit before it, so the result carries its own receipt. That only works because the fixed git ignore file lets the two files through.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "commit the run  ·  recorded on a Mac",
+            "lines": [
+              "$ git add results/summary.tsv results/run.log",
+              "$ git commit -m 'analysis: baseline run, MIN_COUNT=10, 200 genes, threshold=10'",
+              "[main eda7c83] analysis: baseline run, MIN_COUNT=10, 200 genes, threshold=10",
+              " 2 files changed, 213 insertions(+)",
+              " create mode 100644 results/run.log",
+              " create mode 100644 results/summary.tsv",
+              "$ git log --oneline",
+              "eda7c83 analysis: baseline run, MIN_COUNT=10, 200 genes, threshold=10",
+              "48350fb Initial pipeline: filter script, README, .gitignore"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              80,
+              88,
+              96,
+              104,
+              112,
+              120,
+              253,
+              261
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 7,
+                "cue": 265
+              }
+            ],
+            "durationSeconds": 14.4
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.4,
+      "audio_file": "mp3/beat-B43.mp3",
+      "render_duration_s": 14.416666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B43.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B44",
+      "act": "IV · Save And Inspect",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Two habits make a history worth reading. One logical change per commit: if the message needs the word and, make two commits. And a consistent message style, a type, a scope and a short summary, so git log reads like a change log and grep finds things.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Top: a message chip 'fixed stuff and added new feature and changed config' (two lines) crossed out, beside a message chip 'Fix off-by-one in loop bounds' with a check. Bottom: six type chips (feat, fix, data, analysis, docs, config) in a row, then one full example in mono 'analysis(fig3): reproduce with corrected normalization'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the 'and' message is crossed out; the single-change one is kept"
+          },
+          {
+            "at": 0.55,
+            "event": "six message types"
+          },
+          {
+            "at": 0.85,
+            "event": "a typed example"
+          }
+        ],
+        "manim": {
+          "class": "B44_GoodCommits"
+        },
+        "motion_claim": "Top: a message chip 'fixed stuff and added new feature and changed config' (two lines) crossed out, beside a message chip 'Fix off-by-one in loop bounds' with a check. Bottom: six type chips (feat, fix, data, analysis, docs, config) in a row, then one full example in mono 'analysis(fig3): reproduce with corrected normalization'."
+      },
+      "actual_duration_s": 14.42,
+      "audio_file": "mp3/beat-B44.mp3",
+      "render_duration_s": 14.458333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B44.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B45",
+      "act": "IV · Save And Inspect",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Before you commit anything, look at what you are about to commit. Change the threshold, and git diff shows it line by line: one line out, one line in. The source edits with sed, and that form fails on a Mac, which wants an empty backup suffix after dash i. We used the Mac form.",
+      "estimated_duration_s": 22.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "git diff  ·  recorded on a Mac, trimmed",
+            "lines": [
+              "$ sed -i 's/MIN_COUNT=10/MIN_COUNT=20/' scripts/filter_and_summarise.sh",
+              "sed: 1: \"scripts/filter_and_summ ...\": unterminated substitute pattern",
+              "# the Mac form, which we used:",
+              "$ sed -i '' 's/MIN_COUNT=10/MIN_COUNT=20/' scripts/filter_and_summarise.sh",
+              "$ git diff scripts/filter_and_summarise.sh",
+              "@@ -12,7 +12,7 @@ INPUT=\"data/counts.tsv\"",
+              " # ── PARAMETERS ── change these, then commit before re-running",
+              "-MIN_COUNT=10        # filter: remove genes with mean count below this",
+              "+MIN_COUNT=20        # filter: remove genes with mean count below this"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              270,
+              278,
+              311,
+              312,
+              320,
+              328,
+              329,
+              330
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 7,
+                "cue": 341
+              },
+              {
+                "line": 8,
+                "cue": 342
+              }
+            ],
+            "durationSeconds": 14.51
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.51,
+      "audio_file": "mp3/beat-B45.mp3",
+      "render_duration_s": 14.541666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B45.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B46",
+      "act": "IV · Save And Inspect",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Rerun with the new value: a hundred ninety-seven genes now pass, two fewer. Commit the changed script and the new results together, with a message that names the change. Three commits now, each one a documented decision.",
+      "estimated_duration_s": 14.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "the second commit  ·  recorded on a Mac",
+            "lines": [
+              "$ bash scripts/filter_and_summarise.sh",
+              "  After filter:       197",
+              "$ awk 'NR>1 {print $5}' results/summary.tsv | sort | uniq -c",
+              " 168 NS",
+              "  29 UP",
+              "$ git add scripts/filter_and_summarise.sh results/summary.tsv results/run.log",
+              "$ git commit -m 'analysis: raise MIN_COUNT 10->20, stricter low-count filter'",
+              "[main 3abfaa1] analysis: raise MIN_COUNT 10->20, stricter low-count filter",
+              " 3 files changed, 5 insertions(+), 7 deletions(-)",
+              "$ git log --oneline",
+              "3abfaa1 analysis: raise MIN_COUNT 10->20, stricter low-count filter",
+              "eda7c83 analysis: baseline run, MIN_COUNT=10, 200 genes, threshold=10",
+              "48350fb Initial pipeline: filter script, README, .gitignore"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              35,
+              43,
+              51,
+              59,
+              122,
+              130,
+              138,
+              146,
+              264,
+              272,
+              280,
+              288
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "durationSeconds": 12.25
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 12.25,
+      "audio_file": "mp3/beat-B46.mp3",
+      "render_duration_s": 12.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B46.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B47",
+      "act": "IV · Save And Inspect",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The log is your audit trail. Stat shows which files each commit touched. Grep finds every commit that mentions a word, so the reviewer's question now has an answer in two lines. Dash p shows every change to one file, and git blame says who wrote each line, and when.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "git log  ·  recorded on a Mac, selected lines",
+            "lines": [
+              "$ git log --stat",
+              "commit 3abfaa111fa06ccf0cbc5191dfea4bd647b21cac",
+              "Author: Research User <user@university.edu>",
+              "    analysis: raise MIN_COUNT 10->20, stricter low-count filter",
+              " results/run.log                 | 8 ++++----",
+              " results/summary.tsv             | 2 --",
+              " scripts/filter_and_summarise.sh | 2 +-",
+              "$ git log --oneline --grep='MIN_COUNT'",
+              "3abfaa1 analysis: raise MIN_COUNT 10->20, stricter low-count filter",
+              "eda7c83 analysis: baseline run, MIN_COUNT=10, 200 genes, threshold=10",
+              "# also in the source, not run: git log -p -- script.sh   and   git blame script.sh"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              36,
+              44,
+              52,
+              60,
+              68,
+              117,
+              125,
+              133,
+              141
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 9,
+                "cue": 228
+              }
+            ],
+            "durationSeconds": 14.63
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.63,
+      "audio_file": "mp3/beat-B47.mp3",
+      "render_duration_s": 14.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B47.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B50",
+      "act": "V · Branches And Merges",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A reviewer asks you to try a fold change cutoff of one point five instead of two. You do not know yet whether it goes in the paper. So never edit the working script for a speculative change. Make a branch: a parallel version that leaves main untouched.",
+      "estimated_duration_s": 19.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A main chain of three discs; a branch label 'explore/fc-cutoff-1.5' forks from the last disc and gets one new disc while the main label stays put; a lock-tag 'main untouched' lands on main.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "main as it stands"
+          },
+          {
+            "at": 0.5,
+            "event": "the branch forks and gets its own commit"
+          },
+          {
+            "at": 0.85,
+            "event": "main stays untouched"
+          }
+        ],
+        "manim": {
+          "class": "B50_BranchOff"
+        },
+        "motion_claim": "A main chain of three discs; a branch label 'explore/fc-cutoff-1.5' forks from the last disc and gets one new disc while the main label stays put; a lock-tag 'main untouched' lands on main."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.06,
+      "audio_file": "mp3/beat-B50.mp3",
+      "render_duration_s": 14.083333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B50.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B51",
+      "act": "V · Branches And Merges",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "One command makes the branch and moves you onto it. Branch list shows where you are, with a star. Change the two cutoffs in the script, and git diff shows exactly that: the cutoff of two becomes one point five, and the lower one, point five, becomes point six seven.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "a branch for the experiment  ·  recorded on a Mac, trimmed",
+            "lines": [
+              "$ git switch -c explore/fc-cutoff-1.5",
+              "Switched to a new branch 'explore/fc-cutoff-1.5'",
+              "$ git branch --list",
+              "* explore/fc-cutoff-1.5",
+              "  main",
+              "$ sed -i 's/fc >= 2.0/fc >= 1.5/' scripts/filter_and_summarise.sh",
+              "$ sed -i 's/fc <= 0.5/fc <= 0.67/' scripts/filter_and_summarise.sh",
+              "# on a Mac: sed -i '' ..., as before",
+              "$ git diff scripts/filter_and_summarise.sh",
+              "-    if      (fc >= 2.0) status = \"UP\"",
+              "-    else if (fc <= 0.5) status = \"DOWN\"",
+              "+    if      (fc >= 1.5) status = \"UP\"",
+              "+    else if (fc <= 0.67) status = \"DOWN\""
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              9,
+              80,
+              88,
+              96,
+              151,
+              159,
+              167,
+              224,
+              224,
+              224,
+              225,
+              233
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "durationSeconds": 14.36
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.36,
+      "audio_file": "mp3/beat-B51.mp3",
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B51.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B52",
+      "act": "V · Branches And Merges",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Run it, check it, commit it on the branch. Then switch back to main, and its script is exactly as you left it: the cutoff is still two. The experiment lives only on the branch.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "commit, then switch back  ·  recorded on a Mac",
+            "lines": [
+              "$ git commit -m 'explore: relax FC cutoff to 1.5/0.67 (reviewer suggestion)'",
+              "[explore/fc-cutoff-1.5 6bb1d6d] explore: relax FC cutoff to 1.5/0.67 (reviewer suggestion)",
+              " 2 files changed, 3 insertions(+), 3 deletions(-)",
+              "$ git switch main",
+              "Switched to branch 'main'",
+              "$ grep 'fc >=' scripts/filter_and_summarise.sh",
+              "    if      (fc >= 2.0) status = \"UP\""
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              22,
+              30,
+              38,
+              60,
+              68,
+              76,
+              176
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 6,
+                "cue": 188
+              }
+            ],
+            "durationSeconds": 9.56
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 9.56,
+      "audio_file": "mp3/beat-B52.mp3",
+      "render_duration_s": 9.583333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B52.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B53",
+      "act": "V · Branches And Merges",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Merge when the idea belongs. The dash dash no F F flag keeps a visible merge point, and the graph shows the line leaving and rejoining. Deleting the branch with dash lowercase d removes only the label, and only if its work is merged. The commits stay.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "merge, then clean up  ·  recorded on a Mac, trimmed",
+            "lines": [
+              "$ git merge explore/fc-cutoff-1.5 --no-ff \\",
+              "  -m 'Merge explore/fc-cutoff-1.5: FC >= 1.5 for revised submission'",
+              "Merge made by the 'ort' strategy.",
+              "$ git log --oneline --graph --all",
+              "*   0611b57 Merge explore/fc-cutoff-1.5: FC >= 1.5 for revised submission",
+              "|\\",
+              "| * 6bb1d6d explore: relax FC cutoff to 1.5/0.67 (reviewer suggestion)",
+              "|/",
+              "* 3abfaa1 analysis: raise MIN_COUNT 10->20, stricter low-count filter",
+              "$ git branch -d explore/fc-cutoff-1.5",
+              "Deleted branch explore/fc-cutoff-1.5 (was 6bb1d6d)."
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              29,
+              142,
+              150,
+              158,
+              166,
+              174,
+              182,
+              232,
+              384
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 4,
+                "cue": 224
+              }
+            ],
+            "durationSeconds": 14.36
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.36,
+      "audio_file": "mp3/beat-B53.mp3",
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B53.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B60",
+      "act": "VI · Tags And Time Travel",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A tag is a flag on one commit, and it does not move. Branch names slide forward with every new commit; a tag stays where you planted it. Before the paper goes out, tag the commit behind your figures, and check that tag out any time to get exactly that code.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A commit chain; the label 'main' sits on the last disc and the flag 'v1.0-submission' on the merge disc; two new discs arrive and 'main' slides forward each time while the flag stays; finally an arrow 'git checkout v1.0-submission' (mono) points back at the flag.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the flag planted"
+          },
+          {
+            "at": 0.5,
+            "event": "new commits: main slides, the flag stays"
+          },
+          {
+            "at": 0.85,
+            "event": "check the tag out to get that code"
+          }
+        ],
+        "manim": {
+          "class": "B60_FixedFlag"
+        },
+        "motion_claim": "A commit chain; the label 'main' sits on the last disc and the flag 'v1.0-submission' on the merge disc; two new discs arrive and 'main' slides forward each time while the flag stays; finally an arrow 'git checkout v1.0-submission' (mono) points back at the flag."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 13.85,
+      "audio_file": "mp3/beat-B60.mp3",
+      "render_duration_s": 13.875,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B60.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B61",
+      "act": "VI · Tags And Time Travel",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The tag command, and the list that shows it with its message. Tags are not sent by a plain push. Pushing uploads your work to a server such as GitHub, which changes something outside your machine, so do it on purpose and with the repository owner's agreement. We did not push; this folder has no remote.",
+      "estimated_duration_s": 22.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "tag the submission  ·  recorded on a Mac, push not run",
+            "lines": [
+              "$ git tag -a v1.0-submission \\",
+              "  -m 'Code submitted to journal, 2025-09-01. MIN_COUNT=20, FC=1.5'",
+              "$ git tag -l -n1",
+              "v1.0-submission Code submitted to journal, 2025-09-01. MIN_COUNT=20, FC=1.5",
+              "# from the source, not run: this folder has no remote",
+              "$ git push origin main",
+              "$ git push origin v1.0-submission"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              9,
+              24,
+              32,
+              40,
+              157,
+              158
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 169
+              }
+            ],
+            "durationSeconds": 16.06
+          },
+          "rendered": {
+            "out": "media/B61.mp4",
+            "at": "2026-10-14T04:52:46.702473+00:00"
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 16.06,
+      "audio_file": "mp3/beat-B61.mp3",
+      "render_duration_s": 16.083333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B61.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B62",
+      "act": "VI · Tags And Time Travel",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "The reviewer's question: what did you get with the original threshold? Find the commit by its message, restore only that one file from it, run it, and read the answer: a hundred ninety-nine genes kept at ten, against one ninety-seven at twenty. Then put today's version back.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "time travel  ·  recorded on a Mac, trimmed",
+            "lines": [
+              "$ HASH=$(git log --oneline --grep='MIN_COUNT=10' | awk '{print $1}')",
+              "$ git checkout $HASH -- scripts/filter_and_summarise.sh",
+              "$ grep 'MIN_COUNT\\|fc >=' scripts/filter_and_summarise.sh",
+              "MIN_COUNT=10        # filter: remove genes with mean count below this",
+              "$ bash scripts/filter_and_summarise.sh",
+              "  Threshold:  10",
+              "  After filter:       199",
+              "$ git checkout HEAD -- scripts/filter_and_summarise.sh"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              90,
+              139,
+              147,
+              155,
+              196,
+              230,
+              258,
+              384
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 6,
+                "cue": 270
+              }
+            ],
+            "durationSeconds": 14.78
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.78,
+      "audio_file": "mp3/beat-B62.mp3",
+      "render_duration_s": 14.791666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B62.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B63",
+      "act": "VI · Tags And Time Travel",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "One thing to notice. Restoring the script did not restore the results. The rerun overwrote the two tracked result files, and git status shows them modified. Commit them, or put them back, before you go on. The next section shows why.",
+      "estimated_duration_s": 16.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "what is left  ·  recorded on a Mac",
+            "lines": [
+              "$ git status --short",
+              " M results/run.log",
+              " M results/summary.tsv",
+              "# the rerun overwrote the tracked results",
+              "# commit them, or restore them, before the next step"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              219,
+              227,
+              235,
+              243
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 1,
+                "cue": 231
+              },
+              {
+                "line": 2,
+                "cue": 239
+              }
+            ],
+            "durationSeconds": 12.97
+          },
+          "rendered": {
+            "out": "media/B63.mp4",
+            "at": "2026-10-14T04:53:22.854681+00:00"
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 12.97,
+      "audio_file": "mp3/beat-B63.mp3",
+      "render_duration_s": 13.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B63.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B70",
+      "act": "VII · Git On Slurm",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "On a cluster, a Slurm job runs later, on another machine, from the files as they are then. So two rules. Commit before you submit, so every job traces to one commit. And print that commit's hash in the job log, so the result always points back to the code.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A timeline: a commit disc, then a submit marker 'sbatch', a queue bar 'waits', a job-start marker and an end marker with an output page; a thread from the commit disc runs along under the timeline to the output page's log line (mono hash chip), closing the loop.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "commit, then submit; the job waits, then runs later"
+          },
+          {
+            "at": 0.55,
+            "event": "rule one: the job traces to one commit"
+          },
+          {
+            "at": 0.85,
+            "event": "rule two: the hash is in the log"
+          }
+        ],
+        "manim": {
+          "class": "B70_CommitBeforeSubmit"
+        },
+        "motion_claim": "A timeline: a commit disc, then a submit marker 'sbatch', a queue bar 'waits', a job-start marker and an end marker with an output page; a thread from the commit disc runs along under the timeline to the output page's log line (mono hash chip), closing the loop."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.34,
+      "audio_file": "mp3/beat-B70.mp3",
+      "render_duration_s": 14.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B70.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B71",
+      "act": "VII · Git On Slurm",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "This is the source's job script, read from the source and not run by us. Two things to fix before you copy it. The partition named compute does not exist on Explorer. And the mail line is a placeholder: use your own address, or none.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "VII · Git On Slurm  ·  slurm/run_pipeline.sh, from the source, not run",
+            "lines": [
+              "#!/bin/bash",
+              "#SBATCH --job-name=rnaseq_filter",
+              "#SBATCH --partition=compute",
+              "#SBATCH --ntasks=1",
+              "#SBATCH --cpus-per-task=1",
+              "#SBATCH --mem=4G",
+              "#SBATCH --time=00:30:00",
+              "#SBATCH --output=results/slurm_%j.out",
+              "#SBATCH --error=results/slurm_%j.err",
+              "#SBATCH --mail-type=END,FAIL",
+              "#SBATCH --mail-user=your@university.edu"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              205,
+              205,
+              205,
+              208,
+              216,
+              224,
+              232,
+              240,
+              277
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 229
+              },
+              {
+                "line": 10,
+                "cue": 340
+              }
+            ],
+            "durationSeconds": 13.1
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 13.1,
+      "audio_file": "mp3/beat-B71.mp3",
+      "render_duration_s": 13.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B71.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B72",
+      "act": "VII · Git On Slurm",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Use a name from a real list. Read-only commands on a login node showed, on Explorer, short, the default, with a two-day limit, and sharing, with one hour. On A-I-C-R, the C P U partition is cpu, with one day. Check sinfo before you copy a name.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left an Explorer rack with plaques 'short (default) 2 days' and 'sharing 1 hour'; right an AICR rack with a plaque 'cpu (default) 1 day'; above, a plaque 'compute' crossed out; a mono chip 'sinfo' lands last.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "Explorer: short and sharing"
+          },
+          {
+            "at": 0.55,
+            "event": "AICR: cpu"
+          },
+          {
+            "at": 0.85,
+            "event": "compute crossed out; check sinfo"
+          }
+        ],
+        "manim": {
+          "class": "B72_RealPartitions"
+        },
+        "motion_claim": "Left an Explorer rack with plaques 'short (default) 2 days' and 'sharing 1 hour'; right an AICR rack with a plaque 'cpu (default) 1 day'; above, a plaque 'compute' crossed out; a mono chip 'sinfo' lands last."
+      },
+      "actual_duration_s": 14.83,
+      "audio_file": "mp3/beat-B72.mp3",
+      "render_duration_s": 14.833333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B72.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B73",
+      "act": "VII · Git On Slurm",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Inside the job: a header that prints the job, the commit and the branch. Then the guard. If the working tree has uncommitted changes, or staged ones, the job stops. Then the pipeline, and a tag named run, dash, the job number, on exactly that commit.",
+      "estimated_duration_s": 18.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "inside the job  ·  from the source, not run",
+            "lines": [
+              "echo \"Job ID:     $SLURM_JOB_ID\"",
+              "echo \"Git commit: $(git rev-parse HEAD)\"",
+              "echo \"Git branch: $(git rev-parse --abbrev-ref HEAD)\"",
+              "if ! git diff --quiet || ! git diff --staged --quiet; then",
+              "    echo 'ERROR: uncommitted changes detected.'",
+              "    exit 1",
+              "fi",
+              "bash scripts/filter_and_summarise.sh",
+              "git tag run-$SLURM_JOB_ID \\",
+              "  -m \"Slurm job $SLURM_JOB_ID on $SLURM_NODELIST $(date --iso-8601)\""
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              36,
+              107,
+              115,
+              123,
+              131,
+              265,
+              290,
+              298
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 3,
+                "cue": 119
+              },
+              {
+                "line": 8,
+                "cue": 302
+              }
+            ],
+            "durationSeconds": 14.1
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.1,
+      "audio_file": "mp3/beat-B73.mp3",
+      "render_duration_s": 14.125,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B73.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B74",
+      "act": "VII · Git On Slurm",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "We ran the guard block on its own, on the Mac, not as a Slurm job. With an edited file it prints the error and exits with code one. After the commit it passes; the only line we added is the echo that says so. That is the habit: no trace, no run.",
+      "estimated_duration_s": 21.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "the guard, run on its own  ·  recorded on a Mac",
+            "lines": [
+              "$ git status --short",
+              " M README.md",
+              "$ bash guard.sh   # the source guard block, run on its own",
+              "ERROR: uncommitted changes detected.",
+              "Commit your changes before submitting a job.",
+              "exit code: 1",
+              "$ git commit -am \"docs: note\"",
+              "$ bash guard.sh",
+              "guard passed",
+              "exit code: 0",
+              "# 'guard passed' is our one added echo; the rest is the source's guard"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              134,
+              142,
+              150,
+              177,
+              219,
+              221,
+              231,
+              239,
+              247
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 189
+              }
+            ],
+            "durationSeconds": 14.04
+          },
+          "rendered": {
+            "out": "media/B74.mp4",
+            "at": "2026-10-14T04:53:59.116835+00:00"
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.04,
+      "audio_file": "mp3/beat-B74.mp3",
+      "render_duration_s": 14.041666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B74.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B75",
+      "act": "VII · Git On Slurm",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Weak spots, from our reading of the logic, not tested. The guard runs when the job starts, not when you submit, and a job can queue for hours. Edit the script meanwhile, and the job may run newer code and log the newer hash.",
+      "estimated_duration_s": 17.6,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A timeline: 'sbatch' at commit A (disc A); a long queue bar; during it an 'edit' marker creates disc B; the job starts at disc B and its log chip shows B's hash while the person thought A; a label 'not tested' (stamp) sits in the corner.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "the guard runs at job start"
+          },
+          {
+            "at": 0.5,
+            "event": "an edit during the queue creates a newer state"
+          },
+          {
+            "at": 0.85,
+            "event": "the job logs the newer hash"
+          }
+        ],
+        "manim": {
+          "class": "B75_QueueWindow"
+        },
+        "motion_claim": "A timeline: 'sbatch' at commit A (disc A); a long queue bar; during it an 'edit' marker creates disc B; the job starts at disc B and its log chip shows B's hash while the person thought A; a label 'not tested' (stamp) sits in the corner."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 12.35,
+      "audio_file": "mp3/beat-B75.mp3",
+      "render_duration_s": 12.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B75.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B76",
+      "act": "VII · Git On Slurm",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "A stronger version, ours and untested. Check the tree when you submit, and pass the hash into the job. Inside the job, compare the two hashes and stop if they differ. That closes the gap.",
+      "estimated_duration_s": 14.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "a stronger check  ·  ours, not run",
+            "lines": [
+              "# ours, untested: check at submit time and pass the hash into the job",
+              "git diff --quiet && git diff --staged --quiet || { echo \"commit first\"; exit 1; }",
+              "sbatch --export=ALL,SUBMIT_COMMIT=\"$(git rev-parse HEAD)\" slurm/job.sh",
+              "# inside the job: compare $SUBMIT_COMMIT with $(git rev-parse HEAD)",
+              "# and stop if they differ"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              70,
+              107,
+              115,
+              227
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 119
+              }
+            ],
+            "durationSeconds": 10.62
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 10.62,
+      "audio_file": "mp3/beat-B76.mp3",
+      "render_duration_s": 10.625,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B76.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B77",
+      "act": "VII · Git On Slurm",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Three more. The results a run writes are tracked files, so the next submit is blocked until you commit them. The tag changes the repository from inside the job, so tag only from a checkout you own. And a tag made in the job exists only there, until someone pushes it.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three cards left to right. 1: a results page with a terracotta dirty dot and a barred 'sbatch' arrow. 2: two job boxes reaching into one checkout box at the same time ('shared checkout'), a cross. 3: a flag 'run-tag' inside a rack that has no arrow to a GitHub logo chip until a 'push' arrow draws.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "card 1: dirty results block the submit"
+          },
+          {
+            "at": 0.5,
+            "event": "card 2: two jobs, one checkout"
+          },
+          {
+            "at": 0.85,
+            "event": "card 3: the tag stays in the checkout until pushed"
+          }
+        ],
+        "manim": {
+          "class": "B77_ThreeMoreSpots"
+        },
+        "motion_claim": "Three cards left to right. 1: a results page with a terracotta dirty dot and a barred 'sbatch' arrow. 2: two job boxes reaching into one checkout box at the same time ('shared checkout'), a cross. 3: a flag 'run-tag' inside a rack that has no arrow to a GitHub logo chip until a 'push' arrow draws."
+      },
+      "actual_duration_s": 15.34,
+      "audio_file": "mp3/beat-B77.mp3",
+      "render_duration_s": 15.375,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B77.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B78",
+      "act": "VII · Git On Slurm",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "A full job record holds more than a commit: job, node and partition; start and end times; the exact command; every parameter and random seed; input paths with checksums; software versions; the hardware used; the output folder; and the exit status. The header prints the first few. You add the rest.",
+      "estimated_duration_s": 20.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A 4 by 3 grid of twelve record chips (job and node, times, commit and tag, command and script, parameters, random seeds, input checksums, software, container, hardware, output folder, exit status); the first three get a terracotta ring as 'the header' and the other nine fill in as 'you add'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "the twelve items"
+          },
+          {
+            "at": 0.55,
+            "event": "the header covers the first few"
+          },
+          {
+            "at": 0.85,
+            "event": "you add the rest"
+          }
+        ],
+        "manim": {
+          "class": "B78_JobRecord"
+        },
+        "motion_claim": "A 4 by 3 grid of twelve record chips (job and node, times, commit and tag, command and script, parameters, random seeds, input checksums, software, container, hardware, output folder, exit status); the first three get a terracotta ring as 'the header' and the other nine fill in as 'you add'."
+      },
+      "actual_duration_s": 16.23,
+      "audio_file": "mp3/beat-B78.mp3",
+      "render_duration_s": 16.25,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B78.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B80",
+      "act": "VIII · Daily Habits And Questions",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Three aliases save typing, and go in your global config: l g for the branch graph, s t for a short status, last for the last commit. Here is what l g draws, with branch and tag labels: main at the top, the merge, and the tag on the commit behind the paper.",
+      "estimated_duration_s": 21.2,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "the branch graph  ·  recorded on a Mac",
+            "lines": [
+              "$ git config --global alias.lg 'log --oneline --graph --all --decorate'",
+              "$ git config --global alias.st   'status --short --branch'",
+              "$ git config --global alias.last 'log -1 --stat'",
+              "# git lg is that long form:",
+              "$ git log --oneline --graph --all --decorate",
+              "* bb5d912 (HEAD -> main) ci: Slurm job script with uncommitted-change guard",
+              "* 9c72349 analysis: rerun at MIN_COUNT=10 for the reviewer",
+              "*   0611b57 (tag: v1.0-submission) Merge explore/fc-cutoff-1.5: FC >= 1.5 for revised submission",
+              "|\\",
+              "| * 6bb1d6d explore: relax FC cutoff to 1.5/0.67 (reviewer suggestion)",
+              "|/",
+              "* 3abfaa1 analysis: raise MIN_COUNT 10->20, stricter low-count filter",
+              "* eda7c83 analysis: baseline run, MIN_COUNT=10, 200 genes, threshold=10"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              1,
+              9,
+              17,
+              109,
+              117,
+              125,
+              133,
+              345,
+              353,
+              361,
+              369,
+              377,
+              385
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 7,
+                "cue": 378
+              }
+            ],
+            "durationSeconds": 14.7
+          },
+          "rendered": {
+            "out": "media/B80.mp4",
+            "at": "2026-10-14T04:54:36.349044+00:00"
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 14.7,
+      "audio_file": "mp3/beat-B80.mp3",
+      "render_duration_s": 14.708333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B80.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B81",
+      "act": "VIII · Daily Habits And Questions",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "And a small shell function that puts the branch name in your prompt, so you always know where you are. Here it prints the project name and main in brackets. It lasts for this session only, so no profile edit is needed.",
+      "estimated_duration_s": 16.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "the branch in your prompt  ·  recorded on a Mac",
+            "lines": [
+              "git_branch() {",
+              "    git rev-parse --abbrev-ref HEAD 2>/dev/null | awk '{printf \" (\" $0 \")\"}'",
+              "}",
+              "",
+              "echo \"rnaseq_project$(git_branch)\"",
+              "rnaseq_project (main)"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              36,
+              44,
+              183,
+              183
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 5,
+                "cue": 197
+              }
+            ],
+            "durationSeconds": 11.63
+          },
+          "rendered": {
+            "out": "media/B81.mp4",
+            "at": "2026-10-14T04:55:07.165156+00:00"
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 11.63,
+      "audio_file": "mp3/beat-B81.mp3",
+      "render_duration_s": 11.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B81.mp4",
+        "filled_by": "remotion:CCPlainShell",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B82",
+      "act": "VIII · Daily Habits And Questions",
+      "lane": "remotion",
+      "proof_gate": "SHOW",
+      "narration_text": "Charts need no display. Two awk scripts draw a bar chart and a histogram in plain text, so they run on a login node. They are exploratory, so they live on their own branch, explore slash cli dash charts, until you decide to merge them.",
+      "estimated_duration_s": 18.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "lines print as they are spoken"
+          }
+        ],
+        "remotion": {
+          "pattern": "CCPlainShell",
+          "props": {
+            "title": "charts in plain text  ·  recorded on a Mac, trimmed",
+            "lines": [
+              "$ bash scripts/charts/bar_status.sh",
+              "Gene regulation status",
+              "  NS       170  ████████████████████████████████████████",
+              "  UP        29  ██████",
+              "  Total genes passing filter:      199",
+              "$ bash scripts/charts/hist_foldchange.sh",
+              "log2(Fold Change) Distribution",
+              "  [-0.34 to -0.15]    21  ▒▒▒▒▒▒▒▒▒▒",
+              "  [-0.15 to +0.04]    71  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
+              "  [+0.04 to +0.23]    69  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
+              "  [+0.23 to +0.42]     9  ▒▒▒▒",
+              "$ git switch -c explore/cli-charts"
+            ],
+            "startCue": 20,
+            "lineGap": 30,
+            "lineCues": [
+              20,
+              28,
+              72,
+              80,
+              88,
+              96,
+              97,
+              105,
+              113,
+              121,
+              129,
+              242
+            ],
+            "fontSize": 27,
+            "windowMargin": 100,
+            "rings": [
+              {
+                "line": 2,
+                "cue": 84
+              }
+            ],
+            "durationSeconds": 13.06
+          }
+        }
+      },
+      "motion_claim": "The text, exactly as written or as recorded, prints line by line as it is spoken.",
+      "actual_duration_s": 13.06,
+      "audio_file": "mp3/beat-B82.mp3",
+      "render_duration_s": 13.083333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B82.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B83",
+      "act": "VIII · Daily Habits And Questions",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "Questions people ask. Can Git hold large datasets? Not directly. Git L F S handles files up to about two gigabytes, and D V C layers on Git and keeps the data elsewhere; track a manifest in Git. Jupyter notebooks carry their outputs, which makes noisy diffs: strip them with nbstripout, or sync with Jupytext.",
+      "estimated_duration_s": 22.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left: a Git logo chip with a small 'manifest' page inside a repository box, and an arrow to a 'storage' rack holding a big data block; chips 'Git LFS ~2 GB' and 'DVC' (mono) on the arrow. Right: a Jupyter logo chip and a notebook page with output chips on it; the output chips lift away, labelled 'nbstripout'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "data stays in storage; Git keeps a manifest"
+          },
+          {
+            "at": 0.55,
+            "event": "notebook outputs make noisy diffs"
+          },
+          {
+            "at": 0.85,
+            "event": "strip them"
+          }
+        ],
+        "manim": {
+          "class": "B83_BigFilesNotebooks"
+        },
+        "motion_claim": "Left: a Git logo chip with a small 'manifest' page inside a repository box, and an arrow to a 'storage' rack holding a big data block; chips 'Git LFS ~2 GB' and 'DVC' (mono) on the arrow. Right: a Jupyter logo chip and a notebook page with output chips on it; the output chips lift away, labelled 'nbstripout'."
+      },
+      "actual_duration_s": 17.71,
+      "audio_file": "mp3/beat-B83.mp3",
+      "render_duration_s": 17.75,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B83.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B84",
+      "act": "VIII · Daily Habits And Questions",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "To fix the last commit before you push, use commit dash dash amend. To undo a commit that is already shared, use git revert, which adds a new commit that undoes it. And never run git reset dash dash hard on a branch other people use: it throws work away.",
+      "estimated_duration_s": 20.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A commit chain. Row 1: the last disc swaps for a corrected disc under 'commit --amend' (mono). Row 2: an extra disc arrives with a returning arrow under 'git revert'. Row 3: two discs vanish under 'git reset --hard' with a large cross and a group-of-people label 'shared branch'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "amend swaps the last commit"
+          },
+          {
+            "at": 0.5,
+            "event": "revert adds an undo commit"
+          },
+          {
+            "at": 0.85,
+            "event": "reset --hard on a shared branch: crossed out"
+          }
+        ],
+        "manim": {
+          "class": "B84_UndoSafely"
+        },
+        "motion_claim": "A commit chain. Row 1: the last disc swaps for a corrected disc under 'commit --amend' (mono). Row 2: an extra disc arrives with a returning arrow under 'git revert'. Row 3: two discs vanish under 'git reset --hard' with a large cross and a group-of-people label 'shared branch'."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "lecture, drawn lane (show-tell drawing laws): one drawn scene on a cream stage with a few labels, the voice carries the explanation. Only underfill and clustered are waived; edge-bleed, empty-frame and contrast still apply."
+      },
+      "actual_duration_s": 14.27,
+      "audio_file": "mp3/beat-B84.mp3",
+      "render_duration_s": 14.291666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B84.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "B85",
+      "act": "VIII · Daily Habits And Questions",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "narration_text": "If two branches changed the same lines, Git stops and marks the file. Open it, keep the version you want, delete the markers, then git add the file and commit. And git stash sets half-done edits aside; stash pop brings them back. We did not run either.",
+      "estimated_duration_s": 18.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A page with three marker lines (<<<<<<<, =======, >>>>>>>) in mono around two version blocks; the markers and the unwanted block wipe away, leaving one block, then chips 'git add' and 'git commit' land. Below, a half-done page slides into a drawer labelled 'git stash' and back out under 'stash pop'.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "markers around two versions"
+          },
+          {
+            "at": 0.5,
+            "event": "keep one, delete markers, add, commit"
+          },
+          {
+            "at": 0.85,
+            "event": "stash and pop"
+          }
+        ],
+        "manim": {
+          "class": "B85_ConflictsAndStash"
+        },
+        "motion_claim": "A page with three marker lines (<<<<<<<, =======, >>>>>>>) in mono around two version blocks; the markers and the unwanted block wipe away, leaving one block, then chips 'git add' and 'git commit' land. Below, a half-done page slides into a drawer labelled 'git stash' and back out under 'stash pop'."
+      },
+      "actual_duration_s": 13.95,
+      "audio_file": "mp3/beat-B85.mp3",
+      "render_duration_s": 13.958333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B85.mp4",
+        "filled_by": "manim",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "recap",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Let's recap with Claude. A commit is a saved snapshot, and a tag is a fixed name for one of them. Track the code that makes results, and write the ignore file so its allow lines really work. Run, look, then commit the code and the result together, one logical change at a time. A branch holds an experiment; merge it when it belongs, and tag what you submit. Any old result comes back from its commit, one file at a time. On a cluster, commit before you submit, print the hash in the job log, and guard against a dirty tree.",
+      "estimated_duration_s": 40.8,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "artifact page opens"
+          },
+          {
+            "at": 0.1,
+            "event": "six recap lines land in narration order"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Recap",
+            "artifactHeading": "Scientific Reproducibility II: Version Control",
+            "artifactLines": [
+              "A commit is a saved snapshot, and a tag is a fixed name for one of them.",
+              "Track the code that makes results, and write the ignore file so its allow lines really work.",
+              "Run, look, then commit the code and the result together, one logical change at a time.",
+              "A branch holds an experiment; merge it when it belongs, and tag what you submit.",
+              "Any old result comes back from its commit, one file at a time.",
+              "On a cluster, commit before you submit, print the hash in the job log, and guard against a dirty tree."
+            ]
+          }
+        }
+      },
+      "lead_silence_s": 0.5,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Mandated ClaudeVerdictArtifact bookend."
+      },
+      "actual_duration_s": 26.36,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "render_duration_s": 26.375,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Your turn. Paste this into Claude, with a copy of a real project folder open: Open the folder of a project I have. List every file in this folder. For each one, say whether it is code, a setting, a result or raw data, and whether it should be tracked in Git. Then write a git ignore file that keeps the results out but lets one small summary file through, and tell me whether your git ignore file really lets that file through. Do not run anything and do not change any file. Then check two things yourself. Did Claude run nothing and change no file? And does git check-ignore dash v agree with what it said about the summary file?",
+      "estimated_duration_s": 48.4,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "Composer opens — 'Your turn.'"
+          },
+          {
+            "at": 0.1,
+            "event": "the prompt types in full"
+          },
+          {
+            "at": 0.8,
+            "event": "two check lines land"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE · YOUR TURN",
+            "segment": "Plan Your Ignore File",
+            "command": "Open the folder of a project I have. List every file in this folder. For each one, say whether it is code, a setting, a result or raw data, and whether it should be tracked in Git. Then write a git ignore file that keeps the results out but lets one small summary file through, and tell me whether your git ignore file really lets that file through. Do not run anything and do not change any file.",
+            "runningText": "paste this into Claude…",
+            "output": [
+              "Check: did Claude run nothing and change no file? It should only read and explain.",
+              "Check: run git check-ignore -v on the summary file. Does Git agree with Claude?"
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 5.5",
+            "effortLabel": "High"
+          }
+        }
+      },
+      "actual_duration_s": 32.7,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "render_duration_s": 32.708333333333336,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "narration_text": "Scientific Reproducibility Two: Version Control. At Nik Bear Brown.",
+      "estimated_duration_s": 5.0,
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title restates; handle; mascot"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Scientific Reproducibility II: Version Control",
+            "slug": "claude-liam-lecture-scientific-reproducibility-ii-version-control",
+            "handle": "@NikBearBrown",
+            "subline": ""
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "actual_duration_s": 5.78,
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "render_duration_s": 5.791666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T01:45:36"
+      }
+    }
+  ]
+}

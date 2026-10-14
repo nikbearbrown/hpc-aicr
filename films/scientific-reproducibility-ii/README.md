@@ -1,8 +1,8 @@
 # Scientific Reproducibility II (version control)
 
-**What this is.** A film in the series *Research Computing on Explorer and AICR* (not yet numbered). **Status:** source material only; no film built.
+**What this is.** A film in the series *Research Computing on Explorer and AICR* (not yet numbered). **Status:** published.
 
-**Watch the film:** no film yet.
+**Watch the film:** https://youtu.be/Fg07bGcX27o (unlisted).
 
 **Read the guide:** [`guide.md`](guide.md) is our written version of the lesson. It follows the film's structure, adds the exact commands the film cannot carry, and records what we tested ourselves and where the original is wrong or silent.
 

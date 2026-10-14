@@ -1,0 +1,16 @@
+{
+  "series_title": "Research Computing on Explorer and AICR",
+  "episode_position": "",
+  "title_lines": [
+    "Scientific",
+    "Reproducibility III:",
+    "Containers"
+  ],
+  "subtitle": "Seal a program into one file and run it on a cluster",
+  "portrait_path": "<books>/brutalist.art/runtime/remotion/public/professor-bear/professor-bear-1x1-81.jpg",
+  "presenter_name": "Professor Bear",
+  "narrator_credit": "Liam, in for Bear \u00b7 Narration",
+  "entry_pointer": "",
+  "channel_handle": "@NikBearBrown",
+  "seed": "claude-liam-lecture-scientific-reproducibility-iii-containers"
+}

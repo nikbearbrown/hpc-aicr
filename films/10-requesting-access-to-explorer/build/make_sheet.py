@@ -4,7 +4,7 @@
 LECTURE (Bear, 2026-10-02): the WHOLE source as one act-structured film, primarily visual, best visual per beat,
 a tool shown as itself. Skill doctrine: brutalist.art/skills/make/lecture/SKILL.md.
 
-Source: ../source/README.md (written 2026-10-11 from the Research Computing training
+Source: hpc-aicr/Requesting-Access-to-Explorer/README.md (written 2026-10-11 from the Research Computing training
 slides, rc-docs pages and the first screen of the ServiceNow access form). Facts the README marks NOT CONFIRMED are
 never asserted here; see FACTCHECK.md.
 
@@ -84,6 +84,13 @@ def form(bid, act, narration, moves, highlights, link_phrase=None, cont_phrase=N
         m["at"] = 0 if i == 0 else fr(narration, ph)
         mv.append(m)
     hl = [{"target": t, "at": fr(narration, ph), "kind": k} for (t, ph, k) in highlights]
+    # GATE T samples the clip midpoint: no terracotta box highlight may be alive there, so a glow that would be
+    # (it persists until the next box highlight) fades out before 0.5 (AccessFormCard `until`).
+    boxes = [h for h in hl if h["kind"] in ("glow", "ring")]
+    for i, h in enumerate(boxes):
+        nxt = boxes[i + 1]["at"] if i + 1 < len(boxes) else None
+        if h["kind"] == "glow" and h["at"] < 0.5 and (nxt is None or nxt > 0.5):
+            h["until"] = round(min(max(h["at"] + 0.04, 0.44), 0.465), 3)
     props = {"link": "https://bit.ly/NURC-AccessRequest", "moves": mv, "highlights": hl, "topBarLabel": "Technology"}
     if link_phrase:
         props["linkAt"] = fr(narration, link_phrase)
@@ -163,14 +170,14 @@ N["B34"] = ("Below that, two paragraphs. One: every user must belong to a sponso
 N["B35"] = ("The form goes on below this. I haven't seen the rest, so I won't describe it. Read every field before you submit.")
 N["B36"] = ("What happens after you submit? We think your sponsor is asked to approve it. That's our guess, not a confirmed step, and we "
             "don't know how long it takes. Confirm with Research Computing, at r c help at northeastern dot e d u.")
-N["B40"] = ("Once you're approved, which name do you log in with? The training's example is s dot caplins. In the one real login "
+N["B40"] = ("Once you're approved, which name do you log in with? Research Computing's own example is s dot caplins. In the one real login "
             "checked, the user I D from the form worked, not the email prefix. So try that first. Your first login settles it.")
 N["B41"] = ("Door one is the terminal. S S H, your username, at login dot explorer dot northeastern dot e d u. The first time, it asks "
             "a host-key question: type yes. Then your Northeastern password. Nothing shows as you type. In the one login checked, "
             "no Duo prompt appeared.")
 N["B42"] = ("Door two is the browser: O O D dot explorer dot northeastern dot e d u. Your username and password, plus Duo. "
             "You land on this dashboard.")
-N["B43"] = ("To check you're in, type who am I. It prints your login name. Then groups. It should list your sponsor's project group.")
+N["B43"] = ("To check you're in, type who am I, and it prints your login name. Then type groups. It should list your sponsor's project group.")
 N["B44"] = ("Your home is slash home, slash your username. Your scratch is slash scratch, slash your username.")
 N["B50"] = ("Rejected at the door? Either you have no Explorer account yet, or the username is wrong. Try the user I D from the form, "
             "then your email prefix. If you changed your password minutes ago, wait a while. If you're sure, submit the form.")
@@ -255,18 +262,18 @@ B = [
           ring_line=1, ring_phrase="at login dot", font=32),
     remotion("B42", A4, N["B42"], "BrowserCapture",
              {"url": "ood.explorer.northeastern.edu", "image": OOD_IMG, "imageAspect": round(OOD_ASPECT, 4),
-              "caption": "The training's own screenshot of the real site, after sign-in",
+              "caption": "Research Computing's own screenshot of the signed-in site",
               "moves": [{"at": 0.0, "x": 0.5, "y": 0.45, "scale": 1.0},
                         {"at": fr(N["B42"], "You land on this dashboard"), "x": 0.45, "y": 0.3, "scale": 1.5,
                          "ring": [0.06, 0.245, 0.74, 0.065]}],
               "ringColor": "#3D3929"},
              [{"at": 0.0, "event": "browser window opens on ood.explorer.northeastern.edu"},
               {"at": 0.75, "event": "push in to the dashboard; ring"}],
-             motion_claim="The real Open OnDemand dashboard (the training's screenshot); the camera pushes in as it is named."),
+             motion_claim="The real Open OnDemand dashboard (Research Computing's screenshot); the camera pushes in as it is named."),
     shell("B43", A4, N["B43"], "Terminal",
-          ["$ whoami", "# your login name", "$ groups", "# should list your sponsor's project group"],
-          ["who am I", "It prints", "Then groups", "It should list"],
-          [{"at": 0.2, "event": "whoami"}, {"at": 0.5, "event": "groups"}]),
+          ["$ whoami", "(your login name)", "$ groups", "(should list your sponsor's project group)"],
+          ["who am I", "it prints", "Then type groups", "It should list"],
+          [{"at": 0.2, "event": "whoami"}, {"at": 0.5, "event": "groups"}], font=48),
     manim("B44", A4, N["B44"], "B44_HomeScratch",
           "The home box and the scratch bin from the AICR cast drop in with their real path shapes: /home/<username>, /scratch/<username>.",
           [{"at": 0.2, "event": "home box and path"}, {"at": 0.65, "event": "scratch bin and path"}]),
@@ -333,11 +340,11 @@ sheet = {"metadata": {
     "clock": "narration", "palette": "claude", "register": "Teardown", "fps": 24, "aspect_ratio": "16:9", "width": 3840, "height": 2160,
     "caption_policy": "none", "greeting_language": "French (Bonjour)",
     "audience": "A member of a research group with a Northeastern login who has never used Explorer; assumes no other film or book",
-    "source_doc": "../source/README.md (Northeastern Research Computing training slides, rc-docs pages, "
+    "source_doc": "hpc-aicr/Requesting-Access-to-Explorer/README.md (Northeastern Research Computing's published material, rc-docs pages, "
                   "and the first screen of the access form), read 2026-10-11",
-    "playlist": "Northeastern HPC and AICR", "chapter_number": 10,
-    "series_title": "Research Computing on Explorer and AICR", "series_video_number": 10, "series_video_count": 13,
-    "series_entry_video": "Video 1 · AICR Introduction",
+    "playlist": "Northeastern HPC and AICR",
+    "series_title": "Research Computing on Explorer and AICR",
+    "lecture_opening_title_lines": ["Requesting Access", "to Explorer"],
     "lecture_opening_description": "Why a login alone isn't enough, and how to get added",
     "tags": ["Explorer cluster", "Northeastern University", "Research Computing", "HPC", "access request", "sponsor",
              "project command", "Open OnDemand", "ssh", "ServiceNow", "Nik Bear Brown"]},

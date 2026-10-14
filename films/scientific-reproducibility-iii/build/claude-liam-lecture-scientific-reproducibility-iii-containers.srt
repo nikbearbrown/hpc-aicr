@@ -1,0 +1,262 @@
+1
+00:00:00,000 --> 00:00:13,620
+Research Computing on Explorer and AICR.
+Scientific Reproducibility Three:
+Containers. How to put a program and
+
+2
+00:00:13,670 --> 00:00:26,150
+Hallo. This is Liam, in for Bear. First, a
+correction. To repeat a result, sharing
+your code is not enough. The libraries and
+
+3
+00:00:26,200 --> 00:00:43,390
+Six terms. Container: a sealed bundle of a
+program and what it needs. Image: the file
+a container is made from. Apptainer: runs
+
+4
+00:00:43,440 --> 00:00:55,590
+A container is one sealed file. Inside it
+sit a program, its libraries, its
+settings, and a small runtime. Move that
+
+5
+00:00:55,640 --> 00:01:10,290
+You will meet three names. Docker is the
+most common tool, on laptops, cloud
+servers, and most published images.
+
+6
+00:01:10,340 --> 00:01:25,240
+Why not use Docker on a cluster? Docker's
+normal setup needs administrator-level
+power, and on a machine shared by
+
+7
+00:01:25,290 --> 00:01:39,130
+First benefit: reproducible. The whole
+software stack is captured, so your result
+ties to one named, versioned image. A
+
+8
+00:01:39,180 --> 00:01:52,700
+Portable: the same file runs on your
+laptop, on Explorer, on another cluster,
+or in the cloud. And no dependency fights.
+
+9
+00:01:52,750 --> 00:02:06,690
+Shareable: it is one file you can hand to
+a collaborator, archive with your data, or
+point a reviewer at. And ready-made:
+
+10
+00:02:06,740 --> 00:02:20,600
+Containers cost something: images are
+large, and the first build takes effort.
+So try a module first, software the
+
+11
+00:02:20,650 --> 00:02:34,360
+Apptainer has three verbs. Exec runs one
+command inside the container, then
+returns. That is the verb for jobs. Shell
+
+12
+00:02:34,410 --> 00:02:49,340
+Check the tool first. Both commands are
+read-only and safe on a login node. On
+Explorer we recorded this: the path, and
+
+13
+00:02:49,390 --> 00:03:01,590
+Run containers on a compute node, never on
+the login node. The login node is shared
+by everyone, and heavy work there gets
+
+14
+00:03:01,640 --> 00:03:14,730
+Then open a shell in an image. The path is
+a placeholder for your own project. Your
+prompt changes to Apptainer, which tells
+
+15
+00:03:14,780 --> 00:03:27,120
+For a batch job, put the same command in a
+script. Ask for the partition, cores,
+memory and time your work needs, then run
+
+16
+00:03:27,170 --> 00:03:40,220
+On a GPU, the container can carry its own
+CUDA, so you do not match the node's
+modules. But it still needs the node's
+
+17
+00:03:40,270 --> 00:03:53,150
+For an interactive test, ask for one GPU.
+Naming the card type is good practice when
+the card matters, because a bare one can
+
+18
+00:03:53,200 --> 00:04:05,460
+For a batch GPU job, here is a template:
+one GPU, and inside the partition's time
+limit. The container carries the software
+
+19
+00:04:05,510 --> 00:04:19,310
+Check the partition limit before you write
+the script. On Explorer's G P U partition
+we read an eight hour limit, and two hours
+
+20
+00:04:19,360 --> 00:04:31,020
+A container that starts is not a container
+that used the GPU. So print the card's
+name from inside it. With dash dash N V
+
+21
+00:04:31,070 --> 00:04:42,860
+A container sees its own filesystem, not
+the cluster's. On Explorer your home
+directory is bound for you. Slash projects
+
+22
+00:04:42,910 --> 00:04:57,520
+The bind flag takes a folder on the host,
+a colon, and the path where it appears
+inside. Binding the same path on both
+
+23
+00:04:57,570 --> 00:05:10,450
+Or set one environment variable instead of
+repeating the flag. We put it inside each
+job script, so the script carries its own
+
+24
+00:05:10,500 --> 00:05:23,210
+You cannot build an image on Explorer:
+building needs administrator rights. So
+build on a machine where you have them,
+
+25
+00:05:23,260 --> 00:05:36,670
+A dot def file is the recipe, and the most
+valuable file for reproducibility.
+Bootstrap and From name the base image to
+
+26
+00:05:36,720 --> 00:05:50,710
+The other sections: environment sets
+variables every time the container runs.
+Runscript is what apptainer run does.
+
+27
+00:05:50,760 --> 00:06:04,410
+If you already have a Dockerfile, build
+the Docker image on your own machine, then
+convert it. Docker builds the image.
+
+28
+00:06:04,460 --> 00:06:18,600
+A Dockerfile starts from a base operating
+system image, and uses RUN lines to
+install packages. A good one ends with a
+
+29
+00:06:18,650 --> 00:06:27,010
+Then two commands, on your own machine.
+Docker build, with a name and a version.
+Then apptainer build, reading the image
+
+30
+00:06:27,060 --> 00:06:40,040
+A third option is the remote builder. It
+needs a free account with the maker, and
+it uploads your recipe to a third party,
+
+31
+00:06:40,090 --> 00:06:51,990
+To get an image onto the cluster, pull it
+from a registry. Pulling is heavy, so do
+it on a compute node. This writes a S I F
+
+32
+00:06:52,040 --> 00:07:07,580
+Other registries work the same way. Docker
+Hub for a tool like G A T K, the NVIDIA
+catalogue for GPU images, BioContainers
+
+33
+00:07:07,630 --> 00:07:19,780
+Always pin the tag. A tag called latest
+points at a different image next month. A
+pinned tag keeps pointing at the same one.
+
+34
+00:07:19,830 --> 00:07:33,950
+If you built the file on your own
+computer, copy it through the transfer
+node into project space. Check Research
+
+35
+00:07:34,000 --> 00:07:47,580
+Keep images in your project's containers
+folder, not in home. Project space is
+shared with your lab, and is not covered
+
+36
+00:07:47,630 --> 00:08:01,320
+Apptainer keeps pulled layers in a hidden
+folder in your home directory, and a big
+pull can fill your quota, after which your
+
+37
+00:08:01,370 --> 00:08:14,650
+Before a long job, test by hand on a
+compute node: open a shell, run your
+commands, check they find their files.
+
+38
+00:08:14,700 --> 00:08:29,970
+Record the image. Write down the exact
+tag, and ideally the digest, in your notes
+and methods. For a locally built image,
+
+39
+00:08:30,020 --> 00:08:43,880
+Workflow managers like Nextflow and
+Snakemake can run each step of a pipeline
+in its own container, so every tool
+
+40
+00:08:43,930 --> 00:09:00,050
+On AICR, apptainer and singularity are
+both installed. But we have no
+documentation of container policy there:
+
+41
+00:09:00,100 --> 00:09:14,750
+Here is what we checked, and what we only
+read. On the login node, read-only: the
+path and version of Apptainer, that no
+
+42
+00:09:14,800 --> 00:09:41,080
+Let's recap with Claude. A container is
+one sealed file holding a program and
+everything it needs. Apptainer runs it as
+
+43
+00:09:41,130 --> 00:10:10,330
+Your turn. Paste this into Claude: Replace
+PROGRAM with a tool you use. I run PROGRAM
+on the Explorer cluster. Is there a module
+
+44
+00:10:10,380 --> 00:10:15,940
+Scientific Reproducibility Three:
+Containers. At Nik Bear Brown.

@@ -1,0 +1,340 @@
+1
+00:00:00,000 --> 00:00:12,770
+Research Computing on Explorer and AICR.
+Running a Local L L M on Explorer. How to
+run an open model on a cluster GPU and
+
+2
+00:00:12,820 --> 00:00:27,200
+Hallo. This is Liam, in for Bear. First, a
+correction. A local model on the cluster
+is not free and always running. It runs
+
+3
+00:00:27,250 --> 00:00:42,650
+Five terms. Ollama: the program that
+serves an open model. Apptainer: a tool
+that runs containers without root. A Slurm
+
+4
+00:00:42,700 --> 00:00:57,070
+Here is the idea. You ask Slurm for a GPU.
+On that GPU you run an open model. And a
+coding agent, like Claude Code, sends it
+
+5
+00:00:57,120 --> 00:01:12,690
+There are three layers. The model host is
+Ollama, inside an Apptainer container, on
+a GPU node that Slurm gave you. The
+
+6
+00:01:12,740 --> 00:01:25,040
+Pattern A keeps everything on the GPU
+node. The agent and the model run in the
+same job, so nothing crosses a network,
+
+7
+00:01:25,090 --> 00:01:38,650
+Pattern B keeps your editor on your
+laptop. Only the model's traffic goes to
+the cluster, through an S S H tunnel to
+
+8
+00:01:38,700 --> 00:01:54,330
+Advice that circulates about this setup
+has traps. First, the network. Ollama has
+no authentication, and its container image
+
+9
+00:01:54,380 --> 00:02:05,080
+Inside Apptainer, the image's own setting
+beats a plain export from your shell. So
+pass the address with the env flag: bound
+
+10
+00:02:05,130 --> 00:02:19,670
+Second, the address. Claude Code adds
+slash v one slash messages itself, and the
+documented examples give a bare host and
+
+11
+00:02:19,720 --> 00:02:32,770
+And the tunnel. Local host on the far side
+of a tunnel means the login node, not the
+machine running your model. The target has
+
+12
+00:02:32,820 --> 00:02:50,070
+Third, the model names. Claude Code uses
+its small model for background tasks, and
+a separate setting for subagents. Unless
+
+13
+00:02:50,120 --> 00:03:08,220
+Fourth, context. Ollama sizes its default
+window by video memory: four thousand
+tokens under twenty-four gigabytes,
+
+14
+00:03:08,270 --> 00:03:22,040
+Fifth, the model. A one-and-a-half-billion
+parameter reasoning model cannot reliably
+drive an agent loop with dozens of tool
+
+15
+00:03:22,090 --> 00:03:35,460
+And drop the words zero marginal cost. GPU
+hours count against fair share, you wait
+in a queue, and an idle watcher cancels
+
+16
+00:03:35,510 --> 00:03:50,650
+Setup starts with one small environment
+file. It says where the images, the models
+and the container cache live. The default
+
+17
+00:03:50,700 --> 00:04:02,940
+Apptainer otherwise caches into a hidden
+folder in home, and home fills first. So
+point its cache and temporary folders at
+
+18
+00:04:02,990 --> 00:04:16,340
+Then two pulls: Ollama, and a small web
+server called Caddy that the laptop
+pattern will need. Check the version it
+
+19
+00:04:16,390 --> 00:04:29,670
+The start script runs inside every GPU
+job. It picks a random free port, binds
+Ollama to localhost only, sets the context
+
+20
+00:04:29,720 --> 00:04:43,340
+The Claude Code script sets the base
+address to your port, a placeholder token,
+and every model alias to your local model.
+
+21
+00:04:43,390 --> 00:04:56,590
+Pattern B needs one persistent token: a
+random number kept in a file only you can
+read. Regenerate it any time to revoke
+
+22
+00:04:56,640 --> 00:05:10,260
+Two numbers decide whether this works. The
+model's weights must fit in video memory,
+and there must be room left for the
+
+23
+00:05:10,310 --> 00:05:28,460
+Models that fit, by download size. The
+twenty-billion G P T O S S is about
+fourteen gigabytes. The thirty-billion
+
+24
+00:05:28,510 --> 00:05:43,970
+And the hundred-twenty-billion G P T O S
+S, about sixty-five gigabytes, is the
+strongest of these that fits on one card.
+
+25
+00:05:44,020 --> 00:06:01,550
+The gpu partition gives one GPU per job,
+so stay inside one card. An H two hundred
+has about a hundred forty gigabytes, and
+
+26
+00:06:01,600 --> 00:06:14,760
+On context, sixty-five thousand is the
+floor for coding agents, and on an H two
+hundred you can raise it for long
+
+27
+00:06:14,810 --> 00:06:29,460
+Start with an interactive GPU session. The
+gpu-interactive partition defaults to one
+hour, allows two, and gives one GPU.
+
+28
+00:06:29,510 --> 00:06:42,200
+Source the start script, pull the model,
+then prove it. Send one message to the
+Anthropic-compatible address, and run
+
+29
+00:06:42,250 --> 00:06:51,890
+Configure Claude Code for this session, go
+to your project, and start it. Inside, run
+slash status to confirm it is using your
+
+30
+00:06:51,940 --> 00:07:10,830
+Know the limits. Anthropic's documentation
+says it does not support pointing Claude
+Code at non-Claude models, so this works
+
+31
+00:07:10,880 --> 00:07:23,740
+So long sessions slow down as the context
+grows, because nothing is cached. Keep
+tool servers few, since every definition
+
+32
+00:07:23,790 --> 00:07:43,300
+For unattended work, run Claude Code
+headless inside a batch job. The GPU stays
+busy for the whole job, so the idle
+
+33
+00:07:43,350 --> 00:07:58,280
+Pattern B needs a lock. The laptop reaches
+the node through the login node, so
+something has to listen on the node's
+
+34
+00:07:58,330 --> 00:08:09,800
+Here is the proxy's whole rulebook.
+Requests with the right header go through
+to Ollama. Everything else gets a four-oh-
+
+35
+00:08:09,850 --> 00:08:24,260
+On your laptop, a small script reads which
+node your job landed on, checks that the
+job is still running, writes a private
+
+36
+00:08:24,310 --> 00:08:35,740
+Check the lock. The first command should
+print four-oh-one, because it carries no
+token. The second sends your token and
+
+37
+00:08:35,790 --> 00:08:50,670
+Two risks remain. The proxy blocks the
+rest of the cluster, but Ollama's own
+random port is still reachable by other
+
+38
+00:08:50,720 --> 00:09:06,160
+Aider on the node: use the ollama
+underscore chat prefix. From the laptop,
+through the proxy, use its OpenAI-
+
+39
+00:09:06,210 --> 00:09:15,590
+Continue, in VS Code or JetBrains, takes
+the same endpoint in a YAML file. Paste
+your token where it says so. The roles are
+
+40
+00:09:15,640 --> 00:09:32,170
+Codex, OpenCode and Droid can be set up by
+the ollama launch command, but only when
+Ollama is on the same machine at its
+
+41
+00:09:32,220 --> 00:09:49,150
+Four failures cover most trouble. A four-
+oh-four on every request: the base address
+ends in slash v one. A Claude model name
+
+42
+00:09:49,200 --> 00:10:05,980
+Three more. A full home folder: the image
+cache or the models defaulted to home. A
+pull that fails on a compute node: no
+
+43
+00:10:06,030 --> 00:10:17,500
+And one more trap. Those same proxy
+settings can get in the way when you talk
+to your own local server. Research
+
+44
+00:10:17,550 --> 00:10:36,150
+Explorer runs a watcher for idle GPUs.
+Under-use for fifteen minutes earns an
+email. Under-use for an hour gets the job
+
+45
+00:10:36,200 --> 00:10:55,580
+Now the shared endpoint for a whole class.
+A Slurm job has a time limit, eight hours
+on the gpu partition, so an endpoint built
+
+46
+00:10:55,630 --> 00:11:16,080
+A service for many people would usually
+use vLLM, which batches concurrent
+requests and supports API keys, though its
+
+47
+00:11:16,130 --> 00:11:32,170
+So ask. Five questions. Is one person's
+interactive session in a GPU job
+acceptable? Is S S H port forwarding from
+
+48
+00:11:32,220 --> 00:11:52,030
+On AICR, the newer AI Compute Resource
+cluster, there are two hundred forty-eight
+B two hundred and one hundred fifty-two
+
+49
+00:11:52,080 --> 00:12:17,420
+Here is what we have and have not checked.
+We have not run this whole setup from
+start to finish. We did check, with read-
+
+50
+00:12:17,470 --> 00:12:33,830
+Expect a weaker agent. Models in this
+range are capable, but Claude Code's loop
+is demanding: a long system prompt, dozens
+
+51
+00:12:33,880 --> 00:12:51,750
+Where it does well: clear tasks with clear
+tests, bulk work over many files in batch
+jobs, code that should not leave
+
+52
+00:12:51,800 --> 00:13:04,250
+A practical split: the local model for
+drafting, boilerplate, tests and batch
+passes, and frontier credits for the hard
+
+53
+00:13:04,300 --> 00:13:15,920
+To try it, go to the hpc dash aicr
+repository on GitHub. In the skills
+folder, under local L L M on Explorer,
+
+54
+00:13:15,970 --> 00:13:30,130
+Clone it, start Claude Code inside it, and
+paste the prompt at the top of that file.
+Claude Code then guides you step by step,
+
+55
+00:13:30,180 --> 00:13:59,940
+Let's recap with Claude. A local model
+runs inside a GPU job you ask for, with no
+per-token billing. Pattern A keeps the
+
+56
+00:13:59,990 --> 00:14:20,850
+Your turn. Paste this into Claude: I want
+to run a local model on Explorer for
+coding. Walk me through choosing between
+
+57
+00:14:20,900 --> 00:14:26,070
+Running a Local L L M on Explorer. At Nik
+Bear Brown.

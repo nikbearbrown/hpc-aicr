@@ -1,8 +1,8 @@
 # Requesting Access to Explorer
 
-**What this is.** Video 10 of the series *Research Computing on Explorer and AICR*. **Status:** laid out (script, scenes, fact-check); not yet rendered.
+**What this is.** Video 10 of the series *Research Computing on Explorer and AICR*. **Status:** published.
 
-**Watch the film:** not published yet.
+**Watch the film:** https://youtu.be/6befKxKNF8o (unlisted).
 
 ## Where it comes from
 

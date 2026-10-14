@@ -1,0 +1,310 @@
+1
+00:00:00,000 --> 00:00:12,840
+Research Computing on Explorer and AICR.
+Scientific Reproducibility Two: Version
+Control. Learn to use Git so that every
+
+2
+00:00:12,890 --> 00:00:25,610
+Hallo. This is Liam, in for Bear. First, a
+correction. Version control is not a
+backup folder. It is a timeline of
+
+3
+00:00:25,660 --> 00:00:41,760
+Six terms. Repository: the project folder
+plus its history. Commit: a saved snapshot
+of your files. Branch: a movable name for
+
+4
+00:00:41,810 --> 00:00:53,960
+Six months after you submit a paper, a
+reviewer asks: what threshold did you use
+for low-count filtering? Without version
+
+5
+00:00:54,010 --> 00:01:06,700
+Version control replaces that folder with
+one script and a timeline. Every change
+carries a date, an author and a message.
+
+6
+00:01:06,750 --> 00:01:16,560
+The program is called Git, and its idea is
+simple. It stores snapshots, not edits. A
+commit is a full picture of your files at
+
+7
+00:01:16,610 --> 00:01:27,570
+A branch is a movable name for one chain
+of commits: main here, and an experiment
+that split off. A tag is a fixed name for
+
+8
+00:01:27,620 --> 00:01:41,420
+Your files live in three places. The
+working tree is what you see and edit. The
+staging area is the list of changes going
+
+9
+00:01:41,470 --> 00:01:56,230
+Four moments where this saves you. A
+reviewer asks if you tried another value:
+open the branch where you did. A postdoc
+
+10
+00:01:56,280 --> 00:02:11,270
+The example is a small R N A sequencing
+project: a table of read counts, one row
+per gene, three control columns and three
+
+11
+00:02:11,320 --> 00:02:25,310
+This is the script we will track. Strict
+mode, an input, an output, and a
+parameters block at the top, where the one
+
+12
+00:02:25,360 --> 00:02:39,600
+Start tracking before the first run, not
+after. Git init makes a hidden dot git
+folder: Git's database, one per project. A
+
+13
+00:02:39,650 --> 00:02:53,230
+Track the code that makes results, not the
+results themselves. Big raw data lives in
+project storage, outside the repository,
+
+14
+00:02:53,280 --> 00:03:01,870
+Here is the source's version of that file.
+It ignores the whole results folder, then
+lists two files to let back in: the
+
+15
+00:03:01,920 --> 00:03:13,280
+Run that in real Git and it fails. Git
+never looks inside an ignored folder, so
+it never reads the two allow lines. The
+
+16
+00:03:13,330 --> 00:03:23,690
+The fix is one character. Ignore the
+folder's contents, with slash star, not
+the folder. Now the folder itself is not
+
+17
+00:03:23,740 --> 00:03:37,640
+A second trap, in the same file. The
+source puts a comment after the pattern,
+on the same line. Git does not read that
+
+18
+00:03:37,690 --> 00:03:51,040
+Write the README before the first commit.
+List the requirements, the exact commands
+to reproduce the result, including the tag
+
+19
+00:03:51,090 --> 00:04:03,780
+The habit for every result: change a
+value, run the script, look at the output,
+then commit the code and the result
+
+20
+00:04:03,830 --> 00:04:19,010
+Three commands you will use dozens of
+times a day. Status shows what changed.
+Add chooses what goes into the next
+
+21
+00:04:19,060 --> 00:04:35,800
+Now run it. The log names the commit, and
+the counts are there: two hundred genes, a
+hundred ninety-nine kept. But look at the
+
+22
+00:04:35,850 --> 00:04:50,200
+Then commit the results together with the
+code that made them, and let the message
+say what the run was. The log inside this
+
+23
+00:04:50,250 --> 00:05:04,620
+Two habits make a history worth reading.
+One logical change per commit: if the
+message needs the word and, make two
+
+24
+00:05:04,670 --> 00:05:19,130
+Before you commit anything, look at what
+you are about to commit. Change the
+threshold, and git diff shows it line by
+
+25
+00:05:19,180 --> 00:05:31,380
+Rerun with the new value: a hundred
+ninety-seven genes now pass, two fewer.
+Commit the changed script and the new
+
+26
+00:05:31,430 --> 00:05:46,010
+The log is your audit trail. Stat shows
+which files each commit touched. Grep
+finds every commit that mentions a word,
+
+27
+00:05:46,060 --> 00:06:00,070
+A reviewer asks you to try a fold change
+cutoff of one point five instead of two.
+You do not know yet whether it goes in the
+
+28
+00:06:00,120 --> 00:06:14,430
+One command makes the branch and moves you
+onto it. Branch list shows where you are,
+with a star. Change the two cutoffs in the
+
+29
+00:06:14,480 --> 00:06:23,990
+Run it, check it, commit it on the branch.
+Then switch back to main, and its script
+is exactly as you left it: the cutoff is
+
+30
+00:06:24,040 --> 00:06:38,350
+Merge when the idea belongs. The dash dash
+no F F flag keeps a visible merge point,
+and the graph shows the line leaving and
+
+31
+00:06:38,400 --> 00:06:52,200
+A tag is a flag on one commit, and it does
+not move. Branch names slide forward with
+every new commit; a tag stays where you
+
+32
+00:06:52,250 --> 00:07:08,260
+The tag command, and the list that shows
+it with its message. Tags are not sent by
+a plain push. Pushing uploads your work to
+
+33
+00:07:08,310 --> 00:07:23,040
+The reviewer's question: what did you get
+with the original threshold? Find the
+commit by its message, restore only that
+
+34
+00:07:23,090 --> 00:07:36,010
+One thing to notice. Restoring the script
+did not restore the results. The rerun
+overwrote the two tracked result files,
+
+35
+00:07:36,060 --> 00:07:50,350
+On a cluster, a Slurm job runs later, on
+another machine, from the files as they
+are then. So two rules. Commit before you
+
+36
+00:07:50,400 --> 00:08:03,450
+This is the source's job script, read from
+the source and not run by us. Two things
+to fix before you copy it. The partition
+
+37
+00:08:03,500 --> 00:08:18,280
+Use a name from a real list. Read-only
+commands on a login node showed, on
+Explorer, short, the default, with a two-
+
+38
+00:08:18,330 --> 00:08:32,380
+Inside the job: a header that prints the
+job, the commit and the branch. Then the
+guard. If the working tree has uncommitted
+
+39
+00:08:32,430 --> 00:08:46,420
+We ran the guard block on its own, on the
+Mac, not as a Slurm job. With an edited
+file it prints the error and exits with
+
+40
+00:08:46,470 --> 00:08:58,770
+Weak spots, from our reading of the logic,
+not tested. The guard runs when the job
+starts, not when you submit, and a job can
+
+41
+00:08:58,820 --> 00:09:09,390
+A stronger version, ours and untested.
+Check the tree when you submit, and pass
+the hash into the job. Inside the job,
+
+42
+00:09:09,440 --> 00:09:24,730
+Three more. The results a run writes are
+tracked files, so the next submit is
+blocked until you commit them. The tag
+
+43
+00:09:24,780 --> 00:09:40,960
+A full job record holds more than a
+commit: job, node and partition; start and
+end times; the exact command; every
+
+44
+00:09:41,010 --> 00:09:55,660
+Three aliases save typing, and go in your
+global config: l g for the branch graph, s
+t for a short status, last for the last
+
+45
+00:09:55,710 --> 00:10:07,290
+And a small shell function that puts the
+branch name in your prompt, so you always
+know where you are. Here it prints the
+
+46
+00:10:07,340 --> 00:10:20,350
+Charts need no display. Two awk scripts
+draw a bar chart and a histogram in plain
+text, so they run on a login node. They
+
+47
+00:10:20,400 --> 00:10:38,060
+Questions people ask. Can Git hold large
+datasets? Not directly. Git L F S handles
+files up to about two gigabytes, and D V C
+
+48
+00:10:38,110 --> 00:10:52,330
+To fix the last commit before you push,
+use commit dash dash amend. To undo a
+commit that is already shared, use git
+
+49
+00:10:52,380 --> 00:11:06,280
+If two branches changed the same lines,
+Git stops and marks the file. Open it,
+keep the version you want, delete the
+
+50
+00:11:06,330 --> 00:11:32,640
+Let's recap with Claude. A commit is a
+saved snapshot, and a tag is a fixed name
+for one of them. Track the code that makes
+
+51
+00:11:32,690 --> 00:12:05,340
+Your turn. Paste this into Claude, with a
+copy of a real project folder open: Open
+the folder of a project I have. List every
+
+52
+00:12:05,390 --> 00:12:11,120
+Scientific Reproducibility Two: Version
+Control. At Nik Bear Brown.

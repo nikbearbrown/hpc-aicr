@@ -1,6 +1,6 @@
 # ACTS — Requesting Access to Explorer (lecture)
 
-**What this is.** The coverage map for the lecture film of `<books>/../source/README.md`, written before any beat.
+**What this is.** The coverage map for the lecture film of `<books>/hpc-aicr/Requesting-Access-to-Explorer/README.md`, written before any beat.
 **Why.** A lecture covers the WHOLE source; every section lands in an act or is listed under LEFT OUT with a reason.
 **Found.** All seven README sections are covered in five acts, 23 body beats. One section (Sources) is not narrated. Estimated runtime about 7 min 20 s (an output, not a target). Updated 2026-10-11 for Bear's real-login facts (UserID worked, host-key question, no Duo on SSH) for the Managing /projects app and the two-hour delay, for the real Northeastern sign-in capture (B30, new), and for Bear's rule that unconfirmed steps may be said only as hedged guesses (B36, new).
 

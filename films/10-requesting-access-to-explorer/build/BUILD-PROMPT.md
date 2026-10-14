@@ -1,13 +1,13 @@
 # BUILD-PROMPT — Requesting Access to Explorer (lecture, Liam)
 
-**What this is.** The whole handoff for the build stage of one film. A higher-effort session did the layout (read the source, acts, shot list, fact check, narration, beat sheet, Manim scenes, the new Remotion form card) and stopped. You do the mechanical build. **You need no other context.** Run every command from `<cowork>/bear-textbooks/books` (call it `books/`).
+**What this is.** The whole handoff for the build stage of one film. A higher-effort session did the layout (read the source, acts, shot list, fact check, narration, beat sheet, Manim scenes, the new Remotion form card) and stopped. You do the mechanical build. **You need no other context.** Run every command from `<books>` (call it `books/`).
 
 **Rules for you.** Do not change the narration, the scene design or the beat sheet. If a gate fails, fix the smallest unit (one scene, one prop, one cue) and re-run only that, and log it under "Build-stage log" in `BUILD-LOG.md`. Free steps run straight through with no approval stops. Never publish, stage (`art post`), or upload anything. No paid generation. Do not edit `liam.json`.
 
 ## Paths (all absolute)
 
-- Reel folder `R`: `youtube/claude-liam-lecture-requesting-access-to-explorer`
-- Source: `<books>/../source/README.md`
+- Reel folder `R`: `<books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer`
+- Source: `<books>/hpc-aicr/Requesting-Access-to-Explorer/README.md`
 - Skill: `<books>/brutalist.art/skills/make/lecture/SKILL.md`
 - New component: `R/new-components/AccessFormCard.tsx`
 - Captures: `R/captures/northeastern-sign-in.png` (Bear's, B30) and `R/captures/screenshot_OOD.png` (the training's, B42; already public in `runtime/remotion/public/lecture-explorer-ood/`)
@@ -24,9 +24,9 @@ Beat map: BOPEN title card · BIDEA hesitant writer · BDEFS terms · Act I B10 
 **1. Register the new component (first, before anything else).** Copy and register it, then re-index:
 
 ```bash
-cp <books>/../build/new-components/AccessFormCard.tsx ./brutalist.art/runtime/remotion/src/scenes/AccessFormCard.tsx
+cp <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer/new-components/AccessFormCard.tsx ./brutalist.art/runtime/remotion/src/scenes/AccessFormCard.tsx
 mkdir -p ./brutalist.art/runtime/remotion/public/lecture-requesting-access
-cp <books>/../build/captures/northeastern-sign-in.png ./brutalist.art/runtime/remotion/public/lecture-requesting-access/
+cp <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer/captures/northeastern-sign-in.png ./brutalist.art/runtime/remotion/public/lecture-requesting-access/
 ```
 
 In `./brutalist.art/runtime/remotion/src/Root.tsx`, add the import beside the `BrowserCapture` import (line ~734):
@@ -53,25 +53,25 @@ and the composition right after the `BrowserCapture` `<Composition ... />` block
 
 Then `./brutalist.art/art scene-index` and `./brutalist.art/art scenes --check AccessFormCard` (must say RENDERABLE). Check `ps aux | grep -E 'manim|remotion|compile' | grep -v grep` first: if another film is compiling, wait; do not edit Root.tsx while a render is running (it will pick up the change). Check that no other agent has added conflicting edits to Root.tsx (look at the file before and after).
 
-**2. Rebuild the sheet** (idempotent; keeps measured audio): `python3 <books>/../build/make_sheet.py`. It must print `29 beats`.
+**2. Rebuild the sheet** (idempotent; keeps measured audio): `python3 <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer/make_sheet.py`. It must print `29 beats`.
 
 **3. Audio (free, Kokoro am_onyx).**
 
 ```bash
-python3 ./brutalist.art/runtime/scripts/generate_audio_kokoro.py youtube/claude-liam-lecture-requesting-access-to-explorer
+python3 ./brutalist.art/runtime/scripts/generate_audio_kokoro.py <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer
 ```
 
 Pad BOUT with a 1.0 s silent tail and write its duration back (this is what `publish_hpc.py` does):
 
 ```bash
-R=youtube/claude-liam-lecture-requesting-access-to-explorer
+R=<books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer
 ffmpeg -y -loglevel error -i $R/mp3/beat-BOUT.mp3 -af apad=pad_dur=1.0 $R/mp3/beat-BOUT-pad.mp3 && mv $R/mp3/beat-BOUT-pad.mp3 $R/mp3/beat-BOUT.mp3
 ffprobe -v error -show_entries format=duration -of csv=p=0 $R/mp3/beat-BOUT.mp3
 ```
 
 Put that duration in `actual_duration_s` for BOUT in `beat_sheet.json` (a JSON edit of that one field, as `publish_hpc.py` does), then re-run `make_sheet.py` again so every audio-dependent cue (terminal line cues, definitions, captures, form card durations) is recomputed from the measured clock. Do not edit narration to fix timing; regenerate and re-run.
 
-**4. Whisper-check** the audio (greeting "Bonjour", "AICR" in the title card, "S S H", "who am I", "user I D", "H P C", "N U R C", the e-mail spelled out, "Duo"). Use the sibling check if it exists: `<books>/../build/whisper_check.py` (read it first; copy it into `R/` and point it at `R/`), otherwise faster-whisper by hand. A mispronounced single beat is re-voiced with `generate_audio_kokoro.py <R> --only <BID>` (never respell in the narration text; if a word is wrong in a way the dictionary should fix, log it as an open question; do not edit `liam.json`).
+**4. Whisper-check** the audio (greeting "Bonjour", "AICR" in the title card, "S S H", "who am I", "user I D", "H P C", "N U R C", the e-mail spelled out, "Duo"). Use the sibling check if it exists: `<books>/hpc-aicr/youtube/claude-liam-lecture-logging-into-aicr-with-claude/whisper_check.py` (read it first; copy it into `R/` and point it at `R/`), otherwise faster-whisper by hand. A mispronounced single beat is re-voiced with `generate_audio_kokoro.py <R> --only <BID>` (never respell in the narration text; if a word is wrong in a way the dictionary should fix, log it as an open question; do not edit `liam.json`).
 
 **5. Title card (BOPEN).** After BOPEN's audio is measured:
 
@@ -93,7 +93,7 @@ Remotion beats: if `remotion_scenes.py --help` offers stills, take 25/50/95% of 
 **7. Review cut at 4K.**
 
 ```bash
-./brutalist.art/art run youtube/claude-liam-lecture-requesting-access-to-explorer --height 2160
+./brutalist.art/art run <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer --height 2160
 ```
 
 Render Remotion only through this path (it calls `remotion_scenes.py` in the foreground); never hand-roll `npx remotion render`. Look at `qc-sheet.png` and a frame from each beat. Gate L, A, B, V must pass (no BLOCKER or MAJOR in Gate V). A long film is fine in one run; if a Manim scene fails Gate A, remember Gate A copies only `scenes.py`.
@@ -101,12 +101,12 @@ Render Remotion only through this path (it calls `remotion_scenes.py` in the for
 **8. Final master at 4K.**
 
 ```bash
-./brutalist.art/art final youtube/claude-liam-lecture-requesting-access-to-explorer --height 2160 --out <books>/../build/exports/landscape
+./brutalist.art/art final <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer --height 2160 --out <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer/exports/landscape
 ```
 
 GATE T runs first and must PASS (write nothing into `TYPECHECK.md` by hand; the gate does).
 
-**9. Bookend check.** `python3 ./brutalist.art/runtime/scripts/bookend_check.py youtube/claude-liam-lecture-requesting-access-to-explorer` must PASS (title card, then hesitant writer, spoken @NikBearBrown outro).
+**9. Bookend check.** `python3 ./brutalist.art/runtime/scripts/bookend_check.py <books>/hpc-aicr/youtube/claude-liam-lecture-requesting-access-to-explorer` must PASS (title card, then hesitant writer, spoken @NikBearBrown outro).
 
 **10. Master check.** `ffprobe` the master in `R/exports/landscape/`: 3840x2160, H.264/AAC, duration equals the sum of the measured audio (BOPEN card included), the 1.0 s silent tail present, audio sample rate sane (a past loudnorm pass left some masters at 96 kHz AAC; if so, re-encode audio to 48 kHz and note it in `BUILD-LOG.md`). Write the master's absolute path, runtime and sha256 in `BUILD-LOG.md`.
 
